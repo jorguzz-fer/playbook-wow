@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Comercial WOW+ | Central de Vendas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine-deep:   #1E0A14;
+    --wine-bg:     #2A0D1C;
+    --wine-card:   #3A1128;
+    --wine-border: #5A1F40;
+    --orange:      #F5821F;
+    --orange-dark: #D4680A;
+    --orange-glow: rgba(245,130,31,0.18);
+    --orange-card: #F5821F;
+    --text-white:  #FFFFFF;
+    --text-muted:  #C0A0B0;
+    --text-dim:    #7A5068;
+    --green:       #4CAF7D;
+    --blue-soft:   #6BA5E7;
+    --radius-sm:   8px;
+    --radius-md:   16px;
+    --radius-lg:   24px;
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body:    'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--wine-bg);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 260px;
+    background: var(--wine-deep);
+    border-right: 1px solid var(--wine-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .sidebar-logo {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--wine-border);
+    flex-shrink: 0;
+  }
+
+  .sidebar-logo img {
+    width: 140px;
+    height: auto;
+    display: block;
+  }
+
+  .sidebar-label {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    padding: 20px 20px 8px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 0 12px 20px;
+  }
+
+  .nav-section {
+    margin-bottom: 4px;
+  }
+
+  .nav-channel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    position: relative;
+  }
+
+  .nav-channel:hover { background: var(--wine-card); color: var(--text-white); }
+  .nav-channel.active { background: var(--orange-glow); color: var(--orange); }
+  .nav-channel.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 20%; bottom: 20%;
+    width: 3px;
+    background: var(--orange);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .nav-channel .ch-icon {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    background: var(--wine-card);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .nav-channel.active .ch-icon { background: var(--orange-glow); }
+
+  .nav-sub {
+    padding-left: 50px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    padding-bottom: 4px;
+  }
+  .nav-sub.open { display: flex; }
+
+  .nav-sub-item {
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+    text-decoration: none;
+    display: block;
+  }
+  .nav-sub-item:hover { color: var(--text-white); background: var(--wine-card); }
+  .nav-sub-item.active { color: var(--orange); }
+
+  .nav-chevron {
+    margin-left: auto;
+    font-size: 10px;
+    transition: transform 0.2s;
+    color: var(--text-dim);
+  }
+  .nav-channel.open .nav-chevron { transform: rotate(90deg); }
+
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--wine-border);
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: 260px;
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(26, 8, 18, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--wine-border);
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .topbar-breadcrumb {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .topbar-breadcrumb span { color: var(--text-white); font-weight: 600; }
+
+  .topbar-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: 10px;
+    padding: 8px 14px;
+    flex: 0 0 280px;
+    transition: border-color 0.15s;
+  }
+  .topbar-search:focus-within { border-color: var(--orange); }
+  .topbar-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-white);
+    font-size: 13px;
+    font-family: var(--font-body);
+    width: 100%;
+  }
+  .topbar-search input::placeholder { color: var(--text-dim); }
+  .search-icon { color: var(--text-dim); font-size: 14px; }
+
+  /* ── PAGE CONTENT ── */
+  .page { display: none; padding: 40px; }
+  .page.active { display: block; }
+
+  /* ── HERO DASHBOARD ── */
+  .hero-dashboard {
+    background: linear-gradient(135deg, var(--wine-card) 0%, #4A1535 100%);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-lg);
+    padding: 40px 48px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-dashboard::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .hero-title em { color: var(--orange); font-style: normal; }
+
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 540px;
+    margin-bottom: 32px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* ── CHANNEL GRID ── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .channel-card {
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .channel-card:hover {
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    background: #421428;
+  }
+
+  .channel-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+    transform-origin: left;
+  }
+  .channel-card:hover::after { transform: scaleX(1); }
+
+  .cc-icon {
+    width: 44px; height: 44px;
+    background: var(--orange-glow);
+    border: 1px solid rgba(245,130,31,0.3);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .cc-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .cc-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .cc-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--wine-deep);
+    color: var(--text-muted);
+    border: 1px solid var(--wine-border);
+  }
+  .pill.orange { background: rgba(245,130,31,0.15); color: var(--orange); border-color: rgba(245,130,31,0.3); }
+
+  /* ── SECTION TITLES ── */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--wine-border);
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .section-title em { color: var(--orange); font-style: normal; }
+
+  /* ── PRODUCT CARDS ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .product-card {
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    position: relative;
+  }
+
+  .product-card.featured {
+    background: linear-gradient(135deg, #c4620a 0%, #F5821F 100%);
+    border-color: var(--orange);
+  }
+
+  .product-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--wine-deep);
+    color: var(--text-white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .product-card.featured .product-badge {
+    background: rgba(0,0,0,0.3);
+  }
+
+  .product-name {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .product-card.featured .product-name { color: rgba(255,255,255,0.8); }
+
+  .product-price {
+    font-family: var(--font-display);
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+  .product-price .currency { font-size: 16px; vertical-align: top; margin-top: 4px; display: inline-block; }
+  .product-price .amount { font-size: 42px; }
+  .product-price .period { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+  .product-card.featured .product-price .period { color: rgba(255,255,255,0.7); }
+
+  .product-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .product-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .product-card.featured .product-features li { color: rgba(255,255,255,0.9); }
+
+  .feat-icon { color: var(--orange); flex-shrink: 0; margin-top: 1px; }
+  .product-card.featured .feat-icon { color: white; }
+
+  .product-note {
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--wine-deep);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .product-card.featured .product-note { background: rgba(0,0,0,0.2); color: rgba(255,255,255,0.6); }
+
+  /* ── PLAYBOOK STEPS ── */
+  .playbook-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .playbook-steps::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 44px;
+    bottom: 44px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--orange), var(--wine-border));
+  }
+
+  .step-item {
+    display: flex;
+    gap: 20px;
+    padding: 0 0 24px;
+    position: relative;
+  }
+
+  .step-item:last-child { padding-bottom: 0; }
+
+  .step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--wine-deep);
+    border: 2px solid var(--wine-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--orange);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .step-item:hover .step-num {
+    border-color: var(--orange);
+    background: var(--orange-glow);
+  }
+
+  .step-body {
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    flex: 1;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+
+  .step-item:hover .step-body { border-color: rgba(245,130,31,0.4); }
+
+  .step-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .step-content {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .step-expand {
+    display: none;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--wine-border);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .step-expand.open { display: block; }
+
+  /* ── SCRIPT BOXES ── */
+  .script-box {
+    background: var(--wine-deep);
+    border: 1px solid var(--wine-border);
+    border-left: 3px solid var(--orange);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--text-white);
+    line-height: 1.7;
+    margin: 12px 0;
+    position: relative;
+  }
+
+  .script-box::before {
+    content: '💬 Script';
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  .script-box.response::before { content: '↩ Resposta'; }
+  .script-box.warning { border-left-color: #e55; }
+  .script-box.warning::before { content: '⚠️ Atenção'; color: #e77; }
+
+  /* ── OBJEÇÕES ── */
+  .objection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .objection-card {
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .objection-card:hover { border-color: rgba(245,130,31,0.5); }
+
+  .obj-trigger {
+    background: var(--wine-deep);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .obj-trigger-text {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-white);
+  }
+
+  .obj-chevron {
+    font-size: 12px;
+    color: var(--orange);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .objection-card.open .obj-chevron { transform: rotate(180deg); }
+
+  .obj-answer {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .objection-card.open .obj-answer {
+    max-height: 300px;
+    padding: 14px 18px;
+  }
+
+  /* ── PERSONA CARDS ── */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .persona-card {
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+  }
+
+  .persona-avatar {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .persona-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .persona-pain {
+    font-size: 12px;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .persona-question {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    border-left: 2px solid var(--orange);
+    padding-left: 12px;
+    line-height: 1.6;
+  }
+
+  /* ── COMPLIANCE BOX ── */
+  .compliance-box {
+    background: rgba(180, 20, 60, 0.15);
+    border: 1px solid rgba(200, 30, 70, 0.4);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .compliance-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff8099;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .compliance-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .compliance-list li {
+    font-size: 13px;
+    color: #e0b0bc;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  /* ── ROI TABLE ── */
+  .roi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .roi-card {
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 22px;
+  }
+
+  .roi-persona {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  .roi-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .roi-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .roi-list li {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .roi-list li::before {
+    content: '→';
+    color: var(--orange);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── RULE BLOCK ── */
+  .rule-block {
+    background: var(--wine-deep);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .rule-col-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .rule-col-title.no { color: #ff7070; }
+  .rule-col-title.yes { color: var(--green); }
+
+  .rule-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rule-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ── METRICS ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .metric-card {
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .metric-icon { font-size: 24px; margin-bottom: 8px; }
+
+  .metric-name {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .metric-desc {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  /* ── FOLLOW UP CADENCE ── */
+  .cadence-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .cadence-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--wine-card);
+    border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+  }
+
+  .cadence-day {
+    background: var(--orange-glow);
+    border: 1px solid rgba(245,130,31,0.3);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--orange);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .cadence-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── TAGS / BADGE COMING SOON ── */
+  .badge-coming {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245,130,31,0.12);
+    border: 1px dashed rgba(245,130,31,0.4);
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── UTIL ── */
+  .mb-8 { margin-bottom: 8px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+  .mb-32 { margin-bottom: 32px; }
+
+  .tag-orange {
+    background: rgba(245,130,31,0.15);
+    color: var(--orange);
+    border: 1px solid rgba(245,130,31,0.3);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--wine-border);
+    margin: 28px 0;
+  }
+
+  .info-box {
+    background: rgba(107,165,231,0.1);
+    border: 1px solid rgba(107,165,231,0.3);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #a0c4e8;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  /* ── MOBILE TOGGLE ── */
+  .mobile-toggle {
+    display: none;
+    position: fixed;
+    bottom: 20px; right: 20px;
+    width: 52px; height: 52px;
+    background: var(--orange);
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 200;
+    box-shadow: 0 4px 20px rgba(245,130,31,0.4);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; }
+    .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+    .channel-grid { grid-template-columns: 1fr 1fr; }
+    .product-grid { grid-template-columns: 1fr; }
+    .objection-grid { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    .roi-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .rule-block { grid-template-columns: 1fr; }
+    .page { padding: 20px; }
+    .topbar { padding: 0 20px; }
+    .hero-dashboard { padding: 28px; }
+    .hero-title { font-size: 26px; }
+  }
+
+  @media (max-width: 540px) {
+    .channel-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <img src="data:image/png;base64,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IgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiD/2Q==" alt="WOW+ Saúde por Assinatura">
+  </div>
+
+  <div class="sidebar-label">Biblioteca Comercial</div>
+
+  <nav class="sidebar-nav">
+
+    <div class="nav-section">
+      <button class="nav-channel active" onclick="navigateTo('dashboard', this)" data-nosub>
+        <span class="ch-icon">🏠</span>
+        Início
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-channel" onclick="toggleSub(this)" data-target="sub-foundation" data-nosub>
+        <span class="ch-icon">📚</span>
+        Fundação WOW+
+        <span class="nav-chevron">▶</span>
+      </button>
+      <div class="nav-sub" id="sub-foundation">
+        <a class="nav-sub-item" onclick="navigateTo('foundation-intro')">A WOW+ em 3 minutos</a>
+        <a class="nav-sub-item" onclick="navigateTo('foundation-portfolio')">Portfólio completo</a>
+        <a class="nav-sub-item" onclick="navigateTo('foundation-spin')">SPIN Selling</a>
+        <a class="nav-sub-item" onclick="navigateTo('foundation-objections')">Objeções universais</a>
+        <a class="nav-sub-item" onclick="navigateTo('foundation-battlecard')">Battlecard concorrência</a>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-channel" onclick="navigateTo('b2c', this)">
+        <span class="ch-icon">👤</span>
+        Vendas Diretas B2C
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-channel" onclick="navigateTo('b2b', this)">
+        <span class="ch-icon">🏢</span>
+        Corporativo B2B
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-channel" onclick="navigateTo('consultores', this)">
+        <span class="ch-icon">🤝</span>
+        Consultores
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-channel" onclick="navigateTo('especialistas', this)">
+        <span class="ch-icon">🩺</span>
+        Especialistas
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-channel" onclick="navigateTo('parceiros', this)">
+        <span class="ch-icon">🌐</span>
+        Parceiros Estratégicos
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-channel" onclick="navigateTo('pdv', this)">
+        <span class="ch-icon">🏪</span>
+        PDVs
+      </button>
+    </div>
+
+  </nav>
+
+  <div class="sidebar-footer">
+    v2.0 · Junho 2025<br>
+    Validar compliance com RT
+  </div>
+</aside>
+
+<!-- MOBILE TOGGLE -->
+<button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-breadcrumb">
+      Biblioteca Comercial WOW+ <span id="breadcrumb-current"></span>
+    </div>
+    <div class="topbar-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Buscar script, objeção, persona..." oninput="handleSearch(this.value)">
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: DASHBOARD
+  ══════════════════════════════════════════ -->
+  <div class="page active" id="page-dashboard">
+    <div class="hero-dashboard">
+      <div class="hero-eyebrow">Central Comercial</div>
+      <h1 class="hero-title">Venda <em>tranquilidade.</em><br>Não telemedicina.</h1>
+      <p class="hero-sub">Tudo que o time de vendas precisa — scripts, objeções, personas, fichas de produto e playbooks — organizado por canal.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Canais comerciais</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">7</span>
+          <span class="stat-label">Objeções mapeadas</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Personas B2C</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Produtos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Navegue por canal</div>
+        <h2 class="section-title">Canais <em>Comerciais</em></h2>
+      </div>
+    </div>
+
+    <div class="channel-grid">
+      <div class="channel-card" onclick="navigateTo('b2c')">
+        <div class="cc-icon">👤</div>
+        <div class="cc-title">Vendas Diretas B2C</div>
+        <div class="cc-desc">Venda 1x1 direto ao consumidor final. Personas, scripts WhatsApp/ligação, playbook completo e objeções.</div>
+        <div class="cc-pills">
+          <span class="pill orange">SMART R9,90</span>
+          <span class="pill orange">CARE+ R9,90</span>
+          <span class="pill">Pessoas</span>
+          <span class="pill">Famílias</span>
+        </div>
+      </div>
+      <div class="channel-card" onclick="navigateTo('b2b')">
+        <div class="cc-icon">🏢</div>
+        <div class="cc-title">Corporativo B2B</div>
+        <div class="cc-desc">Empresas de 10 a 5.000 colaboradores. RH, Financeiro, CEO. Inclui NR1 e Medicina Ocupacional.</div>
+        <div class="cc-pills">
+          <span class="pill orange">SMART R9,90/vida</span>
+          <span class="pill orange">CARE+ R4,90/vida</span>
+          <span class="pill">NR1</span>
+          <span class="pill">Med. Ocupacional</span>
+        </div>
+      </div>
+      <div class="channel-card" onclick="navigateTo('consultores')">
+        <div class="cc-icon">🤝</div>
+        <div class="cc-title">Consultores</div>
+        <div class="cc-desc">Representantes que vendem e são remunerados por isso. Script de recrutamento e argumentos de entrada.</div>
+        <div class="cc-pills">
+          <span class="pill">Afiliados</span>
+          <span class="pill">Representantes</span>
+        </div>
+      </div>
+      <div class="channel-card" onclick="navigateTo('especialistas')">
+        <div class="cc-icon">🩺</div>
+        <div class="cc-title">Especialistas</div>
+        <div class="cc-desc">Psicólogos, nutricionistas, médicos e fisioterapeutas que transformam autoridade em receita recorrente.</div>
+        <div class="cc-pills">
+          <span class="pill">Psicólogos</span>
+          <span class="pill">Nutricionistas</span>
+          <span class="pill">Médicos</span>
+        </div>
+      </div>
+      <div class="channel-card" onclick="navigateTo('parceiros')">
+        <div class="cc-icon">🌐</div>
+        <div class="cc-title">Parceiros Estratégicos</div>
+        <div class="cc-desc">Contadores, consultores, associações e entidades que abrem portas sem operar saúde.</div>
+        <div class="cc-pills">
+          <span class="pill">Contadores</span>
+          <span class="pill">Consultores</span>
+          <span class="pill">Associações</span>
+        </div>
+      </div>
+      <div class="channel-card" onclick="navigateTo('pdv')">
+        <div class="cc-icon">🏪</div>
+        <div class="cc-title">PDVs</div>
+        <div class="cc-desc">Farmácias, academias, óticas e clínicas que indicam no balcão e convertem tráfego em receita recorrente.</div>
+        <div class="cc-pills">
+          <span class="pill">Farmácia</span>
+          <span class="pill">Academia</span>
+          <span class="pill">Ótica</span>
+          <span class="pill">Clínica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: FUNDAÇÃO — INTRO
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-foundation-intro">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Fundação · Módulo 1</div>
+        <h2 class="section-title">A WOW+ em <em>3 minutos</em></h2>
+      </div>
+    </div>
+
+    <div class="rule-block mb-24">
+      <div>
+        <div class="rule-col-title no">❌ Não somos</div>
+        <ul class="rule-list">
+          <li><span>❌</span> Plano de saúde</li>
+          <li><span>❌</span> Clínica médica</li>
+          <li><span>❌</span> Corretora de seguros</li>
+          <li><span>❌</span> Seguradora</li>
+        </ul>
+      </div>
+      <div>
+        <div class="rule-col-title yes">✅ Somos</div>
+        <ul class="rule-list">
+          <li><span>✅</span> Plataforma de acesso à saúde</li>
+          <li><span>✅</span> Para pessoas e famílias</li>
+          <li><span>✅</span> Para empresas</li>
+          <li><span>✅</span> 100% digital, sem carência</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">A Regra de Ouro</div>
+        <h2 class="section-title">O que você <em>vende</em></h2>
+      </div>
+    </div>
+
+    <div class="rule-block mb-24">
+      <div>
+        <div class="rule-col-title no">❌ Nunca venda</div>
+        <ul class="rule-list">
+          <li><span>❌</span> Consulta</li>
+          <li><span>❌</span> Aplicativo</li>
+          <li><span>❌</span> Telemedicina</li>
+          <li><span>❌</span> Psicólogo</li>
+          <li><span>❌</span> Nutricionista</li>
+        </ul>
+      </div>
+      <div>
+        <div class="rule-col-title yes">✅ Sempre venda</div>
+        <ul class="rule-list">
+          <li><span>✅</span> Tranquilidade</li>
+          <li><span>✅</span> Acesso rápido</li>
+          <li><span>✅</span> Segurança</li>
+          <li><span>✅</span> Solução de verdade</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: FUNDAÇÃO — PORTFÓLIO
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-foundation-portfolio">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Fundação · Módulo 2</div>
+        <h2 class="section-title">Portfólio <em>Completo</em></h2>
+      </div>
+    </div>
+
+    <div class="info-box">ℹ️ CARE+ B2C (R9,90/mês) e CARE+ Corporativo (R4,90/vida/mês) são SKUs <strong>distintos</strong> com coberturas diferentes. Nunca misture os dois numa mesma conversa.</div>
+
+    <div class="section-eyebrow mb-8">B2C — Pessoas e Famílias</div>
+    <div class="product-grid mb-24">
+      <div class="product-card">
+        <div class="product-badge">👤 Uso individual</div>
+        <div class="product-name">SMART</div>
+        <div class="product-price">
+          <span class="currency">R$</span><span class="amount">29,90</span><span class="period">/mês</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> Clínico Geral online 24/7</li>
+          <li><span class="feat-icon">✓</span> Pediatria online 24/7</li>
+          <li><span class="feat-icon">✓</span> Especialidades com coparticipação reduzida</li>
+          <li><span class="feat-icon">✓</span> Desconto em medicamentos</li>
+        </ul>
+        <div class="product-note">💡 Coparticipação: valor reduzido — não divulgar número sem confirmar com RT.</div>
+      </div>
+      <div class="product-card featured">
+        <div class="product-badge">⭐ Mais escolhido</div>
+        <div class="product-name">CARE+</div>
+        <div class="product-price">
+          <span class="currency">R$</span><span class="amount">49,90</span><span class="period">/mês</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> Tudo do plano SMART</li>
+          <li><span class="feat-icon">✓</span> 1 Psicologia + 1 Nutrição + 1 Especialidade/mês</li>
+          <li><span class="feat-icon">✓</span> +20 especialidades médicas</li>
+          <li><span class="feat-icon">✓</span> Dependentes por R9,90/vida</li>
+          <li><span class="feat-icon">✓</span> Titular + cônjuge + filhos até 21 anos</li>
+          <li><span class="feat-icon">✓</span> Descontos em exames e medicamentos</li>
+        </ul>
+        <div class="product-note">💡 Consultas adicionais por coparticipação reduzida.</div>
+      </div>
+    </div>
+
+    <div class="section-eyebrow mb-8">B2B — Empresarial (preço por vida/mês)</div>
+    <div class="product-grid mb-24">
+      <div class="product-card">
+        <div class="product-badge">🏢 Empresarial</div>
+        <div class="product-name">SMART Corporativo</div>
+        <div class="product-price">
+          <span class="currency">R$</span><span class="amount">19,90</span><span class="period">/vida/mês</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> Clínico Geral + Pediatria 24/7</li>
+          <li><span class="feat-icon">✓</span> 1 Psicologia + 1 Nutrição/mês</li>
+          <li><span class="feat-icon">✓</span> Dashboard de RH</li>
+          <li><span class="feat-icon">✓</span> Dependentes por R9,90/vida</li>
+          <li><span class="feat-icon">✓</span> Especialidades por coparticipação facilitada</li>
+        </ul>
+      </div>
+      <div class="product-card featured">
+        <div class="product-badge">⭐ Mais vendido</div>
+        <div class="product-name">CARE+ Corporativo</div>
+        <div class="product-price">
+          <span class="currency">R$</span><span class="amount">24,90</span><span class="period">/vida/mês</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> Tudo do SMART Corporativo</li>
+          <li><span class="feat-icon">✓</span> 1 Especialidade Médica/mês + 20 especialidades</li>
+          <li><span class="feat-icon">✓</span> Gestão NR-1 e riscos psicossociais</li>
+          <li><span class="feat-icon">✓</span> Dependentes por R9,90/vida</li>
+          <li><span class="feat-icon">✓</span> Consultas adicionais por coparticipação reduzida</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-eyebrow mb-8">Sob consulta — Empresarial</div>
+    <div class="product-grid mb-24">
+      <div class="product-card">
+        <div class="product-badge">🛡️ Compliance</div>
+        <div class="product-name">WOW+ NR1</div>
+        <div class="product-price">
+          <span class="amount" style="font-size:24px">Sob consulta</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> Gestão de riscos psicossociais</li>
+          <li><span class="feat-icon">✓</span> Evidências documentadas para fiscalização</li>
+          <li><span class="feat-icon">✓</span> Ideal: 50+ colaboradores</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">⚕️ Ocupacional</div>
+        <div class="product-name">Medicina Ocupacional</div>
+        <div class="product-price">
+          <span class="amount" style="font-size:24px">Sob consulta</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> ASO + PCMSO</li>
+          <li><span class="feat-icon">✓</span> eSocial / SST integrado</li>
+          <li><span class="feat-icon">✓</span> Rede nacional credenciada</li>
+          <li><span class="feat-icon">✓</span> Gestão centralizada</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-eyebrow mb-8">Add-on Opcional — qualquer plano</div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-badge">🧠 Intensivo</div>
+        <div class="product-name">Psicologia Intensiva</div>
+        <div class="product-price">
+          <span class="currency">R$</span><span class="amount">199,90</span><span class="period">/mês</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> 4 sessões/mês (1 por semana)</li>
+          <li><span class="feat-icon">✓</span> Disponível para qualquer plano</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">🥗 Intensivo</div>
+        <div class="product-name">Nutrição Intensiva</div>
+        <div class="product-price">
+          <span class="currency">R$</span><span class="amount">199,90</span><span class="period">/mês</span>
+        </div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> 4 sessões/mês (1 por semana)</li>
+          <li><span class="feat-icon">✓</span> Disponível para qualquer plano</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: FUNDAÇÃO — SPIN
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-foundation-spin">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Fundação · Módulo 4</div>
+        <h2 class="section-title">SPIN <em>Selling</em></h2>
+      </div>
+    </div>
+    <div class="playbook-steps mb-32">
+      <div class="step-item">
+        <div class="step-num">S</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Situação</div>
+          <div class="step-title">Entenda o cenário atual</div>
+          <div class="step-content">Faça perguntas para entender o contexto do cliente <em>antes</em> de falar de produto.</div>
+          <div class="step-expand">
+            <div class="script-box">"Quantos colaboradores vocês possuem?"<br>"Possuem plano de saúde?"<br>"Quantos utilizam o plano?"<br>"Vocês têm algum benefício de saúde hoje?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">P</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Problema</div>
+          <div class="step-title">Identifique as dores</div>
+          <div class="step-content">Revele os problemas que o cliente pode não estar verbalizando.</div>
+          <div class="step-expand">
+            <div class="script-box">"Quais desafios vocês enfrentam hoje em saúde?"<br>"Existe reclamação dos colaboradores sobre acesso?"<br>"Como está o absenteísmo na empresa?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">I</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Implicação</div>
+          <div class="step-title">Amplifique o custo do problema</div>
+          <div class="step-content">Ajude o cliente a perceber o impacto real de não resolver.</div>
+          <div class="step-expand">
+            <div class="script-box">"Se isso continuar por mais 6 meses, qual o impacto para vocês?"<br>"Quanto vocês estimam gastar em absenteísmo por mês?"<br>"Isso já gerou algum passivo trabalhista?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">N</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Necessidade</div>
+          <div class="step-title">Confirme o valor da solução</div>
+          <div class="step-content">Faça o cliente articular o benefício — não você.</div>
+          <div class="step-expand">
+            <div class="script-box">"Se pudesse resolver isso com um baixo custo por vida, faria sentido avaliarmos?"<br>"Se eu conseguir simplificar toda essa operação, vale uma conversa?"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: FUNDAÇÃO — OBJEÇÕES UNIVERSAIS
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-foundation-objections">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Fundação · Módulo 5</div>
+        <h2 class="section-title">Objeções <em>Universais</em></h2>
+      </div>
+    </div>
+    <div class="objection-grid">
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Está caro."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">Comparado com o quê? Uma consulta particular custa R00-400. Um psicólogo R50-300. Uma ida ao pronto-atendimento? A WOW+ custa menos do que <em>uma</em> dessas.<br><br>"Entendo. Mas caro comparado com o quê? Uma consulta? Um psicólogo? Um mês de acesso já se paga na primeira vez que você usar."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Vou pensar."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">Nunca deixe passar sem qualificar a objeção real.<br><br>"Claro. Só pra eu te ajudar: você precisa pensar no <strong>produto</strong> — ficou alguma dúvida que eu não resolvi? — ou é mais questão de <strong>momento</strong>, de quando começar?"<br><br>Se for produto: resolva. Se for momento: "O preço é o mesmo e a cobertura já vale hoje."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Já tenho fornecedor / plano."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Excelente. E o que você gostaria que esse fornecedor fizesse melhor?"<br><br>A WOW+ não compete com plano. Ela complementa: acesso imediato, sem carência, no dia que o plano demora a marcar.</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Não tenho orçamento."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Normalmente orçamento aparece quando existe prioridade. Hoje isso não é prioridade ou simplesmente não foi planejado?"<br><br>Se não foi planejado: mostre o custo por vida. É difícil não ter R9,90-49,90 quando se percebe o risco de não ter.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: FUNDAÇÃO — BATTLECARD
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-foundation-battlecard">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Fundação · Módulo 12</div>
+        <h2 class="section-title">Battlecard <em>Concorrência</em></h2>
+      </div>
+    </div>
+    <div class="info-box">ℹ️ Battlecard completo com concorrentes específicos em desenvolvimento. <span class="badge-coming">Em breve</span></div>
+    <div class="objection-grid">
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">🛡️ "Já tenho plano de saúde."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Não competimos com plano. Complementamos.<br><br>O plano cobre o hospital. A WOW+ cobre o dia a dia: a madrugada com o filho doente, a consulta que o plano demora 30 dias para marcar, o psicólogo que não cabe no orçamento."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">🛡️ "Já tenho clínica / parceiro."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Clínica <em>executa</em>. A WOW+ <em>gerencia</em>.<br><br>Você continuaria com sua clínica para procedimentos presenciais. A WOW+ resolve o acesso imediato, o controle de ASOs, a gestão de NR1, o dashboard do RH — tudo num único parceiro."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: B2C — VENDAS DIRETAS
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-b2c">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Canal 1</div>
+        <h2 class="section-title">Vendas Diretas <em>B2C</em></h2>
+      </div>
+    </div>
+
+    <div class="compliance-box">
+      <div class="compliance-title">⚠️ Limites de compliance — leia antes de vender</div>
+      <ul class="compliance-list">
+        <li><span>🚫</span> Nunca diga "resolve qualquer emergência." Emergência = SAMU (192) / pronto-socorro.</li>
+        <li><span>🚫</span> Não prometa diagnóstico nem resultado clínico. Quem conduz o cuidado é o médico.</li>
+        <li><span>🚫</span> Não invente valores de coparticipação. Diga "coparticipação reduzida" e confirme se o cliente perguntar.</li>
+        <li><span>🚫</span> Não diga que substitui plano de saúde. A WOW+ complementa.</li>
+        <li><span>✅</span> Se o cliente mencionou dor no peito, falta de ar ou situação grave: oriente emergência PRIMEIRO, WOW+ depois.</li>
+      </ul>
+    </div>
+
+    <div class="section-header mb-16">
+      <div>
+        <div class="section-eyebrow">Playbook</div>
+        <h2 class="section-title">Etapas da <em>Venda 1x1</em></h2>
+      </div>
+    </div>
+
+    <div class="playbook-steps mb-32">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Postura</div>
+          <div class="step-title">Antes de abrir a boca</div>
+          <div class="step-content">Você não está pedindo um favor. Está oferecendo solução barata pra um problema caro. Ritmo calmo, fale menos, pergunte mais.</div>
+          <div class="step-expand">
+            <ul class="rule-list" style="margin-bottom:0">
+              <li><span>→</span> Quem tem pressa transmite que precisa vender</li>
+              <li><span>→</span> Quem está tranquilo transmite que o produto se vende sozinho</li>
+              <li><span>→</span> A venda está perdida se você começar pelo preço</li>
+              <li><span>→</span> A meta é fazer o cliente ouvir a própria dor da boca dele</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Etapa 1</div>
+          <div class="step-title">Quebra de Gelo</div>
+          <div class="step-content">Objetivo: criar conversa. Não mencionar o produto. Fazer a pessoa admitir a dor com a própria boca.</div>
+          <div class="step-expand">
+            <div class="script-box">"Posso te fazer uma pergunta rápida?"<br>(aguardar o "pode")<br><br>"Hoje, se você precisasse falar com um médico <strong>ainda hoje</strong>, como faria?"</div>
+            <table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:13px;">
+              <tr style="border-bottom:1px solid var(--wine-border)">
+                <td style="padding:8px 4px;color:var(--text-dim);width:35%">Se disser "Tenho plano"</td>
+                <td style="padding:8px 12px;color:var(--text-muted)">"Ótimo. E quando precisa de especialista, consegue agenda rápida?"</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--wine-border)">
+                <td style="padding:8px 4px;color:var(--text-dim)">Se disser "Vou no SUS"</td>
+                <td style="padding:8px 12px;color:var(--text-muted)">"Normalmente consegue atendimento rápido, ou costuma esperar?"</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 4px;color:var(--text-dim)">Se disser "Pago particular"</td>
+                <td style="padding:8px 12px;color:var(--text-muted)">"E quanto costuma custar uma consulta dessas?"</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Etapa 2</div>
+          <div class="step-title">Descoberta</div>
+          <div class="step-content">Quem pergunta controla a venda. Mapeie o cenário: família, plano, histórico de uso, quanto pagou.</div>
+          <div class="step-expand">
+            <div class="script-box">Pergunte em conversa, não como interrogatório:<br><br>
+"Você tem filhos? Quantos?"<br>
+"É casado(a)? Mora com mais alguém?"<br>
+"Tem plano de saúde? Usa com frequência?"<br>
+"Já precisou de psicólogo? Achou caro ou difícil?"<br>
+"Da última vez que precisou de consulta, quanto tempo demorou?"<br>
+"E quanto pagou?"</div>
+            <div class="info-box" style="margin-top:12px">💡 Anote mentalmente o maior número que ele citar. Você vai usá-lo na amplificação.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Etapa 3</div>
+          <div class="step-title">Amplificar a Dor</div>
+          <div class="step-content">Use os números e situações que <em>ele</em> te deu. Dor inventada soa falso.</div>
+          <div class="step-expand">
+            <div class="script-box">[Cliente citou R00 de consulta]<br>"Pois é. Uma única consulta já custa mais do que vários meses de acesso à plataforma. E geralmente não vem sozinha — vem com retorno, exame, mais uma ida."</div>
+            <div class="script-box">[Mãe com filhos]<br>"Seu filho já acordou doente de madrugada alguma vez?"<br>(deixe responder)<br>"O problema nunca é quando está tudo bem. O problema é quando precisa — e nessa hora não dá pra ficar pesquisando preço."</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Ponte</div>
+          <div class="step-title">Transição para o produto</div>
+          <div class="step-content">Peça micro-permissão antes de apresentar. Baixa a guarda e dá licença para falar do produto.</div>
+          <div class="step-expand">
+            <div class="script-box">"Deixa eu te mostrar exatamente como a gente resolve isso — e você me diz se faz sentido pra você, tá?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Etapa 4</div>
+          <div class="step-title">Apresentação WOW+</div>
+          <div class="step-content">Somente agora. Apresente em função da dor dele — não recite tabela. Use o número que ele te deu.</div>
+          <div class="step-expand">
+            <div class="script-box"><strong>SMART:</strong> "Por R9,90 por mês você tem Clínico Geral e Pediatria 24 horas. Pra aquela madrugada que a gente acabou de falar — já estaria coberto por menos de R por dia."</div>
+            <div class="script-box"><strong>CARE+:</strong> "Por R9,90 você tem tudo isso mais Psicologia, Nutrição e Especialidades — dependentes por R9,90 cada. É menos do que você me disse que pagou por uma única consulta."</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">7</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Etapa 5</div>
+          <div class="step-title">Fechamento por Escolha</div>
+          <div class="step-content">Nunca "vai fechar?". Sempre uma escolha entre dois sins.</div>
+          <div class="step-expand">
+            <div class="script-box">❌ Nunca: "Vai fechar?"</div>
+            <div class="script-box">✅ "Faz mais sentido pra você o <strong>SMART</strong> ou o <strong>CARE+</strong>?"<br>✅ "Você começa <strong>só pra você</strong> ou já inclui alguém da família?"<br>✅ "Faz sentido ter acesso e não precisar usar, ou precisar usar e não ter acesso?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">8</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Etapa 6 — Pós-venda</div>
+          <div class="step-title">Ativação (retenção começa aqui)</div>
+          <div class="step-content">Em assinatura, quem não usa no 1º mês cancela no 2º. A venda só está completa quando ele usa.</div>
+          <div class="step-expand">
+            <div class="script-box">"Vou te ajudar a deixar tudo pronto agora: baixa o app comigo, faz seu cadastro, e te mostro onde fica o atendimento — assim, no dia que precisar, você já sabe o caminho."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Objeções</div>
+        <h2 class="section-title">Respostas <em>B2C</em></h2>
+      </div>
+    </div>
+
+    <div class="objection-grid mb-32">
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Está caro."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Entendo. Mas caro comparado com o quê? Uma consulta particular? Uma ida ao pronto-atendimento? Um psicólogo? O acesso de um mês inteiro custa menos do que uma dessas."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Não uso médico."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Perfeito — tomara que continue assim. Ninguém compra seguro esperando bater o carro. O valor está em ter, no dia em que precisar, sem ter que correr atrás."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Vou pensar."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Claro. Só pra eu te ajudar: você precisa pensar no produto (ficou alguma dúvida?) ou no momento (quando começar)?"<br><br>Se produto → resolva a dúvida. Se momento → "O preço é o mesmo e a cobertura já valeria a partir de hoje."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Tenho plano de saúde."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Excelente — a maioria dos nossos clientes também tem. A WOW+ não substitui plano. Ela complementa: é pra aquela hora que o plano demora a marcar, ou pra falar com médico na madrugada sem sair de casa."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Não tenho tempo."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"É justamente por isso que muita gente usa. Você fala com o médico de onde estiver, sem deslocamento, sem fila. O tempo que você não tem é exatamente o que a plataforma devolve."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Isso funciona mesmo? É médico de verdade?"</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Pergunta justa. São médicos formados e registrados, atendendo por telemedicina dentro das regras do Conselho. Não é robô, não é chat — é consulta com profissional de verdade. Quer que eu te mostre como funciona o primeiro atendimento?"</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Preciso falar com meu marido/esposa."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Faz todo sentido. Posso te passar em 30 segundos o que mostrar pra ele(a), pra você não ter que explicar tudo de novo? Qual plano você acha que faz mais sentido pra vocês — o SMART ou o CARE+?"</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Personas B2C</div>
+        <h2 class="section-title">Para quem você <em>fala</em></h2>
+      </div>
+    </div>
+
+    <div class="persona-grid mb-32">
+      <div class="persona-card">
+        <div class="persona-avatar">👩</div>
+        <div class="persona-name">Mãe</div>
+        <div class="persona-pain">Dor: segurança dos filhos</div>
+        <div class="persona-question">"Se seu filho acordar com febre às 22h, o que você faz hoje?"</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--text-dim)">Puxar para: CARE+ (família) · Ancoragem: Pediatria 24h</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar">🔧</div>
+        <div class="persona-name">Autônomo</div>
+        <div class="persona-pain">Dor: ficar sem renda</div>
+        <div class="persona-question">"Se você parar uma semana por problema de saúde, sua renda continua entrando?"</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--text-dim)">Puxar para: SMART · Ancoragem: menos de R/dia</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar">👫</div>
+        <div class="persona-name">Casal</div>
+        <div class="persona-pain">Dor: custos médicos acumulados</div>
+        <div class="persona-question">"Quanto vocês gastaram com saúde nos últimos 12 meses?"</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--text-dim)">Puxar para: CARE+ · Ancoragem: dependentes R9,90</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar">👴</div>
+        <div class="persona-name">50+</div>
+        <div class="persona-pain">Dor: prevenção e acompanhamento</div>
+        <div class="persona-question">"Você faz acompanhamento médico regular ou só procura ajuda quando surge um problema?"</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--text-dim)">Puxar para: CARE+ · Ancoragem: +20 especialidades</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Follow-up</div>
+        <h2 class="section-title">Cadência para <em>"Vou pensar"</em></h2>
+      </div>
+    </div>
+
+    <div class="cadence-list mb-32">
+      <div class="cadence-item">
+        <div class="cadence-day">Dia 1</div>
+        <div class="cadence-text"><strong>Mesmo dia, pós-conversa.</strong> Mensagem curta agradecendo + 1 prova social. "Te mando um exemplo de como uma família resolveu exatamente isso semana passada."</div>
+      </div>
+      <div class="cadence-item">
+        <div class="cadence-day">Dia 2</div>
+        <div class="cadence-text"><strong>Tire a dúvida específica</strong> que travou — não repita o pitch.</div>
+      </div>
+      <div class="cadence-item">
+        <div class="cadence-day">Dia 4</div>
+        <div class="cadence-text"><strong>Gatilho de facilidade.</strong> "Deixei seu plano pré-separado, é só confirmar quando quiser."</div>
+      </div>
+      <div class="cadence-item">
+        <div class="cadence-day">Dia 7</div>
+        <div class="cadence-text"><strong>Última mensagem leve.</strong> Depois, pausa — não queime o contato.</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Métricas</div>
+        <h2 class="section-title">O que <em>medir</em></h2>
+      </div>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon">❓</div>
+        <div class="metric-name">Perguntas/conversa</div>
+        <div class="metric-desc">Mais perguntas = mais vendas</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">🎯</div>
+        <div class="metric-name">Taxa de diagnóstico</div>
+        <div class="metric-desc">% de conversas com dor verbalizada</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">✅</div>
+        <div class="metric-name">Conversão s/ diagnóstico</div>
+        <div class="metric-desc">Não sobre total de abordagens</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">📱</div>
+        <div class="metric-name">Ativação 1º mês</div>
+        <div class="metric-desc">Usou? Prevê retenção</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">💰</div>
+        <div class="metric-name">Mix SMART/CARE+</div>
+        <div class="metric-desc">Ticket médio do canal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: B2B — CORPORATIVO
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-b2b">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Canal 2</div>
+        <h2 class="section-title">Corporativo <em>B2B</em></h2>
+      </div>
+    </div>
+
+    <div class="info-box">ℹ️ Venda B2B envolve múltiplos decisores. Use SPIN para mapear o comitê antes de apresentar proposta. Piloto é o melhor fechamento.</div>
+
+    <div class="section-eyebrow mb-16">ICP por produto</div>
+    <div class="product-grid mb-32">
+      <div class="product-card">
+        <div class="product-badge">👥 SMART Corporativo · R9,90/vida</div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> 10-100 colaboradores</li>
+          <li><span class="feat-icon">✓</span> RH buscando benefício acessível</li>
+          <li><span class="feat-icon">✓</span> Equipes sem cobertura de saúde</li>
+        </ul>
+      </div>
+      <div class="product-card featured">
+        <div class="product-badge">⭐ CARE+ Corporativo · R4,90/vida</div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> 30-500 colaboradores</li>
+          <li><span class="feat-icon">✓</span> Empresas com foco em saúde mental</li>
+          <li><span class="feat-icon">✓</span> Adequação NR1 incluída</li>
+          <li><span class="feat-icon">✓</span> RH, Diretor, Financeiro</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">🛡️ NR1 · Preço sob consulta</div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> 50+ colaboradores</li>
+          <li><span class="feat-icon">✓</span> Empresas com risco de fiscalização</li>
+          <li><span class="feat-icon">✓</span> RH, TST, Diretor</li>
+        </ul>
+      </div>
+      <div class="product-card">
+        <div class="product-badge">⚕️ Med. Ocupacional · Sob consulta</div>
+        <ul class="product-features">
+          <li><span class="feat-icon">✓</span> 10-5.000 colaboradores</li>
+          <li><span class="feat-icon">✓</span> ASO, PCMSO, eSocial, SST</li>
+          <li><span class="feat-icon">✓</span> RH, DP, Contabilidade</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Scripts B2B</div>
+        <h2 class="section-title">Diagnóstico por <em>produto</em></h2>
+      </div>
+    </div>
+
+    <div class="playbook-steps mb-32">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">SMART / CARE+ Corporativo</div>
+          <div class="step-title">Diagnóstico de Benefício</div>
+          <div class="step-content">Quem pergunta controla a venda. Mapeie a população descoberta.</div>
+          <div class="step-expand">
+            <div class="script-box">"Quantos colaboradores vocês possuem?"<br>"Quantos utilizam plano de saúde?"<br>"Quantos ficam sem assistência?"<br><br>"Então vocês possuem uma população descoberta."</div>
+            <div class="script-box response">"Se eu conseguir aumentar acesso à saúde sem aumentar significativamente o custo, vale avaliarmos?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">CARE+ Corporativo / NR1</div>
+          <div class="step-title">Gancho de Saúde Mental e NR1</div>
+          <div class="step-content">NR1 entrou em vigor. A maioria das empresas sabe que precisa agir mas ainda não agiu.</div>
+          <div class="step-expand">
+            <div class="script-box">"Vocês já começaram a se preparar para os riscos psicossociais da NR1?"</div>
+            <div class="script-box response">Se disser "Estamos estudando": "A maioria está. Quem sair na frente terá menos correções futuras."<br><br>"Quer conhecer uma abordagem que une benefício e conformidade?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">NR1 — Pergunta Fatal</div>
+          <div class="step-title">Evidências documentadas</div>
+          <div class="step-content">90% das empresas respondem que não têm. Esta pergunta abre a conversa de compliance.</div>
+          <div class="step-expand">
+            <div class="script-box">"Hoje vocês possuem evidências documentadas dos riscos psicossociais dos colaboradores?"</div>
+            <div class="script-box response">[Se disser que nunca foram fiscalizados]<br>"Ninguém compra extintor porque pegou fogo ontem."<br><br>"Posso mostrar o mapa completo do que a empresa precisará apresentar?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Medicina Ocupacional</div>
+          <div class="step-title">Da clínica para a gestão</div>
+          <div class="step-content">A maioria já tem clínica. A questão não é ter clínica — é ter gestão.</div>
+          <div class="step-expand">
+            <div class="script-box">"Quem cuida hoje dos ASOs da empresa?"<br>"Quanto tempo demora?"<br>"Têm rede nacional?"<br>"Integração com eSocial?"</div>
+            <div class="script-box response">[Se disser "Já tenho clínica"]<br>"Perfeito. A pergunta não é se você tem clínica. A pergunta é se você tem gestão."<br><br>"A WOW+ centraliza tudo em um único parceiro."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">ROI</div>
+        <h2 class="section-title">Argumentos por <em>decisor</em></h2>
+      </div>
+    </div>
+
+    <div class="roi-grid mb-32">
+      <div class="roi-card">
+        <div class="roi-persona">Para o RH</div>
+        <div class="roi-title">Menos atrito, mais resultado</div>
+        <ul class="roi-list">
+          <li>Menos absenteísmo</li>
+          <li>Mais acesso à saúde</li>
+          <li>Mais percepção de benefício</li>
+          <li>Menos reclamações internas</li>
+          <li>Dashboard de gestão incluído</li>
+        </ul>
+      </div>
+      <div class="roi-card">
+        <div class="roi-persona">Para o Financeiro</div>
+        <div class="roi-title">Custo previsível, resultado mensurável</div>
+        <ul class="roi-list">
+          <li>Baixo custo por vida</li>
+          <li>Redução de desperdício</li>
+          <li>Previsibilidade orçamentária</li>
+          <li>Sem surpresa de sinistro</li>
+        </ul>
+      </div>
+      <div class="roi-card">
+        <div class="roi-persona">Para o CEO</div>
+        <div class="roi-title">Competitividade e conformidade</div>
+        <ul class="roi-list">
+          <li>Retenção de talentos</li>
+          <li>Produtividade</li>
+          <li>Marca empregadora</li>
+          <li>Conformidade NR1</li>
+          <li>Menos passivo trabalhista</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Objeções B2B</div>
+        <h2 class="section-title">Respostas para o <em>corporativo</em></h2>
+      </div>
+    </div>
+
+    <div class="objection-grid">
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Já temos convênio."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Ótimo. A WOW+ complementa o convênio — ela reduz a utilização desnecessária do pronto-atendimento e cobre a população que fica fora do plano principal."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Nunca fomos fiscalizados (NR1)."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"A melhor hora para se preparar é antes da fiscalização. Ninguém compra extintor porque pegou fogo ontem."</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Faz sentido avaliarmos um piloto?"</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">Este é um <strong>fechamento</strong>, não uma objeção. Use quando a empresa está convencida mas precisa de prova antes de escalar.<br><br>"Quer receber uma proposta ou fazer um diagnóstico primeiro?"</div>
+      </div>
+      <div class="objection-card" onclick="toggleObj(this)">
+        <div class="obj-trigger"><span class="obj-trigger-text">💬 "Já temos clínica."</span><span class="obj-chevron">▼</span></div>
+        <div class="obj-answer">"Clínica executa. A WOW+ gerencia. São funções diferentes.<br><br>Se eu conseguir simplificar a operação e reduzir o trabalho do RH, faz sentido avaliarmos?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: CONSULTORES
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-consultores">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Canal 3</div>
+        <h2 class="section-title">Consultores <em>WOW+</em></h2>
+      </div>
+    </div>
+
+    <div class="info-box">ℹ️ O Consultor é um representante que vende e é remunerado por resultado. Remuneração será definida em documento separado.</div>
+
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Recrutamento</div>
+        <h2 class="section-title">Como <em>recrutar</em></h2>
+      </div>
+    </div>
+
+    <div class="playbook-steps mb-32">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Pergunta de abertura</div>
+          <div class="step-title">Identificar o perfil certo</div>
+          <div class="step-content">Busque quem já tem o hábito de indicar — só falta ser remunerado por isso.</div>
+          <div class="step-expand">
+            <div class="script-box">"Você já indica médicos, planos ou serviços de saúde para conhecidos?"<br>(aguardar)<br><br>"Agora você pode ser remunerado por isso."</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Argumento principal</div>
+          <div class="step-title">Receita recorrente por indicação</div>
+          <div class="step-content">O Consultor não precisa conhecer saúde — precisa conhecer pessoas.</div>
+          <div class="step-expand">
+            <div class="script-box">"Você não precisa ser especialista em saúde. Precisa indicar o acesso certo para as pessoas certas. A WOW+ faz o resto."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">💰 Tabela de remuneração e comissões: <span class="badge-coming">A definir</span></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: ESPECIALISTAS
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-especialistas">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Canal 4</div>
+        <h2 class="section-title">Especialistas <em>WOW+</em></h2>
+      </div>
+    </div>
+
+    <div class="info-box">ℹ️ Psicólogos, nutricionistas, médicos e fisioterapeutas que transformam autoridade clínica em receita recorrente.</div>
+
+    <div class="playbook-steps mb-32">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Pergunta de abertura</div>
+          <div class="step-title">O profissional como parceiro</div>
+          <div class="step-content">Não fale de comissão antes de falar do modelo. Mostre o mecanismo.</div>
+          <div class="step-expand">
+            <div class="script-box">"Além de atender pacientes, você gostaria de criar uma carteira recorrente de clientes que já chegam com acesso garantido?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Proposta de valor</div>
+          <div class="step-title">Autoridade → Receita recorrente</div>
+          <div class="step-content">O especialista já tem a credibilidade. A WOW+ dá o canal e o modelo de monetização.</div>
+          <div class="step-expand">
+            <div class="script-box">"Transforme sua autoridade clínica em receita recorrente. A WOW+ entrega o paciente — você entrega o cuidado."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">💰 Modelo de parceria e remuneração: <span class="badge-coming">A definir</span></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: PARCEIROS ESTRATÉGICOS
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-parceiros">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Canal 5</div>
+        <h2 class="section-title">Parceiros <em>Estratégicos</em></h2>
+      </div>
+    </div>
+
+    <div class="info-box">ℹ️ Contadores, consultores, associações e entidades que abrem portas. Eles não operam saúde — apenas indicam o acesso.</div>
+
+    <div class="playbook-steps mb-32">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Argumento central</div>
+          <div class="step-title">Você abre a porta. A WOW+ faz o resto.</div>
+          <div class="step-content">O parceiro estratégico já tem a relação. Só precisa saber o que oferecer.</div>
+          <div class="step-expand">
+            <div class="script-box">"Você não precisa operar saúde. Só precisa abrir a porta para seus clientes terem acesso. A WOW+ cuida do resto."</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Objeção principal</div>
+          <div class="step-title">"Não conheço o setor de saúde."</div>
+          <div class="step-content">Essa é exatamente a razão para o modelo funcionar — o parceiro indica, a WOW+ opera.</div>
+          <div class="step-expand">
+            <div class="script-box response">"Ótimo. Quem opera é a WOW+. Você não precisa conhecer saúde — precisa conhecer os seus clientes."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">💰 Modelo de parceria e remuneração: <span class="badge-coming">A definir</span></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: PDVs
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-pdv">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Canal 6</div>
+        <h2 class="section-title">Pontos de Venda <em>(PDVs)</em></h2>
+      </div>
+    </div>
+
+    <div class="info-box">ℹ️ Farmácias, academias, óticas e clínicas que indicam no balcão e convertem tráfego de clientes em receita recorrente.</div>
+
+    <div class="playbook-steps mb-32">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Abertura para o dono do PDV</div>
+          <div class="step-title">Transformar tráfego em receita recorrente</div>
+          <div class="step-content">O dono já tem tráfego qualificado. A questão é monetizar esse fluxo sem trabalho operacional.</div>
+          <div class="step-expand">
+            <div class="script-box">"Quantos clientes entram aqui por mês?"<br>(aguardar)<br><br>"E se parte deles pudesse virar receita recorrente para você — sem você precisar operar nada?"</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body" onclick="toggleStep(this)">
+          <div class="step-label">Objeção principal</div>
+          <div class="step-title">"Vai dar trabalho."</div>
+          <div class="step-content">A fricção operacional é a maior barreira do PDV. Derrube ela cedo.</div>
+          <div class="step-expand">
+            <div class="script-box response">"Você só indica. A ativação, o cadastro e o suporte ficam com a WOW+."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">💰 Modelo de indicação e remuneração: <span class="badge-coming">A definir</span></div>
+  </div>
+
+</div><!-- .main -->
+
+<script>
+// ── NAVIGATION ──────────────────────────────────────────
+function navigateTo(pageId, navEl) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  const target = document.getElementById('page-' + pageId);
+  if (target) target.classList.add('active');
+
+  // Update nav active state
+  document.querySelectorAll('.nav-channel').forEach(b => b.classList.remove('active'));
+  if (navEl) {
+    navEl.classList.add('active');
+  } else {
+    // Find matching nav button
+    document.querySelectorAll('.nav-channel').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + pageId + "'")) {
+        b.classList.add('active');
+      }
+    });
+  }
+
+  // Update breadcrumb
+  const breadcrumbMap = {
+    'dashboard': '',
+    'b2c': '· Vendas Diretas B2C',
+    'b2b': '· Corporativo B2B',
+    'consultores': '· Consultores',
+    'especialistas': '· Especialistas',
+    'parceiros': '· Parceiros Estratégicos',
+    'pdv': '· PDVs',
+    'foundation-intro': '· A WOW+ em 3 minutos',
+    'foundation-portfolio': '· Portfólio',
+    'foundation-spin': '· SPIN Selling',
+    'foundation-objections': '· Objeções Universais',
+    'foundation-battlecard': '· Battlecard',
+  };
+  document.getElementById('breadcrumb-current').textContent = breadcrumbMap[pageId] || '';
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+
+  // Scroll to top
+  document.querySelector('.main').scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SUBNAV TOGGLE ──────────────────────────────────────
+function toggleSub(btn) {
+  const targetId = btn.getAttribute('data-target');
+  const sub = document.getElementById(targetId);
+  if (!sub) return;
+  const isOpen = sub.classList.contains('open');
+  sub.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+
+// ── STEP EXPAND ────────────────────────────────────────
+function toggleStep(body) {
+  const expand = body.querySelector('.step-expand');
+  if (expand) expand.classList.toggle('open');
+}
+
+// ── OBJECTION TOGGLE ───────────────────────────────────
+function toggleObj(card) {
+  card.classList.toggle('open');
+}
+
+// ── SEARCH ─────────────────────────────────────────────
+function handleSearch(val) {
+  if (!val || val.length < 2) return;
+  const lower = val.toLowerCase();
+
+  // Simple search: scan all text content on pages
+  const pages = document.querySelectorAll('.page');
+  let found = null;
+  let bestScore = 0;
+
+  pages.forEach(page => {
+    const text = page.textContent.toLowerCase();
+    const idx = text.indexOf(lower);
+    if (idx !== -1) {
+      const score = (text.split(lower).length - 1);
+      if (score > bestScore) {
+        bestScore = score;
+        found = page.id.replace('page-', '');
+      }
+    }
+  });
+
+  if (found && bestScore > 0) {
+    navigateTo(found);
+    // Highlight open objections that match
+    setTimeout(() => {
+      document.querySelectorAll('.objection-card').forEach(card => {
+        if (card.textContent.toLowerCase().includes(lower)) {
+          card.classList.add('open');
+        }
+      });
+      document.querySelectorAll('.step-expand').forEach(exp => {
+        if (exp.textContent.toLowerCase().includes(lower)) {
+          exp.classList.add('open');
+        }
+      });
+    }, 100);
+  }
+}
+
+// Close sidebar on outside click (mobile)
+document.addEventListener('click', function(e) {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.querySelector('.mobile-toggle');
+  if (window.innerWidth <= 900 && sidebar.classList.contains('open')) {
+    if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
+  }
+});
+
+// Keyboard shortcut: / focuses search
+document.addEventListener('keydown', function(e) {
+  if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+    e.preventDefault();
+    document.getElementById('search-input').focus();
+  }
+});
+</script>
+
+</body>
+</html>
