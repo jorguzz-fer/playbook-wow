@@ -384,6 +384,25 @@
   .script-box .ico { margin-right: 6px; }
   .product-note .ico { margin-right: 5px; vertical-align: -0.18em; }
 
+  /* ── EMBED CANVA ── */
+  .canva-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--wine-border);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    margin-bottom: 20px;
+    background: var(--wine-deep);
+  }
+  .canva-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
   .cc-title {
     font-family: var(--font-display);
     font-size: 15px;
@@ -1077,6 +1096,13 @@
     </div>
 
     <div class="nav-section">
+      <button class="nav-channel" onclick="navigateTo('manual-marca', this)">
+        <span class="ch-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        Manual de Marca
+      </button>
+    </div>
+
+    <div class="nav-section">
       <button class="nav-channel" onclick="toggleSub(this)" data-target="sub-foundation" data-nosub>
         <span class="ch-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
         Fundação WOW+
@@ -1256,6 +1282,24 @@
           <span class="pill">Clínica</span>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: MANUAL DE MARCA
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-manual-marca">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Identidade</div>
+        <h2 class="section-title">Manual de <em>Marca</em></h2>
+      </div>
+    </div>
+
+    <div class="info-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>Guia oficial da identidade visual da WOW+: logo, cores, tipografia e aplicações. Navegue pelas páginas abaixo ou <a href="https://www.canva.com/design/DAHMqJTXisY/view" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">abra em tela cheia no Canva</a>.</div>
+
+    <div class="canva-embed">
+      <iframe loading="lazy" src="https://www.canva.com/design/DAHMqJTXisY/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
     </div>
   </div>
 
@@ -2303,6 +2347,7 @@ function navigateTo(pageId, navEl) {
   // Update breadcrumb
   const breadcrumbMap = {
     'dashboard': '',
+    'manual-marca': '· Manual de Marca',
     'b2c': '· Vendas Diretas B2C',
     'b2b': '· Corporativo B2B',
     'consultores': '· Consultores',
