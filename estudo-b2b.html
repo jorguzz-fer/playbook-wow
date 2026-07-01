@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOW+ Work — Relatório de Simulação de Mercado B2B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0F14;
+  --bg-elev:#0F161D;
+  --surface:#141D26;
+  --surface-2:#182430;
+  --border:rgba(234,240,245,0.09);
+  --border-strong:rgba(234,240,245,0.18);
+  --text:#E9EEF2;
+  --text-dim:#8C99A8;
+  --text-faint:#5C6774;
+  --vital:#27E1AE;
+  --vital-dim:rgba(39,225,174,0.14);
+  --critical:#FF5D5D;
+  --critical-dim:rgba(255,93,93,0.14);
+  --warn:#FFB454;
+  --warn-dim:rgba(255,180,84,0.14);
+  --blue:#5AA9FF;
+  --blue-dim:rgba(90,169,255,0.14);
+  --disp:'Space Grotesk',sans-serif;
+  --body:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--vital);color:#05100C;}
+
+/* ---------- scanline texture ---------- */
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:0.035;
+  background-image:repeating-linear-gradient(0deg, #fff 0px, transparent 1px, transparent 2px);
+  mix-blend-mode:overlay;
+}
+
+a{color:inherit;}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-faint);
+}
+.section-num{
+  font-family:var(--mono);
+  color:var(--vital);
+}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px clamp(20px,4vw,48px);
+  background:linear-gradient(to bottom, rgba(10,15,20,0.92), rgba(10,15,20,0));
+  backdrop-filter:blur(6px);
+}
+.nav-brand{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--text-dim);
+}
+.nav-brand .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--vital);
+  box-shadow:0 0 8px var(--vital);
+  animation:pulse-dot 1.8s ease-in-out infinite;
+}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.nav-links{display:flex;gap:22px;}
+.nav-links a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--text-faint);
+  text-decoration:none;transition:color .25s;position:relative;
+}
+.nav-links a.active{color:var(--vital);}
+.nav-links a span{display:none;}
+@media (max-width:760px){ .nav-links{display:none;} }
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px clamp(20px,6vw,80px) 80px;
+  position:relative;
+  border-bottom:1px solid var(--border);
+}
+.hero-bg-grid{
+  position:absolute;inset:0;z-index:0;opacity:.5;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 60% 50% at 50% 40%, black 0%, transparent 75%);
+}
+.ecg-wrap{
+  position:relative;z-index:1;width:100%;max-width:1100px;margin:0 auto 42px;
+  height:110px;
+}
+.ecg-wrap svg{width:100%;height:100%;overflow:visible;}
+.ecg-line{
+  fill:none;stroke:var(--vital);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 0 6px rgba(39,225,174,.55));
+  stroke-dasharray:2000;
+  stroke-dashoffset:2000;
+  animation:draw-ecg 3.6s ease-out forwards, glide 6s linear 3.6s infinite;
+}
+@keyframes draw-ecg{to{stroke-dashoffset:0;}}
+@keyframes glide{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-33.333%);}
+}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;text-align:center;}
+.hero h1{
+  font-family:var(--disp);
+  font-weight:700;
+  font-size:clamp(34px,5.4vw,64px);
+  line-height:1.05;
+  letter-spacing:-.01em;
+  margin:18px 0 22px;
+}
+.hero h1 em{
+  font-style:normal;color:var(--vital);
+}
+.hero p.lede{
+  font-size:clamp(15px,1.7vw,19px);
+  color:var(--text-dim);
+  max-width:760px;margin:0 auto 40px;
+  font-weight:400;
+}
+.hero p.lede b{color:var(--text);font-weight:600;}
+.stat-row{
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+}
+.stat-chip{
+  border:1px solid var(--border-strong);
+  background:var(--surface);
+  border-radius:100px;
+  padding:9px 18px;
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:12px;color:var(--text-dim);
+}
+.stat-chip b{color:var(--text);font-family:var(--body);font-weight:600;font-size:13px;}
+.stat-chip .swatch{width:7px;height:7px;border-radius:50%;flex:none;}
+
+.scroll-cue{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--text-faint);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  text-transform:uppercase;
+}
+.scroll-cue .line{width:1px;height:30px;background:linear-gradient(to bottom, var(--vital), transparent);animation:scrollline 2s ease-in-out infinite;}
+@keyframes scrollline{0%,100%{opacity:.2;}50%{opacity:1;}}
+
+/* ---------- SECTION shell ---------- */
+.section{
+  padding:100px clamp(20px,6vw,80px);
+  max-width:1280px;margin:0 auto;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.section-head{margin-bottom:56px;max-width:820px;}
+.section-head .eyebrow{margin-bottom:14px;display:block;}
+.section-head h2{
+  font-family:var(--disp);font-weight:600;
+  font-size:clamp(26px,3.4vw,40px);
+  line-height:1.15;margin-bottom:16px;
+}
+.section-head .dek{color:var(--text-dim);font-size:16px;max-width:700px;}
+
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  padding:4px 10px;border-radius:100px;text-transform:uppercase;
+}
+.pill.vital{background:var(--vital-dim);color:var(--vital);}
+.pill.critical{background:var(--critical-dim);color:var(--critical);}
+.pill.warn{background:var(--warn-dim);color:var(--warn);}
+.pill.blue{background:var(--blue-dim);color:var(--blue);}
+
+/* ---------- SECTION 01 : personas ---------- */
+.persona-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:16px;
+}
+.persona-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:22px 20px;cursor:pointer;
+  transition:border-color .25s, transform .25s, background .25s;
+  position:relative;overflow:hidden;
+}
+.persona-card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
+.persona-card .tag{font-family:var(--mono);font-size:10px;color:var(--text-faint);letter-spacing:.1em;text-transform:uppercase;}
+.persona-card h3{font-family:var(--disp);font-size:18px;margin:10px 0 12px;font-weight:600;}
+.gauge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.gauge{width:56px;height:32px;position:relative;flex:none;}
+.gauge svg{width:100%;height:100%;}
+.gauge-label{font-family:var(--mono);font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;}
+.gauge-label b{display:block;font-family:var(--body);font-size:12px;color:var(--text);font-weight:600;letter-spacing:0;text-transform:none;}
+.persona-quote{
+  font-family:var(--body);font-style:italic;font-size:13.5px;color:var(--text-dim);
+  border-left:2px solid var(--border-strong);padding-left:11px;margin-bottom:12px;
+}
+.persona-more{
+  max-height:0;overflow:hidden;transition:max-height .4s ease;
+  font-size:13.5px;color:var(--text-dim);
+}
+.persona-card.open .persona-more{max-height:600px;padding-top:6px;}
+.persona-toggle{
+  font-family:var(--mono);font-size:10px;color:var(--vital);letter-spacing:.08em;text-transform:uppercase;
+  display:flex;align-items:center;gap:5px;margin-top:6px;
+}
+.persona-toggle svg{width:9px;height:9px;transition:transform .3s;}
+.persona-card.open .persona-toggle svg{transform:rotate(180deg);}
+
+.incumbent-box{
+  margin-top:28px;padding:24px;border-radius:14px;
+  background:var(--critical-dim);border:1px solid rgba(255,93,93,.28);
+}
+.incumbent-box h4{font-family:var(--disp);font-size:15px;color:var(--critical);margin-bottom:10px;letter-spacing:.02em;}
+.incumbent-box p{font-size:14px;color:var(--text-dim);}
+.incumbent-list{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+.incumbent-list div{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);}
+.incumbent-list b{color:var(--text);display:block;font-family:var(--body);font-size:12.5px;margin-bottom:2px;}
+
+/* ---------- SECTION 02 : funnel ---------- */
+.funnel-tabs{display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap;}
+.funnel-tab{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+  padding:8px 16px;border-radius:100px;border:1px solid var(--border-strong);
+  background:transparent;color:var(--text-dim);cursor:pointer;transition:all .25s;
+}
+.funnel-tab.active{background:var(--vital);color:#04120D;border-color:var(--vital);font-weight:600;}
+
+.funnel{display:flex;flex-direction:column;gap:6px;margin-bottom:8px;}
+.funnel-stage{
+  display:grid;grid-template-columns:120px 1fr 60px;align-items:center;gap:18px;
+}
+.funnel-stage .stage-label{font-family:var(--mono);font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;}
+.funnel-bar-track{height:46px;background:var(--bg-elev);border-radius:8px;overflow:hidden;border:1px solid var(--border);position:relative;}
+.funnel-bar{
+  height:100%;border-radius:8px;
+  width:0%;
+  transition:width 1.1s cubic-bezier(.2,.8,.2,1);
+  display:flex;align-items:center;
+  position:relative;
+}
+.funnel-bar.b1{background:linear-gradient(90deg,#1c3a33,var(--vital));}
+.funnel-bar.b2{background:linear-gradient(90deg,#1c3a33,var(--vital));}
+.funnel-bar.b3{background:linear-gradient(90deg,#3a1c1c,var(--critical));}
+.funnel-bar.b4{background:linear-gradient(90deg,#1c2a3a,var(--blue));}
+.funnel-stage .pct{font-family:var(--mono);font-size:13px;text-align:right;color:var(--text);}
+.funnel-stage.collapse .stage-label{color:var(--critical);}
+.funnel-note{
+  grid-column:2/3;font-size:12.5px;color:var(--text-faint);margin-top:4px;padding-left:2px;
+}
+.drop-marker{
+  display:flex;align-items:center;gap:8px;margin:2px 0 2px 120px;padding-left:18px;
+  font-family:var(--mono);font-size:11px;color:var(--critical);
+}
+.drop-marker svg{width:12px;height:12px;}
+
+.funnel-detail{
+  margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px;
+}
+@media (max-width:800px){.funnel-detail{grid-template-columns:1fr;}}
+.funnel-detail .block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.funnel-detail h4{font-family:var(--disp);font-size:16px;margin-bottom:12px;font-weight:600;}
+.funnel-detail p{font-size:13.5px;color:var(--text-dim);}
+.size-panels{display:none;margin-top:40px;}
+.size-panels.active{display:block;}
+.size-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media (max-width:760px){.size-grid{grid-template-columns:1fr;}}
+.size-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.size-card .eyebrow{color:var(--warn);}
+.size-card p{font-size:13px;color:var(--text-dim);margin-top:8px;}
+
+/* ---------- SECTION 03 : matrix ---------- */
+.matrix-wrap{overflow-x:auto;margin-bottom:32px;-webkit-overflow-scrolling:touch;}
+.matrix{border-collapse:separate;border-spacing:6px;width:100%;min-width:640px;}
+.matrix th{
+  font-family:var(--mono);font-size:11px;color:var(--text-dim);text-transform:uppercase;
+  letter-spacing:.05em;font-weight:400;padding:8px 10px;text-align:left;
+}
+.matrix th.rowhead{text-align:left;}
+.matrix td{
+  border-radius:10px;padding:16px 14px;text-align:left;vertical-align:top;
+  cursor:pointer;transition:transform .2s, box-shadow .2s;position:relative;
+  min-width:140px;
+}
+.matrix td:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.35);}
+.matrix td .lvl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;opacity:.85;}
+.matrix td .lvl-label{display:block;font-family:var(--disp);font-size:15px;margin-top:4px;font-weight:600;}
+.matrix .rowhead-cell{
+  font-family:var(--disp);font-weight:600;font-size:14px;color:var(--text);
+  padding:16px 10px;vertical-align:middle;white-space:nowrap;
+}
+.lv-alta{background:var(--vital-dim);color:var(--vital);border:1px solid rgba(39,225,174,.3);}
+.lv-mod{background:var(--warn-dim);color:var(--warn);border:1px solid rgba(255,180,84,.28);}
+.lv-baixa{background:var(--critical-dim);color:var(--critical);border:1px solid rgba(255,93,93,.28);}
+
+.matrix-detail{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:26px;min-height:110px;
+}
+.matrix-detail .ph{font-family:var(--mono);font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em;}
+.matrix-detail p{font-size:14px;color:var(--text-dim);margin-top:10px;}
+.matrix-detail strong{color:var(--text);}
+
+/* ---------- SECTION 04 : diagnostic vs direct ---------- */
+.switcher{
+  display:flex;align-items:center;justify-content:center;gap:0;
+  background:var(--surface);border:1px solid var(--border-strong);
+  border-radius:100px;padding:5px;width:fit-content;margin:0 auto 44px;
+}
+.switcher button{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;
+  padding:11px 26px;border-radius:100px;border:none;background:transparent;
+  color:var(--text-dim);cursor:pointer;transition:all .3s;
+}
+.switcher button.active.diag{background:var(--vital);color:#04120D;font-weight:600;}
+.switcher button.active.dir{background:var(--critical);color:#1a0505;font-weight:600;}
+
+.approach-panel{display:none;}
+.approach-panel.active{display:block;animation:fadein .5s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.persona-compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:48px;}
+.pc-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.pc-card .tag{font-family:var(--mono);font-size:10px;color:var(--text-faint);letter-spacing:.1em;text-transform:uppercase;}
+.pc-card h4{font-family:var(--disp);font-size:16px;margin:8px 0 10px;}
+.pc-card p{font-size:13px;color:var(--text-dim);}
+.pc-card .verdict{
+  display:inline-block;margin-top:12px;font-family:var(--mono);font-size:10.5px;
+  padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;
+}
+
+.recipe{display:flex;flex-wrap:wrap;gap:0;margin-top:8px;counter-reset:step;}
+.recipe .step{
+  flex:1;min-width:180px;position:relative;padding:22px 20px 22px 0;
+}
+.recipe .step:not(:last-child)::after{
+  content:'';position:absolute;top:38px;right:0;width:calc(100% - 14px);height:1px;
+  background:repeating-linear-gradient(90deg, var(--border-strong) 0 6px, transparent 6px 12px);
+}
+@media (max-width:900px){.recipe .step:not(:last-child)::after{display:none;}}
+.recipe .step .n{
+  font-family:var(--mono);font-size:11px;color:var(--vital);
+  width:26px;height:26px;border:1px solid var(--vital);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+}
+.recipe .step h5{font-family:var(--disp);font-size:14.5px;margin-bottom:6px;font-weight:600;}
+.recipe .step p{font-size:12.5px;color:var(--text-dim);}
+
+.segment-reco{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+@media (max-width:820px){.segment-reco{grid-template-columns:1fr;}}
+.segment-reco .card{background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;padding:22px;}
+.segment-reco .card h5{font-family:var(--disp);font-size:15.5px;margin:10px 0 8px;}
+.segment-reco .card p{font-size:13px;color:var(--text-dim);}
+
+/* ---------- SECTION 05 : risks ---------- */
+.competitor-cloud{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:48px;}
+.competitor-cloud span{
+  font-family:var(--mono);font-size:12px;color:var(--text-dim);
+  border:1px solid var(--border-strong);border-radius:100px;padding:6px 14px;
+  transition:all .25s;
+}
+.competitor-cloud span:hover{color:var(--critical);border-color:var(--critical);}
+
+.risk-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:56px;}
+@media (max-width:900px){.risk-cards{grid-template-columns:1fr;}}
+.risk-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.risk-card .rc-head{padding:22px 22px 16px;border-bottom:1px solid var(--border);}
+.risk-card .rc-head .eyebrow{margin-bottom:8px;}
+.risk-card .rc-head h4{font-family:var(--disp);font-size:17px;font-weight:600;}
+.risk-card .rc-body{padding:20px 22px;flex:1;}
+.risk-card .rc-body .k{font-family:var(--mono);font-size:10px;color:var(--critical);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px;}
+.risk-card .rc-body p{font-size:13px;color:var(--text-dim);margin-bottom:16px;}
+.risk-card .rc-body .k.reco{color:var(--vital);}
+.risk-card .msg-list{list-style:none;margin-top:8px;}
+.risk-card .msg-list li{
+  font-family:var(--mono);font-size:11.5px;color:var(--text);background:var(--bg-elev);
+  border-left:2px solid var(--vital);padding:8px 10px;margin-bottom:6px;border-radius:0 6px 6px 0;
+}
+
+.persona-message-table{width:100%;border-collapse:collapse;margin-bottom:48px;}
+.persona-message-table th{
+  text-align:left;font-family:var(--mono);font-size:10.5px;color:var(--text-faint);
+  text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;border-bottom:1px solid var(--border-strong);
+}
+.persona-message-table td{
+  padding:16px 14px;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text-dim);vertical-align:top;
+}
+.persona-message-table td.who{font-family:var(--disp);color:var(--text);font-weight:600;font-size:13.5px;white-space:nowrap;}
+.persona-message-table td.msg{font-family:var(--mono);font-size:12px;color:var(--vital);}
+
+.coherence-box{
+  background:linear-gradient(135deg, var(--surface), var(--bg-elev));
+  border:1px solid var(--border-strong);border-radius:16px;padding:32px;
+  display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
+}
+.coherence-box .icon{width:40px;height:40px;flex:none;color:var(--blue);}
+.coherence-box h4{font-family:var(--disp);font-size:17px;margin-bottom:10px;}
+.coherence-box p{font-size:13.5px;color:var(--text-dim);}
+.coherence-box .levels{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.coherence-box .levels div{
+  font-family:var(--mono);font-size:11px;padding:6px 12px;border-radius:100px;
+}
+.lvl-strategic{background:var(--blue-dim);color:var(--blue);}
+.lvl-tactic{background:var(--vital-dim);color:var(--vital);}
+
+/* ---------- FOOTER ---------- */
+footer{
+  padding:60px clamp(20px,6vw,80px) 50px;text-align:center;
+}
+footer .ecg-mini{width:200px;height:34px;margin:0 auto 24px;opacity:.6;}
+footer p{font-family:var(--mono);font-size:11px;color:var(--text-faint);letter-spacing:.03em;}
+footer p.disclaimer{max-width:520px;margin:14px auto 0;font-size:10.5px;line-height:1.7;}
+
+/* ---------- misc reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="nav-brand"><span class="dot"></span> WOW+ WORK · SIMULAÇÃO DE MERCADO</div>
+  <div class="nav-links">
+    <a href="#s1" data-sec="s1">01 · Personas</a>
+    <a href="#s2" data-sec="s2">02 · Funil</a>
+    <a href="#s3" data-sec="s3">03 · Valor</a>
+    <a href="#s4" data-sec="s4">04 · GTM</a>
+    <a href="#s5" data-sec="s5">05 · Riscos</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="ecg-wrap">
+    <svg viewBox="0 0 1100 110" preserveAspectRatio="none">
+      <path class="ecg-line" d="M0,55 L90,55 L110,55 L125,20 L140,90 L155,10 L170,55 L230,55 L260,55 L275,40 L290,55 L340,55
+        L400,55 L420,55 L435,20 L450,90 L465,10 L480,55 L540,55
+        L600,55 L620,55 L635,20 L650,90 L665,10 L680,55 L740,55
+        L800,55 L820,55 L835,20 L850,90 L865,10 L880,55 L940,55
+        L1000,55 L1020,55 L1035,20 L1050,90 L1065,10 L1080,55 L1100,55"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <span class="eyebrow">Relatório de previsão · resposta à campanha de lançamento nacional</span>
+    <h1>Diagnóstico de mercado do <em>WOW+ Work</em> em cinco leituras de pulso</h1>
+    <p class="lede">A campanha nacional gera <b>percepção fragmentada</b> entre cinco perfis de decisão, com <b>colapso crítico de conversão na prova de conceito</b> — e a abordagem diagnóstica supera a venda direta de forma consistente, sobretudo no médio porte.</p>
+    <div class="stat-row">
+      <div class="stat-chip"><span class="swatch" style="background:var(--vital)"></span>5 personas mapeadas</div>
+      <div class="stat-chip"><span class="swatch" style="background:var(--critical)"></span>Maior perda: fase de PoC</div>
+      <div class="stat-chip"><span class="swatch" style="background:var(--blue)"></span>Diagnóstico &gt; venda direta</div>
+      <div class="stat-chip"><span class="swatch" style="background:var(--warn)"></span>3 portes, 3 hierarquias de valor</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="line"></div>role para o diagnóstico</div>
+</header>
+
+<!-- ================= SECTION 01 — PERSONAS ================= -->
+<section class="section" id="s1">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="section-num">01</span> · Mapeamento de percepção</span>
+    <h2>Percepção por persona e persistência de objeções</h2>
+    <p class="dek">A simulação revela padrões diferenciados de percepção e objeção entre os cinco perfis de decisão expostos à campanha. Toque em um cartão para abrir a leitura completa.</p>
+  </div>
+
+  <div class="persona-grid reveal">
+
+    <article class="persona-card" data-persona="rho">
+      <span class="tag">Perfil 01</span>
+      <h3>RH Operacional</h3>
+      <div class="gauge-wrap">
+        <div class="gauge" data-level="0.30"></div>
+        <div class="gauge-label">Percepção<b>Fardo administrativo</b></div>
+      </div>
+      <p class="persona-quote">"Meu RH trabalha para minha empresa" — e já usa o serviço do fornecedor atual.</p>
+      <div class="persona-more">
+        <p>Reconhece a proposta de valor técnica, porém com objeções centradas na carga operacional de implementação. Já se encontra sobrecarregado com demandas administrativas existentes — a objeção não é sobre qualidade técnica, mas sobre a capacidade de absorver mais uma implementação sem recursos adicionais. Mantém ceticismo sobre promessas de simplificação e questiona realisticamente como ocorreria a integração com sistemas legados.</p>
+      </div>
+      <div class="persona-toggle">ver leitura completa <svg viewBox="0 0 10 10"><path d="M1 3 L5 7 L9 3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></div>
+    </article>
+
+    <article class="persona-card" data-persona="rhe">
+      <span class="tag">Perfil 02</span>
+      <h3>RH Estratégico</h3>
+      <div class="gauge-wrap">
+        <div class="gauge" data-level="0.82"></div>
+        <div class="gauge-label">Percepção<b>Mais positiva</b></div>
+      </div>
+      <p class="persona-quote">O WOW+ Work representa a empresa no setor de medicina ocupacional e gestão de saúde corporativa.</p>
+      <div class="persona-more">
+        <p>Apresenta a percepção mais positiva da campanha, reconhecendo alinhamento com agendas contemporâneas de sustentabilidade e bem-estar corporativo. Contudo, objeções persistem em torno do custo-benefício de longo prazo e da comprovação de impacto em retenção de talentos. Demanda evidências concretas de ROI em retenção e produtividade — mensagens genéricas sobre "cuidado com colaboradores" geram menos conversão do que dados específicos sobre redução de turnover.</p>
+      </div>
+      <div class="persona-toggle">ver leitura completa <svg viewBox="0 0 10 10"><path d="M1 3 L5 7 L9 3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></div>
+    </article>
+
+    <article class="persona-card" data-persona="ceo">
+      <span class="tag">Perfil 03</span>
+      <h3>CEO / Diretor</h3>
+      <div class="gauge-wrap">
+        <div class="gauge" data-level="0.42"></div>
+        <div class="gauge-label">Percepção<b>Custo de oportunidade</b></div>
+      </div>
+      <p class="persona-quote">A empresa pode já colaborar com um serviço de Medicina do Trabalho existente.</p>
+      <div class="persona-more">
+        <p>Manifesta ceticismo sobre o investimento requerido versus o tempo de retorno. Questiona fundamentalmente se a solução justifica capital alocado — a objeção crítica não é sobre necessidade, mas sobre custo de oportunidade: se os recursos investidos poderiam gerar maior retorno em outras iniciativas. Permanece resistente a argumentos de conformidade regulatória, vendo-os como custo de operação obrigatório, não como diferencial competitivo.</p>
+      </div>
+      <div class="persona-toggle">ver leitura completa <svg viewBox="0 0 10 10"><path d="M1 3 L5 7 L9 3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></div>
+    </article>
+
+    <article class="persona-card" data-persona="sesmt">
+      <span class="tag">Perfil 04</span>
+      <h3>SESMT</h3>
+      <div class="gauge-wrap">
+        <div class="gauge" data-level="0.50"></div>
+        <div class="gauge-label">Percepção<b>Conformidade ≠ diferencial</b></div>
+      </div>
+      <p class="persona-quote">Reconhece a integração de medicina ocupacional e conformidade com a NR1.</p>
+      <div class="persona-more">
+        <p>Reconhece a oferta de integração e conformidade com NR1, mas mantém objeção fundamental: conformidade regulatória é pré-requisito básico, não valor agregado. Questiona se a tecnologia efetivamente reduz riscos ocupacionais ou apenas documenta conformidade. Objeções técnicas persistem sobre a capacidade da plataforma de substituir expertise humana especializada em avaliações de risco complexas — tende a ver a solução como ferramenta administrativa de suporte, não estratégica.</p>
+      </div>
+      <div class="persona-toggle">ver leitura completa <svg viewBox="0 0 10 10"><path d="M1 3 L5 7 L9 3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></div>
+    </article>
+
+    <article class="persona-card" data-persona="fin">
+      <span class="tag">Perfil 05</span>
+      <h3>Financeiro</h3>
+      <div class="gauge-wrap">
+        <div class="gauge" data-level="0.22"></div>
+        <div class="gauge-label">Percepção<b>A mais crítica</b></div>
+      </div>
+      <p class="persona-quote">Falta comparação clara entre custo do fornecedor atual e investimento em transição.</p>
+      <div class="persona-more">
+        <p>Apresenta a percepção mais crítica e orientada por números. Objeção persistente centrada em custo total de propriedade (TCO) — não apenas assinatura, mas implementação, treinamento, integração e suporte contínuo. Questiona premissas de economia operacional, demandando análise detalhada de redução de custos com medicina ocupacional e absenteísmo. Permanece resistente até que cenários de payback específicos para o porte e setor da empresa sejam apresentados.</p>
+      </div>
+      <div class="persona-toggle">ver leitura completa <svg viewBox="0 0 10 10"><path d="M1 3 L5 7 L9 3" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></div>
+    </article>
+
+  </div>
+
+  <div class="incumbent-box reveal">
+    <h4>⚠ Padrão transversal · síndrome do fornecedor incumbente</h4>
+    <p>Todos os cinco perfis compartilham a mesma objeção de base: "minha empresa usa o serviço do seu fornecedor atual". Inércia organizacional, switching costs percebidos e relacionamentos estabelecidos criam uma barreira que mensagens genéricas de campanha não superam. Cada persona racionaliza a permanência à sua própria maneira:</p>
+    <div class="incumbent-list">
+      <div><b>RH Operacional</b>complexidade de migração</div>
+      <div><b>RH Estratégico</b>impacto cultural</div>
+      <div><b>CEO / Diretor</b>custo de transição</div>
+      <div><b>SESMT</b>capacidade técnica duvidosa</div>
+      <div><b>Financeiro</b>TCO desfavorável</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 02 — FUNIL ================= -->
+<section class="section" id="s2">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="section-num">02</span> · Gargalo de conversão</span>
+    <h2>O colapso acontece na prova de conceito</h2>
+    <p class="dek">A fase de PoC é o ponto de maior abandono da jornada — superando as perdas de educação e demonstração. Escolha um porte de empresa para ver a leitura do colapso.</p>
+  </div>
+
+  <div class="funnel-tabs reveal">
+    <button class="funnel-tab active" data-size="pequena">Empresa pequena</button>
+    <button class="funnel-tab" data-size="media">Empresa média</button>
+    <button class="funnel-tab" data-size="grande">Empresa grande</button>
+  </div>
+
+  <div class="funnel reveal">
+    <div class="funnel-stage">
+      <span class="stage-label">Educação</span>
+      <div class="funnel-bar-track"><div class="funnel-bar b1" data-w="100"></div></div>
+      <span class="pct">100%</span>
+    </div>
+    <div class="funnel-stage">
+      <span class="stage-label">Demonstração</span>
+      <div class="funnel-bar-track"><div class="funnel-bar b2" data-w="68"></div></div>
+      <span class="pct">68%</span>
+    </div>
+    <div class="drop-marker">
+      <svg viewBox="0 0 12 12"><path d="M6 1 L6 9 M2 6 L6 10 L10 6" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+      maior queda da jornada
+    </div>
+    <div class="funnel-stage collapse">
+      <span class="stage-label">Prova de conceito</span>
+      <div class="funnel-bar-track"><div class="funnel-bar b3" data-w="24"></div></div>
+      <span class="pct">24%</span>
+    </div>
+    <div class="funnel-stage">
+      <span class="stage-label">Adoção</span>
+      <div class="funnel-bar-track"><div class="funnel-bar b4" data-w="14"></div></div>
+      <span class="pct">14%</span>
+    </div>
+  </div>
+
+  <div class="funnel-detail reveal">
+    <div class="block">
+      <h4>Obstáculos operacionais</h4>
+      <p>O colapso origina-se primariamente de obstáculos operacionais, não de objeções conceituais. Durante a PoC, o RH Operacional precisa executar a implementação simultaneamente às suas responsabilidades existentes — diferentemente da demonstração, que ocorre em ambiente controlado, a PoC exige recursos internos reais para integração, testes e validação. É particularmente problemático em empresas de médio porte, onde o RH Operacional tipicamente não tem equipe dedicada.</p>
+    </div>
+    <div class="block">
+      <h4>Falta de patrocínio executivo</h4>
+      <p>O colapso está frequentemente ligado à ausência de patrocínio executivo ativo durante a implementação. A demonstração pode ser conduzida por um único champion (em geral o RH Estratégico), mas a PoC exige coordenação entre múltiplos departamentos. Sem patrocínio do CEO ou diretor responsável, a PoC recebe baixa priorização e recursos insuficientes — levando ao fracasso auto-profetizado.</p>
+    </div>
+  </div>
+
+  <div class="size-panels active" data-size="pequena">
+    <div class="size-grid">
+      <div class="size-card"><span class="eyebrow">Empresa pequena</span><p>Abandona a PoC porque não possui infraestrutura de TI dedicada para suportar a integração técnica. O RH Operacional é, muitas vezes, uma pessoa só — sem margem para projetos especiais.</p></div>
+      <div class="size-card"><span class="eyebrow">Onde a fricção nasce</span><p>Investir tempo em PoC parece uma aposta: se a liderança rejeitar a proposta depois, o esforço terá sido desperdiçado.</p></div>
+      <div class="size-card"><span class="eyebrow">O que precisa mudar</span><p>Reduzir o compromisso inicial e tornar o retorno visível antes de pedir alocação real de recursos internos.</p></div>
+    </div>
+  </div>
+  <div class="size-panels" data-size="media">
+    <div class="size-grid">
+      <div class="size-card"><span class="eyebrow">Empresa média</span><p>Abandona porque o custo de oportunidade do tempo de RH é alto e visível. O RH Operacional teme pressão para adotar a solução mesmo com experiência negativa — ou desperdício de esforço se a liderança rejeitar.</p></div>
+      <div class="size-card"><span class="eyebrow">Onde a fricção nasce</span><p>Custos ocultos de integração, treinamento e suporte só se revelam durante a PoC — quando deveriam ter sido validados antes.</p></div>
+      <div class="size-card"><span class="eyebrow">O que precisa mudar</span><p>O Financeiro precisa de métricas de retorno validadas dentro da janela de PoC (30–60 dias), não promessas teóricas.</p></div>
+    </div>
+  </div>
+  <div class="size-panels" data-size="grande">
+    <div class="size-grid">
+      <div class="size-card"><span class="eyebrow">Empresa grande</span><p>Abandona quando a PoC não demonstra diferenciação significativa frente a soluções existentes, ou quando a velocidade de implementação não atende expectativas de transformação rápida.</p></div>
+      <div class="size-card"><span class="eyebrow">Onde a fricção nasce</span><p>O SESMT percebe que a plataforma funciona melhor como ferramenta administrativa de documentação do que como transformação da gestão de saúde ocupacional — mais incremental que revolucionária.</p></div>
+      <div class="size-card"><span class="eyebrow">O que precisa mudar</span><p>Coordenação multi-departamental com patrocínio executivo explícito antes de iniciar a PoC.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 03 — MATRIZ DE VALOR ================= -->
+<section class="section" id="s3">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="section-num">03</span> · Hierarquia de valor</span>
+    <h2>Nenhum argumento converte igual em todos os portes</h2>
+    <p class="dek">Os quatro argumentos centrais da campanha produzem efetividade inversamente correlacionada ao tamanho da empresa. Toque em uma célula para ler o porquê.</p>
+  </div>
+
+  <div class="matrix-wrap reveal">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th class="rowhead">Porte</th>
+          <th>Conformidade NR1</th>
+          <th>Economia financeira</th>
+          <th>Cuidado com colaboradores</th>
+          <th>Tecnologia integrada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rowhead-cell">Pequena</td>
+          <td class="lv-alta" data-key="peq-nr1"><span class="lvl">Efetividade</span><span class="lvl-label">Alta</span></td>
+          <td class="lv-mod" data-key="peq-eco"><span class="lvl">Efetividade</span><span class="lvl-label">Moderada</span></td>
+          <td class="lv-mod" data-key="peq-cui"><span class="lvl">Efetividade</span><span class="lvl-label">Moderada</span></td>
+          <td class="lv-baixa" data-key="peq-tec"><span class="lvl">Efetividade</span><span class="lvl-label">Baixa</span></td>
+        </tr>
+        <tr>
+          <td class="rowhead-cell">Média</td>
+          <td class="lv-mod" data-key="med-nr1"><span class="lvl">Efetividade</span><span class="lvl-label">Moderada</span></td>
+          <td class="lv-alta" data-key="med-eco"><span class="lvl">Efetividade</span><span class="lvl-label">Alta</span></td>
+          <td class="lv-mod" data-key="med-cui"><span class="lvl">Efetividade</span><span class="lvl-label">Moderada</span></td>
+          <td class="lv-mod" data-key="med-tec"><span class="lvl">Efetividade</span><span class="lvl-label">Moderada</span></td>
+        </tr>
+        <tr>
+          <td class="rowhead-cell">Grande</td>
+          <td class="lv-baixa" data-key="gra-nr1"><span class="lvl">Efetividade</span><span class="lvl-label">Baixa</span></td>
+          <td class="lv-mod" data-key="gra-eco"><span class="lvl">Efetividade</span><span class="lvl-label">Moderada</span></td>
+          <td class="lv-alta" data-key="gra-cui"><span class="lvl">Efetividade</span><span class="lvl-label">Alta</span></td>
+          <td class="lv-alta" data-key="gra-tec"><span class="lvl">Efetividade</span><span class="lvl-label">Alta</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="matrix-detail reveal" id="matrixDetail">
+    <span class="ph">toque em uma célula da matriz</span>
+    <p>Selecione qualquer combinação de porte × argumento para ler a leitura detalhada da simulação sobre por que aquele argumento converte — ou não — naquele segmento.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 04 — DIAGNÓSTICO VS VENDA DIRETA ================= -->
+<section class="section" id="s4">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="section-num">04</span> · Go-to-market</span>
+    <h2>Diagnóstico gratuito converte mais que venda direta</h2>
+    <p class="dek">O diagnóstico reduz o risco percebido na troca de fornecedor. Alterne entre as duas abordagens para comparar como cada persona reage.</p>
+  </div>
+
+  <div class="switcher reveal">
+    <button class="active diag" data-mode="diag">Abordagem diagnóstica</button>
+    <button class="dir" data-mode="dir">Venda direta</button>
+  </div>
+
+  <div class="approach-panel active" data-mode="diag">
+    <div class="persona-compare-grid">
+      <div class="pc-card"><span class="tag">RH Operacional</span><h4>Validação sem pressão</h4><p>O diagnóstico oferece um relatório específico sobre gaps de conformidade e recomendações customizadas — evidência concreta que reduz a objeção "não sabemos se vai funcionar na nossa realidade".</p><span class="verdict pill vital">Vence com clareza</span></div>
+      <div class="pc-card"><span class="tag">RH Estratégico</span><h4>Espaço para explorar ESG</h4><p>Oferece oportunidade de aprofundar alinhamento com agendas de retenção e ESG, em vez de argumentos genéricos sobre "cuidado com colaboradores".</p><span class="verdict pill vital">Vence com profundidade</span></div>
+      <div class="pc-card"><span class="tag">CEO / Diretor</span><h4>Resposta customizada de ROI</h4><p>Permite obter resposta precisa de custo e retorno antes de comprometer recursos — transforma decisão de aposta em análise informada.</p><span class="verdict pill vital">Vence reduzindo risco</span></div>
+      <div class="pc-card"><span class="tag">SESMT</span><h4>Validação técnica especializada</h4><p>Ganha vantagem ao permitir validar se a solução reduz riscos ocupacionais além de documentar conformidade.</p><span class="verdict pill blue">Empata, ganha em profundidade</span></div>
+      <div class="pc-card"><span class="tag">Financeiro</span><h4>TCO com dados concretos</h4><p>Transforma custos ocultos de implementação, integração e treinamento em estimativas precisas de TCO — decisão baseada em análise, não em promessa.</p><span class="verdict pill vital">Preferência clara</span></div>
+    </div>
+
+    <h3 style="font-family:var(--disp);font-size:19px;margin-bottom:6px;">Estrutura recomendada de oferta</h3>
+    <p style="color:var(--text-dim);font-size:13.5px;margin-bottom:8px;">Diagnóstico e implantação assistida funcionam melhor como pacote integrado, não como serviços separados.</p>
+    <div class="recipe">
+      <div class="step"><span class="n">1</span><h5>Diagnóstico gratuito</h5><p>4–6 semanas · relatório customizado com recomendações específicas, sem custo e sem compromisso.</p></div>
+      <div class="step"><span class="n">2</span><h5>Implementação assistida</h5><p>8–12 semanas · custo fixo e duração definida, posicionada como redução de risco de implementação.</p></div>
+      <div class="step"><span class="n">3</span><h5>Garantia de conformidade</h5><p>Conformidade com a NR1 assegurada ao final da implementação assistida.</p></div>
+      <div class="step"><span class="n">4</span><h5>Suporte pós-implementação</h5><p>90 dias de suporte estruturado para consolidar adoção.</p></div>
+    </div>
+
+    <div class="segment-reco">
+      <div class="card"><span class="pill vital">Pequena</span><h5>Validação de investimento</h5><p>Diagnóstico focado em "quanto tempo seu RH gasta em conformidade?", com relatório acionável em 48h.</p></div>
+      <div class="card"><span class="pill vital">Média</span><h5>Justificativa de migração</h5><p>Diagnóstico com estimativa de TCO, ROI e timeline modular — relatório executivo + relatório técnico.</p></div>
+      <div class="card"><span class="pill vital">Grande</span><h5>Alinhamento multi-stakeholder</h5><p>Mapeia o ecossistema de fornecedores e recomenda arquitetura de implementação com zero disrupção.</p></div>
+    </div>
+  </div>
+
+  <div class="approach-panel" data-mode="dir">
+    <div class="persona-compare-grid">
+      <div class="pc-card"><span class="tag">RH Operacional</span><h4>Decisão binária forçada</h4><p>Confronta o perfil já sobrecarregado com "adotar ou rejeitar" — tende a rejeitar quando não há diferencial claramente comprovado, preferindo o status quo.</p><span class="verdict pill critical">Perde por inércia</span></div>
+      <div class="pc-card"><span class="tag">RH Estratégico</span><h4>Argumentos genéricos</h4><p>Apresenta mensagens abstratas sobre "cuidado com colaboradores" que este perfil já questiona por falta de evidência.</p><span class="verdict pill critical">Perde por falta de prova</span></div>
+      <div class="pc-card"><span class="tag">CEO / Diretor</span><h4>Pergunta sem resposta precisa</h4><p>"Quanto custa e qual o ROI?" — pergunta que raramente pode ser respondida com precisão sem análise da situação específica.</p><span class="verdict pill critical">Perde por incerteza</span></div>
+      <div class="pc-card"><span class="tag">SESMT</span><h4>Sem espaço de validação</h4><p>Falha por não oferecer oportunidade de validação técnica especializada.</p><span class="verdict pill critical">Perde por falta de profundidade</span></div>
+      <div class="pc-card"><span class="tag">Financeiro</span><h4>Custos ocultos questionados</h4><p>Questiona custos de implementação, integração e treinamento sem dados concretos para responder.</p><span class="verdict pill critical">Perde por opacidade</span></div>
+    </div>
+    <div class="incumbent-box" style="border-color:rgba(255,93,93,.28)">
+      <h4>Por que a venda direta leva à PoC tradicional colapsada</h4>
+      <p>A venda direta frequentemente leva diretamente a uma PoC tradicional, onde a organização cliente investe recursos significativos sem validação prévia de viabilidade — exatamente a dinâmica que explica o abandono elevado na fase de PoC descrita na seção 02.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 05 — RISCOS ================= -->
+<section class="section" id="s5">
+  <div class="section-head reveal">
+    <span class="eyebrow"><span class="section-num">05</span> · Riscos e posicionamento</span>
+    <h2>Riscos emergentes e recomendações por segmento</h2>
+    <p class="dek">Um ecossistema competitivo fragmentado disputa segmentos específicos do mercado de saúde corporativa e medicina ocupacional.</p>
+  </div>
+
+  <div class="competitor-cloud reveal">
+    <span>Wellhub</span><span>Gympass</span><span>Vidalink</span><span>Alice</span><span>Conexa</span><span>Zenklub</span><span>Psicologia Viva</span><span>Beecorp</span><span>SOC</span>
+  </div>
+
+  <div class="risk-cards reveal">
+    <div class="risk-card">
+      <div class="rc-head"><span class="eyebrow" style="color:var(--vital)">Empresa pequena</span><h4>Risco de simplicidade vencer</h4></div>
+      <div class="rc-body">
+        <span class="k">Risco</span>
+        <p>Concorrentes com conformidade regulatória simples e barata (abaixo de R$ 500/mês) convertem melhor que o WOW+ Work, mesmo tecnicamente inferior, quando o RH é uma pessoa só e teme complexidade.</p>
+        <span class="k reco">Recomendação</span>
+        <p>Reposicionar como ferramenta de simplificação administrativa, não plataforma integrada complexa. Preço agressivo, flexível, sem compromisso anual.</p>
+        <ul class="msg-list">
+          <li>"Quanto tempo seu RH gasta em conformidade NR1 hoje?"</li>
+          <li>Payback visível em menos de 3 meses</li>
+        </ul>
+      </div>
+    </div>
+    <div class="risk-card">
+      <div class="rc-head"><span class="eyebrow" style="color:var(--warn)">Empresa média</span><h4>Risco na visibilidade do TCO</h4></div>
+      <div class="rc-body">
+        <span class="k">Risco</span>
+        <p>Custos ocultos de integração, treinamento e suporte revelam-se maiores que o estimado durante a PoC, levando à descontinuação do projeto.</p>
+        <span class="k reco">Recomendação</span>
+        <p>Diagnóstico como validador de TCO. Decompor a solução em módulos sequenciais (30 / 60 / 90 dias) em vez de "big bang".</p>
+        <ul class="msg-list">
+          <li>"Redução de 40% do tempo do RH em conformidade NR1"</li>
+          <li>"Economia em retrabalho administrativo anual"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="risk-card">
+      <div class="rc-head"><span class="eyebrow" style="color:var(--critical)">Empresa grande</span><h4>Risco de disrupção percebida</h4></div>
+      <div class="rc-body">
+        <span class="k">Risco</span>
+        <p>Migrar de fornecedores com contratos de longo prazo é percebido como disrupção operacional significativa — motivo comum de abandono de PoC.</p>
+        <span class="k reco">Recomendação</span>
+        <p>Posicionar como integração de governança, não substituição de fornecedores. Implementação em fases com zero disrupção inicial.</p>
+        <ul class="msg-list">
+          <li>"Redução de risco regulatório via auditoria contínua"</li>
+          <li>"Saúde ocupacional como métrica ESG para stakeholders"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <table class="persona-message-table reveal">
+    <thead><tr><th>Persona</th><th>Foco da mensagem</th><th>Exemplo de mensagem</th></tr></thead>
+    <tbody>
+      <tr><td class="who">RH Operacional</td><td class="msg-col">Redução de tempo em conformidade</td><td class="msg">"Automatize a conformidade NR1 e recupere tempo para iniciativas estratégicas"</td></tr>
+      <tr><td class="who">RH Estratégico</td><td class="msg-col">Retenção de talentos e ESG</td><td class="msg">"Demonstre compromisso com saúde ocupacional como diferencial de empregador"</td></tr>
+      <tr><td class="who">CEO/Diretor (peq. e média)</td><td class="msg-col">Economia e payback rápido</td><td class="msg">"Reduza custos operacionais em 30% em 6 meses"</td></tr>
+      <tr><td class="who">CEO/Diretor (grande)</td><td class="msg-col">Risco regulatório e governança</td><td class="msg">"Reduza risco de multas e melhore governança com integração de fornecedores"</td></tr>
+      <tr><td class="who">SESMT</td><td class="msg-col">Complemento de expertise</td><td class="msg">"Ferramenta que complementa a expertise especializada, não a substitui"</td></tr>
+      <tr><td class="who">Financeiro</td><td class="msg-col">TCO e retorno validado</td><td class="msg">"Transparência total de custos e ROI validado em 90 dias"</td></tr>
+    </tbody>
+  </table>
+
+  <div class="coherence-box reveal">
+    <svg class="icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="1.6"/><path d="M20 10 L20 20 L27 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <div>
+      <h4>Risco de fragmentação de mensagem</h4>
+      <p>Ao customizar argumentos por persona e segmento, o WOW+ Work corre o risco de perder coerência de marca. A recomendação é manter a mensagem central em dois níveis:</p>
+      <div class="levels">
+        <div class="lvl-strategic">Nível estratégico — mensagem de marca consistente em todos os canais</div>
+        <div class="lvl-tactic">Nível tático — argumentos customizados por persona em vendas e diagnóstico</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="ecg-mini" viewBox="0 0 200 34"><path d="M0,17 L60,17 L70,4 L80,30 L90,17 L200,17" fill="none" stroke="var(--vital)" stroke-width="1.6"/></svg>
+  <p>WOW+ WORK — RELATÓRIO PREDITIVO DE SIMULAÇÃO DE MERCADO B2B</p>
+  <p class="disclaimer">Este documento sintetiza uma simulação preditiva de percepção de mercado e não constitui garantia de resultados comerciais. Os dados representam projeções de comportamento, não medições diretas de clientes reais.</p>
+</footer>
+
+<script>
+// ---------- scrollspy ----------
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('.section');
+const spy = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('active'));
+      const link = document.querySelector('.nav-links a[data-sec="'+e.target.id+'"]');
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px'});
+sections.forEach(s=>spy.observe(s));
+
+// ---------- reveal on scroll ----------
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  });
+},{threshold:0.12});
+revealEls.forEach(el=>revealObs.observe(el));
+
+// ---------- persona cards open/close ----------
+document.querySelectorAll('.persona-card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    card.classList.toggle('open');
+  });
+});
+
+// ---------- gauges (semicircle meters) ----------
+function buildGauge(el){
+  const level = parseFloat(el.dataset.level);
+  const r = 24, cx = 28, cy = 28;
+  const startAngle = Math.PI, endAngle = 0; // semicircle top
+  const totalAngle = Math.PI;
+  const valAngle = Math.PI - (level*Math.PI);
+  function point(angle){ return [cx + r*Math.cos(angle), cy - r*Math.sin(angle)*0 + cy - r*Math.sin(angle)]; }
+  // simpler: use arc via path with polar coords, y flipped for semicircle above baseline
+  function polar(cx,cy,r,angle){ return {x: cx + r*Math.cos(angle), y: cy - r*Math.sin(angle)}; }
+  const p0 = polar(cx,cy,r,Math.PI);
+  const p1 = polar(cx,cy,r,0);
+  const pv = polar(cx,cy,r,valAngle);
+  let color = '#FF5D5D';
+  if(level >= 0.66) color = '#27E1AE';
+  else if(level >= 0.4) color = '#FFB454';
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS,'svg');
+  svg.setAttribute('viewBox','0 0 56 32');
+  const bgPath = document.createElementNS(svgNS,'path');
+  bgPath.setAttribute('d', `M ${p0.x} ${p0.y} A ${r} ${r} 0 0 1 ${p1.x} ${p1.y}`);
+  bgPath.setAttribute('stroke','rgba(255,255,255,0.12)');
+  bgPath.setAttribute('stroke-width','5');
+  bgPath.setAttribute('fill','none');
+  bgPath.setAttribute('stroke-linecap','round');
+  const fgPath = document.createElementNS(svgNS,'path');
+  fgPath.setAttribute('d', `M ${p0.x} ${p0.y} A ${r} ${r} 0 0 1 ${pv.x} ${pv.y}`);
+  fgPath.setAttribute('stroke', color);
+  fgPath.setAttribute('stroke-width','5');
+  fgPath.setAttribute('fill','none');
+  fgPath.setAttribute('stroke-linecap','round');
+  svg.appendChild(bgPath); svg.appendChild(fgPath);
+  el.appendChild(svg);
+}
+document.querySelectorAll('.gauge').forEach(buildGauge);
+
+// ---------- funnel bars animate when visible ----------
+const funnelBars = document.querySelectorAll('.funnel-bar');
+const funnelObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      funnelBars.forEach(b=>{ b.style.width = b.dataset.w + '%'; });
+      funnelObs.disconnect();
+    }
+  });
+},{threshold:0.3});
+if(funnelBars.length){ funnelObs.observe(document.querySelector('.funnel')); }
+
+// ---------- funnel size tabs ----------
+document.querySelectorAll('.funnel-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.funnel-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const size = tab.dataset.size;
+    document.querySelectorAll('.size-panels').forEach(p=>{
+      p.classList.toggle('active', p.dataset.size === size);
+    });
+  });
+});
+
+// ---------- matrix detail content ----------
+const matrixData = {
+  'peq-nr1': {label:'Pequena × Conformidade NR1', text:'Gera percepção de necessidade obrigatória, não de valor agregado — muitas pequenas empresas já possuem relacionamento com um provedor de medicina ocupacional que cobre a conformidade básica. Argumentar sobre NR1 não diferencia o WOW+ Work de soluções existentes.'},
+  'peq-eco': {label:'Pequena × Economia financeira', text:'Efetividade moderada, com ressalva: o custo absoluto da solução é barreira significativa. Só é percebida como relevante quando o investimento inicial é baixo e o payback ocorre em menos de 6 meses.'},
+  'peq-cui': {label:'Pequena × Cuidado com colaboradores', text:'Percepção positiva mas limitada — donos de pequenas empresas já se sentem próximos dos colaboradores. Funciona melhor quando conectado a retenção de talentos, não como valor intrínseco de bem-estar.'},
+  'peq-tec': {label:'Pequena × Tecnologia integrada', text:'Argumento de menor efetividade. Este segmento teme complexidade tecnológica e custos ocultos de integração — "plataforma integrada" gera preocupação sobre dependência tecnológica, não entusiasmo.'},
+  'med-nr1': {label:'Média × Conformidade NR1', text:'Efetividade moderada, funcionando melhor como "risco mitigado" do que "valor criado". SESMT e RH Estratégico questionam se a conformidade oferecida é superior à já obtida com o provedor atual.'},
+  'med-eco': {label:'Média × Economia financeira', text:'Argumento de maior efetividade de conversão neste segmento. Mas não converte isolado — precisa vir acompanhado de validação técnica de que a solução realmente funciona, já que há relacionamentos estabelecidos com fornecedores atuais.'},
+  'med-cui': {label:'Média × Cuidado com colaboradores', text:'Valor moderado, particularmente conectado a retenção de talentos e competitividade no mercado de trabalho. Funciona melhor como complemento à economia financeira do que como argumento independente.'},
+  'med-tec': {label:'Média × Tecnologia integrada', text:'Ganha relevância como argumento secundário de validação — não como diferencial competitivo, mas como pré-requisito de confiabilidade. Integração mal executada pode desmoronar a percepção de economia.'},
+  'gra-nr1': {label:'Grande × Conformidade NR1', text:'Funciona como pré-requisito não-diferenciador. Grandes organizações já superam requisitos mínimos de NR1 — argumentar sobre isso é percebido como comunicação imatura.'},
+  'gra-eco': {label:'Grande × Economia financeira', text:'Efetividade moderada, com dinâmica específica: o valor não é redução de custo absoluto, mas otimização de eficiência operacional e liberação de recursos humanos — "redução de FTE" converte melhor que "redução de assinatura".'},
+  'gra-cui': {label:'Grande × Cuidado com colaboradores', text:'Gera valor estratégico quando conectado a agendas ESG, retenção de talentos sênior e employer branding — funciona melhor como narrativa estratégica do que justificativa direta de investimento.'},
+  'gra-tec': {label:'Grande × Tecnologia integrada', text:'Argumento de maior efetividade neste segmento. Empresas grandes questionam menos "como integrar" e mais "qual é o valor estratégico" — consolidar dados fragmentados e reduzir silos organizacionais é o que converte.'},
+};
+document.querySelectorAll('.matrix td[data-key]').forEach(td=>{
+  td.addEventListener('click', ()=>{
+    const data = matrixData[td.dataset.key];
+    if(!data) return;
+    const panel = document.getElementById('matrixDetail');
+    panel.innerHTML = `<span class="ph">${data.label}</span><p><strong>Leitura da simulação:</strong> ${data.text}</p>`;
+    document.querySelectorAll('.matrix td').forEach(t=>t.style.outline='');
+    td.style.outline = '2px solid rgba(255,255,255,0.4)';
+  });
+});
+
+// ---------- diagnostic vs direct switcher ----------
+document.querySelectorAll('.switcher button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.switcher button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const mode = btn.dataset.mode;
+    document.querySelectorAll('.approach-panel').forEach(p=>{
+      p.classList.toggle('active', p.dataset.mode === mode);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
