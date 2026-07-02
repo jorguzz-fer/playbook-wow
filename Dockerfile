@@ -6,8 +6,9 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copia o site para o diretório servido pelo nginx
 COPY playbook.html /usr/share/nginx/html/index.html
 
-# Página avulsa (não faz parte do playbook) — acessível em /estudo-b2b/
+# Páginas avulsas (não fazem parte do playbook)
 COPY estudo-b2b.html /usr/share/nginx/html/estudo-b2b/index.html
+COPY plano360.html /usr/share/nginx/html/plano360/index.html
 
 EXPOSE 80
 
