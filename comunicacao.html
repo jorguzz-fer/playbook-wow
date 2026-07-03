@@ -194,6 +194,35 @@ section{padding:60px 0;position:relative}
 .testcard .metric{font-size:.82rem;color:var(--muted)}
 .testcard .metric b{color:var(--teal);font-family:var(--mono);font-size:.72rem}
 
+/* ACTION PLAN */
+.conv-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:30px}
+@media(max-width:760px){.conv-strip{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:460px){.conv-strip{grid-template-columns:repeat(2,1fr)}}
+.conv-m{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 12px;box-shadow:var(--shadow)}
+.conv-m .mm{font-family:var(--mono);font-weight:700;font-size:.72rem;color:var(--coral)}
+.conv-m .mf{font-size:.74rem;color:var(--ink-soft);margin-top:5px;line-height:1.35}
+.phase-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.phase-btn{flex:1;min-width:180px;text-align:left;font-family:var(--body);padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:all .2s}
+.phase-btn .pf{font-family:var(--mono);font-weight:700;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.phase-btn .pt{font-family:var(--dsp);font-weight:700;font-size:1.15rem;margin-top:5px}
+.phase-btn .pm{font-size:.78rem;color:var(--muted);margin-top:3px}
+.phase-btn[aria-selected=true]{background:var(--ink);border-color:var(--ink)}
+.phase-btn[aria-selected=true] .pt{color:#fff}
+.phase-btn[aria-selected=true] .pf{color:var(--coral)}
+.phase-btn[aria-selected=true] .pm{color:#9FBAB2}
+.phase-btn:not([aria-selected=true]):hover{border-color:var(--teal)}
+.phase-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:32px;box-shadow:var(--shadow);display:none;animation:fade .35s ease}
+.phase-panel.on{display:block}
+.conv-badge{display:inline-flex;gap:9px;align-items:center;background:var(--coral-soft);border-radius:10px;padding:9px 14px;font-size:.85rem;color:#8a3f10;margin-bottom:22px}
+.conv-badge b{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;background:var(--coral);color:#fff;padding:3px 8px;border-radius:6px}
+.act-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.act-list li{display:flex;gap:14px;font-size:.95rem;color:var(--ink-soft)}
+.act-list li .an{flex:none;width:26px;height:26px;border-radius:8px;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:.72rem;margin-top:1px}
+.act-list li b{color:var(--ink)}
+.deliverable{margin-top:24px;padding-top:22px;border-top:1px dashed var(--line-2);display:flex;gap:12px;align-items:flex-start}
+.deliverable .dl{font-family:var(--mono);font-weight:700;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:#0a4f47;background:var(--teal-soft);padding:5px 9px;border-radius:6px;white-space:nowrap;height:fit-content}
+.deliverable .dv{font-size:.95rem;color:var(--ink);font-weight:500}
+
 /* CTA */
 .cta{background:var(--ink);border-radius:26px;padding:52px 44px;color:#fff;position:relative;overflow:hidden}
 .cta .blob{opacity:.22}
@@ -226,6 +255,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
       <a href="#sinais">Sinais</a>
       <a href="#riscos">Riscos</a>
       <a href="#teste">Teste</a>
+      <a href="#acao">Ação</a>
     </div>
     <div class="nav-pill">4 públicos · <b>4 lógicas</b></div>
   </div>
@@ -531,6 +561,74 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
   </div>
 </section>
 
+<!-- ACTION PLAN -->
+<section id="acao">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">07 · Plano de ação · 6 meses</span>
+      <h2>Comunicação que trava dentro do Plano 360</h2>
+      <p>Cada ação de comunicação fortalece um movimento específico do plano de marketing — mesma rampa, mesmas fases. A comunicação não corre em paralelo: ela alimenta o motor.</p>
+    </div>
+
+    <div class="conv-strip reveal">
+      <div class="conv-m"><div class="mm">M1</div><div class="mf">Fundação + colheita fácil</div></div>
+      <div class="conv-m"><div class="mm">M2</div><div class="mf">Base onda 2 + armar a Rede</div></div>
+      <div class="conv-m"><div class="mm">M3</div><div class="mf">Rede escala + conteúdo liga</div></div>
+      <div class="conv-m"><div class="mm">M4</div><div class="mf">Composição dos motores</div></div>
+      <div class="conv-m"><div class="mm">M5</div><div class="mf">Otimização</div></div>
+      <div class="conv-m"><div class="mm">M6</div><div class="mf">Empurrão final + retenção</div></div>
+    </div>
+
+    <div class="phase-btns reveal" role="tablist" aria-label="Fases da comunicação">
+      <button class="phase-btn" role="tab" aria-selected="true" data-phase="0"><div class="pf">Fase 1</div><div class="pt">Fundação</div><div class="pm">Meses 1–2</div></button>
+      <button class="phase-btn" role="tab" aria-selected="false" data-phase="1"><div class="pf">Fase 2</div><div class="pt">Escala</div><div class="pm">Meses 3–4</div></button>
+      <button class="phase-btn" role="tab" aria-selected="false" data-phase="2"><div class="pf">Fase 3</div><div class="pt">Consolidação</div><div class="pm">Meses 5–6</div></button>
+    </div>
+
+    <!-- Fase 1 -->
+    <div class="phase-panel on" data-phase-panel="0">
+      <div class="conv-badge"><b>Converge com</b>360 · M1–M2 — colher base própria + armar a Rede + 1º retargeting</div>
+      <ul class="act-list">
+        <li><span class="an">01</span><div><b>Fixar o tom de voz único e o guia de mensagem por público.</b> Sóbrio, concreto, prova acima de promessa — a fundação de tudo que vier depois.</div></li>
+        <li><span class="an">02</span><div><b>Auditar toda a copy existente e aplicar a kill list.</b> Cortar "resultados na primeira semana", "proteja sua família" genérico e preço-manchete de onde já estiverem.</div></li>
+        <li><span class="an">03</span><div><b>Reescrever a copy de reativação da base com o enquadramento anti-SUS.</b> "Médico agora, sem fila, sem carência" — alimenta a onda 1 do 360.</div></li>
+        <li><span class="an">04</span><div><b>Montar o fluxo de aprovação do RT.</b> Nada de saúde vai pro ar sem o aval, dentro do CFM.</div></li>
+        <li><span class="an">05</span><div><b>Montar o kit da Rede de Associados baseado em prova social real</b> (prints de ganho de pares), não em copy — pronto para o "armar a Rede" do M2.</div></li>
+        <li><span class="an">06</span><div><b>Ativar a regra de supressão B2B×B2C</b> antes do 1º retargeting cruzar narrativas incompatíveis.</div></li>
+      </ul>
+      <div class="deliverable"><span class="dl">Entregável</span><span class="dv">Guia de mensagem por público + kit de prova social da Rede + copy anti-SUS da base, com fluxo de RT ativo.</span></div>
+    </div>
+
+    <!-- Fase 2 -->
+    <div class="phase-panel" data-phase-panel="1">
+      <div class="conv-badge"><b>Converge com</b>360 · M3–M4 — flywheel de conteúdo + composição Rede + médicos + paid warm</div>
+      <ul class="act-list">
+        <li><span class="an">01</span><div><b>Rodar os dois A/Bs com a Wendy e ler o resultado.</b> Anti-SUS vs. genérica (cliente) e prova social vs. aspiracional (associado) — a simulação vira dado real.</div></li>
+        <li><span class="an">02</span><div><b>Ligar o flywheel de conteúdo assinado por médicos.</b> Especialistas como voz autorizada: autoridade e compliance na mesma peça — é o "flywheel liga" do M3.</div></li>
+        <li><span class="an">03</span><div><b>Kit de conteúdo semanal pra Rede redistribuir.</b> O associado compartilha, não cria — reduz a contaminação e escala a distribuição.</div></li>
+        <li><span class="an">04</span><div><b>Transformar os primeiros associados que faturaram em cases.</b> Prova social que se auto-alimenta conforme a Rede escala.</div></li>
+        <li><span class="an">05</span><div><b>Escrever a copy B2B para RH com estudo de caso e número</b> (ROI, absenteísmo, NR1) e ativar amplificadores (contadores e consultores).</div></li>
+        <li><span class="an">06</span><div><b>Consolidar o vencedor dos A/Bs como mensagem padrão</b> e levar a copy vencedora pro lookalike do paid.</div></li>
+      </ul>
+      <div class="deliverable"><span class="dl">Entregável</span><span class="dv">Biblioteca de conteúdo médico-assinado + mensagem padrão validada por público + copy B2B pronta.</span></div>
+    </div>
+
+    <!-- Fase 3 -->
+    <div class="phase-panel" data-phase-panel="2">
+      <div class="conv-badge"><b>Converge com</b>360 · M5–M6 — otimização dos vencedores + empurrão final + retenção</div>
+      <ul class="act-list">
+        <li><span class="an">01</span><div><b>Otimizar a mensagem por canal com dados reais</b> — dobrar no que converteu, cortar o que não moveu.</div></li>
+        <li><span class="an">02</span><div><b>Ativar a comunicação antichurn calibrada.</b> Expectativa sempre abaixo da entrega, pra travar a cascata de desistência.</div></li>
+        <li><span class="an">03</span><div><b>Reativar associados dormentes com prova social atualizada</b> — reforça o motor escalável na reta final.</div></li>
+        <li><span class="an">04</span><div><b>Campanha de pico com a narrativa consolidada por público</b> — sustenta o empurrão final do M6.</div></li>
+        <li><span class="an">05</span><div><b>Blindagem de retenção em toda a base</b> pra proteger o crescimento conquistado.</div></li>
+        <li><span class="an">06</span><div><b>Fechar o message playbook validado</b> (o que virou verdade vs. o que ficou hipótese) e, opcional, rodar a 2ª rodada MiroFish com aprendizados reais.</div></li>
+      </ul>
+      <div class="deliverable"><span class="dl">Entregável</span><span class="dv">Message playbook validado + narrativa de retenção ativa, pronto para o próximo ciclo.</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section id="cta">
   <div class="wrap">
@@ -581,6 +679,16 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
     function toggle(){h.parentElement.classList.toggle('open');}
     h.addEventListener('click',toggle);
     h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+  });
+
+  // action-plan phases
+  var pbtns=document.querySelectorAll('.phase-btn');
+  var ppanels=document.querySelectorAll('.phase-panel');
+  pbtns.forEach(function(b){
+    b.addEventListener('click',function(){
+      pbtns.forEach(function(x){x.setAttribute('aria-selected', x===b?'true':'false');});
+      ppanels.forEach(function(p){p.classList.toggle('on',p.dataset.phasePanel===b.dataset.phase);});
+    });
   });
 
   // reveal on scroll
