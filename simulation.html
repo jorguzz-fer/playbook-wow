@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WOW+ Saúde · Capacidade da Plataforma · Relatório de Simulação</title>
+<title>WOW+ Saúde · Capacidade da Plataforma · Relatório de Simulação (rev. 2)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
     --mint:#9AE8DB;
     --amber:#EEA23A;
     --coral:#EF574C;
+    --slate:#6B8794;
     --text:#0B2027;
     --dim:#587179;
     --dim-2:#7C949A;
@@ -94,14 +95,21 @@
   .hero-body{padding:8px 0 64px;}
   .hero h1{
     font-size:clamp(2.4rem,6.2vw,4.5rem);font-weight:800;
-    max-width:16ch;margin:20px 0 0;
+    max-width:18ch;margin:20px 0 0;
   }
   .hero h1 .hl{color:var(--teal-bright);}
   .lead{
-    margin-top:24px;max-width:60ch;font-size:clamp(1.02rem,1.8vw,1.22rem);
+    margin-top:24px;max-width:62ch;font-size:clamp(1.02rem,1.8vw,1.22rem);
     color:var(--invert-dim);line-height:1.65;
   }
   .lead strong{color:var(--invert);font-weight:600;}
+
+  .rev-badge{
+    display:inline-flex;align-items:center;gap:8px;margin-top:26px;
+    font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--amber);border:1px solid rgba(238,162,58,.4);border-radius:99px;padding:6px 14px;
+    background:rgba(238,162,58,.08);
+  }
 
   .stat-row{
     display:grid;grid-template-columns:repeat(3,1fr);gap:0;
@@ -169,13 +177,24 @@
   @media(max-width:860px){ .sim-shell{grid-template-columns:1fr;} }
 
   .sim-controls{background:var(--ink);color:var(--invert);padding:34px 32px;}
-  .sim-controls .console-label{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--invert-dim);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:9px;}
+  .sim-controls .console-label{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--invert-dim);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:9px;}
   .sim-controls .console-label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal-bright);box-shadow:0 0 0 4px rgba(84,227,207,.2);}
+
+  .preset{
+    display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.04em;
+    background:rgba(84,227,207,.12);color:var(--teal-bright);
+    border:1px solid rgba(84,227,207,.35);border-radius:99px;
+    padding:8px 16px;cursor:pointer;transition:background .2s var(--ease);
+  }
+  .preset:hover{background:rgba(84,227,207,.22);}
+  .preset:focus-visible{outline:2px solid var(--teal-bright);outline-offset:2px;}
 
   .ctl{margin-bottom:26px;}
   .ctl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
   .ctl-label{font-size:13px;letter-spacing:.05em;color:var(--invert);font-weight:500;}
   .ctl-val{font-family:'Space Mono',monospace;font-weight:700;font-size:1.5rem;color:var(--teal-bright);}
+  .ctl-val .vu{font-size:.6em;color:var(--invert-dim);margin-left:2px;}
 
   input[type=range]{
     -webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;
@@ -211,11 +230,12 @@
   .readout-title{font-family:'Sora',sans-serif;font-weight:700;font-size:1.55rem;margin:18px 0 4px;letter-spacing:-.02em;transition:color .3s var(--ease);}
 
   .gauge{margin:22px 0 6px;}
+  .gauge-cap{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--dim-2);text-transform:uppercase;margin-bottom:8px;}
   .gauge-track{display:flex;height:16px;border-radius:99px;overflow:hidden;background:var(--line-soft);position:relative;}
   .gz{height:100%;transition:width .35s var(--ease);}
+  .gz.idle{background:var(--slate);}
   .gz.green{background:var(--teal);}
   .gz.amber{background:var(--amber);}
-  .gz.orange{background:#E9762F;}
   .gz.red{background:var(--coral);}
   .gauge-marker{position:relative;height:20px;margin-top:-2px;}
   .marker-pin{
@@ -233,8 +253,9 @@
   .rec{margin-top:20px;padding:16px 18px;border-radius:12px;background:var(--surface);border-left:3px solid var(--teal);}
   .rec .r-l{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--teal-deep);text-transform:uppercase;margin-bottom:6px;}
   .rec p{font-size:.95rem;color:var(--text);}
-  .warn-note{margin-top:14px;font-size:.85rem;color:var(--amber);font-family:'Space Mono',monospace;display:none;align-items:center;gap:7px;}
+  .warn-note{margin-top:14px;font-size:.85rem;color:var(--amber);font-family:'Space Mono',monospace;display:none;align-items:flex-start;gap:7px;}
   .warn-note.show{display:flex;}
+  .sim-fine{margin-top:14px;font-size:.82rem;color:var(--dim-2);font-family:'Space Mono',monospace;}
 
   /* ---------- CONTENT BLOCKS ---------- */
   .prose{max-width:70ch;margin-top:36px;}
@@ -247,7 +268,17 @@
     box-shadow:0 20px 40px -34px rgba(8,23,28,.4);
   }
 
-  /* satisfaction curve */
+  /* comparison table */
+  .cmp{margin-top:40px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface-2);}
+  .cmp .cmp-scroll{overflow-x:auto;}
+  .cmp table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:560px;}
+  .cmp th{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);text-align:left;padding:14px 18px;background:var(--surface);border-bottom:1px solid var(--line);}
+  .cmp td{padding:13px 18px;border-bottom:1px solid var(--line-soft);color:var(--text);}
+  .cmp tr:last-child td{border-bottom:none;}
+  .cmp td.old{color:var(--coral);font-weight:600;font-family:'Space Mono',monospace;font-size:.88rem;}
+  .cmp td.new{color:var(--teal-deep);font-weight:600;font-family:'Space Mono',monospace;font-size:.88rem;}
+
+  /* occupancy curve */
   .curve-card{margin-top:40px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:28px 30px;}
   .curve-card h4{font-size:1.05rem;margin-bottom:6px;}
   .curve-card .sub{font-size:.9rem;color:var(--dim);margin-bottom:20px;}
@@ -263,10 +294,11 @@
   .risk:hover{transform:translateY(-4px);box-shadow:0 24px 44px -32px rgba(8,23,28,.45);border-color:var(--teal);}
   .risk-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;}
   .risk-num{font-family:'Space Mono',monospace;font-size:13px;color:var(--dim-2);font-weight:700;}
-  .sev{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:99px;font-weight:700;}
+  .sev{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:99px;font-weight:700;white-space:nowrap;}
   .sev.crit{background:rgba(239,87,76,.12);color:var(--coral);}
   .sev.alto{background:rgba(238,162,58,.15);color:#C77E1B;}
   .sev.med{background:rgba(18,176,160,.13);color:var(--teal-deep);}
+  .sev.fut{background:rgba(107,135,148,.14);color:var(--slate);}
   .risk h4{font-size:1.12rem;font-weight:600;letter-spacing:-.01em;margin-bottom:9px;}
   .risk p{font-size:.94rem;color:var(--dim);}
 
@@ -279,8 +311,8 @@
   .phase.p2::before{background:var(--amber);}
   .phase.p3::before{background:var(--coral);}
   .phase .ph-tag{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--dim);text-transform:uppercase;}
-  .phase .ph-range{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;margin:8px 0 2px;color:var(--ink);}
-  .phase .ph-range .un{font-size:.8rem;color:var(--dim);font-weight:400;letter-spacing:.04em;}
+  .phase .ph-range{font-family:'Space Mono',monospace;font-size:1.7rem;font-weight:700;margin:8px 0 2px;color:var(--ink);}
+  .phase .ph-range .un{font-size:.75rem;color:var(--dim);font-weight:400;letter-spacing:.04em;}
   .phase h4{font-size:1.14rem;margin:14px 0 10px;font-weight:600;}
   .phase p{font-size:.93rem;color:var(--dim);}
   .phase .ph-doc{margin-top:16px;font-family:'Space Mono',monospace;font-size:12px;color:var(--teal-deep);letter-spacing:.03em;}
@@ -300,7 +332,7 @@
 
   .exec-cta{margin-top:44px;background:linear-gradient(120deg,var(--teal-deep),var(--teal));color:#04211d;border-radius:22px;padding:44px 40px;}
   .exec-cta .kicker{color:#063b34;}
-  .exec-cta h3{font-family:'Sora',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:-.02em;max-width:24ch;color:#03271f;}
+  .exec-cta h3{font-family:'Sora',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:-.02em;max-width:26ch;color:#03271f;}
   .exec-cta p{margin-top:18px;max-width:60ch;color:#0a3a30;font-size:1.05rem;line-height:1.6;}
 
   /* ---------- FOOTER ---------- */
@@ -321,7 +353,7 @@
   <div class="wrap">
     <div class="hero-top">
       <div class="brand"><span class="brand-dot"></span>WOW+ SAÚDE</div>
-      <div>RELATÓRIO&nbsp;DE&nbsp;SIMULAÇÃO</div>
+      <div>RELATÓRIO&nbsp;DE&nbsp;SIMULAÇÃO&nbsp;·&nbsp;REV.&nbsp;2</div>
     </div>
   </div>
 
@@ -333,13 +365,14 @@
 
   <div class="wrap hero-body">
     <div class="eyebrow">Capacidade da plataforma · app.wowmais.com.br</div>
-    <h1>Dois médicos. Cobertura 24h. <span class="hl">40–60 assinantes</span> sustentáveis.</h1>
-    <p class="lead">A simulação mostra que uma escala de <strong>2 médicos em turnos contínuos</strong> atende bem uma faixa estreita de assinantes ativos — e que a satisfação do paciente depende, criticamente, da <strong>otimização de filas</strong> e do <strong>balanceamento entre especialidades</strong>.</p>
+    <h1>600 assinantes. 12 consultas/mês. <span class="hl">Menos de 1% de ocupação</span> médica.</h1>
+    <p class="lead">A revisão do modelo com a <strong>volumetria real de atendimento (2% ao mês)</strong> inverte a conclusão original: o gargalo da plataforma não é capacidade médica — é <strong>ativação da base</strong>. Com a estrutura atual de 2 médicos, o teto sustentável fica na casa de <strong>50 mil assinantes</strong>, não 60.</p>
+    <div class="rev-badge">▲ Revisão 2 · corrige a premissa de demanda do relatório original</div>
 
     <div class="stat-row">
-      <div class="stat"><div class="n">40–60<span class="u">assin.</span></div><div class="l">Teto sustentável · 2 médicos</div></div>
-      <div class="stat"><div class="n">60<span class="u">→</span></div><div class="l">Ponto de inflexão operacional</div></div>
-      <div class="stat"><div class="n">120–150</div><div class="l">Capacidade com 3 médicos</div></div>
+      <div class="stat"><div class="n">~54 mil</div><div class="l">Teto sustentável · 2 médicos · 2% a.m.</div></div>
+      <div class="stat"><div class="n">1.200<span class="u">x</span></div><div class="l">Erro de demanda do modelo original</div></div>
+      <div class="stat"><div class="n">&lt;1<span class="u">%</span></div><div class="l">Ocupação médica atual</div></div>
     </div>
   </div>
 </header>
@@ -351,10 +384,10 @@
     <div class="nav-links">
       <a href="#resumo">Resumo</a>
       <a href="#simulador">Simulador</a>
-      <a href="#capacidade">01 Capacidade</a>
-      <a href="#experiencia">02 Experiência</a>
+      <a href="#capacidade">01 Variável ausente</a>
+      <a href="#experiencia">02 Ociosidade</a>
       <a href="#riscos">03 Riscos</a>
-      <a href="#escala">04 Escala</a>
+      <a href="#escala">04 Gatilhos</a>
     </div>
   </div>
 </nav>
@@ -362,28 +395,28 @@
 <!-- ============ RESUMO EXECUTIVO ============ -->
 <section class="summary" id="resumo">
   <div class="wrap">
-    <div class="kicker reveal"><span class="idx">◆</span> Resumo executivo</div>
-    <h2 class="title reveal">O que a simulação concluiu</h2>
+    <div class="kicker reveal"><span class="idx">◆</span> Resumo executivo · revisão 2</div>
+    <h2 class="title reveal">O que muda com a volumetria real</h2>
     <div class="sum-grid reveal">
       <div class="sum-cell">
-        <div class="tag">Capacidade</div>
-        <h4>Faixa de 40 a 60 assinantes</h4>
-        <p>É o ponto de equilíbrio onde a fila mantém tempos de resposta aceitáveis. Abaixo disso, a experiência é excelente; acima de 60, a qualidade cai de forma abrupta.</p>
+        <div class="tag">A variável ausente</div>
+        <h4>Volumetria de atendimento</h4>
+        <p>O modelo original assumia, implicitamente, ~0,8 consulta por assinante <em>por dia</em>. A volumetria real é de 2% <em>ao mês</em>. Um erro de ~1.200x que invalida todos os limiares numéricos anteriores.</p>
       </div>
       <div class="sum-cell">
-        <div class="tag">Fator crítico</div>
-        <h4>A fila define a experiência</h4>
-        <p>A percepção do paciente é função direta da eficiência da fila. Com otimização robusta, o teto se aproxima de 60–70; sem ela, o modelo já satura em 40–50.</p>
+        <div class="tag">Capacidade real</div>
+        <h4>Teto de ~54 mil assinantes</h4>
+        <p>2 médicos em cobertura 24h processam até ~36 consultas/dia em ocupação saudável (75%). Na volumetria de 2% a.m., isso sustenta ~54 mil assinantes — 900x o "limite de colapso" do relatório original.</p>
       </div>
       <div class="sum-cell">
-        <div class="tag">Especialidades</div>
-        <h4>Desbalanceamento derruba o teto</h4>
-        <p>Demanda concentrada (ex.: 70% cardiologia) reduz o limite sustentável para ~45 assinantes, mesmo com o outro médico ocioso. Distribuição equilibrada preserva a capacidade.</p>
+        <div class="tag">Situação atual</div>
+        <h4>Capacidade ociosa de ~99%</h4>
+        <p>600 assinantes geram ~12 consultas/mês contra uma capacidade de ~1.400. Os médicos operam com menos de 1% de ocupação. O custo por consulta da estrutura dedicada 24h é o dado a colocar na mesa.</p>
       </div>
       <div class="sum-cell">
-        <div class="tag">Escala</div>
-        <h4>3º médico a partir de 60</h4>
-        <p>Manter a base acima de 60 com 2 médicos gera degradação insustentável. Com 3 médicos em turnos de 8h, a capacidade sustentável sobe para 120–150.</p>
+        <div class="tag">Gatilho correto</div>
+        <h4>Consultas/dia, não nº de assinantes</h4>
+        <p>A decisão do 3º médico deve ser disparada por demanda observada — consultas/dia sustentadas nos picos e tempo de espera — nunca pela contagem de assinantes. A volumetria pode (e deve) subir com a ativação da base.</p>
       </div>
     </div>
   </div>
@@ -393,35 +426,38 @@
 <section class="sim" id="simulador">
   <div class="wrap">
     <div class="kicker reveal"><span class="idx">▶</span> Ferramenta de decisão</div>
-    <h2 class="title reveal">Simulador de capacidade</h2>
-    <p class="section-lead reveal">Ajuste a base de assinantes, o número de médicos e a distribuição de especialidades. A leitura de zona, tempo de espera e recomendação vem direto dos parâmetros da simulação.</p>
+    <h2 class="title reveal">Simulador de capacidade · com volumetria</h2>
+    <p class="section-lead reveal">Ajuste a base de assinantes, a <strong>volumetria mensal</strong> (% da base que consulta por mês) e a escala médica. A zona de operação agora é medida por <strong>ocupação médica</strong> — a métrica que o relatório original não calculava.</p>
 
     <div class="sim-shell reveal">
       <!-- CONTROLES -->
       <div class="sim-controls">
         <div class="console-label">Painel de operação</div>
 
+        <button class="preset" id="presetBtn" type="button">◉ Cenário atual · 600 assinantes × 2% a.m.</button>
+
         <div class="ctl">
           <div class="ctl-top">
             <span class="ctl-label">Assinantes ativos</span>
-            <span class="ctl-val" id="subVal">50</span>
+            <span class="ctl-val" id="subVal">600</span>
           </div>
-          <input type="range" id="subRange" min="0" max="160" value="50" step="1" aria-label="Assinantes ativos">
+          <input type="range" id="subRange" min="100" max="60000" value="600" step="100" aria-label="Assinantes ativos">
         </div>
 
         <div class="ctl">
-          <div class="ctl-top"><span class="ctl-label">Médicos em escala</span></div>
-          <div class="seg" role="group" aria-label="Número de médicos">
-            <button data-doc="2" aria-pressed="true">2 médicos · 12h</button>
-            <button data-doc="3" aria-pressed="false">3 médicos · 8h</button>
+          <div class="ctl-top">
+            <span class="ctl-label">Volumetria de atendimento</span>
+            <span class="ctl-val" id="volVal">2<span class="vu">% a.m.</span></span>
           </div>
+          <input type="range" id="volRange" min="0.5" max="40" value="2" step="0.5" aria-label="Volumetria mensal em porcentagem">
         </div>
 
         <div class="ctl" style="margin-bottom:0;">
-          <div class="ctl-top"><span class="ctl-label">Distribuição de especialidades</span></div>
-          <div class="seg" role="group" aria-label="Distribuição de especialidades">
-            <button data-bal="eq" aria-pressed="true">Equilibrada · 50/50</button>
-            <button data-bal="des" aria-pressed="false">Desbalanceada · 70/30</button>
+          <div class="ctl-top"><span class="ctl-label">Escala médica</span></div>
+          <div class="seg" role="group" aria-label="Escala médica">
+            <button data-hrs="12" aria-pressed="false">1 médico · 12h</button>
+            <button data-hrs="24" aria-pressed="true">2 médicos · 24h</button>
+            <button data-hrs="36" aria-pressed="false">3 médicos · 24h+</button>
           </div>
         </div>
       </div>
@@ -432,98 +468,113 @@
         <div class="readout-title" id="readoutTitle">—</div>
 
         <div class="gauge">
+          <div class="gauge-cap">Ocupação médica (%)</div>
           <div class="gauge-track" id="gaugeTrack">
+            <div class="gz idle" id="gzIdle"></div>
             <div class="gz green" id="gzGreen"></div>
             <div class="gz amber" id="gzAmber"></div>
-            <div class="gz orange" id="gzOrange"></div>
             <div class="gz red" id="gzRed"></div>
           </div>
           <div class="gauge-marker">
-            <div class="marker-pin" id="markerPin"><div class="tri"></div><div class="lbl" id="markerLbl">50</div></div>
+            <div class="marker-pin" id="markerPin"><div class="tri"></div><div class="lbl" id="markerLbl">—</div></div>
           </div>
-          <div class="gauge-scale"><span>0</span><span>40</span><span>80</span><span>120</span><span>160</span></div>
+          <div class="gauge-scale"><span>0</span><span>20</span><span>60</span><span>85</span><span>120+</span></div>
         </div>
 
         <div class="metrics">
-          <div class="metric"><div class="m-l">Tempo de espera</div><div class="m-v" id="mWait">—</div></div>
-          <div class="metric"><div class="m-l">Horários em 48h</div><div class="m-v" id="mSlots">—</div></div>
+          <div class="metric"><div class="m-l">Consultas / mês</div><div class="m-v" id="mMonth">—</div></div>
+          <div class="metric"><div class="m-l">Consultas / dia</div><div class="m-v" id="mDay">—</div></div>
+          <div class="metric"><div class="m-l">Ocupação médica</div><div class="m-v" id="mOcc">—</div></div>
+          <div class="metric"><div class="m-l">Teto de assinantes*</div><div class="m-v" id="mCeil">—</div></div>
         </div>
 
         <div class="rec">
           <div class="r-l">Recomendação</div>
           <p id="recText">—</p>
         </div>
-        <div class="warn-note" id="warnNote"><span>▲</span><span>Distribuição 70/30 reduz o teto sustentável.</span></div>
+        <div class="warn-note" id="warnNote"><span>▲</span><span>Volumetria abaixo de 5% a.m. indica baixa ativação da base — risco de churn de assinantes que não percebem valor no serviço.</span></div>
+        <div class="sim-fine">* Teto sustentável nesta volumetria e escala · ocupação-alvo de 75% · consulta média de 30 min.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 01 CAPACIDADE ============ -->
+<!-- ============ 01 A VARIÁVEL AUSENTE ============ -->
 <section id="capacidade">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker reveal"><span class="idx">01</span> Limiar de capacidade</div>
-      <h2 class="title reveal">Por que 60 assinantes é a linha vermelha</h2>
+      <div class="kicker reveal"><span class="idx">01</span> A variável ausente</div>
+      <h2 class="title reveal">Onde o modelo original errou por 1.200x</h2>
     </div>
     <div class="prose reveal">
-      <p>Com apenas dois médicos em turnos de 12 horas, a plataforma vive períodos críticos de transição e janelas em que ambos estão ocupados simultaneamente. Nesses momentos, novos pacientes entram em fila e o sistema atinge indisponibilidade temporária — algo raro em cargas baixas, mas frequente conforme a base cresce.</p>
-      <p>Abaixo da capacidade crítica, os pacientes relatam esperas razoáveis e acesso rápido. À medida que os assinantes aumentam, a qualidade percebida declina de forma progressiva: atrasos crescentes e menos horários preferidos disponíveis.</p>
+      <p>O relatório original concluía que 2 médicos saturam com 40–60 assinantes. Fazendo a engenharia reversa dessa conclusão: 2 médicos em cobertura 24h oferecem 24 horas-médico/dia — cerca de 48 consultas diárias de 30 minutos. Se 60 assinantes esgotam essa capacidade, o modelo assumia <strong>0,8 consulta por assinante por dia</strong>, ou ~24 consultas mensais por pessoa. Esse é o perfil de demanda de um pronto-socorro, não de um plano de assinatura.</p>
+      <p>A operação real registra <strong>volumetria de 2% ao mês</strong>: a cada mês, 2% da base solicita atendimento. Com 600 assinantes, são ~12 consultas mensais — uma a cada dois dias e meio. A premissa de demanda do modelo original estava errada por um fator de aproximadamente 1.200x, e todos os limiares derivados dela (inflexão em 60, colapso acima de 60, 120–150 com 3 médicos) devem ser descartados.</p>
     </div>
 
-    <div class="pull reveal">A adequação de dois médicos não é fixa — ela depende da otimização da fila e do equilíbrio entre especialidades. Sem isso, o modelo satura já em 40–50 assinantes.</div>
+    <div class="pull reveal">A prova é empírica: a plataforma opera hoje com 10x o número de assinantes do suposto "ponto de colapso" — com médicos ociosos 99% do tempo.</div>
 
-    <div class="prose reveal">
-      <p>A especialização multiplica o efeito: generalistas e cardiologistas formam filas independentes. Quando a demanda se concentra em uma especialidade, esses pacientes esperam muito mais — mesmo com o outro médico livre. É esse desbalanceamento que empurra o teto sustentável de 60 para cerca de 45 assinantes.</p>
+    <div class="cmp reveal">
+      <div class="cmp-scroll">
+        <table>
+          <thead>
+            <tr><th>Premissa</th><th>Modelo original</th><th>Operação real</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Demanda por assinante</td><td class="old">~0,8 consulta/dia</td><td class="new">0,02 consulta/mês</td></tr>
+            <tr><td>Consultas/dia com 600 assinantes</td><td class="old">~480 (impossível)</td><td class="new">~0,4</td></tr>
+            <tr><td>Ocupação de 2 médicos</td><td class="old">colapso</td><td class="new">&lt;1%</td></tr>
+            <tr><td>Teto sustentável de assinantes</td><td class="old">60</td><td class="new">~54.000</td></tr>
+            <tr><td>Gatilho do 3º médico</td><td class="old">60 assinantes</td><td class="new">&gt;30 consultas/dia sustentadas</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 02 EXPERIÊNCIA ============ -->
+<!-- ============ 02 OCIOSIDADE ============ -->
 <section id="experiencia" style="background:var(--surface-2);">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker reveal"><span class="idx">02</span> Experiência do paciente</div>
-      <h2 class="title reveal">A espera não pesa de forma linear</h2>
-      <p class="section-lead reveal">Esperas de 15–30 minutos preservam uma percepção positiva. Ao ultrapassar uma hora, a satisfação despenca — e o paciente busca alternativas, corroendo a base ativa.</p>
+      <div class="kicker reveal"><span class="idx">02</span> O problema real</div>
+      <h2 class="title reveal">O gargalo não é capacidade — é ociosidade</h2>
+      <p class="section-lead reveal">Dois médicos dedicados em cobertura 24h para ~12 consultas mensais. A pergunta estratégica deixa de ser "quando contratar o terceiro" e passa a ser "como ativar a base e dimensionar a escala médica ao volume real".</p>
     </div>
 
     <div class="curve-card reveal">
-      <h4>Satisfação percebida × assinantes ativos</h4>
-      <div class="sub">Curva de degradação — 2 médicos, distribuição equilibrada</div>
+      <h4>Ocupação médica × assinantes ativos</h4>
+      <div class="sub">Volumetria de 2% a.m. · 2 médicos · consulta média de 30 min</div>
       <div class="curve">
-        <svg viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Curva mostrando satisfação alta e estável até 40-50 assinantes, com queda abrupta após 60.">
-          <!-- grid -->
+        <svg viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Reta de ocupação crescendo linearmente: menos de 1% com 600 assinantes até 75% com cerca de 54 mil assinantes.">
           <line x1="60" y1="40" x2="60" y2="250" stroke="#D6E4E0" stroke-width="1"/>
           <line x1="60" y1="250" x2="700" y2="250" stroke="#D6E4E0" stroke-width="1"/>
           <line x1="60" y1="100" x2="700" y2="100" stroke="#EAF2EF" stroke-width="1"/>
           <line x1="60" y1="175" x2="700" y2="175" stroke="#EAF2EF" stroke-width="1"/>
-          <!-- zone bands on x -->
-          <rect x="60" y="40" width="256" height="210" fill="rgba(18,176,160,.06)"/>
-          <rect x="316" y="40" width="128" height="210" fill="rgba(238,162,58,.08)"/>
-          <rect x="444" y="40" width="256" height="210" fill="rgba(239,87,76,.06)"/>
-          <!-- inflection -->
-          <line x1="444" y1="40" x2="444" y2="250" stroke="var(--coral)" stroke-width="1.5" stroke-dasharray="5 5"/>
-          <text x="450" y="58" font-family="Space Mono, monospace" font-size="12" fill="#EF574C">60 · inflexão</text>
-          <!-- curve -->
-          <path d="M60,72 C160,72 250,74 316,82 C372,90 410,104 444,128 C478,152 520,204 590,232 C630,246 670,250 700,251"
-                fill="none" stroke="var(--teal-deep)" stroke-width="3.2" stroke-linecap="round"/>
-          <circle cx="316" cy="82" r="5" fill="var(--amber)"/>
-          <circle cx="444" cy="128" r="5.5" fill="var(--coral)"/>
-          <!-- axis labels -->
+          <!-- 75% target band -->
+          <line x1="60" y1="92" x2="700" y2="92" stroke="var(--amber)" stroke-width="1.5" stroke-dasharray="5 5"/>
+          <text x="66" y="82" font-family="Space Mono, monospace" font-size="12" fill="#C77E1B">75% · ocupação saudável máxima</text>
+          <!-- linear occupancy: 0 subs -> 0%, 54k (x=636) -> 75% (y=92) -->
+          <path d="M60,250 L636,92" fill="none" stroke="var(--teal-deep)" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M636,92 L700,74" fill="none" stroke="var(--coral)" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="6 5"/>
+          <!-- hoje -->
+          <circle cx="66.4" cy="248.2" r="6" fill="var(--teal-bright)" stroke="#0C8C80" stroke-width="2"/>
+          <text x="80" y="238" font-family="Space Mono, monospace" font-size="12" fill="#0C8C80">hoje · 600 assinantes · &lt;1%</text>
+          <!-- teto -->
+          <circle cx="636" cy="92" r="5.5" fill="var(--coral)"/>
+          <text x="520" y="122" font-family="Space Mono, monospace" font-size="12" fill="#EF574C">teto · ~54 mil</text>
+          <!-- axis -->
           <text x="60" y="272" font-family="Space Mono, monospace" font-size="11" fill="#7C949A">0</text>
-          <text x="300" y="272" font-family="Space Mono, monospace" font-size="11" fill="#7C949A">40</text>
-          <text x="432" y="272" font-family="Space Mono, monospace" font-size="11" fill="#7C949A">60</text>
-          <text x="628" y="272" font-family="Space Mono, monospace" font-size="11" fill="#7C949A">120</text>
-          <text x="360" y="292" font-family="Space Mono, monospace" font-size="11" fill="#587179" text-anchor="middle">assinantes ativos →</text>
-          <text x="30" y="150" font-family="Space Mono, monospace" font-size="11" fill="#587179" transform="rotate(-90 30 150)" text-anchor="middle">satisfação →</text>
+          <text x="330" y="272" font-family="Space Mono, monospace" font-size="11" fill="#7C949A">27 mil</text>
+          <text x="614" y="272" font-family="Space Mono, monospace" font-size="11" fill="#7C949A">54 mil</text>
+          <text x="380" y="292" font-family="Space Mono, monospace" font-size="11" fill="#587179" text-anchor="middle">assinantes ativos (volumetria 2% a.m.) →</text>
+          <text x="30" y="150" font-family="Space Mono, monospace" font-size="11" fill="#587179" transform="rotate(-90 30 150)" text-anchor="middle">ocupação médica →</text>
         </svg>
       </div>
     </div>
 
     <div class="prose reveal">
-      <p>Os picos previsíveis do dia — início da manhã e pós-trabalho — são o ponto de colapso. Mesmo com 50–55 assinantes, a demanda simultânea satura a fila, gerando timeouts e mensagens de indisponibilidade justamente quando a percepção pesa mais.</p>
-      <p>A conclusão prática: investir em otimização de fila tem retorno direto tanto na satisfação quanto na viabilidade comercial. Um sistema de fila eficiente melhora a percepção mesmo sob carga alta; um sistema subótimo degrada a experiência já em cargas moderadas.</p>
+      <p>Na volumetria atual, a ocupação cresce de forma linear e lenta: seriam necessários ~27 mil assinantes para ocupar metade da capacidade saudável dos 2 médicos. Isso abre duas frentes de decisão. A primeira é de <strong>custo</strong>: uma escala dedicada 24h para 12 consultas/mês tem custo por consulta altíssimo — modelos de sobreaviso (on-call) ou janelas agendadas entregariam a mesma experiência com fração do custo, mantendo o "atendimento 24h" como promessa comercial.</p>
+      <p>A segunda é de <strong>produto</strong>: volumetria de 2% a.m. sugere que a maioria dos assinantes não usa o serviço — e assinante que não usa não percebe valor e tende a cancelar. A alavanca de crescimento não é adicionar capacidade médica; é ativação (onboarding, lembretes de check-up, campanhas de primeiro uso). E se a ativação funcionar e a volumetria subir para 10–15% a.m., o teto de assinantes cai proporcionalmente — por isso o simulador acima trata a volumetria como variável, não como constante.</p>
     </div>
   </div>
 </section>
@@ -532,71 +583,69 @@
 <section id="riscos">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker reveal"><span class="idx">03</span> Riscos emergentes &amp; gargalos</div>
-      <h2 class="title reveal">Onde o modelo de 2 médicos quebra</h2>
-      <p class="section-lead reveal">Oito pontos de falha convergem para o mesmo diagnóstico: sem redundância, variações naturais de demanda viram crises operacionais.</p>
+      <div class="kicker reveal"><span class="idx">03</span> Riscos revisados</div>
+      <h2 class="title reveal">O que é risco hoje — e o que só vale em escala</h2>
+      <p class="section-lead reveal">Os riscos qualitativos do relatório original continuam corretos, mas mudam de prioridade quando confrontados com a volumetria real. Os riscos críticos de hoje são de negócio, não de fila.</p>
     </div>
 
     <div class="risk-grid">
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R1</span><span class="sev crit">Crítico</span></div><h4>Indisponibilidade total</h4><p>Quando ambos os médicos estão em consulta, o sistema para de aceitar novos pacientes. Próximo de 60 assinantes, isso passa a ocorrer várias vezes por hora.</p></div>
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R2</span><span class="sev alto">Alto</span></div><h4>Transição de turnos</h4><p>Na troca de plantão, pacientes em fila perdem clareza de quem os atenderá e consultas em andamento podem sofrer descontinuidade de contexto clínico.</p></div>
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R3</span><span class="sev crit">Crítico</span></div><h4>Degradação da fila</h4><p>Acima de 50 assinantes, o sistema deixa de oferecer horários próximos ao desejado. A degradação acelera de forma exponencial, não linear.</p></div>
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R4</span><span class="sev alto">Alto</span></div><h4>Especialização desbalanceada</h4><p>Demanda concentrada sobrecarrega uma especialidade enquanto a outra fica ociosa. O teto cai para ~45 mesmo com capacidade teórica sobrando.</p></div>
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R5</span><span class="sev crit">Crítico</span></div><h4>Abandono em cascata</h4><p>Esperas longas fazem pacientes abandonar antes de agendar. Menos receita, menos investimento em otimização, reputação danificada — um ciclo de retroalimentação negativa.</p></div>
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R6</span><span class="sev alto">Alto</span></div><h4>Picos simultâneos</h4><p>Horários de pico geram congestão previsível — travamentos e timeouts. É gargalo estrutural, não resolvível só com software.</p></div>
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R7</span><span class="sev med">Médio</span></div><h4>Fadiga sob pressão</h4><p>Turnos de 12h com demanda contínua degradam a qualidade cognitiva: mais erros, avaliações menos cuidadosas, documentação apressada — sem backup para absorver.</p></div>
-      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R8</span><span class="sev crit">Crítico</span></div><h4>Sem recuperação de falhas</h4><p>Se um médico fica indisponível, a capacidade cai 50% instantaneamente. Não há backup, escalonamento externo nem protocolo de transferência.</p></div>
+      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R1</span><span class="sev crit">Crítico · hoje</span></div><h4>Baixa ativação da base</h4><p>Volumetria de 2% a.m. significa que ~98% dos assinantes não usam o serviço no mês. Assinante que não usa não renova — o risco dominante é churn por valor não percebido, não fila de espera.</p></div>
+      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R2</span><span class="sev crit">Crítico · hoje</span></div><h4>Custo por consulta da escala dedicada</h4><p>Estrutura médica 24h para ~12 consultas/mês: cada consulta carrega o custo de dezenas de horas-médico ociosas. Redimensionar para sobreaviso/janelas libera caixa para ativação e crescimento.</p></div>
+      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R3</span><span class="sev alto">Alto</span></div><h4>Sem redundância médica</h4><p>Se um médico fica indisponível, a capacidade cai 50% instantaneamente. Na demanda atual o impacto prático é pequeno, mas a promessa comercial de "atendimento 24h" fica exposta. Protocolo de backup segue necessário.</p></div>
+      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R4</span><span class="sev med">Médio</span></div><h4>Cobertura real por especialidade</h4><p>Com 1 generalista e 1 cardiologista, nenhuma especialidade tem cobertura 24h de verdade — cada uma depende de um único profissional. O desenho de escala precisa refletir a promessa por especialidade.</p></div>
+      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R5</span><span class="sev fut">Futuro · em escala</span></div><h4>Desbalanceamento de especialidades</h4><p>Válido quando a ocupação passar de ~60%: demanda concentrada numa especialidade forma fila mesmo com o outro médico ocioso. Hoje, com &lt;1% de ocupação, é irrelevante na prática.</p></div>
+      <div class="risk reveal"><div class="risk-head"><span class="risk-num">R6</span><span class="sev fut">Futuro · em escala</span></div><h4>Picos, transição de turnos e fila</h4><p>Congestão em horários de pico, descontinuidade na troca de plantão e degradação de fila são riscos reais — mas só se materializam com dezenas de consultas/dia. Monitorar, não investir ainda.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============ 04 ESCALA ============ -->
+<!-- ============ 04 GATILHOS DE ESCALA ============ -->
 <section id="escala" style="background:var(--surface-2);">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker reveal"><span class="idx">04</span> Escala &amp; otimização</div>
-      <h2 class="title reveal">Trajetória recomendada de crescimento</h2>
-      <p class="section-lead reveal">Uma estratégia em três fases, com pontos de decisão claros e otimizações que funcionam como multiplicadores de capacidade antes de contratar.</p>
+      <div class="kicker reveal"><span class="idx">04</span> Gatilhos de escala</div>
+      <h2 class="title reveal">Decida por demanda observada, não por nº de assinantes</h2>
+      <p class="section-lead reveal">Três fases orientadas por ocupação médica. O número de assinantes, sozinho, não dispara nenhuma decisão de contratação.</p>
     </div>
 
     <div class="roadmap">
       <div class="phase p1 reveal">
-        <div class="ph-tag">Fase 1 · Consolidação</div>
-        <div class="ph-range">0–40<span class="un"> assinantes</span></div>
-        <h4>Base excelente</h4>
-        <p>Esperas curtas e alta disponibilidade. Fase ideal para estabelecer processos, otimizar o balanceamento de especialidades e coletar dados de demanda.</p>
-        <div class="ph-doc">2 médicos · folga operacional</div>
+        <div class="ph-tag">Fase 1 · Hoje</div>
+        <div class="ph-range">&lt;20%<span class="un"> de ocupação</span></div>
+        <h4>Ativar e redimensionar</h4>
+        <p>Prioridade total em ativação da base (primeiro uso, check-ups, lembretes). Avaliar migração da escala médica para sobreaviso/janelas — mesma promessa, fração do custo.</p>
+        <div class="ph-doc">hoje: &lt;1% de ocupação · ~0,4 consulta/dia</div>
       </div>
       <div class="phase p2 reveal">
-        <div class="ph-tag">Fase 2 · Capacidade máxima</div>
-        <div class="ph-range">40–60<span class="un"> assinantes</span></div>
-        <h4>Monitoramento intenso</h4>
-        <p>Esperas moderadas (30–45 min) ainda aceitáveis. Todas as otimizações devem estar ativas e os indicadores de degradação, sob vigilância.</p>
-        <div class="ph-doc">2 médicos · no limite</div>
+        <div class="ph-tag">Fase 2 · Crescimento</div>
+        <div class="ph-range">20–60%<span class="un"> de ocupação</span></div>
+        <h4>Operar e otimizar</h4>
+        <p>Demanda saudável (~10–30 consultas/dia). Ativar otimização de fila, balancear especialidades e instrumentar os indicadores de espera e abandono. Ainda sem contratação.</p>
+        <div class="ph-doc">2 médicos · monitoramento de picos</div>
       </div>
       <div class="phase p3 reveal">
-        <div class="ph-tag">Fase 3 · Escala</div>
-        <div class="ph-range">60+<span class="un"> assinantes</span></div>
-        <h4>Terceiro médico</h4>
-        <p>Manter 2 médicos aqui é insustentável. Com 3 médicos em turnos de 8h, a capacidade sobe para 120–150, conforme o balanceamento.</p>
-        <div class="ph-doc">3 médicos · turnos de 8h</div>
+        <div class="ph-tag">Fase 3 · Reforço</div>
+        <div class="ph-range">&gt;60%<span class="un"> de ocupação</span></div>
+        <h4>Ampliar escala médica</h4>
+        <p>Acima de ~30 consultas/dia sustentadas, os riscos de fila do relatório original passam a valer. Reforçar horas-médico (3º profissional ou ampliação de janelas) antes de atingir 85%.</p>
+        <div class="ph-doc">gatilho: demanda observada nos picos</div>
       </div>
     </div>
 
     <div class="indicators reveal">
-      <div class="ind-head"><h3>Quando contratar o 3º médico</h3></div>
-      <p class="ind-sub">Três indicadores sinalizam que a capacidade foi excedida. Quando surgem de forma consistente nos picos, o investimento deixa de ser opcional.</p>
+      <div class="ind-head"><h3>Quando reforçar a escala médica</h3></div>
+      <p class="ind-sub">Três indicadores de demanda observada substituem o antigo gatilho de "60 assinantes". Quando aparecem de forma sustentada, a contratação deixa de ser opcional.</p>
       <div class="ind-grid">
-        <div class="ind"><div class="big">&gt;45<span style="font-size:1rem;"> min</span></div><div class="k">Tempo médio de espera</div><div class="d">Nos períodos de pico, de forma consistente.</div></div>
-        <div class="ind"><div class="big amber">15–20<span style="font-size:1rem;"> %</span></div><div class="k">Taxa de abandono</div><div class="d">Pacientes que saem antes de concluir o agendamento.</div></div>
-        <div class="ind"><div class="big">&lt;30<span style="font-size:1rem;"> %</span></div><div class="k">Horários em 48h</div><div class="d">Menos de 30% dos slots dentro da janela desejada.</div></div>
+        <div class="ind"><div class="big">&gt;60<span style="font-size:1rem;"> %</span></div><div class="k">Ocupação médica sustentada</div><div class="d">Média semanal acima de 60% da capacidade em horas-médico.</div></div>
+        <div class="ind"><div class="big amber">&gt;30<span style="font-size:1rem;"> /dia</span></div><div class="k">Consultas diárias</div><div class="d">Volume sustentado por 2+ semanas, especialmente concentrado nos picos.</div></div>
+        <div class="ind"><div class="big">&gt;45<span style="font-size:1rem;"> min</span></div><div class="k">Espera nos picos</div><div class="d">Tempo médio de espera consistentemente acima de 45 minutos.</div></div>
       </div>
     </div>
 
     <div class="exec-cta reveal">
-      <div class="kicker">Recomendação executiva</div>
-      <h3>Cresça abaixo de 60 enquanto otimiza agressivamente fila e especialidades.</h3>
-      <p>Ao se aproximar de 55–60 assinantes simultâneos, avalie se as otimizações tecnológicas estenderam a capacidade para 65–70. Se não estenderam, o terceiro médico torna-se imperativo. Otimização de fila é multiplicador de capacidade — priorização por urgência, distribuição dinâmica de carga e agendamento preditivo podem adiar a contratação e gerar retorno direto sobre o investimento.</p>
+      <div class="kicker">Recomendação executiva · rev. 2</div>
+      <h3>Invista em ativação da base — a capacidade médica atual sustenta 90x o tamanho de hoje.</h3>
+      <p>Com 600 assinantes e volumetria de 2% ao mês, a plataforma opera a menos de 1% da capacidade médica instalada. As decisões prioritárias são: (1) programa de ativação para elevar o uso — e a percepção de valor — da base; (2) redimensionamento da escala médica ao volume real, liberando custo fixo; (3) instrumentação dos indicadores de demanda (consultas/dia, ocupação, espera nos picos) para que o reforço médico seja disparado por dados observados. O 3º médico só entra em pauta com mais de 30 consultas/dia sustentadas — o equivalente a ~45 mil assinantes na volumetria atual, ou ~4.500 assinantes se a ativação levar a volumetria a 20% a.m.</p>
     </div>
   </div>
 </section>
@@ -607,15 +656,16 @@
     <div class="foot-top">
       <div class="brand"><span class="brand-dot"></span>WOW+ SAÚDE</div>
       <div class="foot-meta">
-        Relatório de previsão · simulação de capacidade<br>
-        ID: report_4b8dafa5a578<br>
+        Relatório de previsão · simulação de capacidade · rev. 2<br>
+        ID: report_4b8dafa5a578-r2<br>
         Plataforma: app.wowmais.com.br
       </div>
     </div>
     <div class="foot-rule"></div>
     <div class="foot-fine">
-      Documento gerado a partir dos resultados da simulação de capacidade da plataforma de telemedicina.<br>
-      Os limiares (40–60 assinantes com 2 médicos; 120–150 com 3) refletem cenários com fila otimizada e distribuição de especialidades equilibrada.
+      Revisão 2 — recalibrada com dados operacionais reais: 600 assinantes ativos e volumetria de atendimento de 2% ao mês.<br>
+      Premissas: consulta média de 30 min · ocupação-alvo máxima de 75% · demanda com concentração em picos de manhã e pós-trabalho.<br>
+      Os limiares numéricos do relatório original (40–60 assinantes; 120–150 com 3 médicos) foram descartados por assumirem demanda ~1.200x acima da observada.
     </div>
   </div>
 </footer>
@@ -662,77 +712,77 @@
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
 
-  /* ---- SIMULATOR ---- */
-  var MAX = 160;
-  var state = { subs:50, doctors:2, balance:'eq' };
+  /* ---- SIMULATOR ----
+     Modelo:
+       consultas/mês  = assinantes × volumetria
+       consultas/dia  = consultas/mês ÷ 30
+       capacidade/dia = horas-médico/dia × 2 (consulta média de 30 min)
+       ocupação       = consultas/dia ÷ capacidade/dia
+       teto           = capacidade/dia × 0,75 × 30 ÷ volumetria
+     Zonas por ocupação: <20% ociosa · 20–60% saudável · 60–85% atenção · >85% excedida
+  */
+  var CONSULTS_PER_HOUR = 2;
+  var HEALTHY_OCC = 0.75;
+  var GAUGE_MAX = 120;
 
-  function ceilings(){
-    var base;
-    if(state.doctors === 2){
-      base = (state.balance==='eq') ? {g:40,a:60,o:70} : {g:35,a:45,o:55};
-    } else {
-      base = (state.balance==='eq') ? {g:100,a:120,o:150} : {g:80,a:100,o:120};
-    }
-    return base;
+  var state = { subs:600, vol:2, hours:24 };
+
+  var fmt = new Intl.NumberFormat('pt-BR');
+  function fmt1(v){ return v.toLocaleString('pt-BR', {minimumFractionDigits:0, maximumFractionDigits:1}); }
+
+  function compute(){
+    var perMonth = state.subs * state.vol / 100;
+    var perDay = perMonth / 30;
+    var capDay = state.hours * CONSULTS_PER_HOUR;
+    var occ = perDay / capDay * 100;
+    var ceil = Math.round(capDay * HEALTHY_OCC * 30 / (state.vol/100));
+    return { perMonth:perMonth, perDay:perDay, capDay:capDay, occ:occ, ceil:ceil };
   }
 
-  function evaluate(){
-    var c = ceilings(), s = state.subs, key;
-    if(s <= c.g) key='otimo';
-    else if(s <= c.a) key='maximo';
-    else if(s <= c.o) key='estendida';
-    else key='critico';
-
-    var Z = {
-      otimo:    {label:'Operação ótima',            color:'#0C8C80', title:'Operação excelente',            wait:'menos de 15 min',        slots:'ampla disponibilidade'},
-      maximo:   {label:'Capacidade máxima',         color:'#C77E1B', title:'Capacidade máxima sustentável', wait:'30–45 min nos picos',    slots:'≈ 30–50%'},
-      estendida:{label:'Zona estendida',            color:'#E9762F', title:'Zona estendida — sob otimização', wait:'45–60 min, crescente', slots:'menos de 30%'},
-      critico:  {label:'Risco de colapso',          color:'#EF574C', title:'Insustentável — risco de colapso', wait:'acima de 60 min / indisp.', slots:'escassa'}
-    };
-    var z = Z[key];
-
-    /* recomendação sensível ao contexto */
-    var rec;
-    if(key==='otimo'){
-      rec = 'Fase de consolidação. Estabeleça processos, equilibre especialidades e colete dados de demanda.';
-    } else if(key==='maximo'){
-      rec = 'Monitore os indicadores de degradação. Todas as otimizações de fila devem estar ativas.';
-    } else if(key==='estendida'){
-      rec = (state.doctors===2)
-        ? 'Só sustentável com fila otimizada e especialidades equilibradas. Avalie o 3º médico.'
-        : 'Capacidade máxima com 3 médicos. Reforce a otimização de fila antes de crescer mais.';
-    } else {
-      rec = (state.doctors===2)
-        ? 'Contrate o 3º médico. Turnos de 8h elevam a capacidade sustentável para 120–150.'
-        : 'Avalie um 4º médico ou ampliação de especialidades — a base excede a escala atual.';
-    }
-
-    return {key:key, z:z, c:c, rec:rec};
+  function zoneOf(occ){
+    if(occ < 20) return {label:'Capacidade ociosa', color:'#6B8794',
+      title:'Estrutura acima da demanda',
+      rec:'Estrutura dimensionada muito acima da demanda. Priorize a ativação da base e avalie escala médica sob demanda (sobreaviso/janelas) — o custo por consulta está elevado.'};
+    if(occ < 60) return {label:'Operação saudável', color:'#0C8C80',
+      title:'Capacidade e demanda equilibradas',
+      rec:'Equilíbrio entre capacidade e demanda. Instrumente e monitore ocupação, tempo de espera nos picos e taxa de abandono de agendamento.'};
+    if(occ < 85) return {label:'Zona de atenção', color:'#C77E1B',
+      title:'Ocupação alta — planejar reforço',
+      rec:'Ocupação alta. Ative otimização de fila, balanceie a demanda entre especialidades e planeje o reforço da escala médica antes de atingir 85%.'};
+    return {label:'Capacidade excedida', color:'#EF574C',
+      title:'Demanda excede a capacidade',
+      rec:'A demanda excede a capacidade sustentável. Amplie as horas-médico/dia (novo profissional ou janelas adicionais) — sem isso, a fila degradará a experiência do paciente.'};
   }
 
-  function pct(v){ return Math.max(0, Math.min(100, (v/MAX)*100)); }
+  function fillPct(input){
+    var min = parseFloat(input.min), max = parseFloat(input.max), v = parseFloat(input.value);
+    return ((v-min)/(max-min))*100;
+  }
+
+  function occText(occ){
+    if(occ > 0 && occ < 0.1) return '<0,1%';
+    return fmt1(occ)+'%';
+  }
 
   function render(){
-    var r = evaluate(), z = r.z, c = r.c;
+    var r = compute();
+    var z = zoneOf(r.occ);
 
-    /* value + slider fill */
-    document.getElementById('subVal').textContent = state.subs;
-    var range = document.getElementById('subRange');
-    range.style.setProperty('--fill', pct(state.subs)+'%');
+    document.getElementById('subVal').textContent = fmt.format(state.subs);
+    document.getElementById('volVal').innerHTML = fmt1(state.vol) + '<span class="vu">% a.m.</span>';
+    var sr = document.getElementById('subRange'), vr = document.getElementById('volRange');
+    sr.style.setProperty('--fill', fillPct(sr)+'%');
+    vr.style.setProperty('--fill', fillPct(vr)+'%');
 
-    /* zone bar widths */
-    var gG = pct(c.g), gA = pct(c.a)-pct(c.g), gO = pct(c.o)-pct(c.a), gR = 100-pct(c.o);
-    document.getElementById('gzGreen').style.width  = gG+'%';
-    document.getElementById('gzAmber').style.width  = gA+'%';
-    document.getElementById('gzOrange').style.width = gO+'%';
-    document.getElementById('gzRed').style.width    = gR+'%';
+    document.getElementById('gzIdle').style.width  = (20/GAUGE_MAX*100)+'%';
+    document.getElementById('gzGreen').style.width = (40/GAUGE_MAX*100)+'%';
+    document.getElementById('gzAmber').style.width = (25/GAUGE_MAX*100)+'%';
+    document.getElementById('gzRed').style.width   = (35/GAUGE_MAX*100)+'%';
 
-    /* marker */
-    var pin = document.getElementById('markerPin');
-    pin.style.left = pct(state.subs)+'%';
-    document.getElementById('markerLbl').textContent = state.subs;
+    var clamped = Math.max(0, Math.min(GAUGE_MAX, r.occ));
+    document.getElementById('markerPin').style.left = (clamped/GAUGE_MAX*100)+'%';
+    document.getElementById('markerLbl').textContent = occText(r.occ);
 
-    /* badge + title */
     var badge = document.getElementById('zoneBadge');
     badge.style.color = z.color;
     badge.style.background = z.color+'1F';
@@ -740,37 +790,38 @@
     var t = document.getElementById('readoutTitle');
     t.textContent = z.title; t.style.color = z.color;
 
-    /* metrics */
-    document.getElementById('mWait').textContent = z.wait;
-    document.getElementById('mSlots').textContent = z.slots;
+    document.getElementById('mMonth').textContent = fmt.format(Math.round(r.perMonth));
+    document.getElementById('mDay').textContent = r.perDay < 10 ? fmt1(r.perDay) : fmt.format(Math.round(r.perDay));
+    document.getElementById('mOcc').textContent = occText(r.occ);
+    document.getElementById('mCeil').textContent = fmt.format(r.ceil);
 
-    /* rec */
-    document.getElementById('recText').textContent = r.rec;
+    document.getElementById('recText').textContent = z.rec;
     document.querySelector('.rec').style.borderLeftColor = z.color;
 
-    /* warn */
-    document.getElementById('warnNote').classList.toggle('show', state.balance==='des');
+    document.getElementById('warnNote').classList.toggle('show', state.vol < 5);
   }
 
-  /* wire slider */
   document.getElementById('subRange').addEventListener('input', function(e){
     state.subs = parseInt(e.target.value,10); render();
   });
+  document.getElementById('volRange').addEventListener('input', function(e){
+    state.vol = parseFloat(e.target.value); render();
+  });
 
-  /* wire segmented buttons */
-  document.querySelectorAll('[data-doc]').forEach(function(b){
+  document.querySelectorAll('[data-hrs]').forEach(function(b){
     b.addEventListener('click', function(){
-      state.doctors = parseInt(b.getAttribute('data-doc'),10);
-      document.querySelectorAll('[data-doc]').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+      state.hours = parseInt(b.getAttribute('data-hrs'),10);
+      document.querySelectorAll('[data-hrs]').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
       render();
     });
   });
-  document.querySelectorAll('[data-bal]').forEach(function(b){
-    b.addEventListener('click', function(){
-      state.balance = b.getAttribute('data-bal');
-      document.querySelectorAll('[data-bal]').forEach(function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
-      render();
-    });
+
+  document.getElementById('presetBtn').addEventListener('click', function(){
+    state.subs = 600; state.vol = 2; state.hours = 24;
+    document.getElementById('subRange').value = 600;
+    document.getElementById('volRange').value = 2;
+    document.querySelectorAll('[data-hrs]').forEach(function(x){ x.setAttribute('aria-pressed', x.getAttribute('data-hrs')==='24'?'true':'false'); });
+    render();
   });
 
   render();
