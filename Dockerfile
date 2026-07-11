@@ -10,6 +10,7 @@ COPY playbook.html /usr/share/nginx/html/index.html
 COPY estudo-b2b.html /usr/share/nginx/html/estudo-b2b/index.html
 COPY plano360.html /usr/share/nginx/html/plano360/index.html
 COPY comunicacao.html /usr/share/nginx/html/comunicacao/index.html
+COPY simulation.html /usr/share/nginx/html/simulation/index.html
 
 EXPOSE 80
 
