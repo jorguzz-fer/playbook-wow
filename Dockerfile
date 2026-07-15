@@ -12,6 +12,9 @@ COPY plano360.html /usr/share/nginx/html/plano360/index.html
 COPY comunicacao.html /usr/share/nginx/html/comunicacao/index.html
 COPY simulation.html /usr/share/nginx/html/simulation/index.html
 
+# Branch de propostas (propostas.wowmais.com.br) — árvore isolada
+COPY propostas/ /usr/share/nginx/propostas/
+
 EXPOSE 80
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
