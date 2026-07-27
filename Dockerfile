@@ -11,6 +11,7 @@ COPY estudo-b2b.html /usr/share/nginx/html/estudo-b2b/index.html
 COPY plano360.html /usr/share/nginx/html/plano360/index.html
 COPY comunicacao.html /usr/share/nginx/html/comunicacao/index.html
 COPY simulation.html /usr/share/nginx/html/simulation/index.html
+COPY benchmark/ /usr/share/nginx/html/benchmark/
 
 # Branch de propostas (propostas.wowmais.com.br) — árvore isolada
 COPY propostas/ /usr/share/nginx/propostas/
