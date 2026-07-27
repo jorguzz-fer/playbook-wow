@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmark HealthTechs — TIME 2025 × WOW+</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --series-3: #1baf7a;
+    --series-4: #eda100;
+    --series-5: #e87ba4;
+    --series-6: #008300;
+    --seq-250: #86b6ef;
+    --seq-350: #5598e7;
+    --seq-450: #2a78d6;
+    --seq-550: #1c5cab;
+    --seq-650: #104281;
+    --accent: #2a78d6;
+    --wow: #1c5cab;
+    --good-text: #006300;
+    --chip-bg: #f0efec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --ink-1: #ffffff;
+      --ink-2: #c3c2b7;
+      --ink-muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+      --series-4: #c98500;
+      --series-5: #d55181;
+      --series-6: #008300;
+      --seq-250: #86b6ef;
+      --seq-350: #5598e7;
+      --seq-450: #3987e5;
+      --seq-550: #2a78d6;
+      --seq-650: #256abf;
+      --accent: #3987e5;
+      --wow: #5598e7;
+      --good-text: #0ca30c;
+      --chip-bg: #2c2c2a;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page);
+    color: var(--ink-1);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 20px 80px; }
+  header.hero { padding: 44px 0 8px; }
+  .hero h1 { font-size: 27px; font-weight: 700; letter-spacing: -0.02em; }
+  .hero .sub { color: var(--ink-2); margin-top: 6px; max-width: 820px; }
+  .hero .meta { color: var(--ink-muted); font-size: 12.5px; margin-top: 10px; }
+
+  nav.tabs {
+    display: flex; gap: 4px; margin: 26px 0 28px; border-bottom: 1px solid var(--grid);
+    position: sticky; top: 0; background: var(--page); z-index: 50; padding-top: 6px;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 10px 16px; cursor: pointer; border: none; background: none;
+    font: inherit; font-weight: 600; font-size: 14px; color: var(--ink-muted);
+    border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap;
+  }
+  .tab:hover { color: var(--ink-2); }
+  .tab.active { color: var(--ink-1); border-bottom-color: var(--accent); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  h2.section { font-size: 19px; font-weight: 700; margin: 34px 0 14px; letter-spacing: -0.01em; }
+  h2.section:first-child { margin-top: 0; }
+  .note { color: var(--ink-2); font-size: 14px; max-width: 880px; margin-bottom: 16px; }
+  .note strong { color: var(--ink-1); }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .kpi {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .kpi .v { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+  .kpi .l { color: var(--ink-2); font-size: 12.5px; margin-top: 2px; }
+
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px 22px; margin-bottom: 14px;
+  }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .twocol { grid-template-columns: 1fr; } }
+
+  /* barras horizontais */
+  .hbar-row { display: grid; grid-template-columns: 220px 1fr 52px; align-items: center; gap: 10px; margin: 7px 0; }
+  .hbar-label { font-size: 13px; color: var(--ink-2); text-align: right; }
+  .hbar-track { height: 18px; position: relative; }
+  .hbar-fill { height: 18px; border-radius: 0 4px 4px 0; min-width: 2px; }
+  .hbar-val { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  @media (max-width: 640px) { .hbar-row { grid-template-columns: 130px 1fr 48px; } }
+
+  .chip { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 11.5px; font-weight: 600; background: var(--chip-bg); color: var(--ink-2); margin: 2px 3px 2px 0; }
+  .chip.model { border: 1px solid var(--border); }
+  .chip.seg { }
+  .chip.time-ok { color: var(--good-text); }
+  .chip.time-warn { color: var(--ink-muted); font-weight: 500; }
+
+  /* filtros */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 18px; align-items: center; }
+  .filters .flabel { font-size: 12.5px; color: var(--ink-muted); font-weight: 600; margin-right: 2px; }
+  .fbtn {
+    font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 99px;
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--ink-2); cursor: pointer;
+  }
+  .fbtn:hover { border-color: var(--baseline); }
+  .fbtn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* grid de empresas */
+  .cogrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
+  .cocard {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 20px; cursor: pointer; transition: border-color .12s;
+  }
+  .cocard:hover { border-color: var(--accent); }
+  .cocard h3 { font-size: 16px; font-weight: 700; }
+  .cocard .co-meta { color: var(--ink-muted); font-size: 12.5px; margin: 1px 0 8px; }
+  .cocard .co-desc { color: var(--ink-2); font-size: 13.5px; margin-bottom: 10px; }
+  .cocard .hint { color: var(--accent); font-size: 12.5px; font-weight: 600; margin-top: 10px; }
+
+  /* modal */
+  .overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 100;
+    padding: 30px 16px; overflow-y: auto;
+  }
+  .overlay.open { display: block; }
+  .modal {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
+    max-width: 860px; margin: 0 auto; padding: 30px 34px;
+  }
+  .modal h3 { font-size: 22px; font-weight: 700; }
+  .modal .co-meta { color: var(--ink-muted); font-size: 13px; margin: 2px 0 12px; }
+  .modal .close {
+    float: right; font: inherit; font-size: 14px; font-weight: 600; border: 1px solid var(--border);
+    background: none; color: var(--ink-2); border-radius: 8px; padding: 5px 12px; cursor: pointer;
+  }
+  .fld { margin: 13px 0; }
+  .fld .ft { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-muted); margin-bottom: 3px; }
+  .fld .fv { font-size: 14px; color: var(--ink-2); }
+  .fld .fv strong { color: var(--ink-1); }
+  .wowbox {
+    border-left: 3px solid var(--wow); background: var(--chip-bg); border-radius: 0 8px 8px 0;
+    padding: 12px 16px; margin-top: 16px; font-size: 14px; color: var(--ink-2);
+  }
+  .wowbox .ft { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--wow); margin-bottom: 3px; }
+
+  /* tabela comparativa */
+  .tblwrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-1); }
+  table.cmp { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 900px; }
+  table.cmp th, table.cmp td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--grid); }
+  table.cmp th { font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-muted); background: var(--surface-1); position: sticky; top: 0; }
+  table.cmp tr:last-child td { border-bottom: none; }
+  table.cmp td.coname { font-weight: 700; white-space: nowrap; }
+  table.cmp td .sub { color: var(--ink-muted); font-size: 11.5px; font-weight: 400; }
+  .ovl { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .ovl.alto { background: var(--seq-650); }
+  .ovl.medio { background: var(--seq-450); }
+  .ovl.baixo { background: var(--seq-250); }
+
+  .arch { border-left: 3px solid var(--accent); padding-left: 16px; margin: 18px 0; }
+  .arch h4 { font-size: 15px; font-weight: 700; }
+  .arch .who { color: var(--ink-muted); font-size: 12.5px; margin: 1px 0 6px; }
+  .arch p { color: var(--ink-2); font-size: 14px; }
+
+  .lesson { display: grid; grid-template-columns: 26px 1fr; gap: 12px; margin: 14px 0; }
+  .lesson .n {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-top: 2px;
+  }
+  .lesson h4 { font-size: 15px; font-weight: 700; }
+  .lesson p { color: var(--ink-2); font-size: 14px; margin-top: 2px; }
+
+  footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--grid); color: var(--ink-muted); font-size: 12px; }
+  footer a { color: var(--ink-muted); }
+  .srcs { font-size: 12px; color: var(--ink-muted); margin-top: 10px; }
+  .srcs a { color: var(--accent); text-decoration: none; }
+  .srcs a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="hero">
+  <h1>Benchmark de HealthTechs — TIME World's Top HealthTech Companies 2025</h1>
+  <div class="sub">Panorama da lista TIME/Statista (400 empresas) e análise profunda de 19 players comparáveis, com foco em <strong>modelo de negócio</strong> (B2B / B2C / B2B2C), estratégia de mercado, posicionamento e branding — e o comparativo com a <strong>WOW+</strong>.</div>
+  <div class="meta">Elaborado em 27/jul/2026 · Fontes: TIME/Statista, press releases, relatórios financeiros e cobertura setorial (links nas fichas)</div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-p="p-visao">Visão geral da lista</button>
+  <button class="tab" data-p="p-empresas">Empresas analisadas</button>
+  <button class="tab" data-p="p-comparativo">Comparativo com a WOW+</button>
+  <button class="tab" data-p="p-insights">Insights &amp; lições</button>
+</nav>
+
+<!-- ============ VISÃO GERAL ============ -->
+<section class="panel active" id="p-visao">
+  <div class="kpis">
+    <div class="kpi"><div class="v">400</div><div class="l">empresas na lista</div></div>
+    <div class="kpi"><div class="v">25+</div><div class="l">países representados</div></div>
+    <div class="kpi"><div class="v">6</div><div class="l">segmentos de mercado</div></div>
+    <div class="kpi"><div class="v">58</div><div class="l">empresas dos EUA no tier máximo ("Outstanding")</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l">empresas da América Latina identificadas</div></div>
+  </div>
+
+  <h2 class="section">Como a lista foi construída</h2>
+  <div class="card">
+    <div class="note">Ranking inaugural da TIME com a Statista (publicado em set/2025). As empresas foram avaliadas em três pilares com pesos fixos, e classificadas por faixas de desempenho — a nota máxima é <strong>"Outstanding"</strong>. Elegibilidade: produto de healthtech funcional, visibilidade pública relevante e operação em escala comercial.</div>
+    <div id="chart-metodologia"></div>
+  </div>
+
+  <h2 class="section">Distribuição por segmento</h2>
+  <div class="card">
+    <div class="note">Um terço da lista é formado por empresas de <strong>infraestrutura de informação e gestão de saúde</strong> — o "backbone" do setor. <strong>Prevenção é o menor segmento (~6%)</strong>: a própria TIME destaca que os incentivos do sistema (que remuneram procedimentos, não prevenção) mantêm o segmento subdesenvolvido. Para uma empresa com pilar de prevenção como a WOW+, isso é espaço em branco, não desinteresse do mercado.</div>
+    <div id="chart-segmentos"></div>
+  </div>
+
+  <div class="twocol">
+    <div class="card">
+      <h2 class="section" style="margin-top:0; font-size:16px;">Geografia</h2>
+      <div class="note" style="font-size:13.5px;">Os EUA dominam a lista (~80% das empresas de IA são americanas). O Reino Unido lidera a Europa com <strong>24 empresas</strong>; seguem França (Doctolib), Suécia (Kry/Livi), Finlândia (Oura), Suíça (BC Platforms). Na Ásia: Índia (Qure.ai, Fedo), Singapura (Holmusk) e Coreia do Sul (AITRICS). <strong>Nenhuma empresa brasileira ou latino-americana foi identificada na lista</strong> — nenhuma fonte de cobertura menciona a região e nenhuma healthtech LatAm divulgou a premiação. A régua global de comparação para a WOW+ está fora da região.</div>
+    </div>
+    <div class="card">
+      <h2 class="section" style="margin-top:0; font-size:16px;">Leitura estratégica da lista</h2>
+      <div class="note" style="font-size:13.5px;">A narrativa da TIME aponta consolidação em três pilares: <strong>dados, entrega digital e cuidado virtual</strong>. Os destaques editoriais foram empresas de IA aplicada (Qure.ai, Canary Speech, Fedo) e wearables (Oura) — sinal de que a régua de "top healthtech" migrou de telemedicina pura para <strong>IA + dados + desfecho clínico mensurável</strong>. O peso de 50% para desempenho financeiro também explica ausências: empresas em dificuldade (ex.: Babylon) ficam de fora.</div>
+    </div>
+  </div>
+
+  <div class="srcs">Fontes do panorama:
+    <a href="https://time.com/7318020/worlds-top-healthtech-companies-2025/" target="_blank">TIME — lista oficial</a> ·
+    <a href="https://cdn.statista-rankings.com/gesundheitsversorgung/rankings/healthtechcompanies-world-2025/methodik-zeit-top-healthtech-unternehmen-welt-2025.pdf" target="_blank">Statista — metodologia (PDF)</a> ·
+    <a href="https://www.advisory.com/daily-briefing/2025/09/24/times-best" target="_blank">Advisory Board — 58 "Outstanding" EUA</a> ·
+    <a href="https://allhealthtech.com/worlds-top-healthtech-companies-2025/" target="_blank">All Health Tech — análise da distribuição</a> ·
+    <a href="https://www.healthcare.digital/single-post/24-uk-healthtech-companies-named-in-time-s-world-s-top-healthtech-companies-of-2025" target="_blank">Healthcare.Digital — 24 empresas do Reino Unido</a>
+  </div>
+</section>
+
+<!-- ============ EMPRESAS ============ -->
+<section class="panel" id="p-empresas">
+  <div class="note">19 empresas analisadas em profundidade — as mais comparáveis ao modelo da WOW+ (telemedicina, ecossistemas, B2B2C, benefícios corporativos) mais referências de cada segmento da lista. Clique em um card para abrir a ficha completa. <span class="chip time-warn">⚠ inclusão na lista TIME não confirmada</span> marca empresas analisadas como referência de modelo, sem confirmação pública de presença na lista.</div>
+  <div class="filters" id="f-seg"><span class="flabel">Segmento:</span></div>
+  <div class="filters" id="f-mod"><span class="flabel">Modelo:</span></div>
+  <div class="cogrid" id="cogrid"></div>
+</section>
+
+<!-- ============ COMPARATIVO ============ -->
+<section class="panel" id="p-comparativo">
+  <h2 class="section">Onde a WOW+ se encaixa</h2>
+  <div class="card">
+    <div class="note">A WOW+ se define como <strong>ecossistema digital de relacionamento em saúde</strong> — assinatura acessível para pessoas físicas + benefício corporativo para empresas, integrando telemedicina, prontuário/histórico permanente, marketplace de parceiros, medicina ocupacional e IA. No vocabulário deste benchmark, é um modelo <strong>B2C + B2B2C híbrido com ambição de superapp/ecossistema</strong>. Nenhuma empresa da lista TIME executa exatamente essa combinação — os análogos mais próximos são os superapps asiáticos (Halodoc, Practo) e as plataformas "whole-person" (Teladoc). Isso corta para os dois lados: há espaço real de categoria, e há pouca prova global de que o modelo completo fecha a conta.</div>
+  </div>
+
+  <h2 class="section">Matriz comparativa — modelo de negócio</h2>
+  <div class="tblwrap">
+    <table class="cmp" id="cmp-table">
+      <thead><tr>
+        <th>Empresa</th><th>Modelo</th><th>Quem paga</th><th>Motor de receita</th><th>Proximidade com a WOW+</th><th>Principal lição para a WOW+</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="note" style="margin-top:10px; font-size:12.5px;">Proximidade: <span class="ovl alto"></span>alta (modelo/ambição semelhante) · <span class="ovl medio"></span>média (sobreposição parcial) · <span class="ovl baixo"></span>baixa (referência de segmento)</div>
+
+  <h2 class="section">WOW+ vs. os 6 arquétipos da lista</h2>
+  <div class="card" id="arquetipos"></div>
+</section>
+
+<!-- ============ INSIGHTS ============ -->
+<section class="panel" id="p-insights">
+  <h2 class="section">Padrões que atravessam a lista</h2>
+  <div class="card" id="padroes"></div>
+  <h2 class="section">10 lições diretas para a WOW+</h2>
+  <div class="card" id="licoes"></div>
+</section>
+
+<footer>
+  Benchmark elaborado a partir de fontes públicas em julho/2026. Valores financeiros e de usuários referem-se ao ano indicado em cada ficha e podem ter mudado. A lista completa das 400 empresas da TIME não é reproduzível integralmente a partir de fontes secundárias; o panorama usa os dados divulgados pela TIME/Statista e coberturas do ranking.
+</footer>
+
+</div>
+
+<div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
+
+<script>
+/* ================= DADOS ================= */
+const SEGMENTOS = [
+  { nome: "Health Information & Management", pct: 33 },
+  { nome: "AI & Data Analytics", pct: 21 },
+  { nome: "Telehealth & Treatment", pct: 21 },
+  { nome: "Diagnostics", pct: 10 },
+  { nome: "Medical Devices & Wearables", pct: 9 },
+  { nome: "Prevention", pct: 6 }
+];
+const METODOLOGIA = [
+  { nome: "Desempenho financeiro (receita, crescimento, capital)", pct: 50 },
+  { nome: "Reputação (pacientes, médicos, investidores)", pct: 30 },
+  { nome: "Engajamento online (tráfego digital, 24 meses)", pct: 20 }
+];
+</script>
+<script id="data-empresas">
+const EMPRESAS = [
+{
+  id:"teladoc", nome:"Teladoc Health", pais:"EUA", fund:2002, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C","B2C"], prox:"alta",
+  desc:"Maior plataforma de saúde virtual do mundo: consultas 24/7, atenção primária virtual, saúde mental (BetterHelp), crônicos (Livongo) e segunda opinião.",
+  modeloDet:"Híbrido B2B2C + D2C. No Integrated Care, pagam planos de saúde, empregadores autossegurados e seguradoras internacionais — receita por assinatura PMPM (per-member-per-month), taxas por programa e fee por consulta. No BetterHelp, o consumidor paga assinatura direta de terapia (em pivô para cobertura por seguros desde 2025).",
+  estrategia:"Vendas enterprise consultivas a RH/planos via corretores de benefícios + land-and-expand; M&A agressivo para virar plataforma 'one-stop' (Livongo ~US$ 18,5 bi, BetterHelp, Best Doctors, InTouch, Catapult, UpLift); presença em 130+ países via aquisições; D2C via performance marketing massivo.",
+  posicionamento:"Categoria reivindicada: 'whole-person virtual care' — cuidado integral (físico + mental + crônico) em uma plataforma, não telemedicina episódica. Missão: 'Empowering all people everywhere to live their healthiest lives'.",
+  branding:"Tom empático e centrado no paciente; logo 'Connector' (2023) simboliza conexão contínua. Fala com dois públicos: decisores B2B (outcomes, ROI) e membro final (conveniência, acolhimento, bilíngue). BetterHelp mantém marca separada e jovem.",
+  numeros:"Receita 2025: US$ 2,53 bi (Integrated Care US$ 1,58 bi; BetterHelp US$ 950 mi). 101,8 mi de membros; 12.000+ clientes (metade da Fortune 500). Market cap caiu de ~US$ 40 bi (2021) para poucos bilhões.",
+  destaques:"IPO 2015; vencedora simbólica da pandemia; fusão Livongo virou um dos maiores fracassos de M&A da saúde digital (US$ 13,7 bi de prejuízo em 2022); troca de CEO em 2024; pivô do BetterHelp para seguros.",
+  wow:"É o teto do modelo 'plataforma integral': prova que a categoria 'whole-person' vende para empresas — e que crescer colando aquisições sem integração real destrói valor. Para a WOW+, a integração nativa do ecossistema é o diferencial a proteger.",
+  fontes:[["Resultados 2025","https://www.globenewswire.com/news-release/2026/02/25/3245019/0/en/teladoc-health-reports-fourth-quarter-and-full-year-2025-results.html"],["Rebrand whole-person","https://www.mmm-online.com/home/channel/teladoc-health-unveils-new-brand-identity-and-app-to-offer-whole-person-care/"]]
+},
+{
+  id:"sword", nome:"Sword Health", pais:"Portugal/EUA", fund:2015, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C"], prox:"alta",
+  desc:"Nasceu como clínica digital musculoesquelética (fisioterapia com sensores + IA) e virou plataforma multipatologia de 'AI Care' (dor, saúde pélvica, mental, cardiometabólico).",
+  modeloDet:"B2B2C puro: pagam empregadores autossegurados e planos; o funcionário usa grátis. Pricing pioneiro baseado em resultado (outcome-based, 2024): o cliente só paga integralmente quando o programa atinge desfechos clínicos acordados. Sem PMPM tradicional.",
+  estrategia:"Venda enterprise direta + consultorias de benefícios; cross-sell de novas condições sobre a mesma base de clientes (Bloom, Mind, Pulse); expansão internacional por aquisição (Surgery Hero/NHS 2025, Kaia Health/Alemanha US$ 285 mi em 2026); implantação em ~15 dias e retenção de 100% como armas comerciais.",
+  posicionamento:"Categoria própria: 'AI Care' — nem telessaúde, nem point solution: cuidado liderado por IA com supervisão clínica humana ('healthcare, rebuilt'). Phoenix é 'a primeira especialista de cuidado em IA do mundo'. Missão: libertar 2 bilhões de pessoas da dor.",
+  branding:"Clínico-humanista, orientado a evidência (ROI 4x, FDA listings, 37 patentes) com storytelling emocional de origem. Sub-marcas de 'vida' (Thrive, Bloom, Move, Mind) e IA com persona nomeada (Phoenix). IA sempre como ampliadora, nunca substituta do clínico.",
+  numeros:"Valuation US$ 4 bi (jun/2025); run rate ~US$ 240 mi com caixa positivo (2025); >10 mil empregadores clientes; IPO adiado para ~2028.",
+  destaques:"Fundada no Porto; uma das scale-ups portuguesas mais valiosas; pivô público de 'empresa de MSK' para plataforma multipatologia (2025); pioneira em outcome-based pricing.",
+  wow:"Mostra o caminho de 'categoria própria' que a WOW+ quer trilhar: criar vocabulário ('AI Care'), ancorar em evidência e expandir condição a condição sobre a mesma base B2B — cobrando por resultado, não por acesso.",
+  fontes:[["TechCrunch — US$ 4 bi","https://techcrunch.com/2025/06/17/sword-health-nabs-40m-at-4b-valuation-pushes-ipo-plans-to-at-least-2028/"],["Outcome-based pricing","https://swordhealth.com/articles/outcome-based-pricing-healthcare"]]
+},
+{
+  id:"omada", nome:"Omada Health", pais:"EUA", fund:2011, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C"], prox:"alta",
+  desc:"Cuidado digital de crônicos cardiometabólicos (prediabetes, diabetes, hipertensão, peso/GLP-1) com coaching humano + dispositivos conectados + IA.",
+  modeloDet:"B2B2C clássico: pagam empregadores e planos; membro ativa grátis. Receita recorrente por membro inscrito/engajado (PMPM/engagement-based) com parcela outcome-based. ~93% serviços, ~7% hardware. Risco: 5 maiores revendedores = 69% da receita (Cigna ~61%).",
+  estrategia:"Go-to-market via canal intermediado: PBMs e planos como revendedores (Cigna/Evernorth 'preferred', CVS Caremark) 'empurram' a Omada para milhares de empregadores de uma vez; land-and-expand por condição (DPP → diabetes → hipertensão → GLP-1 → prescrição própria); parceria Eli Lilly (2026). Foco só EUA.",
+  posicionamento:"Categoria: 'between-visit care' — o cuidado que acontece entre as consultas, complementar ao médico. Hoje se vende como resposta ao custo dos GLP-1 (companion que protege o ROI do empregador).",
+  branding:"Empático e científico, 'health outcomes first': 29+ estudos peer-reviewed, ~90% de retenção de clientes. Fala primeiro com o comprador B2B (ROI, evidência); com o membro, tom acolhedor de mudança de hábito sem culpa.",
+  numeros:"Receita 2025: ~US$ 257 mi (+51%); 1 mi+ de membros; ~2.000 clientes; 20 mi+ vidas elegíveis. IPO Nasdaq jun/2025 (~US$ 1,1 bi); primeiro EBITDA ajustado positivo no 1T26.",
+  destaques:"Pioneira do Diabetes Prevention Program digital; um dos IPOs que reabriram a janela de saúde digital; pivô bem-sucedido para a onda GLP-1.",
+  wow:"Lição de canal: o B2B2C escala mais rápido via intermediários (no Brasil: operadoras, corretoras, plataformas de benefícios) — ao custo de concentração perigosa de receita. A WOW+ deve usar canais sem depender de um só.",
+  fontes:[["Resultados 1T26","https://investors.omadahealth.com/news-releases/news-release-details/omada-health-reports-first-quarter-2026-results"],["IPO","https://www.fiercehealthcare.com/digital-health/omada-health-shares-rise-nasdaq-debut-digital-health-ipo-market-reopens"]]
+},
+{
+  id:"maven", nome:"Maven Clinic", pais:"EUA", fund:2014, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C","B2C"], prox:"alta",
+  desc:"Maior clínica virtual de saúde da mulher e da família: da fertilidade à menopausa, com telemedicina 30+ especialidades, navegação de cuidado e administração de benefícios (Wallet).",
+  modeloDet:"B2B2C: pagam empregadores e planos. Receita em camadas: platform fee anual + taxa por membro/programa + Maven Wallet (administração de benefícios, ~US$ 800/inscrito/ano) + gestão de benefício de fertilidade + value-based care. Em 2026 adicionou assinatura B2C direta (GLP-1, menopausa).",
+  estrategia:"Entrada via RH (retenção de talentos, ROI 2:1); planos de saúde como canal de escala; cobertura em 175 países como diferencial para multinacionais (cliente âncora: Amazon, 1,5 mi funcionários); aquisição (Naytal/UK); rede asset-light de 1.000+ provedores sem clínicas próprias; expansão por estágio de vida.",
+  posicionamento:"'A próxima geração de cuidado para mulheres e famílias' — o sistema falha com mulheres; a Maven unifica a jornada da preconcepção à menopausa em um 'sistema operacional' da saúde familiar.",
+  branding:"Empático + evidência: fala com RH/planos (ROI, relatórios proprietários) e com a usuária (jornadas de vida, sem jargão). Storytelling da fundadora Kate Ryder; thought leadership sobre 'women's health gap'.",
+  numeros:"Valuation US$ 1,7 bi (Series F, 2024); receita ~US$ 268 mi (2024, est.); 2.300+ clientes; 28 mi vidas; retenção ~98%.",
+  destaques:"Primeiro unicórnio de saúde da mulher; consolidou B2B2C primeiro e só depois abriu a ponta B2C (2026) — o caminho inverso do usual.",
+  wow:"Modelo de 'plataforma + wallet + navegação' aplicado a um público-jornada: mostra como monetizar administração de benefícios e navegação — camadas que a WOW+ pode replicar para saúde corporativa e ocupacional no Brasil.",
+  fontes:[["Sacra — modelo de receita","https://sacra.com/c/maven-clinic/"],["Series F","https://www.prnewswire.com/news-releases/maven-clinic-announces-125-million-series-f-round-of-funding-to-chart-the-next-decade-of-innovation-in-womens-and-family-health-302269566.html"]]
+},
+{
+  id:"virta", nome:"Virta Health", pais:"EUA", fund:2014, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C"], prox:"media",
+  desc:"Clínica virtual de saúde metabólica que promete reverter (não gerenciar) diabetes tipo 2 e obesidade via terapia nutricional + monitoramento contínuo + gestão de GLP-1.",
+  modeloDet:"B2B2C: pagam empregadores, planos, sindicatos e programas governamentais; paciente usa como benefício. Marca registrada: 100% dos fees em risco desde 2018 — a Virta só recebe ao atingir metas clínicas. Garantias contratuais sobre gasto com GLP-1 e ROI 1:1. Canal D2C menor (~US$ 299/mês).",
+  estrategia:"Venda enterprise direta + credenciamento em redes de planos (Blue Shield CA); land-and-expand de diabetes para peso/GLP-1; usa a crise de custo dos GLP-1 como cunha comercial; receita média por cliente ~2x a da concorrente Omada.",
+  posicionamento:"'Don't manage metabolic disease. Reverse it.' — tratamento, não programa de bem-estar; alternativa, combinação ou rampa de saída de GLP-1, com evidência peer-reviewed própria.",
+  branding:"Científico-empoderador para o paciente ('recupere sua saúde'); econômico-atuarial para o pagador (economia de ~US$ 9.600/paciente, fees at risk). A ousadia contratual ('pague só se funcionar') é o elemento de marca mais distintivo.",
+  numeros:"US$ 160 mi+ anualizados (set/2025, +80%); valuation US$ 2 bi (2021); ~550 clientes B2B; 12 mi+ vidas; rota de IPO sinalizada.",
+  destaques:"Pioneira do pricing 100% at-risk em saúde digital; trial clínico próprio de 5 anos como base do posicionamento.",
+  wow:"Monetiza profundidade clínica + risco contratual, não amplitude. Contraponto ao ecossistema da WOW+: no B2B de saúde, quem assume risco pelo resultado destrava contratos que 'acesso a plataforma' não destrava.",
+  fontes:[["US$ 160 mi anualizados","https://www.virtahealth.com/press/virta-health-surpasses-160m-in-annualized-revenue"],["Sacra","https://sacra.com/c/virta-health/"]]
+},
+{
+  id:"talkiatry", nome:"Talkiatry", pais:"EUA", fund:2019, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C","B2C"], prox:"media",
+  desc:"Psiquiatria virtual 'full-stack' (diagnóstico + prescrição + acompanhamento) sempre dentro da rede dos planos de saúde do paciente.",
+  modeloDet:"B2B2C com captação direta do paciente: o plano paga (fee-for-service reembolsado; paciente só paga copay ~US$ 30); psiquiatras são funcionários próprios (não marketplace). Credenciada com 100+ seguradoras cobrindo 170+ mi de vidas (2026). Pivô para contratos value-based.",
+  estrategia:"Tripé: credenciamento com payers (zera a barreira de preço) + parcerias de encaminhamento com 50+ sistemas hospitalares e plataformas complementares (BetterHelp, NOCD) + marketing D2C para captar o paciente. Expansão estado a estado via licenciamento médico.",
+  posicionamento:"'Finalmente, um psiquiatra online que aceita seu plano' — 'psiquiatria de verdade, coberta pelo seguro', em oposição aos apps de assinatura do próprio bolso e aos players desgastados por escândalos. 'Somos uma prática médica, não um marketplace'.",
+  branding:"Profissional-acessível ('Psychiatry, simplified'): desestigmatiza sem infantilizar; seguro no centro da mensagem; credenciais médicas e desfechos (87% de melhora em ansiedade) como prova.",
+  numeros:"US$ 400 mi+ captados (Series D US$ 210 mi, fev/2026); 800+ psiquiatras; 3 mi de consultas; −68% hospitalizações em estudo com payer nacional.",
+  destaques:"Maior empregador privado de psiquiatras dos EUA; #6 empresa que mais cresce da América do Norte (Deloitte Fast 500, 2024).",
+  wow:"O motor B2B2C mais replicável no Brasil: o pagador institucional zera o preço para o usuário, e o D2C gera demanda. 'O plano paga, o paciente escolhe' é uma mecânica que a WOW+ pode aplicar com operadoras e empresas.",
+  fontes:[["Series D","https://www.prnewswire.com/news-releases/talkiatry-raises-oversubscribed-210m-series-d-to-expand-nations-largest-full-stack-psychiatry-provider-302685678.html"],["Pivô value-based","https://bhbusiness.com/2024/06/18/talkiatry-raises-130m-vows-pivot-to-value-based-care/"]]
+},
+{
+  id:"doctolib", nome:"Doctolib", pais:"França", fund:2013, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C"], prox:"alta",
+  desc:"Sistema operacional do consultório europeu: agendamento, prontuário, teleconsulta e IA para médicos; app gratuito de referência para pacientes na França, Alemanha e Itália.",
+  modeloDet:"B2B2C: 99% do ARR vem de assinaturas SaaS pagas pelo profissional/clínica/hospital (~€1.700–4.500/ano por médico); o paciente usa grátis. Sem comissão por consulta, sem receita de planos. O marketplace gratuito de pacientes é gancho de aquisição, não a receita.",
+  estrategia:"Força comercial de campo vendendo 'porta a porta' a médicos; depois hospitais e setor público; efeito de rede (mais médicos → mais pacientes → mais médicos); expansão por aquisição (MonDocteur, Dottori.it, Siilo, Aaron.ai, Typeless); domínio >90% do agendamento online na França — com multa antitruste de €5,4 mi (2025).",
+  posicionamento:"'Solução tudo-em-um' pró-médico: liberar tempo do profissional (menos administração, 60% menos faltas) e dar acesso rápido ao paciente. Cada vez mais se apresenta como empresa de IA em saúde.",
+  branding:"Institucional, confiável, quase utilidade pública (foi a infraestrutura de agendamento da vacinação COVID na França); comunicação dirigida primeiro ao médico (produtividade, soberania de dados), ao paciente com linguagem simples e utilitária.",
+  numeros:"ARR €348 mi (2024, +22,5%), meta de breakeven 2025; ~400 mil profissionais assinantes; 80 mi de contas de pacientes; valuation US$ 6,4 bi (2022); IPO especulado 2026-27.",
+  destaques:"Maior healthtech da França; caso canônico de monetizar só o lado profissional para escalar o lado consumidor de graça.",
+  wow:"Contraponto estratégico direto: em vez de cobrar do usuário final, monetizar o profissional/prestador que quer acesso à base. O marketplace da WOW+ pode ter camada de receita à la Doctolib (SaaS/visibilidade para parceiros).",
+  fontes:[["Sifted — resultados 2024","https://sifted.eu/articles/doctolib-results-2024"],["Contrary Research","https://research.contrary.com/company/doctolib"]]
+},
+{
+  id:"zocdoc", nome:"Zocdoc", pais:"EUA", fund:2007, seg:"Telehealth & Treatment", time:"nao-confirmada",
+  modelo:["B2B2C"], prox:"media",
+  desc:"Marketplace líder de agendamento médico dos EUA: paciente busca por especialidade, convênio e agenda real, de graça; o provedor paga por paciente novo.",
+  modeloDet:"B2B2C: provedor paga, paciente usa grátis. Pivô célebre: de assinatura fixa (~US$ 3.000/ano por médico) — que 'quase matou' a empresa — para pay-per-booking (US$ 30–140 por novo paciente agendado, 2017-19). Resultado: rede +50%, churn −50%, lucro desde 2023. IA (Zo) cobrada por resultado.",
+  estrategia:"Venda direta a consultórios cidade a cidade; ~150 integrações de agenda/EHR (a barreira técnica real); parcerias enterprise com 60+ sistemas de saúde; distribuição via APIs (Google, Yelp).",
+  posicionamento:"'Patients First' — a porta de entrada digital para achar e marcar qualquer médico, eliminando a fricção do acesso (telefone, agenda opaca, dúvida de cobertura).",
+  branding:"Raro em saúde: leve e bem-humorado (campanhas de comédia 'You've Got Options'), amarelo vibrante, sonic branding. Marca B2C para gerar demanda; discurso B2B de ROI para médicos.",
+  numeros:"Valuation US$ 2,3 bi (2026); lucrativa desde 2023; 'Rule of 40' de 51%; 200 mil+ provedores; 12 mil+ planos aceitos.",
+  destaques:"Caso clássico de realinhamento de preço a valor em marketplace; turnaround de quase-morte para crescimento lucrativo.",
+  wow:"Duas lições: cobre pelo valor entregue (paciente novo), não taxa fixa; e humor/leveza podem diferenciar a marca num setor que fala sempre em tom solene — relevante para o 'WOW' da WOW+.",
+  fontes:[["Turnaround","https://www.zocdoc.com/about/news/zocdocs-turnaround-from-an-unsustainable-path-to-profitable-growth/"],["Inc. — pivô de pricing","https://www.inc.com/annabel-burba/this-strategy-nearly-killed-zocdoc-how-it-recovered-and-became-a-1-8-billion-business/91210543"]]
+},
+{
+  id:"huma", nome:"Huma", pais:"Reino Unido", fund:2011, seg:"Health Information & Management", time:"confirmada",
+  modelo:["B2B","B2B2C"], prox:"media",
+  desc:"Plataforma regulada de saúde digital: monitoramento remoto, 'hospital at home', pesquisa clínica descentralizada e, desde 2024, plataforma no-code com marketplace ('Shopify da saúde digital').",
+  modeloDet:"B2B/B2B2C: o paciente usa o app, mas pagam sistemas de saúde (NHS, EUA, Alemanha, Arábia Saudita), farmacêuticas (metade das top 20, incl. AstraZeneca — também acionista), governos e seguradoras. Receita: SaaS por usuário, contratos de monitoramento, projetos com farma e camada de plataforma/marketplace.",
+  estrategia:"Contratos-âncora com governos (enfermarias virtuais COVID no NHS, Golfo via Tamer Group); parcerias profundas com farma; M&A agressivo (iPLATO, eConsult, Aluna) com veículo de capital dedicado; plataformização para escalar sem vender projeto a projeto.",
+  posicionamento:"'Plataforma regulada agnóstica a doenças e dispositivos' — encurtar o lançamento de soluções reguladas 'de anos para dias', conectando cuidado + pesquisa num ecossistema.",
+  branding:"Aspiracional-humanista (Huma ≈ human) + credibilidade regulatória (FDA/MDR em destaque) + linguagem de plataforma/IA. Fala com executivos B2B, não com o consumidor.",
+  numeros:"~US$ 300 mi+ captados; valuation ~US$ 1 bi (2024); 4.500+ hospitais/clínicas; 70+ países; 50 mi+ indivíduos alcançados.",
+  destaques:"Rebrand de Medopad para Huma (2020); raras certificações regulatórias múltiplas; tese de 'infraestrutura para terceiros construírem'.",
+  wow:"A versão B2B da ambição de 'infraestrutura de saúde' da WOW+: monetizar a plataforma deixando parceiros construírem sobre ela — caminho possível para o pilar 'Ecossistema' da WOW+ no longo prazo.",
+  fontes:[["Series D + Huma Cloud","https://www.huma.com/newsroom/press-release-series-d-launches-huma-cloud-platform-genai"],["Bloomberg — valuation","https://www.bloomberg.com/news/articles/2024-07-16/health-ai-startup-huma-gets-80-million-at-near-1-billion-value"]]
+},
+{
+  id:"babylon", nome:"Babylon Health", pais:"Reino Unido", fund:2013, seg:"Telehealth & Treatment", time:"nao-esta",
+  modelo:["B2C","B2B2C","B2G"], prox:"alta",
+  desc:"⚠ Caso de fracasso (não está na lista — faliu em 2023). Telemedicina + IA de triagem que prometia 'um médico no bolso', do NHS a Ruanda, com pico de US$ 4,2 bi de valuation.",
+  modeloDet:"Tentou tudo ao mesmo tempo: capitação pública no NHS (GP at Hand), assinatura B2C, licenciamento B2B2C (Bupa, Prudential, Telus), contrato de governo (Ruanda) e capitação full-risk nos EUA (Medicaid/Medicare) comprada às pressas para inflar receita pré-IPO.",
+  estrategia:"NHS como vitrine de credibilidade; expansão internacional agressiva e simultânea; SPAC a US$ 4,2 bi (2021); aquisições de grupos médicos com risco populacional que não sabia gerir.",
+  posicionamento:"'Healthcare acessível para todos, na palma da mão, via IA' — retórica messiânica de disrupção, incluindo a alegação (desacreditada pela The Lancet) de que sua IA diagnosticava no nível de médicos.",
+  branding:"Aspiracional, fundador-celebridade (Ali Parsa), tom de 'fazer pela saúde o que a Amazon fez pelo varejo'. A marca prometia mais do que o produto entregava — e reguladores, médicos e pagadores cobraram.",
+  numeros:"Pico: US$ 4,2 bi (SPAC, out/2021); receita 2021 US$ 322,9 mi; colapso: −99% de market cap; Chapter 7 em ago/2023; ativos UK vendidos por ~£500 mil.",
+  destaques:"O maior conto de advertência da telemedicina global: crescimento de receita sem controle de custo médico; promessas de IA sem evidência; 5 modelos de negócio simultâneos em 4 continentes.",
+  wow:"O anti-modelo que a WOW+ deve estudar: ambição de ecossistema global + retórica de IA acima da evidência + múltiplos modelos ao mesmo tempo = queima de capital. Sequenciamento e disciplina de foco importam mais que amplitude de visão.",
+  fontes:[["TechCrunch — a queda","https://techcrunch.com/2023/08/31/the-fall-of-babylon-failed-tele-health-startup-once-valued-at-nearly-2b-goes-bankrupt-and-sold-for-parts/"],["Hospitalogy — autópsia","https://hospitalogy.com/articles/2023-05-16/downfall-of-babylon-health/"]]
+},
+{
+  id:"practo", nome:"Practo", pais:"Índia", fund:2008, seg:"Telehealth & Treatment", time:"nao-confirmada",
+  modelo:["B2B2C","B2C"], prox:"alta",
+  desc:"Plataforma integrada de saúde da Índia: busca/agendamento de médicos + teleconsulta + e-farmácia + exames + SaaS para clínicas e hospitais + cirurgias eletivas.",
+  modeloDet:"B2B2C multi-camada: médicos pagam SaaS (Practo Ray) e visibilidade/ads; hospitais pagam licenças (Insta); consumidores pagam teleconsulta, assinatura Practo Plus e compras com comissão. GMV de ₹3.500 crore com receita de ~₹234 crore = take rate baixo; o núcleo histórico é o SaaS/ads para médicos.",
+  estrategia:"SaaS a médicos primeiro (chegou a ~90% do mercado indiano de gestão de clínicas), base de médicos alimenta o marketplace consumidor; hiperexpansão para 15 países (2015-17, incl. Brasil) seguida de recuo total; refoco, travessia até lucrar (FY25) e nova onda internacional (EAU 2025, EUA 2026).",
+  posicionamento:"'Your home for health' — care navigation: a porta de entrada do paciente para todo o cuidado (achar, consultar, comprar, examinar, operar), com confiança/verificação como pilar.",
+  branding:"Confiança e conveniência para o consumidor urbano digital; eficiência e captação de pacientes para o médico; camada recente de 'AI health brand' pré-IPO.",
+  numeros:"Receita FY25 ~₹234 crore com primeiro ano inteiro lucrativo; 50 mi+ pacientes/ano; 640+ cidades; 500 mil+ médicos; IPO planejado para 2026.",
+  destaques:"Quase-morte e recuperação: pivôs sucessivos (SaaS → marketplace → teleconsulta → cirurgias), down round de 50%, e só no 17º ano virou lucrativa.",
+  wow:"O espelho emergente mais próximo da WOW+: plataforma integrada multi-receita num mercado de acesso precário. A lição é de sequenciamento — monetizar o lado profissional cedo, e a assinatura do consumidor (Plus) como camada secundária, não principal.",
+  fontes:[["Lucro FY25 + IPO","https://inc42.com/buzz/practo-turns-profitable-in-fy25-revives-ipo-plans/"],["Expansão EUA","https://entrackr.com/news/after-uae-debut-practo-launches-in-us-with-75-mn-gmv-run-rate-10978258"]]
+},
+{
+  id:"halodoc", nome:"Halodoc", pais:"Indonésia", fund:2016, seg:"Telehealth & Treatment", time:"nao-confirmada",
+  modelo:["B2C","B2B2C"], prox:"alta",
+  desc:"Superapp de saúde da Indonésia: teleconsulta em segundos, entrega de remédios em ~36 min, agendamento hospitalar, exames em domicílio e marketplace de seguros.",
+  modeloDet:"Predominantemente B2C com camadas B2B2C: consumidor paga consultas e remédios; farmácias pagam comissão de marketplace; seguradoras pagam integração 'cashless' (Allianz é investidora); hospitais/labs pagam por agendamentos. Cada serviço alimenta o funil do outro: consulta gera farmácia; seguro destrava recorrência.",
+  estrategia:"Distribuição massiva via superapp Gojek (opera o Go-Med desde 2017); rede de parceiros em vez de ativos próprios ('colaborar, não competir' com provedores); alinhamento com o governo na COVID como legitimação; entrada do conglomerado Astra (US$ 135 mi) abrindo sinergia com hospitais físicos.",
+  posicionamento:"Superapp/ecossistema completo de saúde digital da Indonésia: democratizar acesso num país com ~3 médicos por 10 mil habitantes — 'simplificar a saúde' onde a infraestrutura física não chega.",
+  branding:"Mass-market, acessível e empático, em bahasa; ênfase em velocidade (consulta em segundos, remédio em minutos) e credibilidade médica; marca de consumo, não de hospital.",
+  numeros:"US$ 250 mi+ captados (Série D US$ 100 mi, 2023, liderada pela Astra); 20 mi+ usuários ativos mensais; 20 mil+ médicos, ~4.900 farmácias parceiras.",
+  destaques:"A referência mundial de superapp de saúde em mercado emergente — farmácia como motor de receita, teleconsulta como porta de entrada, seguro como camada de recorrência.",
+  wow:"O benchmark estrutural mais direto para o ecossistema WOW+: mostra qual camada monetiza (farmácia/marketplace), qual gera frequência (consulta) e qual destrava pagamento (seguro/benefício) — e valida o modelo asset-light com parceiros que a WOW+ define no pilar 5.",
+  fontes:[["McKinsey — entrevista CEO","https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/connecting-patients-to-healthcare-a-conversation-with-halodocs-jonathan-sudharta"],["Forbes — Série D","https://www.forbes.com/sites/zinnialee/2023/07/31/indonesian-conglomerate-astra-invests-100-million-in-local-telehealth-startup-halodoc/"]]
+},
+{
+  id:"calm", nome:"Calm", pais:"EUA", fund:2012, seg:"Prevention", time:"confirmada",
+  modelo:["B2C","B2B2C"], prox:"media",
+  desc:"App líder de saúde mental preventiva (meditação, sono, ansiedade) — única 'Outstanding' dos EUA no segmento Prevention da lista.",
+  modeloDet:"Nasceu B2C freemium (assinatura ~US$ 70/ano) e adicionou B2B2C: Calm Business (empregadores pagam por funcionário, ~US$ 30–58/ano) e Calm Health (planos de saúde pagam programas clínicos por condição). A receita consumer encolhe desde 2022; a aposta é o canal corporativo/saúde.",
+  estrategia:"D2C via lojas de app + marketing viral (App do Ano da Apple 2017); depois canal enterprise (3.000+ organizações, ~20 mi trabalhadores); entrada no sistema de saúde via aquisição (Ripple Health Group) e payers.",
+  posicionamento:"De 'app nº 1 de sono e meditação' para plataforma que 'conecta saúde mental e física' — migração deliberada de wellness para healthcare.",
+  branding:"Sereno, aspiracional, estética lifestyle (azul, natureza, minimalismo); celebridades como ativo central (Sleep Stories com Matthew McConaughey, Harry Styles; LeBron James investidor). Marca de consumo mais forte que a de qualquer healthtech clínica.",
+  numeros:"Valuation ~US$ 2 bi (2020); receita ~US$ 210–277 mi (2024-25, est., em queda do pico de ~US$ 355 mi); ~3,5 mi assinantes; 140 mi+ downloads.",
+  destaques:"Pivô B2C→B2B2C como resposta à saturação do consumer; disputa com Headspace (~70% do mercado juntas).",
+  wow:"Prova que assinatura B2C pura de bem-estar tem teto — e que a rota de escape é o benefício corporativo. Reforça a decisão da WOW+ de ter a perna B2B desde o início, e mostra o valor de uma marca de consumo forte.",
+  fontes:[["Business of Apps — números","https://www.businessofapps.com/data/calm-statistics/"],["Calm Health","https://www.mobihealthnews.com/news/calm-announces-clinical-mental-health-offering"]]
+},
+{
+  id:"oura", nome:"Oura", pais:"Finlândia", fund:2013, seg:"Medical Devices & Wearables", time:"confirmada",
+  modelo:["B2C","B2B2C"], prox:"baixa",
+  desc:"Criadora do anel inteligente Oura Ring (sono, HRV, temperatura, prontidão) — destaque editorial da TIME no segmento de wearables.",
+  modeloDet:"B2C hardware + assinatura (anel US$ 299–499 + membership US$ 69,99/ano) com camada B2B2C crescente: Oura for Business (empregadores, pesquisa, planos — ex.: Essence Healthcare para Medicare Advantage) e contratos de defesa (DoD é o maior cliente enterprise).",
+  estrategia:"D2C online → varejo físico global (Amazon, Best Buy, Target) → canal enterprise formalizado (2025) → contratos governamentais com fábrica nos EUA; parcerias de credibilidade (Dexcom/glicose, Team USA LA28).",
+  posicionamento:"Criadora e líder da categoria 'smart ring'; narrativa de saúde proativa/preventiva — dados fisiológicos contínuos virando orientação acionável (Oura Advisor/IA), migrando do wellness para o clínico.",
+  branding:"Design escandinavo minimalista: o anel como joia, não gadget; tom científico-premium baseado em evidência; endosso de celebridades sem depender de campanhas.",
+  numeros:"Valuation US$ 11 bi (Série E de US$ 900 mi, out/2025); receita ~US$ 1 bi projetada (2025, 2x YoY); 5,5 mi+ anéis vendidos; ~2 mi assinantes.",
+  destaques:"Um dos raros cases recentes de hardware de saúde com escala; a virada enterprise/payer (2025) validou wearables como benefício.",
+  wow:"Referência para o pilar 'Dados' da WOW+: transformar dado contínuo em orientação é o produto. E o hardware parceiro (wearables) pode ser camada do ecossistema WOW+ sem a WOW+ fabricar nada.",
+  fontes:[["CNBC — US$ 11 bi","https://www.cnbc.com/2025/10/14/oura-ringmaker-valuation-fundraise.html"],["Sacra","https://sacra.com/c/oura/"]]
+},
+{
+  id:"tempus", nome:"Tempus AI", pais:"EUA", fund:2015, seg:"AI & Data Analytics", time:"confirmada",
+  modelo:["B2B"], prox:"baixa",
+  desc:"Medicina de precisão com IA em oncologia: diagnósticos genômicos + uma das maiores bibliotecas de dados clínico-moleculares do mundo.",
+  modeloDet:"B2B com flywheel de dados: (1) testes genômicos pedidos por médicos e reembolsados por planos/Medicare (US$ 955 mi em 2025); (2) licenciamento de dados desidentificados e IA para farmacêuticas (US$ 316 mi, retenção líquida de 126%). Cada teste alimenta o banco que valoriza o licenciamento.",
+  estrategia:"Canal enterprise com oncologistas e hospitais acadêmicos; contratos plurianuais com big pharma (AstraZeneca ~US$ 200 mi); aquisições (Ambry, Paige); JV com SoftBank no Japão.",
+  posicionamento:"'Intelligent diagnostics' — cada paciente deve se beneficiar do aprendizado dos anteriores; ambição de construir o maior foundation model multimodal de oncologia.",
+  branding:"Tech-científica, sóbria, AI-first, voltada a médicos, farma e investidores; identidade de plataforma de tecnologia, não de laboratório; produtos com prefixo 'x' (xT, xF).",
+  numeros:"Receita 2025: US$ 1,27 bi (+83%); IPO jun/2024 (~US$ 6 bi); market cap ~US$ 10 bi (2026); >50% dos oncologistas dos EUA conectados.",
+  destaques:"Fundada por Eric Lefkofsky (Groupon) após o câncer da esposa; o caso mais bem-sucedido de monetizar dados clínicos em dupla via.",
+  wow:"O modelo de referência para o pilar 'Dados' da WOW+ em escala: dados organizados viram segunda linha de receita (com consentimento e desidentificação). A WOW+ pode mirar a versão brasileira disso para operadoras/indústria.",
+  fontes:[["Resultados 2025","https://www.businesswire.com/news/home/20260224126737/en/Tempus-Reports-Fourth-Quarter-and-Full-Year-2025-Results"],["Acordo AstraZeneca/Pathos","https://www.fiercebiotech.com/biotech/tempus-ai-line-200m-astrazeneca-pathos-deal-develop-cancer-model"]]
+},
+{
+  id:"carrot", nome:"Carrot Fertility", pais:"EUA", fund:2016, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C"], prox:"media",
+  desc:"Plataforma global de benefícios de fertilidade e saúde hormonal: o empregador aloca fundos que o funcionário gasta em rede credenciada via Carrot Card.",
+  modeloDet:"B2B2C clássico: empregador (ou plano) paga plataforma + fundos administrados; membro usa via cartão de pagamento em rede global + telessaúde + navegação. Canal crescente via seguradoras (Cigna Global, BCBS Global, Guardian) que embutem a Carrot em seus produtos.",
+  estrategia:"Vendas enterprise a RH de multinacionais; diferenciação por cobertura global desde o dia 1 (130+ países) — a escolha natural de empresas com força de trabalho distribuída; expansão de escopo de fertilidade para 'saúde hormonal ao longo da vida' (menopausa, saúde masculina).",
+  posicionamento:"'Fertility care for all' — acesso inclusivo independente de gênero, orientação, estado civil ou geografia, com desfechos clínicos e ROI de retenção de talentos.",
+  branding:"Acolhedora, humana, inclusiva (nome amigável, tom não clínico); dupla audiência RH/membro; o Carrot Card como símbolo tangível do benefício; fundadoras mulheres.",
+  numeros:"~US$ 115 mi captados (Série C US$ 75 mi, Tiger Global); 1.000+ empregadores; rede de 17.000+ provedores; 25+ idiomas.",
+  destaques:"2025 foi o ano do canal seguradora (Cigna, Guardian, BCBS) — de benefício direto de RH para produto embutido em apólices.",
+  wow:"Modelo de 'benefício + wallet + rede credenciada' — mecânica que a WOW+ pode adaptar: fundos corporativos de saúde gastos dentro do ecossistema (consultas, exames, parceiros), com o cartão/app como símbolo do benefício.",
+  fontes:[["Cigna Global + Carrot","https://newsroom.cigna.com/cigna-healthcare-global-health-benefits-business-launches-new-program-with-carrot"],["Para empregadores","https://www.get-carrot.com/for-employers"]]
+},
+{
+  id:"qure", nome:"Qure.ai", pais:"Índia", fund:2016, seg:"AI & Data Analytics", time:"confirmada",
+  modelo:["B2B","B2G"], prox:"baixa",
+  desc:"IA de interpretação de imagens médicas (raio-X, TC) — 'a IA de saúde mais adotada do mundo', destaque editorial da TIME e TIME100.",
+  modeloDet:"B2B/B2G: licenciamento SaaS/por exame para hospitais, governos, ONGs e farma. Clientes públicos (triagem de TB financiada por governos e Fundo Global) + hospitais EUA/Europa + AstraZeneca pagando para viabilizar rastreamento de câncer de pulmão em países emergentes. 99% da receita já é internacional.",
+  estrategia:"Entrada via saúde pública global: endosso da OMS ao qXR abriu programas nacionais de TB; em paralelo, aprovações FDA/CE para vender em mercados ricos; grant da Fundação Gates (2026).",
+  posicionamento:"'Radiologia aumentada' / democratizar diagnóstico: levar leitura especializada aonde não há radiologista, e acelerar fluxos onde há.",
+  branding:"Técnico-humanitário: rigor científico (100+ publicações, selos regulatórios) + storytelling de impacto ('45 milhões de vidas'); produtos com prefixo 'q'.",
+  numeros:"Série D US$ 65 mi (2024); ~US$ 133 mi captados; 105+ países; 5.500+ unidades de saúde; receita FY25 ~US$ 21 mi (+24,5%).",
+  destaques:"Única IA de raio-X endossada pela OMS para triagem de TB; prova que emergentes podem liderar globalmente em IA de saúde.",
+  wow:"Prova de que healthtech de país emergente compete globalmente quando ancora em evidência + validação institucional (OMS, FDA). Caminho para a WOW+ dar credibilidade à sua camada de IA: validação clínica publicada, não promessa.",
+  fontes:[["Qure.ai","https://www.qure.ai/"],["PATH/AstraZeneca","https://www.path.org/our-impact/media-center/path-partners-astrazeneca-and-qureai-increase-lung-cancer-detection-low-and-middle-income-countries/"]]
+},
+{
+  id:"eko", nome:"Eko Health", pais:"EUA", fund:2013, seg:"Medical Devices & Wearables", time:"confirmada",
+  modelo:["B2B","B2C"], prox:"baixa",
+  desc:"Estetoscópios digitais + IA aprovada pela FDA para detectar doença cardíaca e pulmonar no ponto de atendimento.",
+  modeloDet:"Híbrido: hardware vendido a médicos/estudantes (e-commerce e distribuidores) + assinatura de software com IA + licenciamento enterprise (SENSORA) a hospitais + caminho de reembolso via código CPT (2024).",
+  estrategia:"Base instalada primeiro, IA depois: meio milhão de clínicos com o estetoscópio, depois monetização com algoritmos regulados; cobranding com 3M Littmann; validações Mayo Clinic/Mass General; aprovações FDA sucessivas.",
+  posicionamento:"'Reinventar o estetoscópio de 200 anos': dar a qualquer clínico 'ouvidos de cardiologista', democratizando triagem cardíaca.",
+  branding:"Clínico-premium com design consumer-tech; tradição médica (Littmann) + credibilidade científica.",
+  numeros:"US$ 165 mi+ captados; 500 mil+ profissionais usando; 3 algoritmos com clearance FDA.",
+  destaques:"Modelo 'base instalada → monetização por IA' é um dos mais elegantes da lista.",
+  wow:"Padrão replicável: construir base de usuários com utilidade imediata e monetizar depois com camadas de inteligência — análogo ao plano da WOW+ de usar telemedicina como porta e IA/dados como valor crescente.",
+  fontes:[["Série D","https://www.ekohealth.com/blogs/newsroom/eko-health-raises-41-million-to-scale-ai-driven-heart-and-lung-disease-detection"],["FDA Low EF","https://www.forbes.com/sites/alexknapp/2024/04/02/an-ai-stethoscopes-new-algorithm-to-predict-heart-failure-gets-fda-clearance/"]]
+},
+{
+  id:"kry", nome:"Kry / Livi", pais:"Suécia", fund:2015, seg:"Telehealth & Treatment", time:"confirmada",
+  modelo:["B2B2C","B2G"], prox:"media",
+  desc:"Maior plataforma de telemedicina da Europa (Kry na Suécia/Noruega, Livi na França/Reino Unido), integrada aos sistemas públicos de saúde.",
+  modeloDet:"B2B2C/B2G: consultas majoritariamente reembolsadas pelos sistemas públicos (o paciente paga o mesmo copay de uma consulta física); receita adicional de parcerias com seguradoras e clínicas físicas próprias (modelo híbrido digital-físico).",
+  estrategia:"Crescimento dentro das regras de reembolso público de cada país europeu (Suécia, Noruega, França, Reino Unido/NHS); consolidação com clínicas físicas; disciplina de custos pós-2022 rumo à sustentabilidade após anos de queima.",
+  posicionamento:"Acesso rápido e universal ao médico dentro do sistema de saúde — telemedicina como parte da rede pública, não fora dela.",
+  branding:"Escandinavo: simples, confiável, 'cuidado quando você precisa'; marcas locais (Kry/Livi) adaptadas a cada mercado.",
+  numeros:"Confirmada na lista TIME 2025; ~US$ 700 mi+ captados historicamente; milhões de consultas/ano na Europa.",
+  destaques:"Prova europeia de que telemedicina escala quando se integra ao pagador público em vez de competir com ele.",
+  wow:"Lição para a estratégia de mercados da WOW+: em países com sistema público forte (como o Brasil/SUS e saúde suplementar regulada), integrar-se às regras de reembolso e às operadoras acelera mais que o D2C puro.",
+  fontes:[["Confirmação na lista","https://www.globalstartupawards.com/news-portal/kry-recognised-as-one-kry-recognised-as-one-of-the-worlds-most-innovative-healthtech-companies"]]
+}
+];
+
+/* WOW+ para o comparativo */
+const WOW = {
+  nome: "WOW+", pais: "Brasil",
+  modelo: ["B2C","B2B2C"],
+  modeloDet: "Assinatura acessível para pessoas físicas + benefício corporativo para empresas (com medicina ocupacional integrada), sobre um ecossistema único: telemedicina, prontuário/histórico permanente, marketplace de parceiros com descontos, dashboards para empresas e IA em todas as camadas.",
+  posicionamento: "Não competir como telemedicina: criar categoria própria de 'ecossistema digital de relacionamento em saúde' — a maior plataforma de relacionamento em saúde da América Latina.",
+  pilares: "Tecnologia escalável · IA central ao produto · Dados do usuário como inteligência útil · Experiência simples · Ecossistema com parceiros estratégicos."
+};
+</script>
+<script id="app">
+/* ===== Tabs ===== */
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(t => t.addEventListener('click', () => {
+  tabs.forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById(t.dataset.p).classList.add('active');
+  window.scrollTo({top:0});
+}));
+
+/* ===== Barras (sequencial: uma matiz, mais = mais escuro) ===== */
+function seqColor(pct, max) {
+  const steps = ['var(--seq-250)','var(--seq-350)','var(--seq-450)','var(--seq-550)','var(--seq-650)'];
+  const i = Math.min(steps.length - 1, Math.floor((pct / max) * steps.length));
+  return steps[i];
+}
+function renderBars(elId, data, max) {
+  const el = document.getElementById(elId);
+  el.innerHTML = data.map(d => `
+    <div class="hbar-row" title="${d.nome}: ${d.pct}%">
+      <div class="hbar-label">${d.nome}</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${(d.pct/max)*100}%; background:${seqColor(d.pct, max)}"></div></div>
+      <div class="hbar-val">${d.pct}%</div>
+    </div>`).join('');
+}
+renderBars('chart-metodologia', METODOLOGIA, 50);
+renderBars('chart-segmentos', SEGMENTOS, 33);
+
+/* ===== Filtros e grid de empresas ===== */
+const segs = [...new Set(EMPRESAS.map(e => e.seg))];
+const mods = ["B2B2C","B2B","B2C","B2G"];
+let fSeg = null, fMod = null;
+
+function chipTime(e) {
+  if (e.time === "confirmada") return '<span class="chip time-ok">✓ na lista TIME 2025</span>';
+  if (e.time === "nao-esta") return '<span class="chip time-warn">✗ fora da lista (caso de estudo)</span>';
+  return '<span class="chip time-warn">⚠ inclusão não confirmada</span>';
+}
+function renderFilters() {
+  const fs = document.getElementById('f-seg');
+  fs.innerHTML = '<span class="flabel">Segmento:</span>' +
+    ['Todos', ...segs].map(s => `<button class="fbtn ${((s==='Todos'&&!fSeg)||fSeg===s)?'on':''}" data-s="${s}">${s}</button>`).join('');
+  fs.querySelectorAll('.fbtn').forEach(b => b.addEventListener('click', () => { fSeg = b.dataset.s === 'Todos' ? null : b.dataset.s; renderFilters(); renderGrid(); }));
+  const fm = document.getElementById('f-mod');
+  fm.innerHTML = '<span class="flabel">Modelo:</span>' +
+    ['Todos', ...mods].map(m => `<button class="fbtn ${((m==='Todos'&&!fMod)||fMod===m)?'on':''}" data-m="${m}">${m}</button>`).join('');
+  fm.querySelectorAll('.fbtn').forEach(b => b.addEventListener('click', () => { fMod = b.dataset.m === 'Todos' ? null : b.dataset.m; renderFilters(); renderGrid(); }));
+}
+function renderGrid() {
+  const list = EMPRESAS.filter(e => (!fSeg || e.seg === fSeg) && (!fMod || e.modelo.includes(fMod)));
+  document.getElementById('cogrid').innerHTML = list.map(e => `
+    <div class="cocard" data-id="${e.id}">
+      <h3>${e.nome}</h3>
+      <div class="co-meta">${e.pais} · fundada em ${e.fund}</div>
+      <div>${e.modelo.map(m => `<span class="chip model">${m}</span>`).join('')}<span class="chip seg">${e.seg}</span></div>
+      <div class="co-desc" style="margin-top:8px;">${e.desc}</div>
+      <div>${chipTime(e)}</div>
+      <div class="hint">Ver ficha completa →</div>
+    </div>`).join('') || '<div class="note">Nenhuma empresa com esses filtros.</div>';
+  document.querySelectorAll('.cocard').forEach(c => c.addEventListener('click', () => openModal(c.dataset.id)));
+}
+renderFilters(); renderGrid();
+
+/* ===== Modal ===== */
+const overlay = document.getElementById('overlay');
+function openModal(id) {
+  const e = EMPRESAS.find(x => x.id === id);
+  document.getElementById('modal').innerHTML = `
+    <button class="close" onclick="document.getElementById('overlay').classList.remove('open')">Fechar ✕</button>
+    <h3>${e.nome}</h3>
+    <div class="co-meta">${e.pais} · fundada em ${e.fund} · ${e.seg}</div>
+    <div>${e.modelo.map(m => `<span class="chip model">${m}</span>`).join('')} ${chipTime(e)}</div>
+    <div class="fld"><div class="ft">O que faz</div><div class="fv">${e.desc}</div></div>
+    <div class="fld"><div class="ft">Modelo de negócio — quem paga e como</div><div class="fv">${e.modeloDet}</div></div>
+    <div class="fld"><div class="ft">Estratégia de mercado</div><div class="fv">${e.estrategia}</div></div>
+    <div class="fld"><div class="ft">Posicionamento</div><div class="fv">${e.posicionamento}</div></div>
+    <div class="fld"><div class="ft">Perfil de branding</div><div class="fv">${e.branding}</div></div>
+    <div class="fld"><div class="ft">Números-chave</div><div class="fv">${e.numeros}</div></div>
+    <div class="fld"><div class="ft">Destaques</div><div class="fv">${e.destaques}</div></div>
+    <div class="wowbox"><div class="ft">Leitura para a WOW+</div>${e.wow}</div>
+    <div class="srcs" style="margin-top:14px;">Fontes: ${e.fontes.map(f => `<a href="${f[1]}" target="_blank">${f[0]}</a>`).join(' · ')}</div>`;
+  overlay.classList.add('open');
+}
+overlay.addEventListener('click', ev => { if (ev.target === overlay) overlay.classList.remove('open'); });
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') overlay.classList.remove('open'); });
+
+/* ===== Matriz comparativa ===== */
+const quemPagaResumo = {
+  teladoc: ["Planos, empregadores + consumidor (BetterHelp)", "PMPM + fee por consulta + assinatura D2C"],
+  sword: ["Empregadores e planos", "Pagamento por resultado clínico (outcome-based)"],
+  omada: ["Empregadores e planos, via PBMs revendedores", "PMPM por membro engajado + outcome parcial"],
+  maven: ["Empregadores e planos (+ B2C desde 2026)", "Platform fee + taxa por programa + Wallet"],
+  virta: ["Empregadores, planos, sindicatos, governo", "100% dos fees em risco (só recebe com resultado)"],
+  talkiatry: ["Seguradoras (paciente paga só copay)", "Fee-for-service reembolsado → value-based"],
+  doctolib: ["Médicos, clínicas e hospitais (SaaS)", "Assinatura SaaS (~€1.700–4.500/ano por médico)"],
+  zocdoc: ["Provedores (paciente usa grátis)", "Pay-per-booking (US$ 30–140 por paciente novo)"],
+  huma: ["Sistemas de saúde, farma, governos", "SaaS + contratos de monitoramento + plataforma"],
+  babylon: ["NHS, consumidores, seguradoras, governos (tudo ao mesmo tempo)", "Capitação + assinatura + licenciamento (insustentável)"],
+  practo: ["Médicos (SaaS/ads) + consumidor (consultas, Plus)", "SaaS + publicidade + comissões + assinatura"],
+  halodoc: ["Consumidor + farmácias + seguradoras + hospitais", "Comissão de marketplace + taxas de serviço"],
+  calm: ["Consumidor + empregadores + planos", "Assinatura B2C + licença por funcionário"],
+  oura: ["Consumidor + empregadores/governo", "Hardware + assinatura + contratos enterprise"],
+  tempus: ["Planos/Medicare (testes) + farmacêuticas (dados)", "Fee por teste + licenciamento de dados"],
+  carrot: ["Empregadores e seguradoras", "Plataforma + fundos administrados (wallet)"],
+  qure: ["Hospitais, governos, ONGs, farma", "Licença SaaS / por exame"],
+  eko: ["Médicos (hardware/app) + hospitais (enterprise)", "Hardware + assinatura + licença + reembolso CPT"],
+  kry: ["Sistemas públicos de saúde + seguradoras", "Reembolso público por consulta + parcerias"]
+};
+const proxLabel = { alta: "Alta", media: "Média", baixo: "Baixa", baixa: "Baixa" };
+document.querySelector('#cmp-table tbody').innerHTML = EMPRESAS.map(e => `
+  <tr>
+    <td class="coname">${e.nome}<br><span class="sub">${e.pais}</span></td>
+    <td>${e.modelo.join(" + ")}</td>
+    <td>${quemPagaResumo[e.id][0]}</td>
+    <td>${quemPagaResumo[e.id][1]}</td>
+    <td><span class="ovl ${e.prox === 'media' ? 'medio' : (e.prox === 'alta' ? 'alto' : 'baixo')}"></span>${proxLabel[e.prox]}</td>
+    <td>${e.wow}</td>
+  </tr>`).join('');
+
+/* ===== Arquétipos ===== */
+const ARQUETIPOS = [
+  { t: "1. Plataforma integral de cuidado virtual (whole-person)", who: "Teladoc Health · MD Live",
+    p: "Vende amplitude a pagadores institucionais: um contrato, muitas linhas de cuidado. É a ambição da WOW+ em escala máxima — e o alerta máximo: amplitude comprada (M&A) sem integração real destruiu dezenas de bilhões em valor na Teladoc. A vantagem da WOW+ é nascer integrada; a desvantagem, ter que construir credibilidade linha a linha." },
+  { t: "2. Clínica digital especializada com pagamento por resultado", who: "Sword Health · Omada · Virta · Talkiatry · Maven · Carrot",
+    p: "O arquétipo dominante do segmento Telehealth da lista: profundidade clínica numa condição cara, venda B2B2C a empregadores/planos e pricing atrelado a desfecho. É onde está o dinheiro enterprise hoje nos EUA. Para a WOW+, a lição é ancorar o discurso B2B em indicadores (absenteísmo, sinistralidade) com risco compartilhado — não em 'acesso à plataforma'." },
+  { t: "3. SaaS do profissional + marketplace do paciente", who: "Doctolib · Zocdoc · Practo",
+    p: "Monetiza o lado da oferta (médico paga SaaS, visibilidade ou por paciente novo) e mantém o paciente grátis para gerar efeito de rede. É a camada de receita que falta no desenho atual da WOW+: parceiros e profissionais do marketplace podem pagar pela demanda que o ecossistema gera." },
+  { t: "4. Superapp / ecossistema de saúde de mercado emergente", who: "Halodoc · Practo (também no arquétipo 3)",
+    p: "O espelho estrutural da WOW+: mercados com acesso precário, plataforma única com várias camadas (consulta, farmácia, exames, seguro), asset-light via parceiros. A economia real vem do marketplace (farmácia/exames), não da teleconsulta — que funciona como porta de entrada de baixa margem." },
+  { t: "5. B2C de bem-estar que pivotou para B2B2C", who: "Calm · Oura",
+    p: "Marcas de consumo fortíssimas que bateram no teto do assinante individual e migraram para o benefício corporativo e os planos. Validam a tese da WOW+ de ter as duas pernas — e mostram que a marca de consumo é um ativo de vendas B2B ('benefício que o funcionário reconhece e deseja')." },
+  { t: "6. Infraestrutura de dados, IA e dispositivos", who: "Tempus · Qure.ai · Huma · Eko",
+    p: "Não competem pelo paciente: vendem inteligência e infraestrutura para quem cuida dele (hospitais, farma, governos). É o horizonte de longo prazo do pilar 'Dados' da WOW+: quando o ecossistema tiver escala, os dados organizados viram produto B2B próprio — o arquétipo com os maiores múltiplos da lista (Tempus ~US$ 10 bi)." },
+  { t: "⚠ O anti-arquétipo", who: "Babylon Health (fora da lista — faliu em 2023)",
+    p: "Tentou ser os arquétipos 1, 3, 4 e ainda operar risco populacional, em 4 continentes ao mesmo tempo, com retórica de IA acima da evidência. De US$ 4,2 bi a ativos vendidos por £500 mil em 2 anos. A ambição da WOW+ ('categoria própria', 'ecossistema completo') é a mesma que a Babylon verbalizava — a diferença terá que estar no sequenciamento, na disciplina financeira e na evidência." }
+];
+document.getElementById('arquetipos').innerHTML = ARQUETIPOS.map(a => `
+  <div class="arch"><h4>${a.t}</h4><div class="who">${a.who}</div><p>${a.p}</p></div>`).join('');
+
+/* ===== Padrões ===== */
+const PADROES = [
+  { t: "Quase ninguém cobra do usuário final — e quem cobra, sofre", p: "Das 19 analisadas, só Calm, Oura e Halodoc têm o consumidor como pagador principal — e Calm está em queda no consumer, enquanto Oura precisa de hardware premium para sustentar a assinatura. O dinheiro grande do setor vem de quem sente a dor no caixa: empregadores, planos, governos e profissionais. A assinatura PF da WOW+ precisa de preço de conveniência (não de 'plano de saúde') e de camadas B2B fortes por cima." },
+  { t: "O pricing evoluiu: de acesso → engajamento → resultado", p: "A fronteira competitiva nos EUA é cobrar por desfecho: Sword (outcome-based), Virta (100% at-risk), Talkiatry (value-based), Zocdoc (por paciente novo). 'Assinatura de plataforma' é o pricing mais fraco da lista. Quem assume risco pelo resultado ganha o contrato." },
+  { t: "B2C → B2B2C é o sentido do tráfego; o inverso é raro", p: "Calm, Oura e até a Maven (que voltou ao B2C só depois de dominar o B2B) mostram o padrão: a perna corporativa paga a conta e a marca de consumo puxa o engajamento. A WOW+ nasce com as duas — o risco é subinvestir na perna B2B, que é a que fecha a conta em todos os benchmarks." },
+  { t: "Ecossistemas monetizam no marketplace, não na consulta", p: "Halodoc e Practo provam que a teleconsulta é porta de entrada de margem baixa; farmácia, exames, seguros e SaaS de parceiros é onde a economia fecha. O marketplace da WOW+ não é um 'extra' — é provavelmente o centro de gravidade financeiro do modelo no longo prazo." },
+  { t: "IA saiu de feature para categoria — mas só com evidência", p: "Quem lidera a narrativa de IA na lista publica estudos e busca aprovação regulatória (Sword/Phoenix, Tempus, Qure.ai/OMS, Eko/FDA). A Babylon fez o caminho da retórica sem evidência e quebrou. O pilar de IA da WOW+ vale o quanto for validável." },
+  { t: "Prevenção é o menor segmento (6%) — lacuna, não veredicto", p: "A TIME atribui isso aos incentivos do sistema americano (paga-se procedimento, não prevenção). No Brasil, quem paga a prevenção é o empregador (absenteísmo, sinistralidade) — exatamente o cliente B2B da WOW+. O espaço em branco global pode ser a vantagem local." },
+  { t: "Expansão internacional: por aquisição ou por regra de reembolso", p: "Sword, Doctolib, Huma e Maven expandem comprando players locais ou entrando pelas regras de reembolso de cada país (Kry). Ninguém expande 'lançando o app'. Para a ambição LatAm da WOW+, o caminho dos benchmarks é M&A local ou parceria com pagadores locais." },
+  { t: "Nenhuma LatAm na lista — a régua está aberta", p: "Não identificamos nenhuma empresa latino-americana entre as 400. Índia (Qure.ai), Singapura (Holmusk) e Indonésia mostram que emergentes entram na lista quando têm evidência clínica, escala comercial e visibilidade global. A vaga de 'primeira healthtech LatAm da lista TIME' está aberta." }
+];
+document.getElementById('padroes').innerHTML = PADROES.map(x => `
+  <div class="fld"><div class="ft">${x.t}</div><div class="fv">${x.p}</div></div>`).join('');
+
+/* ===== Lições ===== */
+const LICOES = [
+  ["Venda indicadores, não acesso", "Todos os vencedores B2B2C da lista vendem desfecho mensurável (absenteísmo, sinistralidade, ROI) com algum risco compartilhado. O dashboard gerencial da WOW+ para empresas deve nascer como instrumento de venda, com metas contratuais."],
+  ["Trate o marketplace como motor financeiro", "No arquétipo superapp (Halodoc/Practo), farmácia, exames e parceiros são a economia do negócio; a consulta é aquisição. Priorizar o take rate e o SaaS/visibilidade de parceiros no roadmap da WOW+."],
+  ["Monetize também o lado profissional", "Doctolib (~€1.700–4.500/ano por médico), Zocdoc (por paciente novo) e Practo (SaaS + ads) mostram uma linha de receita que o desenho atual da WOW+ não explora: o profissional/parceiro pagando pela demanda e pelas ferramentas."],
+  ["Sequencie a ambição — o anti-exemplo é a Babylon", "Ecossistema completo é destino, não ponto de partida. Os vencedores dominaram uma cunha (MSK na Sword, prediabetes na Omada, psiquiatria na Talkiatry) antes de expandir. Escolher a cunha da WOW+ e vencê-la primeiro."],
+  ["Use a medicina ocupacional como cunha exclusiva", "Nenhuma empresa da lista integra medicina ocupacional ao ecossistema digital — nos EUA esse mercado é separado. No Brasil (eSocial, NRs obrigatórias), é porta de entrada recorrente e regulatória para o B2B que os benchmarks não têm."],
+  ["Construa a IA sobre evidência validável", "Qure.ai entrou na lista com endosso da OMS; Eko com FDA; Sword com estudos. A régua da TIME (e dos compradores) para IA é validação publicada. Documentar desfechos da WOW+ desde já — é ativo de venda, branding e prêmio."],
+  ["Dê nome à categoria — e persona à IA", "Sword criou 'AI Care' e a persona Phoenix; Omada, 'between-visit care'; Virta, 'reversão'. Categoria nomeada + IA com persona são as ferramentas de posicionamento mais usadas da lista. 'Ecossistema de relacionamento em saúde' precisa de um nome de categoria memorável e de uma IA com identidade."],
+  ["Marca de consumo é ativo B2B", "Calm e Oura vendem para empresas porque o funcionário reconhece e deseja a marca. O tom 'WOW' (leve, próximo — como a Zocdoc fez com humor) pode diferenciar num setor solene, e torna o benefício corporativo mais desejado."],
+  ["Canais aceleram — dependência mata", "Omada escala via PBMs (mas 61% da receita numa parceira); Halodoc via Gojek. No Brasil: corretoras, operadoras e plataformas de benefícios são os canais análogos. Usar vários, não depender de um."],
+  ["Prontuário portátil + dados do usuário = diferencial defensável", "A promessa 'seus dados, sua história de saúde permanente' (pilar 3 da WOW+) é o que a Tempus monetiza no B2B e o que nenhum superapp emergente entrega bem. Em escala, vira a segunda linha de receita mais valiosa do ecossistema — com consentimento e LGPD como parte do posicionamento."]
+];
+document.getElementById('licoes').innerHTML = LICOES.map((x, i) => `
+  <div class="lesson"><div class="n">${i + 1}</div><div><h4>${x[0]}</h4><p>${x[1]}</p></div></div>`).join('');
+</script>
+</body>
+</html>
