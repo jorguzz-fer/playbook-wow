@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulação MiroFish — Jornada de Notificações WOW+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Instrument+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum-ink:#2A1230;
+    --plum:#3D1F47;
+    --plum-soft:#5A3B66;
+    --lilac:#9B87A6;
+    --paper:#FAF7FB;
+    --card:#FFFFFF;
+    --orange:#F5821F;
+    --orange-deep:#D96A0A;
+    --line:#E8DFEC;
+    --ok:#2E8B57;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    font-family:'Instrument Sans',sans-serif;
+    background:var(--paper);
+    color:var(--plum-ink);
+    line-height:1.6;
+    font-size:16px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ---------- HERO ---------- */
+  header{
+    background:linear-gradient(160deg,var(--plum-ink) 0%,var(--plum) 70%,#4A2455 100%);
+    color:#F5EFF7;
+    padding:64px 0 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;right:-120px;top:-120px;
+    width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(245,130,31,.28),transparent 65%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'Space Grotesk',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--orange);font-weight:700;margin-bottom:16px;
+  }
+  h1{
+    font-family:'Archivo',sans-serif;
+    font-variation-settings:'wdth' 110;
+    font-weight:800;font-size:clamp(30px,4.6vw,52px);
+    line-height:1.06;letter-spacing:-.01em;max-width:820px;
+  }
+  h1 em{font-style:normal;color:var(--orange)}
+  .hero-sub{max-width:640px;margin-top:20px;color:#CDBBD6;font-size:17px}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;
+    font-family:'Space Grotesk',monospace;font-size:12.5px;
+  }
+  .hero-meta span{
+    border:1px solid rgba(245,239,247,.25);border-radius:999px;
+    padding:6px 14px;color:#E8DCEF;
+  }
+
+  /* ---------- DISCLAIMER ---------- */
+  .disclaimer{
+    background:#FFF4E8;border:1px solid #F3D3AE;border-left:4px solid var(--orange);
+    border-radius:10px;padding:16px 20px;margin:32px auto 0;
+    font-size:14.5px;color:#6B4A22;max-width:1032px;
+  }
+  .disclaimer strong{color:var(--orange-deep)}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:56px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sec-num{
+    font-family:'Space Grotesk',monospace;font-weight:700;
+    color:var(--orange);font-size:15px;letter-spacing:.08em;
+  }
+  h2{
+    font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 105;
+    font-weight:700;font-size:clamp(22px,3vw,30px);letter-spacing:-.01em;
+  }
+  .sec-lede{color:var(--plum-soft);max-width:720px;margin:10px 0 28px;font-size:16.5px}
+
+  /* ---------- STAT GRID ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:24px 0}
+  .stat{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 20px 16px;
+  }
+  .stat b{
+    display:block;font-family:'Space Grotesk',monospace;font-weight:700;
+    font-size:34px;color:var(--plum);line-height:1;margin-bottom:8px;
+  }
+  .stat b.hot{color:var(--orange-deep)}
+  .stat span{font-size:13.5px;color:var(--plum-soft);display:block;line-height:1.45}
+
+  /* ---------- CHAT BUBBLES (assinatura) ---------- */
+  .chat{margin:26px 0;display:flex;flex-direction:column;gap:14px}
+  .bubble{
+    max-width:640px;padding:14px 18px;border-radius:16px;
+    font-size:15px;line-height:1.55;position:relative;
+  }
+  .bubble .who{
+    display:block;font-family:'Space Grotesk',monospace;font-size:11px;
+    letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px;
+  }
+  .bubble.medico{
+    background:#EFE7F2;border:1px solid #DCCBE3;
+    border-bottom-left-radius:4px;align-self:flex-start;
+  }
+  .bubble.medico .who{color:var(--plum-soft)}
+  .bubble.paciente{
+    background:#FFF0E0;border:1px solid #F5D4AE;
+    border-bottom-right-radius:4px;align-self:flex-end;
+  }
+  .bubble.paciente .who{color:var(--orange-deep)}
+
+  /* ---------- FATIGUE TIMELINE ---------- */
+  .stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin:24px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+  .stage{padding:22px 20px;border-left:4px solid var(--line)}
+  .stage:nth-child(1){border-left-color:var(--ok)}
+  .stage:nth-child(2){border-left-color:var(--orange)}
+  .stage:nth-child(3){border-left-color:#C0392B}
+  .stage h4{font-family:'Archivo',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px}
+  .stage .t{font-family:'Space Grotesk',monospace;font-size:12px;color:var(--lilac);margin-bottom:8px;display:block}
+  .stage p{font-size:14px;color:var(--plum-soft)}
+
+  /* ---------- TABLE ---------- */
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line);margin:24px 0;font-size:14.5px}
+  th{
+    background:var(--plum);color:#F5EFF7;text-align:left;
+    font-family:'Space Grotesk',monospace;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;padding:12px 16px;font-weight:700;
+  }
+  td{padding:13px 16px;border-top:1px solid var(--line);vertical-align:top}
+  td:first-child{font-weight:600;white-space:nowrap}
+  .badge{
+    display:inline-block;font-family:'Space Grotesk',monospace;font-size:12px;
+    font-weight:700;border-radius:6px;padding:3px 9px;white-space:nowrap;
+  }
+  .badge.crit{background:#FBE3E0;color:#A93226}
+  .badge.alto{background:#FFEBD6;color:var(--orange-deep)}
+  .badge.conf{background:#E3F2E9;color:var(--ok)}
+  .badge.novo{background:#EFE7F2;color:var(--plum)}
+
+  /* ---------- TIPPING CARDS ---------- */
+  .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:24px 0}
+  .tip{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;
+    border-top:4px solid var(--orange);
+  }
+  .tip .lim{font-family:'Space Grotesk',monospace;font-weight:700;font-size:26px;color:var(--plum);line-height:1.1}
+  .tip .fluxo{font-family:'Space Grotesk',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--lilac);display:block;margin-bottom:8px}
+  .tip p{font-size:14px;color:var(--plum-soft);margin-top:8px}
+
+  /* ---------- ACTION LIST ---------- */
+  .actions{background:var(--plum-ink);border-radius:18px;color:#EFE5F3;padding:36px 36px 30px;margin:32px 0 8px}
+  .actions h3{font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 108;font-size:22px;font-weight:700;margin-bottom:18px;color:#fff}
+  .actions ol{list-style:none;counter-reset:acao}
+  .actions li{
+    counter-increment:acao;position:relative;padding:12px 0 12px 52px;
+    border-top:1px solid rgba(255,255,255,.12);font-size:15.5px;
+  }
+  .actions li:first-of-type{border-top:none}
+  .actions li::before{
+    content:counter(acao,decimal-leading-zero);
+    position:absolute;left:0;top:12px;
+    font-family:'Space Grotesk',monospace;font-weight:700;color:var(--orange);font-size:14px;
+  }
+  .actions li b{color:#fff}
+
+  footer{padding:40px 0 56px;color:var(--lilac);font-size:13px;text-align:center}
+
+  @media(max-width:640px){
+    header{padding:48px 0 40px}
+    .bubble{max-width:100%}
+    td:first-child{white-space:normal}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">MiroFish · Simulação 72h · Projeto proj_0dad0dbfca7c</div>
+    <h1>A retenção não se perde aos poucos. Ela <em>colapsa em pontos de ruptura.</em></h1>
+    <p class="hero-sub">Simulação da jornada de notificações WOW+ com as personas Paciente, Médico, Grupo Geral (21 médicos) e Responsável Técnico, cobrindo fila ao vivo, encaixe emergencial, eletivo e cobrança.</p>
+    <div class="hero-meta">
+      <span>4 fluxos simulados</span>
+      <span>Madrugada + fim de semana + pico</span>
+      <span>Motor MiroFish V1.0</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="disclaimer">
+    <strong>Como ler os números:</strong> percentuais e tempos abaixo são <strong>estimativas geradas pela simulação de agentes</strong>, não dados de produção. Servem para ranquear riscos e priorizar decisões — não para citar como métrica real. A validação vem da instrumentação proposta na seção 2.9 do doc de validação.
+  </div>
+</div>
+
+<!-- ======================= CRUZAMENTO ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">00</span><h2>Simulação × Análise original — o que confirmou e o que é novo</h2></div>
+    <p class="sec-lede">Cruzamento entre o relatório do MiroFish e o documento de validação (reunião Fernando × Samuel, 17/08). A simulação confirmou os 4 bloqueantes — e revelou 3 riscos que não estavam no radar.</p>
+
+    <table>
+      <thead><tr><th>Achado</th><th>Status</th><th>O que a simulação mostrou</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Falta de regra de parada</td>
+          <td><span class="badge conf">Confirmado</span></td>
+          <td>Pagamentos levaram em média ~47 min para refletir no sistema; nesse intervalo o cliente seguiu recebendo cobrança e ~29% acionaram o suporte. Qualquer alerta de cobrança duplicada multiplicou o risco de churn por 4,8x.</td>
+        </tr>
+        <tr>
+          <td>Buracos de silêncio</td>
+          <td><span class="badge conf">Confirmado</span></td>
+          <td>A ausência de confirmação imediata na fila e no encaixe foi citada como principal causa de desengajamento; usuários reabriram o app repetidamente e interpretaram silêncio como falha do sistema.</td>
+        </tr>
+        <tr>
+          <td>Ruído no grupo de médicos</td>
+          <td><span class="badge conf">Confirmado</span></td>
+          <td>~23 notificações/hora no pico, só 38% clinicamente relevantes. Difusão de responsabilidade entre os 21 médicos atrasou aceites; de madrugada, 61% silenciaram o grupo.</td>
+        </tr>
+        <tr>
+          <td>Nenhum evento de fim</td>
+          <td><span class="badge conf">Confirmado</span></td>
+          <td>65% das atualizações de meio de fluxo (ex.: pagamento) passaram despercebidas; lembretes chegaram depois da consulta já encerrada.</td>
+        </tr>
+        <tr>
+          <td>Violação de dignidade</td>
+          <td><span class="badge novo">Novo</span></td>
+          <td>Pacientes que tomaram conhecimento de comentários de médicos no grupo ("mais um caso trivial") cancelaram em até 24h em 65% dos casos — independente da qualidade do atendimento. Reforça a regra LGPD: grupo só recebe mensagem anônima e agregada.</td>
+        </tr>
+        <tr>
+          <td>Colapso noturno / fim de semana</td>
+          <td><span class="badge novo">Novo</span></td>
+          <td>92% das falhas de serviço à noite/fim de semana resultaram em cancelamento imediato (vs. 34% em horário comercial). Falha noturna é lida como negligência de risco de vida, não como inconveniência.</td>
+        </tr>
+        <tr>
+          <td>Gap de percepção ("deception gap")</td>
+          <td><span class="badge novo">Novo</span></td>
+          <td>O app dizendo "médico conectando" enquanto nenhum médico estava ativo foi percebido como fraude — responsável por 42% dos cancelamentos imediatos. Status na tela precisa refletir a realidade, não acalmar.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ======================= 01 ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>A fragilidade do serviço em tempo real</h2></div>
+    <p class="sec-lede">A jornada emocional do usuário oscila entre confiança e abandono conforme o silêncio se acumula — e o médico, do outro lado, afoga alertas críticos em ruído administrativo.</p>
+
+    <div class="chat">
+      <div class="bubble paciente"><span class="who">Percepção · Usuário</span>Momentos de silêncio ou resposta atrasada geram ansiedade e frustração: o usuário se sente esquecido e sem saber o status do próprio caso.</div>
+      <div class="bubble medico"><span class="who">Percepção · Médico</span>A responsabilidade dividida entre 21 médicos atrasa o aceite: cada um assume que outro vai pegar o caso, e o paciente espera mais.</div>
+      <div class="bubble paciente"><span class="who">Gap identificado</span>A falta de confirmação imediata ao entrar na fila ao vivo faz o usuário duvidar que o sistema funcionou — e desengajar.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 02 ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Fadiga de notificação dos médicos</h2></div>
+    <p class="sec-lede">O escalonamento por volume tem prazo de validade: quanto mais o sistema "grita", menos médicos escutam. A simulação mapeou três estágios de fadiga em um plantão.</p>
+
+    <div class="stats">
+      <div class="stat"><b class="hot">23/h</b><span>notificações por médico no pico — apenas 38% clinicamente relevantes</span></div>
+      <div class="stat"><b class="hot">61%</b><span>dos médicos silenciam o grupo no período da madrugada (0h–6h)</span></div>
+      <div class="stat"><b>82% → 34%</b><span>taxa de resposta em 5 min: pico diurno vs. madrugada</span></div>
+      <div class="stat"><b class="hot">40%</b><span>dos casos sem aceite por 15+ min durante trocas de plantão</span></div>
+    </div>
+
+    <div class="stages">
+      <div class="stage"><span class="t">0–4h de plantão</span><h4>Tolerância inicial</h4><p>Responde a 92% das notificações recebidas.</p></div>
+      <div class="stage"><span class="t">4–8h de plantão</span><h4>Resposta seletiva</h4><p>Passa a priorizar apenas alertas marcados como emergência.</p></div>
+      <div class="stage"><span class="t">8h+ de plantão</span><h4>Desengajamento</h4><p>43% silenciam tudo que não for menção direta.</p></div>
+    </div>
+
+    <div class="chat">
+      <div class="bubble medico"><span class="who">Médico · Simulação</span>Mais de 15 notificações em 10 minutos, a maioria administrativa — os alertas críticos de escalonamento se perderam no meio.</div>
+      <div class="bubble medico"><span class="who">Médico · Simulação</span>Comecei a silenciar depois de dias em que mais da metade dos alertas não era clínica: atualização de sistema, aviso de grupo…</div>
+    </div>
+
+    <table>
+      <thead><tr><th>Padrão de risco</th><th>Severidade</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td>Inversão de prioridade</td><td><span class="badge crit">Crítico</span></td><td>28% dos casos urgentes ficaram enterrados sob mensagens de rotina.</td></tr>
+        <tr><td>Cegueira de estado</td><td><span class="badge crit">Crítico</span></td><td>65% das mudanças de estado no meio do fluxo (pagamento, cancelamento) não foram percebidas.</td></tr>
+        <tr><td>Limite do WhatsApp</td><td><span class="badge alto">Alto</span></td><td>O canal não diferencia níveis de urgência clínica — tudo chega com o mesmo peso.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ======================= 03 ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Desalinhamento temporal das mensagens</h2></div>
+    <p class="sec-lede">Mensagem certa na hora errada é mensagem errada. A simulação encontrou descompasso entre o estado real do evento e o que o usuário recebe — exatamente o cenário que a regra de parada (seção 2.1 do doc) elimina.</p>
+
+    <div class="stats">
+      <div class="stat"><b class="hot">68%</b><span>das atualizações de posição na fila chegaram 2–3 min depois da posição já ter mudado</span></div>
+      <div class="stat"><b class="hot">32%</b><span>dos lembretes de encaixe chegaram após o horário agendado</span></div>
+      <div class="stat"><b class="hot">42%</b><span>das mensagens de remarcação chegaram depois do horário original da consulta</span></div>
+      <div class="stat"><b>~47 min</b><span>de atraso médio para o pagamento refletir — período em que a cobrança continua</span></div>
+    </div>
+
+    <div class="chat">
+      <div class="bubble paciente"><span class="who">Usuário · Simulação</span>Recebi "sua consulta está começando agora" quando o médico já tinha encerrado a sessão.</div>
+      <div class="bubble paciente"><span class="who">Usuário · Simulação</span>Paguei antes do vencimento e continuei recebendo lembrete de cobrança — liguei no suporte só pra confirmar que o pagamento entrou.</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b class="hot">3,2x</b><span>mais chance de cancelar a assinatura em 30 dias quando o usuário vivencia descompasso temporal</span></div>
+      <div class="stat"><b>45%</b><span>dos usuários reabriram o app várias vezes por não confiar no status informado</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 ======================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Os pontos de ruptura da retenção</h2></div>
+    <p class="sec-lede">A confiança não erode linearmente: existem limiares específicos a partir dos quais o cancelamento se torna quase certo — e nenhum protocolo de recuperação reverte.</p>
+
+    <div class="tips">
+      <div class="tip"><span class="fluxo">Emergência</span><div class="lim">22 min</div><p>de espera sem reconhecimento é o ponto de abandono em pedidos de urgência.</p></div>
+      <div class="tip"><span class="fluxo">Fila ao vivo</span><div class="lim">18 min</div><p>de posição congelada na fila dispara 73% de taxa de abandono.</p></div>
+      <div class="tip"><span class="fluxo">Encaixe</span><div class="lim">2 falhas</div><p>consecutivas de agendamento emergencial levam a 89% de churn.</p></div>
+      <div class="tip"><span class="fluxo">Eletivo</span><div class="lim">3+ remarcações</div><p>da mesma consulta resultam em 67% de cancelamento.</p></div>
+      <div class="tip"><span class="fluxo">Cobrança</span><div class="lim">4,8x</div><p>mais risco de churn a partir de qualquer alerta de cobrança duplicada/indevida.</p></div>
+      <div class="tip"><span class="fluxo">Madrugada / FDS</span><div class="lim">92%</div><p>das falhas noturnas viram cancelamento imediato — vs. 34% em horário comercial.</p></div>
+    </div>
+
+    <div class="chat">
+      <div class="bubble paciente"><span class="who">Usuário · Simulação</span>Cancelei depois do terceiro encaixe sem resposta por 22 minutos. O app dizia "médico conectando" enquanto ninguém estava ativo.</div>
+      <div class="bubble paciente"><span class="who">Usuário · Simulação</span>Duas consultas pediátricas seguidas falharam às 3h da manhã. O primeiro médico nunca entrou; o segundo alegou "erro técnico" após 8 minutos.</div>
+      <div class="bubble paciente"><span class="who">Usuário · Simulação</span>Tolerava a lentidão até saber que médicos comentavam no grupo sobre "mais um caso trivial". Saber que viram minha infecção como trivial me humilhou.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= AÇÕES ======================= -->
+<section>
+  <div class="wrap">
+    <div class="actions">
+      <h3>O que a simulação prioriza — em ordem de impacto</h3>
+      <ol>
+        <li><b>Regra de parada + sincronização de estado em tempo real.</b> Elimina de uma vez o pior cenário (cobrar quem pagou, 4,8x churn) e a cegueira de estado (65% dos eventos perdidos). Já está redigida na seção 2.1 do doc — é a entrega nº 1 pro Pedro.</li>
+        <li><b>Confirmação no minuto 0 em fila e encaixe.</b> O silêncio inicial é a causa mais citada de desengajamento e alimenta o limiar de abandono de ~22 min.</li>
+        <li><b>Status honesto na tela.</b> "Médico conectando" sem médico ativo foi lido como fraude (42% dos cancelamentos imediatos). Se não há plantonista, dizer e oferecer alternativa — o ramo "zero plantonista" do doc.</li>
+        <li><b>Camadas de notificação pro médico (crítico / urgente / rotina) + mensagem agregada e anônima no grupo.</b> Ataca a fadiga (23/h, 38% relevante), a inversão de prioridade e, de quebra, o risco de dignidade/LGPD.</li>
+        <li><b>Protocolo de madrugada e fim de semana.</b> É onde a falha custa 92% de churn: plantão mínimo garantido, RT com 2º nível e alerta antecipado (min 10, como já proposto).</li>
+        <li><b>Papel rotativo de "médico líder" nos picos.</b> Sugestão nova da simulação para quebrar a difusão de responsabilidade no grupo de 21 — barata de testar antes de qualquer mudança de sistema.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  WOW+ Saúde · Simulação MiroFish V1.0 · Relatório report_e93098058dfe · Números simulados — validar com a instrumentação da seção 2.9
+</footer>
+
+</body>
+</html>
