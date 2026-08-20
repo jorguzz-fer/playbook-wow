@@ -184,6 +184,31 @@
     .vitem,.inc li,.plan,.step{ width:100% !important; margin-right:0 !important; }
     .plan{ margin-bottom:12px; }
   }
+
+  /* ---- oferta herói ---- */
+  .hero{ background:linear-gradient(135deg,#2A0A1E 0%,#3D0E28 55%,#4E1233 100%); border-radius:16px;
+    padding:20px 24px 18px; color:#fff; margin-top:6px; page-break-inside:avoid; }
+  .hero-pill{ display:inline-block; background:var(--orange); color:#fff; font-size:9.5px; font-weight:800;
+    letter-spacing:1.3px; text-transform:uppercase; padding:5px 12px; border-radius:20px; }
+  .hero h3{ font-size:20px; color:#fff; margin-top:11px; }
+  .hero-price{ margin:6px 0 2px; }
+  .hero-price .from{ font-size:16px; color:#B99AA6; text-decoration:line-through; margin-right:10px; }
+  .hero-price .to{ font-family:var(--serif); font-size:40px; color:var(--orange); font-weight:600; }
+  .hero-price .unit{ font-size:12.5px; color:#D9C4CC; margin-left:8px; }
+  .hero-grid{ font-size:0; margin-top:12px; }
+  .hero-feat{ display:inline-block; vertical-align:top; width:50%; font-size:12px; color:#F0E2E8;
+    padding:5px 14px 5px 20px; position:relative; }
+  .hero-feat::before{ content:"+"; position:absolute; left:2px; top:5px; color:var(--orange); font-weight:800; }
+  .hero-feat.gift{ color:#fff; font-weight:600; }
+  .giftbadge{ display:inline-block; background:var(--orange); color:#fff; font-size:8px; font-weight:800;
+    letter-spacing:.6px; text-transform:uppercase; padding:2px 7px; border-radius:12px; vertical-align:middle; margin-left:3px; }
+  .savings{ margin-top:13px; background:rgba(245,130,31,.13); border:1px solid rgba(245,130,31,.42);
+    border-radius:11px; padding:13px 16px; }
+  .save-from{ font-size:14px; color:#C9AEB8; text-decoration:line-through; margin-right:10px; }
+  .save-arrow{ color:var(--orange); font-weight:800; margin-right:10px; }
+  .save-to{ font-size:18px; font-weight:800; color:#fff; }
+  .save-econ{ margin-top:6px; font-size:12px; color:#F0E2E8; line-height:1.5; }
+  .save-econ b{ color:var(--orange); }
 </style>
 </head>
 <body>
@@ -257,6 +282,7 @@
         <li>1 consulta mensal com <b>especialidade médica</b></li>
         <li>1 consulta mensal de <b>Psicologia</b></li>
         <li>1 consulta mensal de <b>Nutrição</b></li>
+        <li>Saúde Pet — <b>consulta veterinária mensal</b></li>
         <li>Receita e atestado médico digitais</li>
         <li>Painel executivo de gestão para a Associação</li>
         <li>Sem carência · <b>valores garantidos por 12 meses</b></li>
@@ -300,43 +326,28 @@
 
     <div class="sec">
       <div class="sec-title">Planos para <i>adesão</i> via CNPJ</div>
-      <p class="body muted" style="margin-bottom:11px;">Valores por vida/mês, na modalidade corporativa (CNPJ), para adesão da Associação em nome dos associados.</p>
-      <div class="plans">
-        <div class="plan">
-          <span class="pill smart">Essencial</span>
-          <h3>WOW+ Empresas Smart</h3>
-          <div class="price">R$ 19,90<small> / vida · mês</small></div>
-          <ul>
-            <li>Clínico Geral 24 horas</li>
-            <li>Pediatria 24 horas</li>
-            <li>1 consulta mensal com especialidade médica</li>
-            <li>1 consulta mensal de Psicologia</li>
-            <li>1 consulta mensal de Nutrição</li>
-            <li>Painel executivo de gestão</li>
-            <li><b>Opcional</b> — Saúde Pet: R$ 9,90 por vida/mês</li>
-          </ul>
-          <div class="dep">Dependentes: <b>R$ 19,90</b> por vida</div>
+      <p class="body muted" style="margin-bottom:11px;">Condição comercial especial para a adesão institucional da AMPRO, na modalidade CNPJ — valores por vida/mês.</p>
+      <div class="hero">
+        <span class="hero-pill">Condição especial · mínimo de 200 vidas</span>
+        <h3>WOW+ Empresas Smart</h3>
+        <div class="hero-price"><span class="from">De R$ 24,90</span><span class="to">R$ 19,90</span><span class="unit">/ vida · mês</span></div>
+        <div class="hero-grid">
+          <span class="hero-feat">Clínico Geral 24 horas</span>
+          <span class="hero-feat">Pediatria 24 horas</span>
+          <span class="hero-feat">1 consulta mensal com especialidade médica</span>
+          <span class="hero-feat">1 consulta mensal de Psicologia</span>
+          <span class="hero-feat">1 consulta mensal de Nutrição</span>
+          <span class="hero-feat">Painel executivo de gestão</span>
+          <span class="hero-feat gift">Saúde Pet<span class="giftbadge">cortesia</span> — 1 consulta veterinária/mês</span>
+          <span class="hero-feat">Dependentes: R$ 19,90 por vida</span>
         </div>
-        <div class="plan hot">
-          <span class="pill care">Recomendado</span>
-          <h3>WOW+ Empresas Care+</h3>
-          <div class="price">R$ 24,90<small> / vida · mês</small></div>
-          <ul>
-            <li>Tudo do plano Smart</li>
-            <li>Acesso ampliado às especialidades</li>
-            <li><b style="color:#fff;">Saúde Pet:</b> 1 consulta mensal com veterinário</li>
-            <li>Painel executivo completo: indicadores de utilização, relatórios e histórico</li>
-          </ul>
-          <div class="dep" style="color:#D9C4CC;">Dependentes: <b style="color:#fff;">R$ 19,90</b> por vida</div>
+        <div class="savings">
+          <div><span class="save-from">De R$ 4.980,00/mês</span><span class="save-arrow">&rarr;</span><span class="save-to">Por R$ 3.980,00/mês</span></div>
+          <div class="save-econ">Economia de <b>R$ 1.000,00 por mês</b> &middot; <b>R$ 12.000,00 em 12 meses</b> — para 200 vidas, já com o Saúde Pet incluído sem custo adicional.</div>
         </div>
       </div>
 
-      <p class="body muted" style="margin:10px 0 0;">Contrato com <b style="color:var(--plum-800);">vigência de 12 meses</b>, com garantia de manutenção dos valores durante todo o período — sem reajuste ao longo da vigência.</p>
-
-      <div class="module">
-        <b class="t">Módulo Inteligente WOW+</b>
-        <p>A WOW+ adapta automaticamente a solução ao perfil da organização. Para <b>associações, sindicatos, cooperativas e entidades</b> — como a AMPRO —, o módulo de gestão ocupacional não se aplica e é substituído, sem custo adicional, pelo benefício <span class="pet">Saúde Pet</span>: 1 consulta mensal com médico veterinário, estendendo o cuidado aos animais da família.</p>
-      </div>
+      <p class="body muted" style="margin:11px 0 0;">Contrato com <b style="color:var(--plum-800);">vigência de 12 meses</b> e garantia de manutenção dos valores no período — sem reajuste. Para <b style="color:var(--plum-800);">associações e entidades</b> como a AMPRO, a gestão ocupacional não se aplica e dá lugar, sem custo, ao benefício Saúde Pet.</p>
 
       <!-- BLOCO OPCIONAL · cortesia institucional (bônus prometido pelo Samuel). Remover se não quiser formalizar. -->
       <div class="courtesy">
@@ -364,11 +375,11 @@
       <div class="sec-title">Consultas <i>adicionais</i> para assinantes</div>
       <p class="body muted" style="margin:-2px 0 9px;">Além das consultas já inclusas no plano, o associado tem valores reduzidos sempre que precisar:</p>
       <table class="add">
-        <tr><th>Serviço</th><th class="r">Smart</th><th class="r">Care+</th></tr>
-        <tr><td><b>Psicologia</b> — sessão avulsa</td><td class="r val">R$ 69,90</td><td class="r val">R$ 49,90</td></tr>
-        <tr><td><b>Nutrição</b> — consulta avulsa</td><td class="r val">R$ 69,90</td><td class="r val">R$ 49,90</td></tr>
-        <tr><td><b>Especialidades médicas</b> — consulta avulsa</td><td class="r val">R$ 69,90</td><td class="r val">R$ 49,90</td></tr>
-        <tr><td><b>Psicoterapia contínua</b> — 4 sessões/mês (1 por semana)</td><td class="r val">R$ 199,00</td><td class="r val">R$ 180,00</td></tr>
+        <tr><th>Serviço</th><th class="r">Valor para assinantes</th></tr>
+        <tr><td><b>Psicologia</b> — sessão avulsa</td><td class="r val">R$ 69,90</td></tr>
+        <tr><td><b>Nutrição</b> — consulta avulsa</td><td class="r val">R$ 69,90</td></tr>
+        <tr><td><b>Especialidades médicas</b> — consulta avulsa</td><td class="r val">R$ 69,90</td></tr>
+        <tr><td><b>Psicoterapia contínua</b> — 4 sessões/mês (1 por semana)</td><td class="r val">R$ 199,00</td></tr>
       </table>
     </div>
 
