@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOW+ · Gerador de Propostas</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --plum-900:#2A0A1E; --plum-800:#3D0E28; --plum-700:#4E1233;
+    --orange:#F5821F; --orange-600:#E0740F;
+    --cream:#FBF8F5; --ink:#2A121C; --muted:#7A6069; --line:#EADFE4;
+    --panel:#FFFFFF; --screen:#E7DFE3;
+    --sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{ font-family:var(--sans); color:var(--ink); background:var(--screen); line-height:1.45;
+        display:flex; flex-direction:column; }
+
+  /* ---------- TOPO ---------- */
+  .top{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    padding:11px 20px; background:var(--plum-900); border-bottom:1px solid rgba(245,130,31,.32); }
+  .top-brand{ display:flex; align-items:baseline; gap:10px; color:#fff; }
+  .top-brand b{ font-size:16px; letter-spacing:.2px; }
+  .top-brand span{ font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#E6C9B4; }
+  .top-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+
+  .btn{ font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; border-radius:8px;
+    padding:9px 14px; border:1px solid transparent; background:transparent; color:#F0D9C8;
+    border-color:rgba(245,130,31,.45); }
+  .btn:hover{ background:rgba(245,130,31,.16); }
+  .btn-primary{ background:var(--orange); color:#fff; border-color:var(--orange); }
+  .btn-primary:hover{ background:var(--orange-600); }
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{ flex:1; display:flex; min-height:0; }
+  .form{ width:460px; flex:none; overflow-y:auto; background:var(--panel); border-right:1px solid var(--line);
+    padding:14px 18px 60px; }
+  .preview{ flex:1; min-width:0; display:flex; flex-direction:column; background:var(--screen); }
+
+  /* ---------- FORMULÁRIO ---------- */
+  .hint{ font-size:12px; color:var(--muted); background:#FDF6EE; border:1px solid #F2DFC7;
+    border-radius:8px; padding:9px 11px; margin-bottom:12px; }
+  .hint b{ color:var(--plum-800); }
+  .hint code{ font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; background:#fff;
+    border:1px solid var(--line); border-radius:4px; padding:0 4px; }
+
+  details{ border:1px solid var(--line); border-radius:10px; margin-bottom:9px; background:#fff; }
+  details[open]{ box-shadow:0 1px 3px rgba(42,10,30,.06); }
+  summary{ cursor:pointer; list-style:none; padding:11px 13px; font-size:13px; font-weight:700;
+    color:var(--plum-800); display:flex; align-items:center; gap:8px; }
+  summary::-webkit-details-marker{ display:none; }
+  summary::before{ content:"▸"; color:var(--orange); font-size:11px; }
+  details[open] summary::before{ content:"▾"; }
+  .fields{ padding:0 13px 13px; }
+
+  label{ display:block; margin-top:11px; font-size:11.5px; font-weight:700; color:var(--plum-800);
+    text-transform:uppercase; letter-spacing:.4px; }
+  label .note{ display:block; text-transform:none; letter-spacing:0; font-weight:400; font-size:11px;
+    color:var(--muted); margin-top:2px; }
+  input[type=text], input[type=number], input[type=date], textarea, select{
+    width:100%; margin-top:5px; font-family:inherit; font-size:13px; color:var(--ink);
+    border:1px solid var(--line); border-radius:7px; padding:8px 10px; background:#fff; }
+  input:focus, textarea:focus, select:focus{ outline:2px solid rgba(245,130,31,.35); outline-offset:-1px; border-color:var(--orange); }
+  textarea{ resize:vertical; line-height:1.5; }
+  .row{ display:flex; gap:10px; }
+  .row > div{ flex:1; min-width:0; }
+  .check{ display:flex; align-items:center; gap:8px; margin-top:13px; font-size:13px; font-weight:700; color:var(--plum-800); }
+  .check input{ width:16px; height:16px; accent-color:var(--orange); }
+  .calc{ margin-top:7px; font-size:12px; color:var(--muted); background:#FAF6F8; border:1px solid var(--line);
+    border-radius:7px; padding:8px 10px; }
+  .calc b{ color:var(--plum-800); }
+
+  /* ---------- PRÉVIA ---------- */
+  .pv-bar{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding:8px 14px; background:#F3EAEE; border-bottom:1px solid var(--line); font-size:12px; color:var(--muted); }
+  .pv-bar .path{ font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11.5px; color:var(--plum-800); }
+  .zoom{ display:flex; align-items:center; gap:6px; }
+  .zoom button{ font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; width:26px; height:26px;
+    border:1px solid var(--line); background:#fff; border-radius:6px; color:var(--plum-800); }
+  .zoom button.wide{ width:auto; padding:0 9px; }
+  .pv-scroll{ flex:1; overflow:auto; padding:14px; }
+  .pv-stage{ transform-origin:top center; }
+  iframe{ width:820px; height:2400px; border:0; background:#fff; display:block; margin:0 auto;
+    box-shadow:0 8px 26px rgba(42,10,30,.18); }
+
+  .toast{ position:fixed; left:50%; bottom:22px; transform:translateX(-50%); background:var(--plum-900);
+    color:#fff; font-size:13px; font-weight:600; padding:11px 18px; border-radius:9px; opacity:0;
+    pointer-events:none; transition:opacity .18s; box-shadow:0 8px 24px rgba(42,10,30,.3); }
+  .toast.on{ opacity:1; }
+
+  @media (max-width:1100px){
+    .wrap{ flex-direction:column; }
+    .form{ width:auto; border-right:0; border-bottom:1px solid var(--line); max-height:60vh; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-brand"><b>WOW+ Gerador de Propostas</b><span>uso interno</span></div>
+  <div class="top-actions">
+    <button class="btn" id="btn-modelo">Restaurar modelo</button>
+    <button class="btn" id="btn-importar">Importar JSON</button>
+    <button class="btn" id="btn-exportar">Exportar JSON</button>
+    <button class="btn" id="btn-copiar">Copiar HTML</button>
+    <button class="btn" id="btn-abrir">Abrir prévia</button>
+    <button class="btn btn-primary" id="btn-baixar">Baixar index.html</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="form">
+    <div class="hint">
+      Preencha os campos que mudam de cliente para cliente — a prévia ao lado atualiza sozinha.
+      Em textos longos, <code>*texto*</code> vira <b>negrito</b> e <code>_texto_</code> vira <i>itálico</i>.
+      Nas listas, <b>uma linha por item</b>; onde houver dois campos, separe com <code>|</code>.
+      O rascunho fica salvo neste navegador.
+    </div>
+
+    <details open>
+      <summary>1 · Identificação e capa</summary>
+      <div class="fields">
+        <div class="row">
+          <div>
+            <label>Sigla / nome curto
+              <span class="note">Usada no topo, nos cabeçalhos e rodapés.</span>
+            </label>
+            <input type="text" data-k="entityShort">
+          </div>
+          <div>
+            <label>Data da proposta</label>
+            <input type="date" data-k="date">
+          </div>
+        </div>
+        <button class="btn" id="btn-sigla" style="margin-top:9px; color:var(--plum-800); border-color:var(--line);">Trocar a sigla antiga nos textos…</button>
+
+        <label>Nome completo da entidade</label>
+        <input type="text" data-k="entityFull">
+
+        <div class="row">
+          <div>
+            <label>Destinatário</label>
+            <input type="text" data-k="recipient">
+          </div>
+          <div>
+            <label>Cargo</label>
+            <input type="text" data-k="recipientRole">
+          </div>
+        </div>
+
+        <label>Título da capa
+          <span class="note">Use _palavra_ para o destaque em laranja.</span>
+        </label>
+        <textarea rows="2" data-k="coverTitle"></textarea>
+
+        <label>Subtítulo da capa</label>
+        <textarea rows="3" data-k="coverSub"></textarea>
+      </div>
+    </details>
+
+    <details>
+      <summary>2 · Conteúdo institucional</summary>
+      <div class="fields">
+        <label>Parágrafo de abertura (“A WOW+”)</label>
+        <textarea rows="5" data-k="lead"></textarea>
+
+        <label>Por que faz sentido — itens
+          <span class="note">Uma linha por item: Título | Texto</span>
+        </label>
+        <textarea rows="6" data-k="whyItems"></textarea>
+
+        <label>O que está incluído
+          <span class="note">Uma linha por item.</span>
+        </label>
+        <textarea rows="9" data-k="included"></textarea>
+
+        <label>Especialidades — chamada</label>
+        <input type="text" data-k="chipsIntro">
+
+        <label>Especialidades — lista
+          <span class="note">Uma por linha. Para marcar 24h: Clínica Geral | 24h</span>
+        </label>
+        <textarea rows="8" data-k="chips"></textarea>
+      </div>
+    </details>
+
+    <details>
+      <summary>3 · Oferta comercial</summary>
+      <div class="fields">
+        <label>Chamada da seção de planos</label>
+        <textarea rows="2" data-k="offerIntro"></textarea>
+
+        <label>Selo da condição</label>
+        <input type="text" data-k="planPill">
+
+        <label>Nome do plano</label>
+        <input type="text" data-k="planName">
+
+        <div class="row">
+          <div>
+            <label>Valor “de” (R$)
+              <span class="note">Vazio ou 0 = sem valor riscado.</span>
+            </label>
+            <input type="number" step="0.01" min="0" data-k="priceFrom">
+          </div>
+          <div>
+            <label>Valor “por” (R$)</label>
+            <input type="number" step="0.01" min="0" data-k="priceTo">
+          </div>
+        </div>
+
+        <label>Unidade do preço</label>
+        <input type="text" data-k="priceUnit">
+
+        <label>Itens do plano
+          <span class="note">Uma linha por item. Use [cortesia] para o selo laranja.</span>
+        </label>
+        <textarea rows="8" data-k="planFeats"></textarea>
+
+        <div class="check">
+          <input type="checkbox" data-k="savingsOn" id="savingsOn">
+          <label for="savingsOn" style="margin:0; text-transform:none; letter-spacing:0; font-size:13px;">Mostrar quadro de economia</label>
+        </div>
+        <div class="row">
+          <div>
+            <label>Número de vidas</label>
+            <input type="number" min="0" step="1" data-k="lives">
+          </div>
+          <div>
+            <label>Meses do contrato</label>
+            <input type="number" min="1" step="1" data-k="months">
+          </div>
+        </div>
+        <label>Observação do quadro</label>
+        <input type="text" data-k="savingsNote">
+        <div class="calc" id="calc">—</div>
+
+        <label>Parágrafo de vigência e condições</label>
+        <textarea rows="5" data-k="terms"></textarea>
+
+        <div class="check">
+          <input type="checkbox" data-k="courtesyOn" id="courtesyOn">
+          <label for="courtesyOn" style="margin:0; text-transform:none; letter-spacing:0; font-size:13px;">Incluir cortesia institucional</label>
+        </div>
+        <label>Texto da cortesia
+          <span class="note">O trecho antes do primeiro “:” vira o rótulo em negrito.</span>
+        </label>
+        <textarea rows="3" data-k="courtesy"></textarea>
+      </div>
+    </details>
+
+    <details>
+      <summary>4 · Adicionais e adesão</summary>
+      <div class="fields">
+        <label>Consultas adicionais — chamada</label>
+        <textarea rows="2" data-k="addonsIntro"></textarea>
+
+        <div class="row">
+          <div>
+            <label>Título da coluna de valores</label>
+            <input type="text" data-k="addonsCol">
+          </div>
+        </div>
+
+        <label>Consultas adicionais — linhas
+          <span class="note">Uma por linha: Serviço | Valor</span>
+        </label>
+        <textarea rows="5" data-k="addons"></textarea>
+
+        <label>Passos da adesão
+          <span class="note">Uma linha por passo: Título | Texto</span>
+        </label>
+        <textarea rows="6" data-k="steps"></textarea>
+      </div>
+    </details>
+
+    <details>
+      <summary>5 · Fechamento e contato</summary>
+      <div class="fields">
+        <label>Chamada final</label>
+        <textarea rows="3" data-k="ctaText"></textarea>
+
+        <div class="row">
+          <div>
+            <label>Contato — nome</label>
+            <input type="text" data-k="contactName">
+          </div>
+          <div>
+            <label>Contato — telefone</label>
+            <input type="text" data-k="contactPhone">
+          </div>
+        </div>
+
+        <label>Aviso legal (rodapé)</label>
+        <textarea rows="7" data-k="fineprint"></textarea>
+      </div>
+    </details>
+
+    <details>
+      <summary>6 · Publicação</summary>
+      <div class="fields">
+        <label>Caminho da proposta
+          <span class="note">Vira propostas.wowmais.com.br/<i>caminho</i>/ — ex.: julio/ampro</span>
+        </label>
+        <input type="text" data-k="slug">
+
+        <label>Arquivo PDF para download
+          <span class="note">Nome do PDF na mesma pasta. Vazio = sem o botão “Baixar PDF”.</span>
+        </label>
+        <input type="text" data-k="pdfFile">
+
+        <label>Descrição para link/compartilhamento</label>
+        <textarea rows="2" data-k="metaDesc"></textarea>
+
+        <div class="hint" style="margin:14px 0 0;">
+          <b>Como publicar:</b> baixe o <code>index.html</code> e peça para salvar em
+          <code id="pubpath">propostas/julio/ampro/index.html</code> no repositório do site.
+          Enquanto não estiver publicado, o arquivo baixado já abre e imprime normalmente.
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="preview">
+    <div class="pv-bar">
+      <span>Prévia · <span class="path" id="pvpath">/julio/ampro/</span></span>
+      <span class="zoom">
+        <button id="z-menos" title="Reduzir">−</button>
+        <button id="z-fit" class="wide">Ajustar</button>
+        <button id="z-mais" title="Ampliar">+</button>
+      </span>
+    </div>
+    <div class="pv-scroll" id="pv-scroll">
+      <div class="pv-stage" id="pv-stage"><iframe id="pv" title="Prévia da proposta"></iframe></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="file" accept="application/json,.json" hidden>
+
+<script src="template.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var MODELO = {
+    entityShort: "AMPRO",
+    entityFull: "Associação dos Membros do Ministério Público de Rondônia",
+    recipient: "Dr. Elias Chaquian",
+    recipientRole: "Presidente da AMPRO",
+    date: "2026-08-19",
+    coverTitle: "Acesso à saúde com _tranquilidade_ para os membros da AMPRO",
+    coverSub: "Um benefício acessível e imediato — para procuradores, promotores de Justiça e suas famílias terem médico quando precisarem, sem carência e sem burocracia.",
+    lead: "A WOW+ é uma *plataforma de acesso à saúde por assinatura*, 100% digital. Ela não substitui o plano de saúde — *complementa*: garante atendimento médico imediato no dia a dia, quando marcar uma consulta ou esperar demora. Em minutos, o beneficiário fala com um médico, sem carência e sem burocracia.",
+    whyItems: [
+      "Benefício de alto valor percebido | Um cuidado real e imediato para associados e suas famílias, que valoriza a filiação à Associação.",
+      "Médico 24 horas, sem carência | Clínico Geral e Pediatria disponíveis a qualquer hora — inclusive fins de semana e madrugada.",
+      "Cuidado com a saúde mental | Psicologia mensal inclusa: acolhimento contínuo, sem o custo de sessões avulsas.",
+      "Gestão para a Associação | Painel executivo com indicadores de utilização — sem exposição de dados clínicos individuais."
+    ].join("\n"),
+    included: [
+      "Atendimento Clínico Geral *24 horas*",
+      "Atendimento Pediátrico *24 horas*",
+      "1 consulta mensal com *especialidade médica*",
+      "1 consulta mensal de *Psicologia*",
+      "1 consulta mensal de *Nutrição*",
+      "Saúde Pet — *consulta veterinária mensal*",
+      "Receita e atestado médico digitais",
+      "Painel executivo de gestão para a Associação",
+      "Sem carência · *valores garantidos por 12 meses*"
+    ].join("\n"),
+    chipsIntro: "12 frentes de atendimento já aprovadas e disponíveis:",
+    chips: [
+      "Clínica Geral / Clínica Médica | 24h",
+      "Ginecologia", "Obstetrícia", "Cardiologia", "Psiquiatria", "Dermatologia",
+      "Endocrinologia", "Neurologia", "Medicina de Família e Comunidade",
+      "Psicologia", "Nutrição", "Medicina Veterinária"
+    ].join("\n"),
+    offerIntro: "Condição comercial especial para a adesão institucional da AMPRO, na modalidade CNPJ — valores por vida/mês.",
+    planPill: "Condição especial · mínimo de 200 vidas",
+    planName: "WOW+ Empresas Smart",
+    priceFrom: "24.90",
+    priceTo: "19.90",
+    priceUnit: "/ vida · mês",
+    planFeats: [
+      "Clínico Geral 24 horas",
+      "Pediatria 24 horas",
+      "1 consulta mensal com especialidade médica",
+      "1 consulta mensal de Psicologia",
+      "1 consulta mensal de Nutrição",
+      "Painel executivo de gestão",
+      "Saúde Pet[cortesia] — 1 consulta veterinária/mês",
+      "Dependentes: R$ 19,90 por vida"
+    ].join("\n"),
+    savingsOn: false,
+    lives: "200",
+    months: "12",
+    savingsNote: "já com o Saúde Pet incluído sem custo adicional.",
+    terms: "Contrato com *vigência de 12 meses* e garantia de manutenção dos valores no período — sem reajuste. Para *associações e entidades* como a AMPRO, a gestão ocupacional não se aplica e dá lugar, sem custo, ao benefício Saúde Pet.",
+    courtesyOn: true,
+    courtesy: "Cortesia institucional: como reconhecimento pela parceria, a WOW+ disponibiliza o plano, sem custo, à equipe administrativa da AMPRO mediante a adesão dos associados.",
+    addonsIntro: "Além das consultas já inclusas no plano, o associado tem valores reduzidos sempre que precisar:",
+    addonsCol: "Valor para assinantes",
+    addons: [
+      "*Psicologia* — sessão avulsa | R$ 49,90",
+      "*Nutrição* — consulta avulsa | R$ 49,90",
+      "*Especialidades médicas* — consulta avulsa | R$ 49,90",
+      "*Psicoterapia contínua* — 4 sessões/mês (1 por semana) | R$ 180,00"
+    ].join("\n"),
+    steps: [
+      "Aprovação | A diretoria da AMPRO confirma a adesão institucional.",
+      "Cadastro | Envio da relação de vidas em planilha simples.",
+      "Ativação | Acesso liberado de imediato, sem carência, após o pagamento da ativação.",
+      "Suporte | Acompanhamento dedicado à Associação."
+    ].join("\n"),
+    ctaText: "Estamos à disposição para *formalizar a parceria* e ativar o benefício para os membros da AMPRO.",
+    contactName: "Júlio César",
+    contactPhone: "(68) 9.9956-7840",
+    fineprint: "A WOW+ é uma plataforma de acesso à saúde por assinatura e não substitui plano de saúde. O atendimento é realizado por profissionais registrados, por telemedicina, conforme as normas dos respectivos conselhos de classe. Não se destina a emergências: em casos de urgência, procure o SAMU (192) ou o pronto-socorro mais próximo. Coberturas, especialidades e valores conforme rede contratada vigente na data desta proposta. Contrato com prazo de fidelidade e vigência de 12 meses, com garantia de manutenção dos valores no período.",
+    slug: "julio/ampro",
+    pdfFile: "proposta-ampro.pdf",
+    metaDesc: "Proposta institucional WOW+ para a AMPRO — acesso à saúde por assinatura para membros do Ministério Público de Rondônia."
+  };
+
+  var MESES = ["janeiro","fevereiro","março","abril","maio","junho",
+               "julho","agosto","setembro","outubro","novembro","dezembro"];
+  var CHAVE = "wow-gerador-proposta";
+  var estado = {};
+  var siglaAnterior = MODELO.entityShort;
+  var urlAtual = null;
+
+  // ---------- helpers de texto ----------
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  // *negrito* e _itálico_ sobre texto já escapado.
+  function md(s, corNegrito){
+    var b = corNegrito ? '<b style="color:' + corNegrito + ';">' : "<b>";
+    return esc(s)
+      .replace(/\*([^*]+)\*/g, b + "$1</b>")
+      .replace(/_([^_]+)_/g, "<i>$1</i>");
+  }
+  function linhas(s){
+    return String(s || "").split("\n").map(function(l){ return l.trim(); })
+      .filter(function(l){ return l.length; });
+  }
+  function par(linha){
+    var i = linha.indexOf("|");
+    if (i < 0) return [linha.trim(), ""];
+    return [linha.slice(0, i).trim(), linha.slice(i + 1).trim()];
+  }
+  function num(v){
+    var n = parseFloat(String(v == null ? "" : v).replace(",", "."));
+    return isFinite(n) ? n : 0;
+  }
+  function dinheiro(n){
+    return "R$ " + n.toLocaleString("pt-BR", { minimumFractionDigits:2, maximumFractionDigits:2 });
+  }
+  function partesData(iso){
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+    if (!m) return null;
+    return { a:+m[1], m:+m[2], d:+m[3] };
+  }
+  function dataLonga(iso){
+    var p = partesData(iso);
+    if (!p) return "";
+    return p.d + " de " + MESES[p.m - 1] + " de " + p.a;
+  }
+  function dataCurta(iso){
+    var p = partesData(iso);
+    if (!p) return "";
+    return ("0" + p.d).slice(-2) + "/" + ("0" + p.m).slice(-2) + "/" + p.a;
+  }
+  function slugLimpo(){
+    return String(estado.slug || "").trim().replace(/^\/+|\/+$/g, "");
+  }
+
+  // ---------- montagem dos blocos ----------
+  function economia(){
+    var vidas = Math.round(num(estado.lives));
+    var de = num(estado.priceFrom), por = num(estado.priceTo);
+    var meses = Math.round(num(estado.months)) || 12;
+    return {
+      vidas: vidas, meses: meses,
+      mesDe: vidas * de, mesPor: vidas * por,
+      mes: vidas * (de - por), total: vidas * (de - por) * meses
+    };
+  }
+
+  function blocoEconomia(){
+    if (!estado.savingsOn) return "";
+    var e = economia();
+    if (!e.vidas || e.mes <= 0) return "";
+    var caixa = "margin-top:13px; background:rgba(245,130,31,.13); border:1px solid rgba(245,130,31,.42); border-radius:11px; padding:13px 16px;";
+    var riscado = "font-size:14px; color:#C9AEB8; text-decoration:line-through; margin-right:10px;";
+    var seta = "color:#F5821F; font-weight:800; margin-right:10px;";
+    var destaque = "font-size:18px; font-weight:800; color:#fff;";
+    var nota = "margin-top:6px; font-size:12px; color:#F0E2E8; line-height:1.5;";
+    var forte = 'style="color:#F5821F;"';
+    return '        <div style="' + caixa + '">\n' +
+      '          <div><span style="' + riscado + '">De ' + dinheiro(e.mesDe) + '/mês</span>' +
+      '<span style="' + seta + '">&rarr;</span>' +
+      '<span style="' + destaque + '">Por ' + dinheiro(e.mesPor) + '/mês</span></div>\n' +
+      '          <div style="' + nota + '">Economia de <b ' + forte + '>' + dinheiro(e.mes) + ' por mês</b> &middot; ' +
+      '<b ' + forte + '>' + dinheiro(e.total) + ' em ' + e.meses + ' meses</b>' +
+      (estado.savingsNote ? " — para " + e.vidas + " vidas, " + md(estado.savingsNote) : "") + '</div>\n' +
+      '        </div>\n';
+  }
+
+  function blocoCortesia(){
+    if (!estado.courtesyOn || !String(estado.courtesy || "").trim()) return "";
+    var t = String(estado.courtesy).trim();
+    var i = t.indexOf(":");
+    var corpo = i > 0
+      ? "<b>" + esc(t.slice(0, i + 1)) + "</b> " + md(t.slice(i + 1).trim())
+      : md(t);
+    return '\n      <div class="courtesy">\n        ' + corpo + "\n      </div>";
+  }
+
+  function botaoPdf(){
+    var arq = String(estado.pdfFile || "").trim();
+    if (!arq) return "";
+    return '<a class="btn btn-pdf" href="' + esc(arq) + '" download>\n' +
+      '      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+      '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>\n' +
+      "      Baixar PDF\n    </a>";
+  }
+
+  function marcadores(){
+    var vidas = economia();
+    return {
+      ENTITY_SHORT: esc(estado.entityShort),
+      ENTITY_FULL: esc(estado.entityFull),
+      RECIPIENT: esc(estado.recipient),
+      RECIPIENT_ROLE: esc(estado.recipientRole),
+      DATE_LONG: esc(dataLonga(estado.date)),
+      DATE_SHORT: esc(dataCurta(estado.date)),
+      COVER_TITLE: md(estado.coverTitle),
+      COVER_SUB: md(estado.coverSub),
+      LEAD: md(estado.lead),
+      META_DESC: esc(estado.metaDesc),
+      PROPOSAL_URL: esc("https://propostas.wowmais.com.br/" + (slugLimpo() ? slugLimpo() + "/" : "")),
+      PDF_BUTTON: botaoPdf(),
+
+      WHY_ITEMS: linhas(estado.whyItems).map(function(l){
+        var p = par(l);
+        return '        <div class="vitem"><b>' + md(p[0]) + "</b><span>" + md(p[1]) + "</span></div>\n";
+      }).join(""),
+
+      INCLUDED: linhas(estado.included).map(function(l){
+        return "        <li>" + md(l) + "</li>\n";
+      }).join(""),
+
+      CHIPS_INTRO: md(estado.chipsIntro),
+      CHIPS: linhas(estado.chips).map(function(l){
+        var p = par(l);
+        return p[1]
+          ? '        <span class="chip h24">' + md(p[0]) + " <em>· " + esc(p[1]) + "</em></span>\n"
+          : '        <span class="chip">' + md(p[0]) + "</span>\n";
+      }).join(""),
+
+      OFFER_INTRO: md(estado.offerIntro),
+      PLAN_PILL: md(estado.planPill),
+      PLAN_NAME: md(estado.planName),
+      PRICE_FROM: num(estado.priceFrom) > 0
+        ? '<span class="from">De ' + dinheiro(num(estado.priceFrom)) + "</span>" : "",
+      PRICE_TO: dinheiro(num(estado.priceTo)),
+      PRICE_UNIT: esc(estado.priceUnit),
+      PLAN_FEATS: linhas(estado.planFeats).map(function(l){
+        // O selo entra onde a pessoa escreveu [cortesia]. O marcador \u0001
+        // sobrevive ao escape de md() e só depois vira HTML.
+        var presente = l.indexOf("[cortesia]") >= 0;
+        var txt = md(l.replace("[cortesia]", "\u0001"))
+          .replace("\u0001", '<span class="giftbadge">cortesia</span>');
+        return '          <span class="hero-feat' + (presente ? " gift" : "") + '">' + txt + "</span>\n";
+      }).join(""),
+      SAVINGS_BLOCK: blocoEconomia(),
+      TERMS: md(estado.terms, "var(--plum-800)"),
+      COURTESY_BLOCK: blocoCortesia(),
+
+      ADDONS_INTRO: md(estado.addonsIntro),
+      ADDONS_COL: esc(estado.addonsCol),
+      ADDONS_ROWS: linhas(estado.addons).map(function(l){
+        var p = par(l);
+        return "        <tr><td>" + md(p[0]) + '</td><td class="r val">' + md(p[1]) + "</td></tr>\n";
+      }).join(""),
+
+      STEPS: linhas(estado.steps).map(function(l, i){
+        var p = par(l);
+        return '        <div class="step"><div class="n">' + (i + 1) + "</div><b>" + md(p[0]) +
+          "</b><span>" + md(p[1]) + "</span></div>\n";
+      }).join(""),
+
+      CTA_TEXT: md(estado.ctaText),
+      CONTACT: (function(){
+        var n = String(estado.contactName || "").trim();
+        var t = String(estado.contactPhone || "").trim();
+        if (!n && !t) return "";
+        return "Contato: " + esc(n) + (t ? "<br>" + esc(t) : "");
+      })(),
+      FINEPRINT: md(estado.fineprint),
+      _vidas: vidas
+    };
+  }
+
+  function gerar(){
+    var t = marcadores();
+    return window.WOW_TEMPLATE.replace(/\{\{([A-Z_]+)\}\}/g, function(todo, chave){
+      return Object.prototype.hasOwnProperty.call(t, chave) ? t[chave] : todo;
+    });
+  }
+
+  // ---------- formulário ----------
+  var campos = {};
+  Array.prototype.forEach.call(document.querySelectorAll("[data-k]"), function(el){
+    campos[el.getAttribute("data-k")] = el;
+  });
+
+  function paraTela(){
+    Object.keys(campos).forEach(function(k){
+      var el = campos[k];
+      if (el.type === "checkbox") el.checked = !!estado[k];
+      else el.value = estado[k] == null ? "" : estado[k];
+    });
+  }
+  function daTela(){
+    Object.keys(campos).forEach(function(k){
+      var el = campos[k];
+      estado[k] = el.type === "checkbox" ? el.checked : el.value;
+    });
+  }
+
+  var timer = null;
+  function agendar(){
+    daTela();
+    salvar();
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(render, 220);
+    atualizarInfo();
+  }
+
+  function atualizarInfo(){
+    var caminho = slugLimpo() || "sem-caminho";
+    document.getElementById("pvpath").textContent = "/" + caminho + "/";
+    document.getElementById("pubpath").textContent = "propostas/" + caminho + "/index.html";
+    var e = economia();
+    document.getElementById("calc").innerHTML = e.vidas && e.mes > 0
+      ? "Com <b>" + e.vidas + " vidas</b>: de <b>" + dinheiro(e.mesDe) + "</b> por <b>" + dinheiro(e.mesPor) +
+        "</b> ao mês — economia de <b>" + dinheiro(e.mes) + "/mês</b> e <b>" + dinheiro(e.total) +
+        "</b> em " + e.meses + " meses."
+      : "Informe vidas e um valor “de” maior que o “por” para calcular a economia.";
+  }
+
+  function render(){
+    var html = gerar();
+    var blob = new Blob([html], { type:"text/html;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var iframe = document.getElementById("pv");
+    iframe.src = url;
+    if (urlAtual) URL.revokeObjectURL(urlAtual);
+    urlAtual = url;
+  }
+
+  // ---------- persistência ----------
+  function salvar(){
+    try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {}
+  }
+  function carregar(){
+    var guardado = null;
+    try { guardado = JSON.parse(localStorage.getItem(CHAVE) || "null"); } catch (e) {}
+    estado = {};
+    Object.keys(MODELO).forEach(function(k){
+      estado[k] = guardado && Object.prototype.hasOwnProperty.call(guardado, k) ? guardado[k] : MODELO[k];
+    });
+    siglaAnterior = estado.entityShort;
+  }
+
+  // ---------- ações ----------
+  function aviso(txt){
+    var el = document.getElementById("toast");
+    el.textContent = txt;
+    el.classList.add("on");
+    setTimeout(function(){ el.classList.remove("on"); }, 2200);
+  }
+  function baixar(nome, conteudo, tipo){
+    var blob = new Blob([conteudo], { type: tipo });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = nome;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+  }
+
+  document.getElementById("btn-baixar").onclick = function(){
+    baixar("index.html", gerar(), "text/html;charset=utf-8");
+    aviso("index.html baixado — salve em propostas/" + (slugLimpo() || "…") + "/");
+  };
+  document.getElementById("btn-abrir").onclick = function(){
+    var blob = new Blob([gerar()], { type:"text/html;charset=utf-8" });
+    window.open(URL.createObjectURL(blob), "_blank");
+  };
+  document.getElementById("btn-copiar").onclick = function(){
+    var html = gerar();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(html).then(
+        function(){ aviso("HTML copiado."); },
+        function(){ aviso("Não foi possível copiar — use “Baixar index.html”."); }
+      );
+    } else {
+      aviso("Não foi possível copiar — use “Baixar index.html”.");
+    }
+  };
+  document.getElementById("btn-exportar").onclick = function(){
+    var nome = (slugLimpo().replace(/\//g, "-") || "proposta") + ".json";
+    baixar(nome, JSON.stringify(estado, null, 2), "application/json");
+    aviso(nome + " baixado — guarde para editar esta proposta depois.");
+  };
+  document.getElementById("btn-importar").onclick = function(){
+    document.getElementById("file").click();
+  };
+  document.getElementById("file").onchange = function(ev){
+    var arq = ev.target.files && ev.target.files[0];
+    if (!arq) return;
+    var leitor = new FileReader();
+    leitor.onload = function(){
+      var dados;
+      try { dados = JSON.parse(leitor.result); }
+      catch (e) { aviso("Arquivo inválido — não é um JSON de proposta."); return; }
+      if (!dados || typeof dados !== "object") { aviso("Arquivo inválido."); return; }
+      Object.keys(MODELO).forEach(function(k){
+        if (Object.prototype.hasOwnProperty.call(dados, k)) estado[k] = dados[k];
+      });
+      siglaAnterior = estado.entityShort;
+      paraTela(); agendar(); render();
+      aviso("Proposta carregada.");
+    };
+    leitor.readAsText(arq);
+    ev.target.value = "";
+  };
+  document.getElementById("btn-modelo").onclick = function(){
+    if (!confirm("Restaurar todos os campos para o modelo AMPRO? O rascunho atual será perdido.")) return;
+    estado = JSON.parse(JSON.stringify(MODELO));
+    siglaAnterior = estado.entityShort;
+    paraTela(); agendar(); render();
+    aviso("Modelo restaurado.");
+  };
+  document.getElementById("btn-sigla").onclick = function(){
+    daTela();
+    var antiga = prompt("Trocar qual sigla nos textos?", siglaAnterior);
+    if (!antiga) return;
+    var nova = String(estado.entityShort || "").trim();
+    if (!nova) { aviso("Preencha a sigla nova primeiro."); return; }
+    var trocas = 0;
+    var re = new RegExp(antiga.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g");
+    Object.keys(estado).forEach(function(k){
+      if (k === "entityShort" || typeof estado[k] !== "string") return;
+      var antes = estado[k];
+      var depois = antes.replace(re, function(){ trocas++; return nova; });
+      if (depois !== antes) estado[k] = depois;
+    });
+    siglaAnterior = nova;
+    paraTela(); agendar(); render();
+    aviso(trocas ? trocas + " ocorrência(s) de “" + antiga + "” trocadas por “" + nova + "”."
+                 : "Nenhuma ocorrência de “" + antiga + "” encontrada.");
+  };
+
+  // ---------- zoom da prévia ----------
+  var zoom = 1;
+  function aplicarZoom(){
+    var palco = document.getElementById("pv-stage");
+    palco.style.transform = "scale(" + zoom + ")";
+    palco.style.height = (2400 * zoom) + "px";
+  }
+  function ajustar(){
+    var largura = document.getElementById("pv-scroll").clientWidth - 28;
+    zoom = Math.min(1, Math.max(0.35, largura / 820));
+    aplicarZoom();
+  }
+  document.getElementById("z-mais").onclick = function(){ zoom = Math.min(1.6, zoom + 0.1); aplicarZoom(); };
+  document.getElementById("z-menos").onclick = function(){ zoom = Math.max(0.3, zoom - 0.1); aplicarZoom(); };
+  document.getElementById("z-fit").onclick = ajustar;
+  window.addEventListener("resize", ajustar);
+
+  // ---------- início ----------
+  if (!window.WOW_TEMPLATE) {
+    document.querySelector(".preview").innerHTML =
+      '<div style="padding:26px; font-size:14px; color:#7A6069;">Não foi possível carregar <b>template.js</b>. ' +
+      "Abra esta página pelo servidor (propostas.wowmais.com.br/admin/) e não direto do arquivo.</div>";
+    return;
+  }
+  carregar();
+  paraTela();
+  Object.keys(campos).forEach(function(k){
+    campos[k].addEventListener("input", agendar);
+    campos[k].addEventListener("change", agendar);
+  });
+  atualizarInfo();
+  render();
+  ajustar();
+})();
+</script>
+
+</body>
+</html>
