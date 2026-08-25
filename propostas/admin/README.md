@@ -24,6 +24,7 @@ Convenções de digitação nos campos de texto:
 | --- | --- |
 | `*texto*` | **negrito** |
 | `_texto_` | *itálico* (destaque em laranja no título da capa) |
+| `~texto~` | ~~riscado~~ — o valor antigo num "de/por" |
 | `Título \| Texto` | listas de dois campos (itens, passos, tabela de avulsos) |
 | `Clínica Geral \| 24h` | especialidade com selo 24h |
 | `Saúde Pet[cortesia]` | item do plano com o selo laranja "cortesia" |

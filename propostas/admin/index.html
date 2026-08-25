@@ -114,7 +114,7 @@
   <div class="form">
     <div class="hint">
       Preencha os campos que mudam de cliente para cliente — a prévia ao lado atualiza sozinha.
-      Em textos longos, <code>*texto*</code> vira <b>negrito</b> e <code>_texto_</code> vira <i>itálico</i>.
+      Em textos longos, <code>*texto*</code> vira <b>negrito</b>, <code>_texto_</code> vira <i>itálico</i> e <code>~texto~</code> vira <s>riscado</s> (para valor antigo).
       Nas listas, <b>uma linha por item</b>; onde houver dois campos, separe com <code>|</code>.
       O rascunho fica salvo neste navegador.
     </div>
@@ -265,7 +265,7 @@
         </div>
 
         <label>Consultas adicionais — linhas
-          <span class="note">Uma por linha: Serviço | Valor</span>
+          <span class="note">Uma por linha: Serviço | Valor. Para "de/por": ~R$ 80,00~R$ 54,90</span>
         </label>
         <textarea rows="5" data-k="addons"></textarea>
 
@@ -405,8 +405,8 @@
     addonsIntro: "Além das consultas já inclusas no plano, o associado tem valores reduzidos sempre que precisar:",
     addonsCol: "Valor para assinantes",
     addons: [
-      "*Psicologia* — sessão avulsa | R$ 49,90",
-      "*Nutrição* — consulta avulsa | R$ 49,90",
+      "*Psicologia* — sessão avulsa | ~R$ 80,00~R$ 54,90",
+      "*Nutrição* — consulta avulsa | ~R$ 80,00~R$ 54,90",
       "*Especialidades médicas* — consulta avulsa | R$ 49,90",
       "*Psicoterapia contínua* — 4 sessões/mês (1 por semana) | R$ 180,00"
     ].join("\n"),
@@ -442,7 +442,8 @@
     var b = corNegrito ? '<b style="color:' + corNegrito + ';">' : "<b>";
     return esc(s)
       .replace(/\*([^*]+)\*/g, b + "$1</b>")
-      .replace(/_([^_]+)_/g, "<i>$1</i>");
+      .replace(/_([^_]+)_/g, "<i>$1</i>")
+      .replace(/~([^~]+)~/g, "<s>$1</s>");
   }
   function linhas(s){
     return String(s || "").split("\n").map(function(l){ return l.trim(); })
