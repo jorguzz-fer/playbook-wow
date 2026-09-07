@@ -77,7 +77,7 @@ a{color:inherit}
 .status-strip{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;margin-top:22px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);font-size:.84rem;color:var(--ink-soft)}
 .status-strip b{color:var(--ink);font-family:var(--mono);font-size:.8rem}
 .status-strip .st{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink)}
-.status-strip .st i{width:9px;height:9px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px var(--amber-soft)}
+.status-strip .st i{width:9px;height:9px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 3px var(--coral-soft)}
 .status-strip a{color:var(--teal);font-weight:600;text-decoration:none;margin-left:auto}
 .status-strip a:hover{text-decoration:underline}
 
@@ -186,95 +186,54 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .flowcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .flowcard .step{font-family:var(--mono);font-weight:700;font-size:.72rem;color:var(--coral);letter-spacing:.1em;display:flex;justify-content:space-between;align-items:center}
 .flowcard .step .wk{color:var(--muted);letter-spacing:.04em;font-size:.68rem}
+.flowcard .step .wk.now{color:var(--teal)}
 .flowcard h4{font-size:1rem;margin:10px 0 6px}
 .flowcard p{font-size:.85rem;color:var(--ink-soft)}
 .flow-note{margin-top:22px;font-size:.9rem;color:var(--ink-soft);background:var(--bg2);border-radius:12px;padding:16px 18px;border-left:3px solid var(--teal)}
 
-/* ECOSYSTEM MAP */
-.eco-sum{display:flex;flex-wrap:wrap;gap:10px;margin:-14px 0 26px}
-.eco-sum .sc{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:7px 14px 7px 10px;font-size:.82rem;color:var(--ink-soft);box-shadow:var(--shadow)}
-.eco-sum .sc i{width:10px;height:10px;border-radius:50%;background:var(--st)}
-.eco-sum .sc b{font-family:var(--mono);color:var(--ink)}
-.eco-frame{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px 22px 14px}
-.eco-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
-.eco{position:relative;display:grid;grid-template-columns:repeat(6,minmax(140px,1fr));gap:26px;min-width:980px;padding:2px}
-.eco-svg{position:absolute;left:0;top:0;z-index:1;pointer-events:none;overflow:visible}
-.eco-col{display:flex;flex-direction:column;gap:9px}
-.eco-col h5{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:0;font-weight:700}
-.eco-col .cdesc{font-size:.7rem;color:var(--muted);margin:2px 0 6px;line-height:1.35;min-height:2.7em}
-.eco-node{position:relative;z-index:2;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 20px 10px 14px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s,opacity .2s;text-align:left;font-family:var(--body);width:100%;color:var(--ink);--st:var(--teal-bright)}
-.eco-node::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:var(--st)}
-.eco-node .nm{font-weight:600;font-size:.82rem;line-height:1.25;display:block}
-.eco-node .sb{font-size:.7rem;color:var(--muted);margin-top:3px;line-height:1.3;display:block}
-.eco-node .stt{position:absolute;right:8px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--st)}
-.eco-node:hover,.eco-node.near{border-color:var(--teal);transform:translateY(-1px)}
-.eco-node.sel{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
-.eco.has-focus .eco-node:not(.near):not(.sel):not(:hover){opacity:.32}
-.eco-edge{fill:none;stroke:var(--line-2);stroke-width:1.6;transition:stroke .2s,opacity .2s,stroke-width .2s}
-.eco-edge.dash{stroke-dasharray:5 5}
-.eco.has-focus .eco-edge{opacity:.14}
-.eco.has-focus .eco-edge.hl{opacity:1;stroke:var(--teal);stroke-width:2.4}
-.st-temos{--st:#17191A}.st-configurar{--st:#12A594}.st-construir{--st:#FF7300}.st-decidir{--st:#F0A93B}
-.eco-legend{display:flex;flex-wrap:wrap;gap:12px 22px;margin:14px 0 0;font-size:.78rem;color:var(--ink-soft);align-items:center;padding-top:14px;border-top:1px dashed var(--line-2)}
-.eco-legend .lg{display:inline-flex;align-items:center;gap:7px}
-.eco-legend .lg i{width:10px;height:10px;border-radius:50%;background:var(--st)}
-.eco-legend .lg.dashed i{width:18px;height:0;border-top:2px dashed var(--line-2);border-radius:0;background:none}
-.eco-legend .hint{margin-left:auto;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
-.eco-detail{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1.35fr;gap:22px;min-height:120px}
-@media(max-width:760px){.eco-detail{grid-template-columns:1fr}}
-.eco-detail h4{font-size:1.1rem;margin-bottom:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.eco-detail p{font-size:.9rem;color:var(--ink-soft)}
-.eco-detail .empty{color:var(--muted);font-size:.9rem;align-self:center}
-.eco-detail .colname{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:8px}
-.ilist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.ilist li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;font-size:.84rem;align-items:baseline;color:var(--ink-soft)}
-.ilist .iid{font-family:var(--mono);font-weight:700;font-size:.72rem;color:var(--coral);cursor:pointer;background:none;border:none;padding:0}
-.ilist .iid:hover{text-decoration:underline}
-.ilist .iw{font-family:var(--mono);font-size:.68rem;color:var(--muted);white-space:nowrap}
-.stpill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;white-space:nowrap}
-.stpill i{width:7px;height:7px;border-radius:50%;background:var(--st)}
-.stpill.st-temos{background:#E8EAEA;color:#17191A}
-.stpill.st-configurar{background:var(--teal-soft);color:#0a4f47}
-.stpill.st-construir{background:var(--coral-soft);color:#8a3418}
-.stpill.st-decidir{background:var(--amber-soft);color:#7a5410}
-.eco-clear{font-family:var(--mono);font-size:.7rem;font-weight:700;padding:5px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer}
-.eco-clear:hover{border-color:var(--teal);color:var(--teal)}
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;align-items:center}
+.stage{width:var(--w);max-width:100%;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px 24px;display:grid;grid-template-columns:150px 1fr 1.25fr;gap:20px;align-items:start;transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden}
+.stage::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--teal-bright)}
+.stage:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+@media(max-width:860px){.stage{width:100%!important;grid-template-columns:1fr;gap:12px}}
+.stage .sn{font-family:var(--mono);font-weight:700;font-size:.7rem;letter-spacing:.12em;color:var(--coral)}
+.stage h4{font-size:1.3rem;margin-top:4px}
+.stage .metric{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:8px;line-height:1.4}
+.stage .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:8px}
+.stage .lbl.today{color:var(--coral)}
+.tools{display:flex;flex-wrap:wrap;gap:6px}
+.tool{font-size:.78rem;font-weight:600;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:5px 9px;color:var(--ink-soft)}
+.tool.later{border-style:dashed;background:transparent;color:var(--muted);font-weight:500}
+.stage ul{margin:0;padding-left:16px;font-size:.86rem;color:var(--ink-soft)}
+.stage li{margin-bottom:4px}
+.stage li::marker{color:var(--coral)}
+.farrow{height:30px;display:flex;align-items:center;justify-content:center;color:var(--line-2)}
+.farrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.spine{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+@media(max-width:680px){.spine{grid-template-columns:1fr}}
+.spine .bar{background:var(--ink);color:#fff;border-radius:14px;padding:18px 22px}
+.spine .bar.light{background:var(--teal-soft);color:#0a4f47}
+.spine .bar .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:#6FE3D0}
+.spine .bar.light .lbl{color:var(--teal)}
+.spine .bar h4{font-size:1.05rem;margin:6px 0 4px;color:inherit}
+.spine .bar p{font-size:.84rem;color:#B7CCC5}
+.spine .bar.light p{color:#0a4f47}
+.funnel-note{margin-top:18px;font-size:.88rem;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:flex;gap:10px;align-items:flex-start}
+.funnel-note b{color:var(--ink)}
 
-/* INTEGRATIONS TABLE */
-.sub-head{margin:52px 0 8px}
-.sub-head h3{font-size:1.5rem}
-.sub-head p{color:var(--ink-soft);margin-top:8px;max-width:64ch}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 14px;align-items:center}
-.filters .grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-right:12px}
-.filters .grp span{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px}
-.fbtn{font-family:var(--mono);font-size:.7rem;font-weight:700;padding:7px 11px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer;transition:all .15s}
-.fbtn[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
-.fbtn:not([aria-pressed=true]):hover{border-color:var(--teal);color:var(--teal)}
-.filters .count{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
-.tblwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
-table.itbl{width:100%;border-collapse:collapse;min-width:920px;font-size:.84rem}
-.itbl th{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:14px;border-bottom:1px solid var(--line);background:var(--bg2);font-weight:700;white-space:nowrap}
-.itbl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft);line-height:1.45}
-.itbl tr:last-child td{border-bottom:none}
-.itbl tr.flash td{background:var(--amber-soft)}
-.itbl td.iid{font-family:var(--mono);font-weight:700;color:var(--coral);white-space:nowrap}
-.itbl td.iname{color:var(--ink);font-weight:600;min-width:200px}
-.itbl td.iname small{display:block;font-weight:400;color:var(--muted);font-size:.76rem;margin-top:3px}
-.itbl td.flowc{font-family:var(--mono);font-size:.72rem;white-space:nowrap;color:var(--teal);font-weight:700}
-.itbl td.wk{font-family:var(--mono);font-size:.74rem;white-space:nowrap;color:var(--ink)}
-.itbl td.eff{font-family:var(--mono);font-size:.74rem;font-weight:700;white-space:nowrap}
-.itbl td.none{text-align:center;color:var(--muted);padding:34px}
-
-/* TIMELINE */
+/* TIMELINE: HOJE → AMANHÃ → 12 SEMANAS */
 .kick{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-bottom:22px;font-size:.88rem;color:var(--ink-soft)}
 .kick label{font-weight:600;color:var(--ink)}
 .kick input[type=date]{font-family:var(--mono);font-size:.86rem;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
 .kick .range{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
 .tl-months{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.tl-btn{font-family:var(--mono);font-weight:700;font-size:.84rem;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:all .2s;color:var(--ink-soft);flex:1;min-width:110px;text-align:center}
+.tl-btn{font-family:var(--mono);font-weight:700;font-size:.84rem;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:all .2s;color:var(--ink-soft);flex:1;min-width:104px;text-align:center}
 .tl-btn small{display:block;font-weight:500;font-size:.66rem;color:var(--muted);margin-top:3px;letter-spacing:0}
 .tl-btn[aria-selected=true]{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 6px 18px rgba(12,110,98,.28)}
 .tl-btn[aria-selected=true] small{color:#C9EDE6}
+.tl-btn.hot[aria-selected=true]{background:var(--coral);border-color:var(--coral);box-shadow:0 6px 18px rgba(255,115,0,.28)}
+.tl-btn.hot[aria-selected=true] small{color:#FFE0C7}
 .tl-btn:not([aria-selected=true]):hover{border-color:var(--teal)}
 .tl-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:32px;box-shadow:var(--shadow)}
 .tl-head{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding-bottom:22px;border-bottom:1px solid var(--line)}
@@ -298,10 +257,46 @@ table.itbl{width:100%;border-collapse:collapse;min-width:920px;font-size:.84rem}
 .week ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:.92rem}
 .week li{margin-bottom:4px}
 .week li::marker{color:var(--coral)}
-.week .deps{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;align-items:center}
-.week .deps span{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
-.dep{font-family:var(--mono);font-size:.66rem;font-weight:700;padding:3px 7px;border-radius:6px;background:var(--bg2);color:var(--ink-soft);border:1px solid var(--line);cursor:pointer}
-.dep:hover{border-color:var(--teal);color:var(--teal)}
+
+/* HOJE: checklist */
+.progress{display:flex;align-items:center;gap:12px;margin:22px 0 4px;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.progress .pb{flex:1;height:8px;border-radius:99px;background:var(--line-2);overflow:hidden}
+.progress .pb i{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+.progress .pc{font-weight:700;color:var(--ink);white-space:nowrap}
+.progress button{font-family:var(--mono);font-size:.66rem;font-weight:700;padding:4px 9px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer}
+.progress button:hover{border-color:var(--teal);color:var(--teal)}
+.block{padding:18px 0;border-bottom:1px dashed var(--line-2)}
+.block:last-of-type{border-bottom:none}
+.block .bh{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:8px}
+.block .bh .bt{font-family:var(--mono);font-weight:700;font-size:.78rem;color:var(--coral);letter-spacing:.06em}
+.block .bh .bs{font-family:var(--dsp);font-weight:700;font-size:1.12rem}
+.block .bh .bc{margin-left:auto;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.task{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:7px 0}
+.task input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--teal);cursor:pointer;flex:none}
+.task label{font-size:.92rem;color:var(--ink-soft);cursor:pointer;line-height:1.5}
+.task.done label{text-decoration:line-through;color:var(--muted)}
+.task .tg{font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:6px;background:var(--bg2);color:var(--ink-soft);white-space:nowrap;margin-top:3px}
+@media(max-width:520px){.task{grid-template-columns:auto 1fr}.task .tg{display:none}}
+.golive{margin-top:22px;background:var(--bg2);border-radius:14px;padding:20px 22px;border-left:3px solid var(--coral)}
+.golive h4{font-size:1.02rem;margin-bottom:4px}
+.golive .cap{font-size:.82rem;color:var(--muted);margin-bottom:10px}
+.golive .task label{font-size:.9rem}
+.nottoday{margin-top:22px}
+.nottoday h4{font-size:.7rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:700}
+.nottoday ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+@media(max-width:680px){.nottoday ul{grid-template-columns:1fr}}
+.nottoday li{font-size:.84rem;color:var(--ink-soft);display:flex;gap:8px}
+.nottoday li b{color:var(--ink);font-weight:600;white-space:nowrap}
+.nottoday li .wk{font-family:var(--mono);font-size:.7rem;color:var(--teal);font-weight:700;white-space:nowrap;margin-left:auto}
+
+/* AMANHÃ: horas */
+.hours{display:flex;flex-direction:column;margin-top:8px}
+.hour{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line-2);font-size:.92rem;color:var(--ink-soft)}
+.hour:last-child{border-bottom:none}
+.hour .h{font-family:var(--mono);font-weight:700;color:var(--teal)}
+.hour b{color:var(--ink);font-weight:600}
+.rule{margin-top:20px;font-size:.88rem;color:var(--ink-soft);background:var(--coral-soft);border-radius:12px;padding:14px 18px;border-left:3px solid var(--coral)}
+.rule b{color:#8a3418}
 
 /* KPI */
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -353,8 +348,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <a href="#motores">Motores</a>
       <a href="#canais">360°</a>
       <a href="#automacao">Automação</a>
-      <a href="#ecossistema">Ecossistema</a>
-      <a href="#cronograma">Cronograma</a>
+      <a href="#funil">Funil</a>
+      <a href="#cronograma">Hoje → Amanhã</a>
     </div>
     <div class="nav-pill"><span class="full">1.000 <b>→</b> 3.000 · 12 semanas</span><span class="short">1k <b>→</b> 3k · 12 sem</span></div>
   </div>
@@ -366,7 +361,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="wrap">
     <span class="hero-badge"><span class="dot"></span>Plano de Marketing &amp; Comunicação · 3 meses · 12 semanas</span>
     <h1>3.000 assinantes em 12 semanas com <span class="a">R$1,5 mil</span> por mês.</h1>
-    <p class="hero-sub">A conta do tráfego pago não fecha — e é justamente por isso que o plano funciona. Com R$1,5 mil por mês, o crescimento vem dos ativos que já são nossos (base própria, Rede de Associados e médicos que indicam), ligados por automação desde a primeira semana. Triplicar a base em três meses é o que esses motores entregam — se a máquina estiver de pé na semana 1.</p>
+    <p class="hero-sub">A conta do tráfego pago não fecha — e é justamente por isso que o plano funciona. Com R$1,5 mil por mês, o crescimento vem dos ativos que já são nossos (base própria, Rede de Associados e médicos que indicam), ligados por automação. Hoje a gente monta a máquina; amanhã ela começa a rodar.</p>
     <div class="hero-figs">
       <div class="figcard"><div class="n" id="heroCount">1.000</div><div class="l">Assinantes hoje</div></div>
       <div class="figcard hl"><div class="n"><em>3.000</em></div><div class="l">Meta em 12 semanas</div></div>
@@ -374,10 +369,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <div class="figcard"><div class="n">R$1,5k<span style="font-size:1rem;color:var(--muted)">/mês</span></div><div class="l">Verba de marketing · R$4,5k no ciclo</div></div>
     </div>
     <div class="status-strip">
-      <span class="st"><i></i>Status: ainda não iniciado</span>
-      <span>Kickoff proposto <b id="kickLbl">14/09/2026</b> · fim <b id="endLbl">06/12/2026</b></span>
-      <span>Semana 0 = decisões, acessos e bases</span>
-      <a href="#ecossistema">ver o mapa do ecossistema →</a>
+      <span class="st"><i></i>Setup hoje · rodando amanhã</span>
+      <span>Hoje <b id="todayLbl">07/09/2026</b>: ferramentas, integrações e testes</span>
+      <span>Kickoff <b id="kickLbl">08/09/2026</b> · fim <b id="endLbl">30/11/2026</b></span>
+      <a href="#cronograma">ver o checklist de hoje →</a>
     </div>
   </div>
 </header>
@@ -405,7 +400,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <input type="range" id="churn" min="0" max="10" step="0.5" value="5">
         </div>
         <div class="calc-out">
-          <div class="box"><div class="n coral" id="grossTotal">2.224</div><div class="l">Vendas brutas necessárias (12 semanas)</div></div>
+          <div class="box"><div class="n coral" id="grossTotal">2.220</div><div class="l">Vendas brutas necessárias (12 semanas)</div></div>
           <div class="box"><div class="n" id="grossAvg">~185</div><div class="l">Média de vendas brutas / semana</div></div>
         </div>
         <div class="verdict ok" id="verdict">
@@ -415,7 +410,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       </div>
       <div class="panel chartcard reveal">
         <h3 style="margin-bottom:4px">Rampa de crescimento · 12 semanas</h3>
-        <div class="cap">Não é média plana: nas semanas 1–4 a gente liga a máquina e colhe a base própria; nas 5–8 a Rede escala; nas 9–12 os canais compostos carregam o número.</div>
+        <div class="cap">A máquina fica pronta hoje, então a semana 1 já vende: nas semanas 1–4 a base própria carrega; nas 5–8 a Rede escala; nas 9–12 os canais compostos carregam o número.</div>
         <div class="chart-legend">
           <span><i class="lg-bar"></i>Net adds / semana</span>
           <span><i class="lg-line"></i>Base acumulada</span>
@@ -441,14 +436,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     </div>
 
     <div class="motor-panel on" data-panel="0">
-      <div class="tagline">🟢 O dinheiro rápido · semanas 2–8</div>
+      <div class="tagline">🟢 O dinheiro rápido · onda 1 sai amanhã</div>
       <h3>Base Própria — 15 mil contatos</h3>
       <p class="role">10k no WhatsApp + 5k em e-mail. Custo de aquisição perto de zero. Em 12 semanas é o motor que carrega os meses 1 e 2 quase sozinho e financia o momentum psicológico da Rede.</p>
       <div class="motor-grid">
         <div>
           <h4>Mecânica</h4>
           <ul class="mlist">
-            <li>Três ondas de broadcast no WhatsApp (quente na S2, morno na S3, frio na S4) via Evolution/Z-API, com a Wendy qualificando e conduzindo à assinatura.</li>
+            <li>Três ondas de broadcast no WhatsApp (quente a partir de amanhã, morno na S2, frio na S3) via Z-API, com a Wendy qualificando e conduzindo à assinatura no Evolution.</li>
             <li>Reativação por e-mail em 5 disparos ao longo de 3 semanas, com a mesma oferta e o mesmo link rastreado.</li>
             <li>Oferta de entrada irresistível: 1º mês simbólico ou bundle "traga a família", alinhado à persona Mãe.</li>
           </ul>
@@ -457,29 +452,29 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <h4>Meta do canal</h4>
           <div class="metric-tag"><b>4–6%</b><span>de conversão sobre base quente</span></div>
           <div class="metric-tag" style="margin-top:10px"><b>600–900</b><span>assinantes previstos</span></div>
-          <div class="metric-note">Sem o opt-out e a segmentação prontos na S1, a onda 1 não sai.</div>
+          <div class="metric-note">Sem o opt-out e a segmentação prontos hoje, a onda 1 não sai amanhã.</div>
         </div>
       </div>
     </div>
 
     <div class="motor-panel" data-panel="1">
-      <div class="tagline">🟠 O motor escalável · recrutamento abre na S1</div>
+      <div class="tagline">🟠 O motor escalável · recrutamento abre amanhã</div>
       <h3>Rede de Associados</h3>
-      <p class="role">Consultores, Especialistas e médicos associados. Em 12 semanas a Rede não tem o luxo de compor devagar: recrutamento na S1, kit pronto na S3, primeira comissão paga na S6.</p>
+      <p class="role">Consultores, Especialistas e médicos associados. Em 12 semanas a Rede não tem o luxo de compor devagar: kit v0 hoje, recrutamento amanhã, kit completo na S2, primeira comissão paga na S4.</p>
       <div class="motor-grid">
         <div>
           <h4>Mecânica</h4>
           <ul class="mlist">
-            <li>Campanha de recrutamento ("renda extra com propósito") rodando em paralelo à de clientes desde a semana 1, com cadastro por formulário.</li>
-            <li>Kit de armamento plug-and-play na S3: criativos, scripts de WhatsApp, áudios e respostas a objeções — e um "conteúdo da semana" toda segunda.</li>
-            <li>Link ou cupom único por associado, atribuído automaticamente no CRM; comissão paga rápido e ranking semanal.</li>
+            <li>Campanha de recrutamento ("renda extra com propósito") rodando em paralelo à de clientes desde amanhã, com cadastro por formulário.</li>
+            <li>Kit de armamento plug-and-play: criativos, scripts de WhatsApp, áudios e respostas a objeções — e um "conteúdo da semana" toda segunda a partir da S2.</li>
+            <li>Link ou cupom único por associado, atribuído automaticamente no CRM próprio; comissão paga rápido e ranking semanal.</li>
           </ul>
         </div>
         <div>
           <h4>Canal-médico</h4>
           <ul class="mlist">
             <li>Cada médico que assina vira nó de distribuição para os próprios pacientes — confiança e compliance embutidos.</li>
-            <li>QR code e material de consultório com o cupom do médico, a partir da S6.</li>
+            <li>QR code e material de consultório com o cupom do médico, a partir da S5.</li>
           </ul>
           <div class="metric-tag" style="margin-top:12px"><b>600–1.000</b><span>assinantes previstos em 12 semanas</span></div>
           <div class="metric-note">A projeção de 6 meses era 1.000–1.500: a Rede compõe com o tempo, e tempo é o que o plano tem menos.</div>
@@ -488,21 +483,21 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     </div>
 
     <div class="motor-panel" data-panel="2">
-      <div class="tagline">🟡 Reputação + escala · paid liga na S3</div>
+      <div class="tagline">🟡 Reputação + escala · paid liga na S2</div>
       <h3>Flywheel de conteúdo + Paid cirúrgico</h3>
-      <p class="role">Constrói a marca "tranquilidade" e alimenta o retargeting a partir da S3, quando as ondas da base já deram massa aos públicos. O paid nunca prospecta a frio — só amplifica quem já está quente.</p>
+      <p class="role">Constrói a marca "tranquilidade" e alimenta o retargeting a partir da S2, quando a onda 1 já deu massa aos públicos. O paid nunca prospecta a frio — só amplifica quem já está quente.</p>
       <div class="motor-grid">
         <div>
           <h4>Conteúdo</h4>
           <ul class="mlist">
-            <li>Instagram, Reels e Status de WhatsApp assinados pelos médicos (brief na S3, no ar na S5) — autoridade e compliance de uma vez.</li>
+            <li>Instagram, Reels e Status de WhatsApp assinados pelos médicos (brief na S2, no ar na S4) — autoridade e compliance de uma vez.</li>
             <li>Desenhado para ser redistribuído pela Rede: o associado compartilha, não cria.</li>
           </ul>
         </div>
         <div>
           <h4>Paid cirúrgico</h4>
           <ul class="mlist">
-            <li>Retargeting de quem visitou ou abandonou o checkout desde a S3 (R$800/mês); lookalike dos convertidos a partir da S6.</li>
+            <li>Retargeting de quem visitou ou abandonou o checkout desde a S2 (R$800/mês); lookalike dos convertidos a partir da S4.</li>
             <li>Boost (R$400/mês) só do conteúdo que já provou — nunca público frio.</li>
           </ul>
           <div class="metric-tag" style="margin-top:12px"><b>150–250</b><span>assinantes (paid) + 100–200 (indique e ganhe)</span></div>
@@ -522,12 +517,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     </div>
     <div class="grid360">
       <div class="channels reveal">
-        <div class="chrow"><span class="chip own">Owned</span><div><div class="name">WhatsApp · Evolution + Wendy</div><div class="role">Motor 1 e conversão de tudo</div></div><span class="cost">~R$0</span></div>
+        <div class="chrow"><span class="chip own">Owned</span><div><div class="name">WhatsApp · Evolution + Z-API + Wendy</div><div class="role">Motor 1 e conversão de tudo</div></div><span class="cost">~R$0</span></div>
         <div class="chrow"><span class="chip own">Owned</span><div><div class="name">E-mail · base 5k</div><div class="role">Reativação e nutrição</div></div><span class="cost">~R$0</span></div>
-        <div class="chrow"><span class="chip own">Owned</span><div><div class="name">Site &amp; landing pages</div><div class="role">Conversão e captura, com origem rastreada</div></div><span class="cost">~R$0</span></div>
+        <div class="chrow"><span class="chip own">Owned</span><div><div class="name">Site &amp; landing page</div><div class="role">Conversão e captura, com origem rastreada</div></div><span class="cost">~R$0</span></div>
         <div class="chrow"><span class="chip earn">Earned</span><div><div class="name">Rede de Associados + médicos</div><div class="role">Motor 2, o escalável</div></div><span class="cost">~R$0</span></div>
-        <div class="chrow"><span class="chip earn">Earned</span><div><div class="name">Indique e ganhe</div><div class="role">Loop viral de clientes (liga na S7)</div></div><span class="cost">baixo</span></div>
-        <div class="chrow"><span class="chip paid">Paid</span><div><div class="name">Meta · retargeting + lookalike</div><div class="role">Escala de público quente, da S3 em diante</div></div><span class="cost">R$800/mês</span></div>
+        <div class="chrow"><span class="chip earn">Earned</span><div><div class="name">Indique e ganhe</div><div class="role">Loop viral de clientes (liga na S5)</div></div><span class="cost">baixo</span></div>
+        <div class="chrow"><span class="chip paid">Paid</span><div><div class="name">Meta · retargeting + lookalike</div><div class="role">Escala de público quente, da S2 em diante</div></div><span class="cost">R$800/mês</span></div>
         <div class="chrow"><span class="chip paid">Paid</span><div><div class="name">Boost de conteúdo vencedor</div><div class="role">Amplificar o que já funcionou</div></div><span class="cost">R$400/mês</span></div>
         <div class="chrow"><span class="chip soc">Social</span><div><div class="name">Instagram orgânico</div><div class="role">Marca e prova social, assinado por médicos</div></div><span class="cost">~R$0</span></div>
         <div class="chrow"><span class="chip prod">Product</span><div><div class="name">Oferta de entrada + onboarding</div><div class="role">Ativação e queda de churn</div></div><span class="cost">~R$0</span></div>
@@ -553,102 +548,72 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="sec-head reveal">
       <span class="eyebrow">04 · Operação enxuta</span>
       <h2>A máquina roda sem a gente</h2>
-      <p>A gente opera enxuto, então a captação, a nutrição e a distribuição precisam ser automáticas — e prontas até a semana 6. Tudo dentro do nosso stack atual: N8N, Evolution/Z-API, Wendy e Pinecone.</p>
+      <p>A gente opera enxuto, então a captação, a nutrição e a distribuição precisam ser automáticas — e o essencial fica pronto hoje. Tudo dentro do nosso stack atual: N8N, Evolution/Z-API, Wendy, Pinecone e o CRM próprio.</p>
     </div>
     <div class="flow reveal">
-      <div class="flowcard"><div class="step">FLUXO 01<span class="wk">S1</span></div><h4>Captação → CRM</h4><p>Todo lead (site, Instagram, anúncio, indicação) entra num pipeline único com origem. N8N roteia.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 02<span class="wk">S1–2</span></div><h4>Nutrição · Wendy</h4><p>Qualifica, responde objeções via RAG/Pinecone e conduz à assinatura. Escala sem a gente digitar.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 03<span class="wk">S1–2</span></div><h4>Ondas de WhatsApp + e-mail</h4><p>Broadcast em ondas com opt-out e sequências de reativação/onboarding disparadas por evento.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 04<span class="wk">S3</span></div><h4>Distribuição pra Rede</h4><p>Kit de criativos gerado e agendado — cada associado recebe o "conteúdo da semana" pronto.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 05<span class="wk">S2–3</span></div><h4>Rastreio de indicação</h4><p>Link ou cupom por associado e por médico, com atribuição automática no CRM e comissão calculada.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 06<span class="wk">S3–4</span></div><h4>Sync de conversões</h4><p>Pixel + CAPI e públicos de retargeting/lookalike no Meta atualizados sozinhos.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 07<span class="wk">S4</span></div><h4>Cockpit de dados</h4><p>Uma tela no estilo Autron Dash: net adds, CAC, churn, associados ativos. E o resumo no WhatsApp do time.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 08<span class="wk">S5–6</span></div><h4>Antichurn</h4><p>Gatilhos (uso baixo, cartão recusado, fim do 1º mês) acionam a Wendy antes do cancelamento.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 01<span class="wk now">hoje</span></div><h4>Captação → CRM</h4><p>Todo lead (LP, Instagram, indicação) entra no pipeline único do CRM próprio com origem. N8N roteia.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 02<span class="wk now">hoje</span></div><h4>Nutrição · Wendy</h4><p>Qualifica, responde objeções via RAG/Pinecone e conduz à assinatura. Escala sem a gente digitar.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 03<span class="wk now">hoje</span></div><h4>Ondas de WhatsApp + e-mail</h4><p>Broadcast em ondas com opt-out e sequências de reativação/onboarding disparadas por evento.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 04<span class="wk">S2</span></div><h4>Distribuição pra Rede</h4><p>Kit v0 hoje; a partir da S2, o "conteúdo da semana" chega pronto para cada associado toda segunda.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 05<span class="wk now">hoje</span></div><h4>Rastreio de indicação</h4><p>Link ou cupom por associado e por médico, com atribuição automática no CRM e comissão calculada no Sheets.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 06<span class="wk">S2</span></div><h4>Sync de conversões</h4><p>Pixel hoje; CAPI e públicos de retargeting/lookalike no Meta atualizados sozinhos a partir da S2.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 07<span class="wk now">v0 hoje</span></div><h4>Cockpit de dados</h4><p>Hoje: Sheets alimentado pelo N8N + relatório diário no WhatsApp do time. Na S2 vira uma tela estilo Autron Dash.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 08<span class="wk">S3</span></div><h4>Antichurn</h4><p>Gatilhos (cartão recusado, sem uso, fim do 1º mês) acionam a Wendy antes do cancelamento.</p></div>
     </div>
-    <div class="flow-note reveal"><b>Ordem de construção:</b> fluxos 01–03 nas semanas 1–2 (sem eles nada roda) · 04–06 nas semanas 3–4 · 07–08 nas semanas 4–6. Depois da semana 6 ninguém constrói mais nada: só opera e otimiza. O mapa abaixo mostra cada peça que esses fluxos exigem.</div>
+    <div class="flow-note reveal"><b>Ordem de construção:</b> fluxos 01, 02, 03 e 05 hoje (sem eles nada roda amanhã) · 07 em versão planilha hoje · 04 e 06 na S2 · 08 na S3. Depois da S3 ninguém constrói mais nada: só opera e otimiza.</div>
   </div>
 </section>
 
-<!-- ECOSYSTEM -->
-<section id="ecossistema">
+<!-- FUNNEL -->
+<section id="funil">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">05 · Ecossistema</span>
-      <h2>O mapa de tudo que precisa existir</h2>
-      <p>Ferramentas, integrações e ações — cada uma com status e semana. O que já temos é a espinha; o que falta são conexões, não compras. Toque num nó para ver o que liga nele e filtrar as integrações.</p>
+      <span class="eyebrow">05 · O funil</span>
+      <h2>Cinco etapas, uma ferramenta por função</h2>
+      <p>O mapa inteiro cabe num funil. Cada etapa tem as ferramentas que a operam e o que precisa ser ligado hoje para ela funcionar amanhã. Embaixo, a espinha que conecta tudo e a medição que diz se está funcionando.</p>
     </div>
-    <div class="eco-sum reveal" id="ecoSum"></div>
-    <div class="eco-frame">
-      <div class="eco-scroll">
-        <div class="eco" id="eco">
-          <svg class="eco-svg" id="ecoSvg" aria-hidden="true"></svg>
-        </div>
+    <div class="funnel reveal" id="funnel"></div>
+    <div class="spine reveal">
+      <div class="bar">
+        <div class="lbl">Espinha</div>
+        <h4>N8N + CRM próprio</h4>
+        <p>Todo evento passa pelo N8N e todo contato vive no CRM: origem, associado, estágio. Sem isso nada é atribuído e nada dispara sozinho.</p>
       </div>
-      <div class="eco-legend">
-        <span class="lg st-temos"><i></i>Já temos</span>
-        <span class="lg st-configurar"><i></i>Configurar</span>
-        <span class="lg st-construir"><i></i>Construir</span>
-        <span class="lg st-decidir"><i></i>Decidir</span>
-        <span class="lg dashed"><i></i>Depende de decisão</span>
-        <span class="hint">nós = ferramentas · linhas = integrações</span>
+      <div class="bar light">
+        <div class="lbl">Medição</div>
+        <h4>Pixel + GA4 → Sheets → cockpit</h4>
+        <p>Hoje: Pixel e GA4 na LP e no checkout; N8N grava cada lead e venda numa planilha; relatório automático às 19h. Na S2 a planilha vira uma tela.</p>
       </div>
     </div>
-    <div class="eco-detail" id="ecoDetail"><div class="empty">Nenhum nó selecionado. Passe o mouse ou toque numa ferramenta para ver o papel dela e as integrações que a envolvem.</div></div>
-
-    <div class="sub-head reveal">
-      <h3>As integrações, uma a uma</h3>
-      <p>Cada linha do mapa vira uma tarefa com dono de semana. Esforço: P = até 1 dia · M = 2–4 dias · G = mais de uma semana ou depende de terceiros.</p>
-    </div>
-    <div class="filters" id="filters">
-      <div class="grp"><span>Status</span>
-        <button class="fbtn" data-f="st" data-v="all" aria-pressed="true">Todos</button>
-        <button class="fbtn" data-f="st" data-v="temos" aria-pressed="false">Já temos</button>
-        <button class="fbtn" data-f="st" data-v="configurar" aria-pressed="false">Configurar</button>
-        <button class="fbtn" data-f="st" data-v="construir" aria-pressed="false">Construir</button>
-        <button class="fbtn" data-f="st" data-v="decidir" aria-pressed="false">Decidir</button>
-      </div>
-      <div class="grp"><span>Quando</span>
-        <button class="fbtn" data-f="m" data-v="all" aria-pressed="true">Tudo</button>
-        <button class="fbtn" data-f="m" data-v="0" aria-pressed="false">Semana 0</button>
-        <button class="fbtn" data-f="m" data-v="1" aria-pressed="false">Mês 1</button>
-        <button class="fbtn" data-f="m" data-v="2" aria-pressed="false">Mês 2</button>
-        <button class="fbtn" data-f="m" data-v="3" aria-pressed="false">Mês 3</button>
-      </div>
-      <span class="count" id="tblCount"></span>
-    </div>
-    <div class="tblwrap">
-      <table class="itbl" id="itbl">
-        <thead><tr><th>#</th><th>Integração</th><th>Como</th><th>Para quê</th><th>Fluxo</th><th>Semana</th><th>Esforço</th><th>Status</th></tr></thead>
-        <tbody id="itbody"></tbody>
-      </table>
-    </div>
+    <div class="funnel-note reveal"><span>🎯</span><span><b>Regra do funil:</b> uma ferramenta por função. Nada de duas formas de captar, dois números de atendimento ou duas planilhas. O que não está aqui não entra antes da S3.</span></div>
   </div>
 </section>
 
-<!-- TIMELINE -->
+<!-- TIMELINE: HOJE → AMANHÃ → 12 SEMANAS -->
 <section id="cronograma" style="background:var(--bg2)">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">06 · Cronograma</span>
-      <h2>Doze semanas, semana a semana</h2>
-      <p>Escolha a data de kickoff e o calendário se ajusta. Toque num mês para ver as semanas, as ações e as integrações que cada uma exige.</p>
+      <span class="eyebrow">06 · Hoje → amanhã → 12 semanas</span>
+      <h2>Monta hoje. Roda amanhã.</h2>
+      <p>Hoje é o dia 0: ferramentas, integrações e testes. Amanhã a onda 1 sai e a Rede abre. Escolha a data de kickoff e o calendário se ajusta; marque as tarefas conforme forem ficando prontas.</p>
     </div>
     <div class="kick reveal">
-      <label for="kickoff">Kickoff</label>
-      <input type="date" id="kickoff" value="2026-09-14">
+      <label for="kickoff">Kickoff (amanhã)</label>
+      <input type="date" id="kickoff" value="2026-09-08">
       <span class="range" id="kickRange"></span>
     </div>
-    <div class="tl-months reveal" role="tablist" aria-label="Meses do plano">
-      <button class="tl-btn" role="tab" aria-selected="false" data-m="0">Semana 0<small>pré-kickoff</small></button>
-      <button class="tl-btn" role="tab" aria-selected="true" data-m="1">Mês 1<small id="mb1"></small></button>
+    <div class="tl-months reveal" role="tablist" aria-label="Fases do plano">
+      <button class="tl-btn hot" role="tab" aria-selected="true" data-m="today">Hoje<small id="tbToday">dia 0</small></button>
+      <button class="tl-btn hot" role="tab" aria-selected="false" data-m="tomorrow">Amanhã<small id="tbTomorrow">dia 1</small></button>
+      <button class="tl-btn" role="tab" aria-selected="false" data-m="1">Mês 1<small id="mb1"></small></button>
       <button class="tl-btn" role="tab" aria-selected="false" data-m="2">Mês 2<small id="mb2"></small></button>
       <button class="tl-btn" role="tab" aria-selected="false" data-m="3">Mês 3<small id="mb3"></small></button>
     </div>
     <div class="tl-panel reveal">
       <div class="tl-head">
         <div class="tl-add">
-          <div class="plus">+<em id="tlAdd">1.000</em></div>
-          <div class="lab" id="tlLab">net adds no mês · base ao fim: <span id="tlBase">2.000</span></div>
+          <div class="plus" id="tlPlus">+<em id="tlAdd">0</em></div>
+          <div class="lab" id="tlLab"></div>
         </div>
         <div class="tl-body">
           <div class="focus" id="tlFocus"></div>
@@ -656,7 +621,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <p id="tlDesc"></p>
         </div>
       </div>
-      <div class="weeks" id="weeks"></div>
+      <div id="tlContent"></div>
     </div>
   </div>
 </section>
@@ -686,19 +651,19 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="cta reveal">
       <div class="blob b1" style="background:var(--teal-bright)"></div>
       <div class="blob b2" style="background:var(--coral)"></div>
-      <h2>Para o kickoff faltam 3 números e 3 decisões.</h2>
-      <p>Os números mexem na rampa; as decisões destravam as integrações da semana 1. Sem eles, a máquina não liga — e cada semana parada custa ~8% da meta.</p>
+      <h2>Para amanhã rodar, hoje ainda faltam 3 números e 3 confirmações.</h2>
+      <p>Os números ajustam a rampa; as confirmações decidem se a atribuição e o antichurn rodam em tempo real amanhã ou com planilha até resolverem. Nenhum deles segura a onda 1.</p>
       <div class="grp-lbl">Os números</div>
       <div class="needs">
         <div class="need"><div class="n">01</div><h4>Churn real mensal</h4><p>Trabalhamos com 5%. Se for maior, o volume de vendas brutas sobe muito.</p></div>
         <div class="need"><div class="n">02</div><h4>Associados e médicos ativos hoje</h4><p>O motor escalável depende do tamanho atual da rede.</p></div>
         <div class="need"><div class="n">03</div><h4>Origem dos 1.000 atuais</h4><p>Se já há um canal funcionando, a gente amplifica em vez de criar do zero.</p></div>
       </div>
-      <div class="grp-lbl">As decisões de ferramenta</div>
+      <div class="grp-lbl">As confirmações de hoje</div>
       <div class="needs decs">
-        <div class="need"><div class="n">01</div><h4>Ferramenta de e-mail</h4><p>Brevo ou Resend num plano de entrada (~R$100–150/mês) — precisa de API e webhooks de abertura/clique.</p></div>
-        <div class="need"><div class="n">02</div><h4>Webhooks do gateway</h4><p>Confirmar os eventos de pagamento aprovado, recusado e cancelamento. Sem eles não há atribuição nem antichurn.</p></div>
-        <div class="need"><div class="n">03</div><h4>Eventos da plataforma</h4><p>API ou export dos eventos de uso do app (cadastro, 1ª consulta). Define se o antichurn é em tempo real ou semanal.</p></div>
+        <div class="need"><div class="n">01</div><h4>Ferramenta de e-mail</h4><p>Escolher de manhã (Brevo ou Resend, plano de entrada) — não há tempo para comparar. Precisa de API e webhooks de abertura/clique.</p></div>
+        <div class="need"><div class="n">02</div><h4>Webhooks do gateway</h4><p>Confirmar pagamento aprovado hoje; recusado e cancelamento até a S3. Sem o primeiro, a atribuição vai para a planilha manual.</p></div>
+        <div class="need"><div class="n">03</div><h4>Eventos da plataforma</h4><p>API ou export dos eventos de uso do app (cadastro, 1ª consulta). Até a S3 o fallback é o export semanal.</p></div>
       </div>
     </div>
   </div>
@@ -707,7 +672,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <footer>
   <div class="wrap">
     <span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="brand-logo" style="width:118px;height:30px" role="img" aria-label="WOW+ Saúde por Assinatura"></span>Plano de Marketing &amp; Comunicação 360° · Apresentado por Fernando Jorge, CMO</span>
-    <span class="mono">v3.1 · 3 meses · 12 semanas · meta 3.000 · R$1,5k/mês · não iniciado</span>
+    <span class="mono">v4 · 3 meses · 12 semanas · meta 3.000 · R$1,5k/mês · setup hoje, rodando amanhã</span>
   </div>
 </footer>
 
@@ -724,9 +689,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   var BASE0 = 1000;                       // assinantes hoje
   var META  = 3000;                       // meta ao fim da S12 (slider)
   var CHURN = 0.05;                       // churn mensal (slider)
-  // Peso (%) de cada semana nos net adds do ciclo: S1 liga a máquina,
-  // S2–S4 colhem a base própria, S5–S8 a Rede escala, S9–S12 tudo compõe.
-  var W = [1,6,7,6,7,8,9,10,10,11,13,12];
+  // Peso (%) de cada semana nos net adds do ciclo. A máquina fica pronta
+  // hoje, então a S1 já vende (onda 1); S5–S8 a Rede escala; S9–S12 compõe.
+  var W = [5,7,7,7,8,8,9,9,10,10,10,10];
 
   function netWeeks(meta){
     var net=meta-BASE0, arr=W.map(function(w){return Math.round(net*w/100);});
@@ -739,160 +704,125 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     return [0,1,2].map(function(m){return nw.slice(m*4,m*4+4).reduce(function(a,b){return a+b;},0);});
   }
 
-  /* ---------- ecossistema: nós (ferramentas) ---------- */
-  var COLS=[
-    {t:'Canais',d:'De onde as pessoas vêm'},
-    {t:'Captura & conversa',d:'Onde viram lead e conversam'},
-    {t:'Núcleo',d:'Dados e automação'},
-    {t:'Conversão & produto',d:'Onde viram assinante e usam'},
-    {t:'Amplificação & Rede',d:'O que multiplica'},
-    {t:'Medição',d:'O que mostra se está funcionando'}
-  ];
-  var NODES=[
-    {id:'wabase',col:1,name:'Base WhatsApp · 10k',sub:'contatos próprios · 3 ondas',st:'temos',role:'O ativo mais barato do plano. Segmentada em quente, morno e frio e disparada em ondas via Evolution/Z-API, com throttling e opt-out obrigatório.'},
-    {id:'embase',col:1,name:'Base e-mail · 5k',sub:'reativação em 5 disparos',st:'temos',role:'Recebe a sequência de reativação (5 disparos em 3 semanas) com a mesma oferta e o mesmo link rastreado do WhatsApp.'},
-    {id:'ig',col:1,name:'Instagram orgânico',sub:'reels, status e link na bio',st:'temos',role:'Marca e prova social. Conteúdo assinado pelos médicos, com link na bio e click-to-chat rastreados por origem.'},
-    {id:'metaads',col:1,name:'Meta Ads',sub:'retargeting · lookalike · boost',st:'configurar',role:'R$1.200/mês (R$800 retargeting/lookalike + R$400 boost). Nunca prospecta a frio: retargeting de visitantes e abandonos desde a S3, lookalike dos convertidos a partir da S6, boost do conteúdo vencedor.'},
-    {id:'rede',col:1,name:'Rede de Associados',sub:'consultores · especialistas · médicos',st:'configurar',role:'O motor escalável. Recrutada por formulário desde a S1, armada com o kit na S3 e paga na S6. Cada associado e cada médico tem link/cupom próprio.'},
-    {id:'indique',col:1,name:'Indique e ganhe',sub:'cupom pessoal do assinante',st:'construir',role:'Loop viral de clientes. Cada assinante recebe um cupom no onboarding; a recompensa (mês grátis ou desconto) é aplicada no gateway. Liga na S7.'},
-
-    {id:'site',col:2,name:'Site & landing pages',sub:'oferta de entrada · recrutamento · médico',st:'construir',role:'Três páginas novas: LP da oferta de entrada, LP de recrutamento da Rede e página/QR do médico. Todas com GTM, pixel e formulário via webhook.'},
-    {id:'jotform',col:2,name:'Jotform · formulários',sub:'cadastro de associados e médicos',st:'configurar',role:'Formulários de recrutamento e cadastro de médicos, com webhook nativo para o N8N. Já temos conta.'},
-    {id:'evo',col:2,name:'Evolution API · WhatsApp',sub:'atendimento + broadcast',st:'temos',role:'O número principal. Recebe as conversas (click-to-chat, respostas às ondas) e entrega as mensagens da Wendy e do onboarding.'},
-    {id:'zapi',col:2,name:'Z-API · nº secundário',sub:'broadcast separado do atendimento',st:'configurar',role:'Segundo número só para as ondas de broadcast. Se for bloqueado, o atendimento no Evolution continua de pé.'},
-    {id:'wendy',col:2,name:'Wendy · agente IA',sub:'OpenAI + Pinecone (RAG)',st:'temos',role:'Qualifica, responde objeções e conduz à assinatura. Precisa do prompt de conversão ajustado e da base de conhecimento atualizada (FAQ, planos, limites de compliance da RT).'},
-    {id:'mail',col:2,name:'Ferramenta de e-mail',sub:'Brevo · Resend · Mailchimp',st:'decidir',role:'Decisão da semana 0. Requisitos: API de envio, webhooks de abertura/clique/descadastro e um plano de entrada (~R$100–150/mês) que cubra os 5 disparos para 5k contatos.'},
-
-    {id:'n8n',col:3,name:'N8N · orquestrador',sub:'webhooks · roteamento · cron',st:'temos',role:'O centro de tudo. Recebe todos os webhooks, roteia por origem, dispara ondas, sequências, sync de públicos, comissões e relatórios.'},
-    {id:'crm',col:3,name:'CRM próprio · pipeline único',sub:'nosso sistema · R$0',st:'configurar',role:'O CRM é nosso, então não há licença nem limite de contatos. Falta configurá-lo para o plano: um pipeline só (lead → qualificado → checkout → assinante → ativo), origem e associado em cada registro, e webhooks de mudança de estágio para o N8N.'},
-    {id:'db',col:3,name:'Postgres · eventos & atribuição',sub:'na VPS (Coolify)',st:'configurar',role:'Tabela de eventos (lead, venda, cancelamento, uso) e de atribuição (UTM, cupom, associado), no banco do CRM próprio ou num Postgres ao lado, na VPS. Fonte de verdade do cockpit e das comissões.'},
-    {id:'sheets',col:3,name:'Google Sheets · interino',sub:'cockpit v0 · comissões',st:'temos',role:'Ponte enquanto o cockpit e o portal não existem: planilha de vendas por origem alimentada pelo N8N e extrato de comissões.'},
-
-    {id:'checkout',col:4,name:'Checkout · app.wowmais.com.br',sub:'cupons e oferta de entrada',st:'configurar',role:'Onde a venda acontece. Precisa aceitar o cupom da oferta de entrada e os cupons por associado/médico, e carregar pixel + UTM até o pagamento.'},
-    {id:'gateway',col:4,name:'Gateway de pagamento',sub:'webhooks: aprovado · recusado · cancelado',st:'decidir',role:'Confirmar na semana 0 quais webhooks existem. Pagamento aprovado fecha a atribuição e o CAPI; recusado e cancelamento disparam o antichurn.'},
-    {id:'app',col:4,name:'Plataforma WOW+ · app',sub:'eventos de uso: cadastro · 1ª consulta',st:'decidir',role:'Quem não usa no 1º mês cancela no 2º. Precisamos dos eventos de uso — por API/webhook ou, no mínimo, export CSV semanal.'},
-    {id:'onb',col:4,name:'Onboarding & antichurn',sub:'1º uso em 7 dias · gatilhos',st:'construir',role:'Jornada de 1º uso (baixar o app, cadastrar, conhecer o atendimento) e gatilhos de retenção: 14 dias sem uso, cartão recusado, fim do 1º mês.'},
-
-    {id:'metatools',col:5,name:'Meta · Pixel, CAPI & públicos',sub:'Lead/Purchase server-side · listas',st:'construir',role:'Pixel via GTM, Conversions API pelo N8N (com event_id para dedupe) e públicos personalizados atualizados sozinhos: compradores, abandonos e assinantes (exclusão).'},
-    {id:'kit',col:5,name:'Kit de criativos',sub:'Canva → Drive → WhatsApp da Rede',st:'configurar',role:'Kit de armamento (criativos, scripts, áudios, objeções) no Canva, publicado numa pasta do Drive e enviado toda segunda para a lista de associados.'},
-    {id:'portal',col:5,name:'Portal do associado',sub:'link · cupom · vendas · comissão',st:'construir',role:'v1 na S6: mensagem automática semanal com vendas e comissão. v2: página simples com link, cupom, ranking e extrato.'},
-    {id:'comis',col:5,name:'Comissões',sub:'extrato mensal · Pix',st:'construir',role:'N8N consolida as vendas atribuídas, gera o extrato e a lista de pagamento via Pix. Pagar certo e rápido é o que mantém a Rede ativa.'},
-
-    {id:'ga4',col:6,name:'GA4 + GTM + UTMs',sub:'taxonomia de origem',st:'configurar',role:'GTM em todas as páginas e uma taxonomia única de UTM (source/medium/campaign/content=associado). Sem ela o cockpit mente.'},
-    {id:'windsor',col:6,name:'Windsor.ai',sub:'Meta Ads + GA4 → cockpit',st:'configurar',role:'Pipeline de dados pronto: conecta Meta Ads e GA4 ao cockpit sem planilha manual. A conta existe; as fontes da WOW+ ainda não estão conectadas.'},
-    {id:'cockpit',col:6,name:'Cockpit',sub:'Looker Studio ou Metabase',st:'construir',role:'Uma tela: net adds, CAC por canal, churn, conversão por onda, associados ativos, origem das vendas. Lê Postgres/Sheets e o Windsor.'},
-    {id:'report',col:6,name:'Relatório no WhatsApp',sub:'diário/semanal para o time',st:'construir',role:'Cron no N8N: o número do dia chega no grupo do time sem ninguém abrir dashboard. Toda segunda, o resumo da semana com a decisão de verba.'}
+  /* ---------- funil ---------- */
+  var FUNNEL=[
+    {n:'01',name:'Atrair',w:'100%',metric:'contatos alcançados / semana',
+     tools:[['Base WhatsApp · 10k'],['Base e-mail · 5k'],['Instagram'],['Rede de Associados'],['Meta Ads · retargeting','later']],
+     today:['Segmentar as bases em quente / morno / frio e registrar consentimento (LGPD).','Links wa.me e LP com código de origem e de associado.']},
+    {n:'02',name:'Captar',w:'92%',metric:'leads / dia · por origem',
+     tools:[['Landing page da oferta'],['wa.me com código'],['Jotform · Rede e médicos']],
+     today:['Webhook da LP e do Jotform → N8N → CRM próprio, com origem em cada lead.','Pixel + GTM + GA4 na LP e no checkout.']},
+    {n:'03',name:'Conversar',w:'84%',metric:'% de leads qualificados · tempo de resposta',
+     tools:[['Evolution API · atendimento'],['Z-API · broadcast'],['Wendy · OpenAI + Pinecone']],
+     today:['Prompt de conversão da Wendy e base de conhecimento (FAQ, planos, compliance da RT).','Opt-out "SAIR" e regra de handoff humano.']},
+    {n:'04',name:'Converter',w:'76%',metric:'vendas / dia · CAC por canal',
+     tools:[['Checkout · app.wowmais.com.br'],['Cupom da oferta + cupom por associado'],['Gateway']],
+     today:['Cupons criados no checkout; gerador de cupom por associado no N8N.','Webhook de pagamento aprovado → CRM marca assinante e atribui a venda.']},
+    {n:'05',name:'Reter',w:'68%',metric:'1º uso em 7 dias · churn',
+     tools:[['Onboarding de 1º uso'],['Antichurn · gatilhos','later'],['Relatório do time · 19h']],
+     today:['Sequência de onboarding (WhatsApp + e-mail) disparada pela assinatura.','Relatório diário automático no grupo do time.']}
   ];
 
-  /* ---------- ecossistema: ligações (a–b, integração, tracejada) ---------- */
-  var EDGES=[
-    ['ig','site','I26'],['ig','evo','I03'],['metaads','site','I17'],['rede','site','I22'],['rede','evo','I22'],['indique','checkout','I25',1],
-    ['wabase','evo','I06'],['embase','mail','I08',1],
-    ['site','n8n','I01'],['jotform','n8n','I02'],['evo','n8n','I05'],['zapi','n8n','I29'],['wendy','n8n','I05'],['mail','n8n','I08',1],
-    ['site','checkout',null],['site','ga4','I18'],
-    ['n8n','gateway','I11',1],['n8n','app','I13',1],['n8n','onb','I12'],
-    ['n8n','metatools','I15'],['n8n','kit','I21'],['n8n','portal','I23'],['n8n','comis','I24'],['n8n','report','I20'],
-    ['metaads','windsor','I17'],['ga4','windsor','I18'],['windsor','cockpit','I19'],['db','cockpit','I19'],['crm','cockpit','I19']
+  /* ---------- hoje: checklist de setup ---------- */
+  var TODAY=[
+    {t:'Bloco 1 · manhã · 9h–12h',s:'Fundação: dados e automação',items:[
+      {id:'t01',tag:'Dados',txt:'Exportar as bases (10k WhatsApp + 5k e-mail), deduplicar, segmentar quente/morno/frio e registrar consentimento (LGPD).'},
+      {id:'t02',tag:'CRM',txt:'CRM próprio: pipeline único (lead → qualificado → checkout → assinante → ativo), campos de origem e associado, webhook de mudança de estágio para o N8N.'},
+      {id:'t03',tag:'N8N',txt:'Fluxo 01 no N8N: webhooks da LP e do Jotform → CRM, guardando UTM e ref do associado.'},
+      {id:'t04',tag:'Wendy',txt:'Prompt de conversão da Wendy (oferta, objeções, condução ao checkout) e base de conhecimento atualizada no Pinecone.'},
+      {id:'t05',tag:'N8N',txt:'Opt-out: "SAIR" → N8N → flag no CRM → fora de qualquer disparo. Regra de handoff humano definida (quem, quando).'},
+      {id:'t06',tag:'WhatsApp',txt:'Z-API como número de broadcast; Evolution segue no atendimento. Fila de disparo com throttling e janela de horário.'}]},
+    {t:'Bloco 2 · tarde · 13h–17h',s:'Captura, conversão e rastreio',items:[
+      {id:'t07',tag:'Site',txt:'Landing page da oferta de entrada no ar: formulário → webhook, GTM, Pixel e GA4 com a taxonomia de UTM definida.'},
+      {id:'t08',tag:'Checkout',txt:'Cupom da oferta (1º mês simbólico / família) criado; gerador de cupom por associado (N8N cria, CRM registra, gera link wa.me e LP ?ref=).'},
+      {id:'t09',tag:'Gateway',txt:'Webhook de pagamento aprovado → N8N → CRM marca assinante e atribui a venda. Se recusado/cancelado já existir, ligar também.'},
+      {id:'t10',tag:'E-mail',txt:'Ferramenta de e-mail escolhida e conectada ao N8N (API + webhooks); sequência de reativação (5 disparos) e onboarding carregadas.'},
+      {id:'t11',tag:'Rede',txt:'Jotform: formulário de recrutamento da Rede e de cadastro de médicos, com webhook para o N8N.'},
+      {id:'t12',tag:'Social',txt:'Instagram: link na bio para a LP com UTM e click-to-chat com código de origem.'}]},
+    {t:'Bloco 3 · fim do dia · 17h–20h',s:'Distribuição, medição e testes',items:[
+      {id:'t13',tag:'Rede',txt:'Kit de armamento v0 (Canva → pasta no Drive): criativos, script de WhatsApp, respostas a objeções. Lista de associados no WhatsApp pronta.'},
+      {id:'t14',tag:'Dados',txt:'Cockpit v0 no Google Sheets: N8N grava cada lead e cada venda com origem; abas de vendas por canal, associados ativos e comissões.'},
+      {id:'t15',tag:'N8N',txt:'Relatório diário automático (19h) no grupo do time: leads, conversas, vendas por origem, net adds do dia.'},
+      {id:'t16',tag:'Meta',txt:'Pixel verificado no Gerenciador de Eventos; campanha de retargeting montada em rascunho (liga na S2).'},
+      {id:'t17',tag:'Gestão',txt:'Trello: board com Hoje, Amanhã e as 12 semanas; um card por ação desta página.'},
+      {id:'t18',tag:'Testes',txt:'Rodar os testes de go-live abaixo de ponta a ponta antes de encerrar o dia.'}]}
+  ];
+  var GOLIVE=[
+    {id:'g1',txt:'Preencher o formulário da LP → lead aparece no CRM com origem e UTM.'},
+    {id:'g2',txt:'Mandar "oi" no WhatsApp → Wendy responde em menos de 1 minuto, com a oferta certa.'},
+    {id:'g3',txt:'Responder "SAIR" → contato sai da lista de disparo e recebe confirmação.'},
+    {id:'g4',txt:'Compra-teste com cupom de associado → CRM marca assinante, atribui a venda e o Sheets recebe a linha.'},
+    {id:'g5',txt:'Assinatura-teste dispara a sequência de onboarding (WhatsApp + e-mail).'},
+    {id:'g6',txt:'Disparo-teste da onda 1 para 20 contatos internos pela Z-API: entrega, throttling e respostas caindo no Evolution.'},
+    {id:'g7',txt:'Pixel registra PageView, Lead e Purchase no Gerenciador de Eventos.'},
+    {id:'g8',txt:'Relatório das 19h chega no grupo do time com os números do teste.'}
+  ];
+  var NOT_TODAY=[
+    {t:'CAPI e públicos automáticos',why:'só fazem sentido com volume; o pixel já basta para ligar o retargeting',wk:'S2'},
+    {t:'Kit completo + conteúdo da semana',why:'v0 sai hoje; o fluxo semanal entra com os primeiros associados ativos',wk:'S2'},
+    {t:'Cockpit em tela',why:'a planilha alimentada pelo N8N cobre as duas primeiras semanas',wk:'S2'},
+    {t:'Antichurn por gatilho',why:'depende dos webhooks de recusa/cancelamento e dos eventos de uso',wk:'S3'},
+    {t:'Portal do associado',why:'até lá, mensagem semanal automática com vendas e comissão',wk:'S4'},
+    {t:'Indique e ganhe',why:'precisa da mecânica de recompensa no gateway',wk:'S5'},
+    {t:'QR code e material de consultório',why:'depende de impressão e dos primeiros médicos ativos',wk:'S5'}
   ];
 
-  /* ---------- integrações (linhas da tabela) ---------- */
-  var INT=[
-    {id:'I01',name:'Site / LP → N8N → CRM',how:'Webhook do formulário com UTM + ref do associado',why:'Todo lead entra no pipeline único já com origem',flow:'F01',w:1,wk:'S1',st:'construir',eff:'M',nodes:['site','n8n','crm']},
-    {id:'I02',name:'Jotform → N8N → CRM',how:'Webhook nativo do Jotform',why:'Cadastro de associados e médicos entra no pipeline "Rede"',flow:'F01',w:1,wk:'S1',st:'configurar',eff:'P',nodes:['jotform','n8n','crm']},
-    {id:'I03',name:'Instagram → WhatsApp com código de origem',how:'Link wa.me com texto pré-preenchido por origem/criativo',why:'Atribuir bio, reels e DM sem depender do pixel',flow:'F01',w:2,wk:'S2',st:'configurar',eff:'P',nodes:['ig','evo','n8n']},
-    {id:'I04',name:'Meta Lead Ads → N8N',how:'Webhook de leads do Facebook',why:'Só se rodarmos formulário nativo; senão a LP cobre',flow:'F01',w:6,wk:'S6 · opcional',st:'configurar',eff:'P',nodes:['metaads','n8n']},
-    {id:'I05',name:'Evolution ⇄ N8N ⇄ Wendy',how:'Webhook de mensagem recebida → OpenAI + Pinecone → resposta',why:'Qualificação e condução à assinatura sem humano; ajustar o prompt para conversão',flow:'F02',w:1,wk:'S1',st:'temos',eff:'M',nodes:['evo','n8n','wendy']},
-    {id:'I06',name:'N8N → Evolution/Z-API · broadcast em ondas',how:'Fila com throttling, janela de horário e pausa automática por bloqueio',why:'Reativar a base de 10k sem derrubar o número',flow:'F03',w:2,wk:'S2',st:'construir',eff:'M',nodes:['n8n','evo','zapi','wabase']},
-    {id:'I07',name:'Base de conhecimento → Pinecone',how:'Ingestão de FAQ, objeções, planos e limites de compliance (RT)',why:'A Wendy responde certo e dentro das regras',flow:'F02',w:1,wk:'S1',st:'configurar',eff:'P',nodes:['wendy']},
-    {id:'I08',name:'Ferramenta de e-mail ⇄ N8N',how:'API de envio + webhooks de abertura, clique e descadastro',why:'Sequência de reativação (5 disparos) e onboarding por e-mail',flow:'F03',w:1,wk:'S1–2',st:'decidir',eff:'M',nodes:['mail','n8n','embase']},
-    {id:'I09',name:'Bases (10k + 5k) → CRM / Postgres',how:'Importação, deduplicação, segmentação quente/morno/frio e registro de consentimento (LGPD)',why:'O ponto de partida de tudo: sem segmentação não há onda 1',flow:'F01',w:0,wk:'S0–1',st:'construir',eff:'M',nodes:['wabase','embase','crm','db']},
-    {id:'I10',name:'CRM próprio → N8N · gatilhos por estágio',how:'Webhook de mudança de estágio disparado pelo nosso CRM',why:'Qualificado → Wendy; assinou → onboarding; abandonou → retargeting',flow:'F01–03',w:2,wk:'S2',st:'construir',eff:'M',nodes:['crm','n8n']},
-    {id:'I11',name:'Gateway → N8N · assinatura criada / pagamento aprovado',how:'Webhook do gateway',why:'Marca cliente no CRM, atribui a venda (cupom/UTM) e dispara o Purchase no CAPI',flow:'F05 · F06',w:2,wk:'S2',st:'decidir',eff:'M',nodes:['gateway','n8n','crm','metatools']},
-    {id:'I12',name:'Gateway → N8N · recusado / cancelado / inadimplente',how:'Webhook do gateway',why:'Gatilho do antichurn: a Wendy age antes do cancelamento',flow:'F08',w:5,wk:'S5',st:'configurar',eff:'P',nodes:['gateway','n8n','onb']},
-    {id:'I13',name:'Plataforma → N8N · eventos de uso',how:'API/webhook ou, no mínimo, export CSV semanal',why:'Cadastro concluído, 1ª consulta e 14 dias sem uso alimentam onboarding e antichurn',flow:'F08',w:5,wk:'S5',st:'decidir',eff:'G',nodes:['app','n8n','onb']},
-    {id:'I14',name:'Meta Pixel + GTM no site, LP e checkout',how:'Eventos PageView, Lead, InitiateCheckout e Purchase',why:'Base para retargeting e otimização das campanhas',flow:'F06',w:1,wk:'S1',st:'configurar',eff:'P',nodes:['site','checkout','metatools']},
-    {id:'I15',name:'N8N → Meta Conversions API',how:'Purchase/Lead server-side com event_id (dedupe com o pixel)',why:'Conversão real mesmo sem cookie; o Meta otimiza para quem paga',flow:'F06',w:3,wk:'S3',st:'construir',eff:'M',nodes:['n8n','metatools']},
-    {id:'I16',name:'N8N → Públicos personalizados no Meta',how:'Upload automático de listas (hash) por segmento',why:'Compradores viram fonte do lookalike; abandonos, retargeting; assinantes, exclusão',flow:'F06',w:3,wk:'S3',st:'construir',eff:'M',nodes:['n8n','metatools','metaads']},
-    {id:'I17',name:'Meta Ads → Windsor.ai → Cockpit',how:'Conector nativo do Windsor',why:'Custo por campanha e CAC por canal, sem planilha manual',flow:'F07',w:3,wk:'S3',st:'configurar',eff:'P',nodes:['metaads','windsor','cockpit']},
-    {id:'I18',name:'GA4 + GTM + taxonomia de UTM',how:'Tag em todas as páginas; padrão utm_source / medium / campaign / content = associado',why:'Origem de cada visita e de cada lead',flow:'F07',w:1,wk:'S1',st:'configurar',eff:'P',nodes:['site','ga4','windsor']},
-    {id:'I19',name:'Cockpit ← Postgres + CRM + Windsor',how:'Looker Studio (ou Metabase na VPS) lendo Sheets/Postgres e o Windsor',why:'Net adds, CAC, churn, associados ativos e origem das vendas numa tela',flow:'F07',w:4,wk:'S4',st:'construir',eff:'M',nodes:['cockpit','windsor','db','crm','sheets']},
-    {id:'I20',name:'N8N → WhatsApp do time',how:'Cron diário/semanal com o resumo',why:'O número do dia chega sem ninguém abrir dashboard',flow:'F07',w:4,wk:'S4',st:'construir',eff:'P',nodes:['n8n','report','evo']},
-    {id:'I21',name:'Canva → Drive → N8N → WhatsApp da Rede',how:'Pasta "conteúdo da semana" + broadcast para a lista de associados',why:'Kit de armamento entregue toda segunda, pronto para compartilhar',flow:'F04',w:3,wk:'S3',st:'configurar',eff:'P',nodes:['kit','n8n','evo','rede']},
-    {id:'I22',name:'Gerador de link / cupom por associado',how:'N8N cria código único, grava no CRM e gera link wa.me e LP com ?ref=',why:'Atribuição da venda ao associado e ao médico',flow:'F05',w:2,wk:'S2',st:'construir',eff:'M',nodes:['rede','site','evo','n8n','portal']},
-    {id:'I23',name:'Portal do associado',how:'v1: mensagem semanal automática (vendas, comissão) · v2: página simples',why:'O associado vê o próprio resultado e continua vendendo',flow:'F04 · F05',w:6,wk:'S6',st:'construir',eff:'M',nodes:['portal','n8n']},
-    {id:'I24',name:'Comissões',how:'N8N consolida vendas atribuídas → Sheets → extrato + lista de Pix mensal',why:'Pagar certo e rápido é o que mantém a Rede ativa',flow:'F05',w:6,wk:'S6',st:'construir',eff:'M',nodes:['comis','n8n','sheets']},
-    {id:'I25',name:'Indique e ganhe',how:'Cupom pessoal gerado no onboarding; recompensa (mês grátis/desconto) aplicada no gateway',why:'Loop viral de clientes a partir da S7',flow:'M3',w:7,wk:'S7',st:'decidir',eff:'M',nodes:['indique','checkout','gateway','n8n']},
-    {id:'I26',name:'Instagram → LP com UTM',how:'Link na bio e nos Reels dos médicos; agendamento no Meta Business Suite',why:'Conteúdo vira tráfego rastreável',flow:'F04',w:2,wk:'S2',st:'configurar',eff:'P',nodes:['ig','site','ga4']},
-    {id:'I27',name:'Médicos como canal',how:'Página/QR code do consultório com o cupom do médico; material impresso no Canva',why:'Cada consultório vira ponto de venda com atribuição',flow:'F05',w:6,wk:'S6',st:'construir',eff:'P',nodes:['rede','site','kit']},
-    {id:'I28',name:'Trello · board do plano',how:'12 semanas em listas; cada ação desta página vira um card',why:'Gestão semanal do plano, com dono e prazo',flow:'—',w:0,wk:'S0',st:'configurar',eff:'P',nodes:[]},
-    {id:'I29',name:'Z-API · número secundário',how:'Segundo número só para broadcast; atendimento fica no Evolution',why:'Reduz o risco de bloqueio do número principal',flow:'F03',w:1,wk:'S1',st:'configurar',eff:'P',nodes:['zapi','n8n','evo']},
-    {id:'I30',name:'Opt-out e LGPD',how:'Palavra-chave "SAIR" / descadastro → N8N → flag no CRM → fora de qualquer disparo',why:'Obrigatório antes da onda 1',flow:'F03',w:1,wk:'S1',st:'construir',eff:'P',nodes:['evo','mail','n8n','crm']},
-    {id:'I31',name:'Handoff humano',how:'A Wendy transfere para um vendedor quando o lead pede ou trava (grupo interno ou inbox)',why:'Não perder lead quente por limitação do bot',flow:'F02',w:2,wk:'S2',st:'decidir',eff:'P',nodes:['wendy','evo','n8n']},
-    {id:'I32',name:'Checkout → cupons e oferta de entrada',how:'Cupom da oferta (1º mês simbólico / família) e cupons por associado e médico',why:'Sem isso não existe oferta nem atribuição',flow:'F05',w:1,wk:'S1',st:'configurar',eff:'P',nodes:['checkout','gateway']}
+  /* ---------- amanhã: dia 1 ---------- */
+  var TOMORROW=[
+    {h:'08h',txt:'<b>Rodar os 8 testes de go-live de novo.</b> Nada sai antes de todos passarem.'},
+    {h:'09h',txt:'<b>Onda 1 · lote 1:</b> 1.000 contatos do segmento quente pela Z-API, em fila, com a Wendy respondendo no Evolution.'},
+    {h:'10h',txt:'<b>E-mail · disparo 1</b> da reativação para os 5k, mesma oferta e mesmo link rastreado.'},
+    {h:'11h',txt:'<b>Rede:</b> abrir o recrutamento (post + mensagem para associados e médicos atuais) e enviar o kit v0 com o link/cupom de cada um.'},
+    {h:'14h',txt:'<b>Onda 1 · lote 2:</b> mais 1.000 contatos quentes. Ajustar o prompt da Wendy com as objeções da manhã.'},
+    {h:'16h',txt:'<b>Instagram:</b> primeiro conteúdo com link na bio; stories com click-to-chat.'},
+    {h:'19h',txt:'<b>Relatório automático</b> no grupo: leads, conversas, vendas por origem, net adds. Decidir o lote de amanhã.'}
   ];
-  var INT_BY_ID={}; INT.forEach(function(i){INT_BY_ID[i.id]=i;});
-  var ST_LABEL={temos:'Já temos',configurar:'Configurar',construir:'Construir',decidir:'Decidir'};
 
-  /* ---------- cronograma: ações por semana ---------- */
+  /* ---------- semanas 1–12 ---------- */
   var PLAN=[
-    {title:'Semana 0',focus:'Pré-kickoff · decisões e acessos',desc:'Nada de construir ainda. A semana 0 existe para que a semana 1 comece sem bloqueio: números, decisões, acessos e as bases limpas.',weeks:[
-      {n:0,title:'Decisões, acessos e bases',items:[
-        'Fechar os 3 números: churn real, associados e médicos ativos hoje, origem dos 1.000 atuais.',
-        'Decidir a ferramenta de e-mail; confirmar os webhooks do gateway e os eventos de uso da plataforma.',
-        'Garantir acessos: Meta Business, GA4, gateway, plataforma, Canva, Windsor, Jotform.',
-        'Exportar as bases (10k WhatsApp + 5k e-mail), deduplicar, segmentar quente/morno/frio e registrar consentimento (LGPD).',
-        'Abrir o board do plano no Trello com as 12 semanas e um card por ação desta página.'],deps:['I09','I28']}]},
-    {title:'Mês 1',focus:'Fundação + colheita fácil',desc:'Ligar a máquina mínima na S1, disparar as ondas da base própria nas S2–S4 e abrir a Rede em paralelo. O paid entra na S3, quando os públicos já têm massa.',weeks:[
-      {n:1,title:'A máquina mínima no ar',items:[
-        'Pipeline único no CRM próprio com origem em cada lead; webhooks do site e do Jotform entrando no N8N.',
-        'Wendy com prompt de conversão e base de conhecimento atualizada (FAQ, planos, compliance da RT).',
-        'Opt-out ("SAIR") e Z-API como número de broadcast prontos antes de qualquer disparo.',
-        'LP da oferta de entrada no ar, com GTM, pixel, GA4 e taxonomia de UTM; cupom da oferta configurado no checkout.',
-        'Abrir o recrutamento da Rede (formulário + LP) e definir a oferta de entrada com a diretoria.'],deps:['I01','I02','I05','I07','I08','I14','I18','I29','I30','I32']},
-      {n:2,title:'Onda 1 + rastreio de vendas',items:[
-        'Onda 1 de WhatsApp para o segmento quente (~3k) e disparos 1–2 da sequência de e-mail.',
-        'Webhook de pagamento aprovado ligado: venda atribuída a cupom/UTM e cliente marcado no CRM.',
-        'Gerador de link/cupom por associado; primeira leva de associados onboardada com link próprio.',
-        'Click-to-chat do Instagram com código de origem; link na bio para a LP com UTM.',
-        'Handoff humano definido: quando a Wendy transfere e para quem.'],deps:['I03','I06','I10','I11','I22','I26','I31']},
-      {n:3,title:'Paid liga, kit chega na Rede',items:[
-        'Onda 2 (morno) e disparos 3–4 de e-mail; revisar a conversão da onda 1 por segmento.',
-        'CAPI e públicos personalizados sincronizados; retargeting no ar (R$800/mês).',
-        'Kit de armamento v1 entregue à Rede; "conteúdo da semana" começa a sair toda segunda.',
-        'Meta Ads e GA4 conectados ao Windsor; brief e gravação do conteúdo assinado pelos médicos.'],deps:['I15','I16','I17','I21']},
-      {n:4,title:'Cockpit v1 + onda 3',items:[
-        'Onda 3 (frio) com oferta diferente e disparo 5 de e-mail; segunda passada nos que não abriram.',
-        'Cockpit v1 (Looker Studio/Metabase) e relatório automático no WhatsApp do time.',
-        'Check-point do mês 1: net adds, conversão por onda, associados ativos, CAC. Decidir onde dobrar a aposta.'],deps:['I19','I20']}]},
-    {title:'Mês 2',focus:'Rede escala + conteúdo liga',desc:'Os últimos fluxos entram (antichurn, portal, comissões). A partir da S6 ninguém constrói mais nada: só opera, paga a Rede rápido e otimiza a verba.',weeks:[
-      {n:5,title:'Antichurn e conteúdo dos médicos',items:[
-        'Gatilhos de antichurn ligados: cartão recusado, cancelamento, 14 dias sem uso, fim do 1º mês.',
-        'Eventos de uso da plataforma chegando ao N8N (ou export semanal como fallback).',
-        'Conteúdo assinado pelos médicos no ar (Instagram + Status), redistribuído pela Rede.',
-        'Escalar o recrutamento com prova social dos associados que já faturaram.'],deps:['I12','I13']},
-      {n:6,title:'Portal, comissões e consultórios',items:[
-        'Primeiro fechamento de comissões e extrato automático; portal do associado v1 (mensagem semanal).',
-        'Lookalike dos convertidos entra no paid; Lead Ads só se a LP estiver limitando o volume.',
-        'QR code e material de consultório com o cupom de cada médico.'],deps:['I04','I23','I24','I27']},
-      {n:7,title:'Indique e ganhe + boost',items:[
+    {title:'Mês 1',focus:'Colheita da base + Rede armada',desc:'A máquina já existe, então o mês 1 é colher a base própria em três ondas, armar a Rede e ligar o paid assim que a onda 1 der massa aos públicos.',weeks:[
+      {n:1,title:'Onda 1 e primeiros associados',items:[
+        'Onda 1 completa (segmento quente, ~3k) em lotes diários; e-mail disparos 1 e 2.',
+        'Ajuste diário do prompt da Wendy com as objeções reais; handoff humano nos leads que travarem.',
+        'Primeiros associados e médicos cadastrados recebem link/cupom e kit v0.',
+        'Cockpit v0 no Sheets revisado todo dia às 19h; campanha de retargeting pronta em rascunho.']},
+      {n:2,title:'Onda 2, paid e kit completo',items:[
+        'Onda 2 (morno) e e-mail disparos 3 e 4; segunda passada nos quentes que não responderam.',
+        'Retargeting no ar (R$800/mês); CAPI e públicos automáticos ligados.',
+        'Kit completo e "conteúdo da semana" toda segunda; brief e gravação do conteúdo dos médicos.',
+        'Cockpit vira tela (Looker Studio ou Metabase) lendo a planilha e o Windsor.']},
+      {n:3,title:'Onda 3 e antichurn',items:[
+        'Onda 3 (frio) com oferta diferente; e-mail disparo 5.',
+        'Antichurn por gatilho: cartão recusado, cancelamento, 14 dias sem uso (ou export semanal como fallback).',
+        'Escalar o recrutamento com prova social dos associados que já venderam.']},
+      {n:4,title:'Primeira comissão e check-point',items:[
+        'Primeiro fechamento de comissões (Sheets → Pix) e mensagem semanal automática para cada associado.',
+        'Conteúdo assinado pelos médicos no ar (Instagram + Status); lookalike dos convertidos entra no paid.',
+        'Check-point do mês 1: net adds, conversão por onda, associados ativos, CAC. Decidir onde dobrar a aposta.']}]},
+    {title:'Mês 2',focus:'Rede escala + conteúdo liga',desc:'Ninguém constrói mais nada: só opera, paga a Rede rápido e otimiza a verba no que tem menor CAC.',weeks:[
+      {n:5,title:'Indique e ganhe + consultórios',items:[
         'Indique e ganhe no ar: cupom pessoal gerado no onboarding, recompensa aplicada no gateway.',
-        'Boost do conteúdo vencedor (R$400/mês) e segunda passada de WhatsApp com criativo novo nos segmentos que não responderam.'],deps:['I25']},
+        'QR code e material de consultório com o cupom de cada médico.']},
+      {n:6,title:'Boost e segunda passada',items:[
+        'Boost do conteúdo vencedor (R$400/mês); segunda passada de WhatsApp com criativo novo nos segmentos que não responderam.',
+        'Eventos de uso da plataforma alimentando o antichurn em tempo real.']},
+      {n:7,title:'Segunda leva da Rede',items:[
+        'Segunda leva de recrutamento com ranking e prova social; reativação de associados dormentes.']},
       {n:8,title:'Revisão de meio de ciclo',items:[
         'Cortar o que não converteu e realocar a verba para os vencedores.',
-        'Ranking da Rede e reativação de associados dormentes; segunda leva de recrutamento.',
-        'Check-point do mês 2 e ajuste da rampa das semanas 9–12.'],deps:[]}]},
-    {title:'Mês 3',focus:'Composição + empurrão final',desc:'Todos os motores rodando juntos. Campanha de pico, blindagem antichurn de toda a base e o desenho do próximo ciclo.',weeks:[
+        'Check-point do mês 2 e ajuste da rampa das semanas 9–12.']}]},
+    {title:'Mês 3',focus:'Composição + empurrão final',desc:'Todos os motores rodando juntos. Blindagem antichurn de toda a base, campanha de pico e o desenho do próximo ciclo.',weeks:[
       {n:9,title:'Tudo junto',items:[
         'Todos os motores compondo; verba no que tem menor CAC.',
-        'Preparar a campanha de pico (oferta, criativos, kit da Rede, sequência de e-mail e WhatsApp).'],deps:[]},
+        'Preparar a campanha de pico (oferta, criativos, kit da Rede, sequência de e-mail e WhatsApp).']},
       {n:10,title:'Blindagem da base',items:[
         'Antichurn em toda a base: quem assinou nas ondas 1–2 está fechando o 2º mês.',
-        'Reativar associados dormentes com bônus de meta para o pico.'],deps:[]},
-      {n:11,title:'Campanha de pico',items:[
-        'Campanha de pico em todos os canais, com a Rede em bônus e o paid no teto. Se o kickoff for 14/09, a Black Friday (27/11) cai aqui.'],deps:[]},
-      {n:12,title:'Fechamento do ciclo',items:[
-        'Cohort de churn por onda e por canal; avaliação do ciclo.',
-        'Desenho do próximo ciclo com os números reais, não com estimativas.'],deps:[]}]}
+        'Bônus de meta para a Rede no pico.']},
+      {n:11,title:'Aquecimento do pico',items:[
+        'Aquecer todos os canais para a campanha de pico; Rede com bônus, paid no teto.']},
+      {n:12,title:'Pico + fechamento do ciclo',items:[
+        'Campanha de pico em todos os canais. Se o kickoff for 08/09, a Black Friday (27/11) cai aqui.',
+        'Cohort de churn por onda e por canal; desenho do próximo ciclo com os números reais.']}]}
   ];
 
   /* =====================================================================
@@ -931,7 +861,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       svg+='<line class="gridline" x1="'+pad.l+'" y1="'+y+'" x2="'+(W_-pad.r)+'" y2="'+y+'"/>';
       svg+='<text class="axislbl" x="'+(pad.l-8)+'" y="'+(y+4)+'" text-anchor="end">'+fmt(yv)+'</text>';
     }
-    // separadores de mês
     [4,8].forEach(function(k){var x=pad.l+slot*k;svg+='<line class="msep" x1="'+x.toFixed(1)+'" y1="'+(pad.t-14)+'" x2="'+x.toFixed(1)+'" y2="'+(pad.t+ih)+'"/>';});
     [0,1,2].forEach(function(m){var x=pad.l+slot*(m*4+2);svg+='<text class="mlbl" x="'+x.toFixed(1)+'" y="'+(pad.t-8)+'" text-anchor="middle">MÊS '+(m+1)+'</text>';});
     var show=rampAnimated||reduce;
@@ -939,7 +868,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       var cx=pad.l+slot*(i+0.5);
       var bh=(v/maxNet)*ih; var x=cx-bw/2; var y=pad.t+ih-bh;
       svg+='<rect class="bar" x="'+x.toFixed(1)+'" y="'+(show?y:(pad.t+ih)).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+(show?bh:0).toFixed(1)+'" rx="4" data-y="'+y.toFixed(1)+'" data-h="'+bh.toFixed(1)+'"><title>Semana '+(i+1)+': +'+fmt(v)+'</title></rect>';
-      if(i%2===1||NET.length<=8) svg+='<text class="barlbl" x="'+cx.toFixed(1)+'" y="'+(y-6).toFixed(1)+'">+'+fmt(v)+'</text>';
+      if(i%2===1) svg+='<text class="barlbl" x="'+cx.toFixed(1)+'" y="'+(y-6).toFixed(1)+'">+'+fmt(v)+'</text>';
       svg+='<text class="axislbl" x="'+cx.toFixed(1)+'" y="'+(H-12)+'" text-anchor="middle">S'+(i+1)+'</text>';
     });
     var pts=cum.map(function(c,i){var cx=pad.l+slot*(i+0.5);var y=pad.t+ih-(c/maxCum)*ih;return [cx,y];});
@@ -985,7 +914,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     else if(META<=4500){cls='ok';tag='Meta-esticada';txt='Exige a base própria no teto (~900) e a Rede escalando da S4 em diante. Com R$1,5k/mês o paid ajuda pouco (150–250): o resto é Rede.';}
     else{cls='warn';tag='Teto ambicioso';txt='São ~'+fmt(perMonth)+' net adds por mês desde o mês 1, sem tempo de rampa. Com R$1,5k/mês de verba, a faixa provável dos três motores em 12 semanas é 3,4k–4,3k; acima disso só se a Rede ativar muito rápido.';}
     if(CHURN>0.08){cls='warn';tag='Risco alto';txt+=' E com churn de '+pct+' a gente vende para repor, não para crescer: segurar cancelamentos vira a prioridade nº 1.';}
-    else if(CHURN>0.05){txt+=' Com churn de '+pct+', a carga bruta sobe: o antichurn (fluxo 08) precisa entrar na S5, não no fim.';}
+    else if(CHURN>0.05){txt+=' Com churn de '+pct+', a carga bruta sobe: o antichurn (fluxo 08) precisa entrar na S3, não no fim.';}
     verdict.classList.remove('ok','warn');verdict.classList.add(cls);
     verdict.querySelector('.tag').textContent=tag;verdictTxt.textContent=txt;
     drawRamp();
@@ -1027,150 +956,52 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   });
 
   /* =====================================================================
-     ECOSSISTEMA · mapa
+     FUNIL
      ===================================================================== */
-  var eco=document.getElementById('eco'), ecoSvg=document.getElementById('ecoSvg'), ecoDetail=document.getElementById('ecoDetail');
-  var NODE_BY_ID={}; NODES.forEach(function(n){NODE_BY_ID[n.id]=n;});
-  var nodeEls={}, edgeEls=[], selected=null, hovered=null;
-
-  // resumo por status
   (function(){
-    var counts={temos:0,configurar:0,construir:0,decidir:0};
-    NODES.forEach(function(n){counts[n.st]++;});
-    var order=['temos','configurar','construir','decidir'];
-    document.getElementById('ecoSum').innerHTML=order.map(function(k){
-      return '<span class="sc st-'+k+'"><i></i><b>'+counts[k]+'</b> '+ST_LABEL[k].toLowerCase()+'</span>';
-    }).join('')+'<span class="sc"><b>'+NODES.length+'</b> ferramentas · <b>'+INT.length+'</b> integrações</span>';
+    var el=document.getElementById('funnel'), html='';
+    FUNNEL.forEach(function(s,i){
+      if(i>0) html+='<div class="farrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>';
+      html+='<div class="stage" style="--w:'+s.w+'">'+
+        '<div><div class="sn">ETAPA '+s.n+'</div><h4>'+esc(s.name)+'</h4><div class="metric">'+esc(s.metric)+'</div></div>'+
+        '<div><div class="lbl">Ferramentas</div><div class="tools">'+s.tools.map(function(t){return '<span class="tool'+(t[1]?' '+t[1]:'')+'">'+esc(t[0])+(t[1]==='later'?' · S2+':'')+'</span>';}).join('')+'</div></div>'+
+        '<div><div class="lbl today">Liga hoje</div><ul>'+s.today.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div>'+
+      '</div>';
+    });
+    el.innerHTML=html;
   })();
 
-  // colunas + nós
-  COLS.forEach(function(c,i){
-    var col=document.createElement('div');col.className='eco-col';
-    col.innerHTML='<h5>'+esc(c.t)+'</h5><div class="cdesc">'+esc(c.d)+'</div>';
-    NODES.filter(function(n){return n.col===i+1;}).forEach(function(n){
-      var b=document.createElement('button');b.type='button';b.className='eco-node st-'+n.st;b.dataset.id=n.id;
-      b.setAttribute('aria-label',n.name+' · '+ST_LABEL[n.st]);
-      b.innerHTML='<span class="stt"></span><span class="nm">'+esc(n.name)+'</span><span class="sb">'+esc(n.sub)+'</span>';
-      b.addEventListener('mouseenter',function(){hovered=n.id;applyFocus();});
-      b.addEventListener('mouseleave',function(){hovered=null;applyFocus();});
-      b.addEventListener('focus',function(){hovered=n.id;applyFocus();});
-      b.addEventListener('blur',function(){hovered=null;applyFocus();});
-      b.addEventListener('click',function(){selectNode(selected===n.id?null:n.id);});
-      col.appendChild(b);nodeEls[n.id]=b;
-    });
-    eco.appendChild(col);
-  });
-
-  function edgeTouches(e,id){return e[0]===id||e[1]===id;}
-  function drawEdges(){
-    var ecoW=eco.scrollWidth, ecoH=eco.scrollHeight;
-    ecoSvg.setAttribute('width',ecoW);ecoSvg.setAttribute('height',ecoH);ecoSvg.setAttribute('viewBox','0 0 '+ecoW+' '+ecoH);
-    // posição de cada nó relativa ao .eco
-    var pos={};
-    NODES.forEach(function(n){var el=nodeEls[n.id];pos[n.id]={x:el.offsetLeft,y:el.offsetTop,w:el.offsetWidth,h:el.offsetHeight};});
-    // distribui os pontos de saída/entrada ao longo da borda do nó
-    var ports={}; // id -> {R:[edgeIdx...],L:[...]}
-    var drawable=[];
-    EDGES.forEach(function(e,idx){
-      var a=NODE_BY_ID[e[0]],b=NODE_BY_ID[e[1]];
-      if(!a||!b||a.col===b.col)return;
-      var left=a.col<b.col?e[0]:e[1], right=a.col<b.col?e[1]:e[0];
-      drawable.push({idx:idx,left:left,right:right,dash:!!e[3]});
-      (ports[left]=ports[left]||{R:[],L:[]}).R.push(drawable.length-1);
-      (ports[right]=ports[right]||{R:[],L:[]}).L.push(drawable.length-1);
-    });
-    function portY(id,side,di){
-      var list=ports[id][side]; var p=pos[id];
-      var other=function(d){return side==='R'?d.right:d.left;};
-      var sorted=list.slice().sort(function(i,j){return (pos[other(drawable[i])].y)-(pos[other(drawable[j])].y);});
-      var k=sorted.indexOf(di), n=sorted.length;
-      var span=Math.min(p.h-16, n*10);
-      return p.y+p.h/2-span/2+(n===1?span/2:span*k/(n-1));
-    }
-    var svg='';
-    drawable.forEach(function(d,di){
-      var pl=pos[d.left],pr=pos[d.right];
-      var x1=pl.x+pl.w, y1=portY(d.left,'R',di);
-      var x2=pr.x, y2=portY(d.right,'L',di);
-      var dx=Math.max(30,(x2-x1)*0.45);
-      svg+='<path class="eco-edge'+(d.dash?' dash':'')+'" data-a="'+d.left+'" data-b="'+d.right+'" d="M'+x1.toFixed(1)+' '+y1.toFixed(1)+' C'+(x1+dx).toFixed(1)+' '+y1.toFixed(1)+' '+(x2-dx).toFixed(1)+' '+y2.toFixed(1)+' '+x2.toFixed(1)+' '+y2.toFixed(1)+'"/>';
-    });
-    ecoSvg.innerHTML=svg;
-    edgeEls=Array.prototype.slice.call(ecoSvg.querySelectorAll('.eco-edge'));
-    applyFocus();
-  }
-  function applyFocus(){
-    var f=hovered||selected;
-    eco.classList.toggle('has-focus',!!f);
-    var near={};
-    if(f){EDGES.forEach(function(e){if(e[0]===f)near[e[1]]=1;if(e[1]===f)near[e[0]]=1;});}
-    NODES.forEach(function(n){nodeEls[n.id].classList.toggle('near',!!(f&&near[n.id]));nodeEls[n.id].classList.toggle('sel',selected===n.id);});
-    edgeEls.forEach(function(el){el.classList.toggle('hl',!!(f&&(el.dataset.a===f||el.dataset.b===f)));});
-    renderDetail(f);
-  }
-  function renderDetail(id){
-    if(!id){ecoDetail.innerHTML='<div class="empty">Nenhum nó selecionado. Passe o mouse ou toque numa ferramenta para ver o papel dela e as integrações que a envolvem.</div>';return;}
-    var n=NODE_BY_ID[id];
-    var ints=INT.filter(function(i){return i.nodes.indexOf(id)>=0;}).sort(function(a,b){return a.w-b.w;});
-    var lis=ints.length?ints.map(function(i){return '<li><button type="button" class="iid" data-int="'+i.id+'">'+i.id+'</button><span>'+esc(i.name)+'</span><span class="iw">'+esc(i.wk)+'</span></li>';}).join(''):'<li><span></span><span style="color:var(--muted)">Sem integração técnica: entra como ação no cronograma.</span><span></span></li>';
-    ecoDetail.innerHTML='<div><div class="colname">'+esc(COLS[n.col-1].t)+'</div><h4>'+esc(n.name)+' <span class="stpill st-'+n.st+'"><i></i>'+ST_LABEL[n.st]+'</span>'+(selected===id?' <button type="button" class="eco-clear" id="ecoClear">limpar ×</button>':'')+'</h4><p>'+esc(n.role)+'</p></div>'+
-      '<div><div class="colname">'+ints.length+' integraç'+(ints.length===1?'ão':'ões')+'</div><ul class="ilist">'+lis+'</ul></div>';
-    var clr=document.getElementById('ecoClear'); if(clr)clr.addEventListener('click',function(){selectNode(null);});
-    ecoDetail.querySelectorAll('.iid').forEach(function(b){b.addEventListener('click',function(){showIntegration(b.dataset.int);});});
-  }
-  function selectNode(id){
-    selected=id; filter.node=id; filter.id=null;
-    applyFocus(); renderTable();
-    if(id){document.getElementById('filters').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});}
-  }
-  drawEdges();
-  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(drawEdges);}
-  window.addEventListener('load',drawEdges);
-  var rt=null; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(drawEdges,120);});
-  if(window.ResizeObserver){new ResizeObserver(function(){clearTimeout(rt);rt=setTimeout(drawEdges,60);}).observe(eco);}
-
   /* =====================================================================
-     ECOSSISTEMA · tabela de integrações
+     CHECKLIST DE HOJE (estado por navegador)
      ===================================================================== */
-  var filter={st:'all',m:'all',node:null,id:null};
-  var tbody=document.getElementById('itbody'), tblCount=document.getElementById('tblCount');
-  function monthOf(w){return w===0?0:Math.min(3,Math.ceil(w/4));}
-  function renderTable(){
-    var rows=INT.filter(function(i){
-      if(filter.id)return i.id===filter.id;
-      if(filter.st!=='all'&&i.st!==filter.st)return false;
-      if(filter.m!=='all'&&monthOf(i.w)!==parseInt(filter.m,10))return false;
-      if(filter.node&&i.nodes.indexOf(filter.node)<0)return false;
-      return true;
-    }).sort(function(a,b){return a.w-b.w||a.id.localeCompare(b.id);});
-    var extra='';
-    if(filter.id)extra=' · <button type="button" class="eco-clear" id="clrId">só '+filter.id+' ×</button>';
-    else if(filter.node)extra=' · <button type="button" class="eco-clear" id="clrNode">'+esc(NODE_BY_ID[filter.node].name)+' ×</button>';
-    tblCount.innerHTML=rows.length+' de '+INT.length+extra;
-    var c1=document.getElementById('clrId');if(c1)c1.addEventListener('click',function(){filter.id=null;renderTable();});
-    var c2=document.getElementById('clrNode');if(c2)c2.addEventListener('click',function(){selectNode(null);});
-    if(!rows.length){tbody.innerHTML='<tr><td class="none" colspan="8">Nenhuma integração com esses filtros.</td></tr>';return;}
-    tbody.innerHTML=rows.map(function(i){
-      return '<tr id="row-'+i.id+'"><td class="iid">'+i.id+'</td><td class="iname">'+esc(i.name)+'</td><td>'+esc(i.how)+'</td><td>'+esc(i.why)+'</td><td class="flowc">'+esc(i.flow)+'</td><td class="wk">'+esc(i.wk)+'</td><td class="eff">'+i.eff+'</td><td><span class="stpill st-'+i.st+'"><i></i>'+ST_LABEL[i.st]+'</span></td></tr>';
-    }).join('');
+  var KEY='wow-plano360-hoje-v4';
+  function loadDone(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){return {};}}
+  function saveDone(d){try{localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
+  var done=loadDone();
+  var ALL_IDS=[];TODAY.forEach(function(b){b.items.forEach(function(i){ALL_IDS.push(i.id);});});GOLIVE.forEach(function(g){ALL_IDS.push(g.id);});
+
+  function taskHtml(i,cls){
+    var ck=done[i.id]?' checked':'';
+    return '<div class="task'+(done[i.id]?' done':'')+(cls?' '+cls:'')+'"><input type="checkbox" id="'+i.id+'"'+ck+'><label for="'+i.id+'">'+esc(i.txt)+'</label>'+(i.tag?'<span class="tg">'+esc(i.tag)+'</span>':'')+'</div>';
   }
-  document.querySelectorAll('#filters .fbtn').forEach(function(b){
-    b.addEventListener('click',function(){
-      var f=b.dataset.f;
-      document.querySelectorAll('#filters .fbtn[data-f="'+f+'"]').forEach(function(x){x.setAttribute('aria-pressed','false');});
-      b.setAttribute('aria-pressed','true');
-      filter[f]=b.dataset.v; filter.id=null; renderTable();
+  function updateProgress(root){
+    var n=ALL_IDS.filter(function(id){return done[id];}).length, tot=ALL_IDS.length;
+    var bar=root.querySelector('.progress .pb i'), pc=root.querySelector('.progress .pc');
+    if(bar){bar.style.width=Math.round(100*n/tot)+'%';}
+    if(pc){pc.textContent=n+' / '+tot+(n===tot?' · pronto para amanhã':'');}
+    TODAY.forEach(function(b,bi){var c=root.querySelector('#bc'+bi);if(c){var k=b.items.filter(function(i){return done[i.id];}).length;c.textContent=k+'/'+b.items.length;}});
+  }
+  function bindTasks(root){
+    root.querySelectorAll('.task input').forEach(function(cb){
+      cb.addEventListener('change',function(){done[cb.id]=cb.checked;if(!cb.checked)delete done[cb.id];saveDone(done);cb.closest('.task').classList.toggle('done',cb.checked);updateProgress(root);});
     });
-  });
-  function showIntegration(id){
-    filter.id=id; renderTable();
-    var row=document.getElementById('row-'+id);
-    if(row){row.classList.add('flash');row.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});setTimeout(function(){row.classList.remove('flash');},1600);}
+    var clr=root.querySelector('#clearDone');
+    if(clr)clr.addEventListener('click',function(){done={};saveDone(done);renderTimeline();});
+    updateProgress(root);
   }
-  renderTable();
 
   /* =====================================================================
-     CRONOGRAMA
+     CRONOGRAMA · hoje → amanhã → 12 semanas
      ===================================================================== */
   var MON=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
   var kickEl=document.getElementById('kickoff');
@@ -1178,41 +1009,63 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   function addDays(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x;}
   function dShort(d){return String(d.getDate()).padStart(2,'0')+' '+MON[d.getMonth()];}
   function dFull(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();}
-  function kickoff(){var v=kickEl.value; return /^\d{4}-\d{2}-\d{2}$/.test(v)?parseDate(v):parseDate('2026-09-14');}
+  function kickoff(){var v=kickEl.value; return /^\d{4}-\d{2}-\d{2}$/.test(v)?parseDate(v):parseDate('2026-09-08');}
   function weekRange(n){var k=kickoff();var s=addDays(k,(n-1)*7);return {s:s,e:addDays(s,6)};}
-  var tlBtns=document.querySelectorAll('.tl-btn'), curMonth=1;
-  var tlAdd=document.getElementById('tlAdd'),tlBase=document.getElementById('tlBase'),tlLab=document.getElementById('tlLab'),tlFocus=document.getElementById('tlFocus'),tlTitle=document.getElementById('tlTitle'),tlDesc=document.getElementById('tlDesc'),weeksEl=document.getElementById('weeks');
+  var tlBtns=document.querySelectorAll('.tl-btn'), cur='today';
+  var tlAdd=document.getElementById('tlAdd'),tlPlus=document.getElementById('tlPlus'),tlLab=document.getElementById('tlLab'),tlFocus=document.getElementById('tlFocus'),tlTitle=document.getElementById('tlTitle'),tlDesc=document.getElementById('tlDesc'),tlContent=document.getElementById('tlContent');
+
   function renderTimeline(){
-    var k=kickoff(), end=addDays(k,12*7-1);
+    var k=kickoff(), today=addDays(k,-1), end=addDays(k,12*7-1);
+    document.getElementById('todayLbl').textContent=dFull(today);
     document.getElementById('kickLbl').textContent=dFull(k);
     document.getElementById('endLbl').textContent=dFull(end);
-    document.getElementById('kickRange').textContent='Semana 0: '+dShort(addDays(k,-7))+' – '+dShort(addDays(k,-1))+' · S1 começa '+dShort(k)+' · S12 termina '+dShort(end)+' '+end.getFullYear();
+    document.getElementById('kickRange').textContent='Hoje '+dShort(today)+' · S1 começa '+dShort(k)+' · S12 termina '+dShort(end)+' '+end.getFullYear();
+    document.getElementById('tbToday').textContent='dia 0 · '+dShort(today);
+    document.getElementById('tbTomorrow').textContent='dia 1 · '+dShort(k);
     [1,2,3].forEach(function(m){var a=weekRange((m-1)*4+1).s,b=weekRange(m*4).e;document.getElementById('mb'+m).textContent=dShort(a)+' – '+dShort(b);});
     var months=netMonths(META), nw=netWeeks(META);
-    var p=PLAN[curMonth];
-    if(curMonth===0){tlAdd.textContent='0';tlLab.innerHTML='net adds · ainda não começou';}
-    else{
-      var baseEnd=BASE0; for(var i=0;i<curMonth;i++)baseEnd+=months[i];
-      tlAdd.textContent=fmt(months[curMonth-1]);
-      tlLab.innerHTML='net adds no mês · base ao fim: <span id="tlBase">'+fmt(baseEnd)+'</span>';
+
+    if(cur==='today'){
+      tlPlus.innerHTML='<em id="tlAdd">0</em>';tlLab.textContent='vendas hoje · hoje é setup';
+      tlFocus.textContent='Dia 0 · ferramentas, integrações e testes';
+      tlTitle.textContent='Hoje · '+dShort(today);
+      tlDesc.textContent='Três blocos de trabalho e oito testes de go-live. O que não passar no teste não roda amanhã — e o que não cabe hoje já tem semana marcada.';
+      var h='<div class="progress"><span>Progresso de hoje</span><div class="pb"><i></i></div><span class="pc"></span><button type="button" id="clearDone">zerar</button></div>';
+      TODAY.forEach(function(b,bi){
+        h+='<div class="block"><div class="bh"><span class="bt">'+esc(b.t)+'</span><span class="bs">'+esc(b.s)+'</span><span class="bc" id="bc'+bi+'"></span></div>'+b.items.map(function(i){return taskHtml(i);}).join('')+'</div>';
+      });
+      h+='<div class="golive"><h4>Testes de go-live · antes de encerrar o dia</h4><div class="cap">Oito testes de ponta a ponta. Amanhã às 8h eles rodam de novo.</div>'+GOLIVE.map(function(g){return taskHtml(g);}).join('')+'</div>';
+      h+='<div class="nottoday"><h4>Não cabe hoje — e por quê</h4><ul>'+NOT_TODAY.map(function(x){return '<li><b>'+esc(x.t)+'</b><span>'+esc(x.why)+'</span><span class="wk">'+esc(x.wk)+'</span></li>';}).join('')+'</ul></div>';
+      tlContent.innerHTML=h;
+      bindTasks(tlContent);
     }
-    tlFocus.textContent=p.focus;
-    var r0=curMonth===0?{s:addDays(k,-7),e:addDays(k,-1)}:{s:weekRange((curMonth-1)*4+1).s,e:weekRange(curMonth*4).e};
-    tlTitle.textContent=p.title+' · '+dShort(r0.s)+' – '+dShort(r0.e);
-    tlDesc.textContent=p.desc;
-    weeksEl.innerHTML=p.weeks.map(function(w){
-      var r=w.n===0?{s:addDays(k,-7),e:addDays(k,-1)}:weekRange(w.n);
-      var deps=w.deps.length?'<div class="deps"><span>Integrações</span>'+w.deps.map(function(d){var it=INT_BY_ID[d];return '<button type="button" class="dep" data-int="'+d+'" title="'+esc(it?it.name:'')+'">'+d+'</button>';}).join('')+'</div>':'';
-      var add=w.n===0?'':'<div class="wadd">+'+fmt(nw[w.n-1])+' net adds</div>';
-      return '<div class="week"><div><div class="wn">'+(w.n===0?'Semana 0':'Semana '+w.n)+'</div><div class="wd">'+dShort(r.s)+' – '+dShort(r.e)+'</div>'+add+'</div><div><h4>'+esc(w.title)+'</h4><ul>'+w.items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>'+deps+'</div></div>';
-    }).join('');
-    weeksEl.querySelectorAll('.dep').forEach(function(b){b.addEventListener('click',function(){showIntegration(b.dataset.int);});});
+    else if(cur==='tomorrow'){
+      tlPlus.innerHTML='+<em id="tlAdd">'+fmt(nw[0])+'</em>';tlLab.textContent='net adds na semana 1';
+      tlFocus.textContent='Dia 1 · a máquina começa a rodar';
+      tlTitle.textContent='Amanhã · '+dShort(k);
+      tlDesc.textContent='Onda 1 sai em lotes, o e-mail dispara, a Rede abre. O dia termina com o relatório automático no grupo e a decisão do lote seguinte.';
+      tlContent.innerHTML='<div class="hours">'+TOMORROW.map(function(x){return '<div class="hour"><span class="h">'+x.h+'</span><span>'+x.txt+'</span></div>';}).join('')+'</div>'+
+        '<div class="rule"><b>Regra do dia 1:</b> lote pequeno de manhã, lote maior à tarde. Se a taxa de resposta cair ou o número der sinal de bloqueio, a fila para sozinha e a gente ajusta antes do próximo lote.</div>';
+    }
+    else{
+      var m=parseInt(cur,10), p=PLAN[m-1];
+      var baseEnd=BASE0; for(var i=0;i<m;i++)baseEnd+=months[i];
+      tlPlus.innerHTML='+<em id="tlAdd">'+fmt(months[m-1])+'</em>';tlLab.textContent='net adds no mês · base ao fim: '+fmt(baseEnd);
+      tlFocus.textContent=p.focus;
+      var r0={s:weekRange((m-1)*4+1).s,e:weekRange(m*4).e};
+      tlTitle.textContent=p.title+' · '+dShort(r0.s)+' – '+dShort(r0.e);
+      tlDesc.textContent=p.desc;
+      tlContent.innerHTML='<div class="weeks">'+p.weeks.map(function(w){
+        var r=weekRange(w.n);
+        return '<div class="week"><div><div class="wn">Semana '+w.n+'</div><div class="wd">'+dShort(r.s)+' – '+dShort(r.e)+'</div><div class="wadd">+'+fmt(nw[w.n-1])+' net adds</div></div><div><h4>'+esc(w.title)+'</h4><ul>'+w.items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div></div>';
+      }).join('')+'</div>';
+    }
   }
   tlBtns.forEach(function(b){
     b.addEventListener('click',function(){
       tlBtns.forEach(function(x){x.setAttribute('aria-selected','false');});
       b.setAttribute('aria-selected','true');
-      curMonth=parseInt(b.dataset.m,10);
+      cur=b.dataset.m;
       renderTimeline();
     });
   });
