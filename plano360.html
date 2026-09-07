@@ -322,13 +322,10 @@ table.itbl{width:100%;border-collapse:collapse;min-width:920px;font-size:.84rem}
 .cta p{color:#B7CCC5;max-width:52ch;margin-top:16px;position:relative;z-index:2}
 .cta .grp-lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6FE3D0;margin:34px 0 12px;position:relative;z-index:2;font-weight:700}
 .needs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:2}
-.needs.four{grid-template-columns:repeat(4,1fr)}
-@media(max-width:820px){.needs.four{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.needs{grid-template-columns:1fr}}
-@media(max-width:480px){.needs.four{grid-template-columns:1fr}}
 .need{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px}
 .need .n{font-family:var(--dsp);font-weight:800;font-size:1.6rem;color:var(--coral)}
-.needs.four .need .n{color:var(--amber)}
+.needs.decs .need .n{color:var(--amber)}
 .need h4{color:#fff;font-size:1rem;margin:8px 0 6px}
 .need p{color:#9FBAB2;font-size:.85rem;margin:0}
 
@@ -544,7 +541,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <div class="item"><span class="sw" style="background:var(--teal-bright)"></span>Boost de conteúdo<span class="amt">R$400</span></div>
           <div class="item"><span class="sw" style="background:var(--coral)"></span>Produção + folga<span class="amt">R$300</span></div>
         </div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:16px;line-height:1.5">O stack atual (N8N, Evolution, Pinecone, OpenAI) já está pago. Com R$1,5k/mês não há espaço para software novo: CRM em Postgres/Sheets próprio (R$0) e e-mail num plano de entrada (~R$100–150/mês), que sai da folga. Quase tudo vai para mídia: nossa vantagem injusta.</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:16px;line-height:1.5">O stack atual (N8N, Evolution, Pinecone, OpenAI) já está pago. O CRM é próprio (R$0). Com R$1,5k/mês não há espaço para software novo: só o e-mail precisa de um plano de entrada (~R$100–150/mês), que sai da folga. Quase tudo vai para mídia: nossa vantagem injusta.</p>
       </div>
     </div>
   </div>
@@ -689,7 +686,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="cta reveal">
       <div class="blob b1" style="background:var(--teal-bright)"></div>
       <div class="blob b2" style="background:var(--coral)"></div>
-      <h2>Para o kickoff faltam 3 números e 4 decisões.</h2>
+      <h2>Para o kickoff faltam 3 números e 3 decisões.</h2>
       <p>Os números mexem na rampa; as decisões destravam as integrações da semana 1. Sem eles, a máquina não liga — e cada semana parada custa ~8% da meta.</p>
       <div class="grp-lbl">Os números</div>
       <div class="needs">
@@ -698,11 +695,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <div class="need"><div class="n">03</div><h4>Origem dos 1.000 atuais</h4><p>Se já há um canal funcionando, a gente amplifica em vez de criar do zero.</p></div>
       </div>
       <div class="grp-lbl">As decisões de ferramenta</div>
-      <div class="needs four">
-        <div class="need"><div class="n">01</div><h4>CRM</h4><p>Tabela própria no Postgres (R$0, recomendado com esta verba), Kommo ou HubSpot. Destrava o pipeline único e os gatilhos por estágio.</p></div>
-        <div class="need"><div class="n">02</div><h4>Ferramenta de e-mail</h4><p>Brevo ou Resend num plano de entrada (~R$100–150/mês) — precisa de API e webhooks de abertura/clique.</p></div>
-        <div class="need"><div class="n">03</div><h4>Webhooks do gateway</h4><p>Confirmar os eventos de pagamento aprovado, recusado e cancelamento. Sem eles não há atribuição nem antichurn.</p></div>
-        <div class="need"><div class="n">04</div><h4>Eventos da plataforma</h4><p>API ou export dos eventos de uso do app (cadastro, 1ª consulta). Define se o antichurn é em tempo real ou semanal.</p></div>
+      <div class="needs decs">
+        <div class="need"><div class="n">01</div><h4>Ferramenta de e-mail</h4><p>Brevo ou Resend num plano de entrada (~R$100–150/mês) — precisa de API e webhooks de abertura/clique.</p></div>
+        <div class="need"><div class="n">02</div><h4>Webhooks do gateway</h4><p>Confirmar os eventos de pagamento aprovado, recusado e cancelamento. Sem eles não há atribuição nem antichurn.</p></div>
+        <div class="need"><div class="n">03</div><h4>Eventos da plataforma</h4><p>API ou export dos eventos de uso do app (cadastro, 1ª consulta). Define se o antichurn é em tempo real ou semanal.</p></div>
       </div>
     </div>
   </div>
@@ -711,7 +707,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <footer>
   <div class="wrap">
     <span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="brand-logo" style="width:118px;height:30px" role="img" aria-label="WOW+ Saúde por Assinatura"></span>Plano de Marketing &amp; Comunicação 360° · Apresentado por Fernando Jorge, CMO</span>
-    <span class="mono">v3 · 3 meses · 12 semanas · meta 3.000 · R$1,5k/mês · não iniciado</span>
+    <span class="mono">v3.1 · 3 meses · 12 semanas · meta 3.000 · R$1,5k/mês · não iniciado</span>
   </div>
 </footer>
 
@@ -768,8 +764,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     {id:'mail',col:2,name:'Ferramenta de e-mail',sub:'Brevo · Resend · Mailchimp',st:'decidir',role:'Decisão da semana 0. Requisitos: API de envio, webhooks de abertura/clique/descadastro e um plano de entrada (~R$100–150/mês) que cubra os 5 disparos para 5k contatos.'},
 
     {id:'n8n',col:3,name:'N8N · orquestrador',sub:'webhooks · roteamento · cron',st:'temos',role:'O centro de tudo. Recebe todos os webhooks, roteia por origem, dispara ondas, sequências, sync de públicos, comissões e relatórios.'},
-    {id:'crm',col:3,name:'CRM · pipeline único',sub:'próprio (Postgres) · Kommo · HubSpot',st:'decidir',role:'Decisão da semana 0. Um pipeline só (lead → qualificado → checkout → assinante → ativo) com origem e associado em cada registro. Com R$1,5k/mês, a recomendação é começar no Postgres/Sheets próprio (R$0) e só migrar para um CRM pago se a operação pedir.'},
-    {id:'db',col:3,name:'Postgres · eventos & atribuição',sub:'na VPS (Coolify)',st:'configurar',role:'Tabela de eventos (lead, venda, cancelamento, uso) e de atribuição (UTM, cupom, associado). Fonte de verdade do cockpit e das comissões.'},
+    {id:'crm',col:3,name:'CRM próprio · pipeline único',sub:'nosso sistema · R$0',st:'configurar',role:'O CRM é nosso, então não há licença nem limite de contatos. Falta configurá-lo para o plano: um pipeline só (lead → qualificado → checkout → assinante → ativo), origem e associado em cada registro, e webhooks de mudança de estágio para o N8N.'},
+    {id:'db',col:3,name:'Postgres · eventos & atribuição',sub:'na VPS (Coolify)',st:'configurar',role:'Tabela de eventos (lead, venda, cancelamento, uso) e de atribuição (UTM, cupom, associado), no banco do CRM próprio ou num Postgres ao lado, na VPS. Fonte de verdade do cockpit e das comissões.'},
     {id:'sheets',col:3,name:'Google Sheets · interino',sub:'cockpit v0 · comissões',st:'temos',role:'Ponte enquanto o cockpit e o portal não existem: planilha de vendas por origem alimentada pelo N8N e extrato de comissões.'},
 
     {id:'checkout',col:4,name:'Checkout · app.wowmais.com.br',sub:'cupons e oferta de entrada',st:'configurar',role:'Onde a venda acontece. Precisa aceitar o cupom da oferta de entrada e os cupons por associado/médico, e carregar pixel + UTM até o pagamento.'},
@@ -796,7 +792,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     ['site','checkout',null],['site','ga4','I18'],
     ['n8n','gateway','I11',1],['n8n','app','I13',1],['n8n','onb','I12'],
     ['n8n','metatools','I15'],['n8n','kit','I21'],['n8n','portal','I23'],['n8n','comis','I24'],['n8n','report','I20'],
-    ['metaads','windsor','I17'],['ga4','windsor','I18'],['windsor','cockpit','I19'],['db','cockpit','I19'],['crm','cockpit','I19',1]
+    ['metaads','windsor','I17'],['ga4','windsor','I18'],['windsor','cockpit','I19'],['db','cockpit','I19'],['crm','cockpit','I19']
   ];
 
   /* ---------- integrações (linhas da tabela) ---------- */
@@ -810,7 +806,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     {id:'I07',name:'Base de conhecimento → Pinecone',how:'Ingestão de FAQ, objeções, planos e limites de compliance (RT)',why:'A Wendy responde certo e dentro das regras',flow:'F02',w:1,wk:'S1',st:'configurar',eff:'P',nodes:['wendy']},
     {id:'I08',name:'Ferramenta de e-mail ⇄ N8N',how:'API de envio + webhooks de abertura, clique e descadastro',why:'Sequência de reativação (5 disparos) e onboarding por e-mail',flow:'F03',w:1,wk:'S1–2',st:'decidir',eff:'M',nodes:['mail','n8n','embase']},
     {id:'I09',name:'Bases (10k + 5k) → CRM / Postgres',how:'Importação, deduplicação, segmentação quente/morno/frio e registro de consentimento (LGPD)',why:'O ponto de partida de tudo: sem segmentação não há onda 1',flow:'F01',w:0,wk:'S0–1',st:'construir',eff:'M',nodes:['wabase','embase','crm','db']},
-    {id:'I10',name:'CRM → N8N · gatilhos por estágio',how:'Webhook de mudança de estágio',why:'Qualificado → Wendy; assinou → onboarding; abandonou → retargeting',flow:'F01–03',w:2,wk:'S2',st:'decidir',eff:'M',nodes:['crm','n8n']},
+    {id:'I10',name:'CRM próprio → N8N · gatilhos por estágio',how:'Webhook de mudança de estágio disparado pelo nosso CRM',why:'Qualificado → Wendy; assinou → onboarding; abandonou → retargeting',flow:'F01–03',w:2,wk:'S2',st:'construir',eff:'M',nodes:['crm','n8n']},
     {id:'I11',name:'Gateway → N8N · assinatura criada / pagamento aprovado',how:'Webhook do gateway',why:'Marca cliente no CRM, atribui a venda (cupom/UTM) e dispara o Purchase no CAPI',flow:'F05 · F06',w:2,wk:'S2',st:'decidir',eff:'M',nodes:['gateway','n8n','crm','metatools']},
     {id:'I12',name:'Gateway → N8N · recusado / cancelado / inadimplente',how:'Webhook do gateway',why:'Gatilho do antichurn: a Wendy age antes do cancelamento',flow:'F08',w:5,wk:'S5',st:'configurar',eff:'P',nodes:['gateway','n8n','onb']},
     {id:'I13',name:'Plataforma → N8N · eventos de uso',how:'API/webhook ou, no mínimo, export CSV semanal',why:'Cadastro concluído, 1ª consulta e 14 dias sem uso alimentam onboarding e antichurn',flow:'F08',w:5,wk:'S5',st:'decidir',eff:'G',nodes:['app','n8n','onb']},
@@ -842,13 +838,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     {title:'Semana 0',focus:'Pré-kickoff · decisões e acessos',desc:'Nada de construir ainda. A semana 0 existe para que a semana 1 comece sem bloqueio: números, decisões, acessos e as bases limpas.',weeks:[
       {n:0,title:'Decisões, acessos e bases',items:[
         'Fechar os 3 números: churn real, associados e médicos ativos hoje, origem dos 1.000 atuais.',
-        'Decidir CRM e ferramenta de e-mail; confirmar os webhooks do gateway e os eventos de uso da plataforma.',
+        'Decidir a ferramenta de e-mail; confirmar os webhooks do gateway e os eventos de uso da plataforma.',
         'Garantir acessos: Meta Business, GA4, gateway, plataforma, Canva, Windsor, Jotform.',
         'Exportar as bases (10k WhatsApp + 5k e-mail), deduplicar, segmentar quente/morno/frio e registrar consentimento (LGPD).',
         'Abrir o board do plano no Trello com as 12 semanas e um card por ação desta página.'],deps:['I09','I28']}]},
     {title:'Mês 1',focus:'Fundação + colheita fácil',desc:'Ligar a máquina mínima na S1, disparar as ondas da base própria nas S2–S4 e abrir a Rede em paralelo. O paid entra na S3, quando os públicos já têm massa.',weeks:[
       {n:1,title:'A máquina mínima no ar',items:[
-        'Pipeline único no CRM com origem em cada lead; webhooks do site e do Jotform entrando no N8N.',
+        'Pipeline único no CRM próprio com origem em cada lead; webhooks do site e do Jotform entrando no N8N.',
         'Wendy com prompt de conversão e base de conhecimento atualizada (FAQ, planos, compliance da RT).',
         'Opt-out ("SAIR") e Z-API como número de broadcast prontos antes de qualquer disparo.',
         'LP da oferta de entrada no ar, com GTM, pixel, GA4 e taxonomia de UTM; cupom da oferta configurado no checkout.',
