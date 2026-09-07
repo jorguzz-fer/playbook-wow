@@ -148,7 +148,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .mlist li{display:flex;gap:12px;font-size:.95rem;color:var(--ink-soft)}
 .mlist li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--teal-bright);margin-top:9px}
 .metric-tag{display:inline-flex;align-items:baseline;gap:8px;background:var(--teal-soft);border-radius:10px;padding:10px 14px;margin-top:6px}
-.metric-tag b{font-family:var(--dsp);font-size:1.3rem;color:var(--teal)}
+.metric-tag b{font-family:var(--dsp);font-size:1.3rem;color:var(--teal);white-space:nowrap}
 .metric-tag span{font-size:.8rem;color:#0a4f47}
 .metric-note{font-size:.76rem;color:var(--muted);margin-top:10px;max-width:34ch}
 
@@ -164,6 +164,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .chip.paid{background:var(--coral-soft);color:#8a3418}
 .chip.soc{background:#E4EEF6;color:#2b5877}
 .chip.prod{background:#EAE6F6;color:#4a3a7a}
+.chip.b2b{background:#E4EEF6;color:#1f4f7a}
 .chrow .name{font-weight:600;font-size:.94rem}
 .chrow .role{font-size:.82rem;color:var(--muted)}
 .chrow .cost{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--ink-soft);white-space:nowrap}
@@ -361,7 +362,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="wrap">
     <span class="hero-badge"><span class="dot"></span>Plano de Marketing &amp; Comunicação · 3 meses · 12 semanas</span>
     <h1>3.000 assinantes em 12 semanas com <span class="a">R$1,5 mil</span> por mês.</h1>
-    <p class="hero-sub">A conta do tráfego pago não fecha — e é justamente por isso que o plano funciona. Com R$1,5 mil por mês, o crescimento vem dos ativos que já são nossos (base própria, Rede de Associados e médicos que indicam), ligados por automação. Hoje a gente monta a máquina; amanhã ela começa a rodar.</p>
+    <p class="hero-sub">A conta do tráfego pago não fecha — e é justamente por isso que o plano funciona. Com R$1,5 mil por mês, o crescimento vem dos ativos que já são nossos (base própria, novos associados e empresas B2B com 50+ funcionários), ligados por automação. Hoje a gente monta a máquina; amanhã ela começa a rodar.</p>
     <div class="hero-figs">
       <div class="figcard"><div class="n" id="heroCount">1.000</div><div class="l">Assinantes hoje</div></div>
       <div class="figcard hl"><div class="n"><em>3.000</em></div><div class="l">Meta em 12 semanas</div></div>
@@ -458,9 +459,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     </div>
 
     <div class="motor-panel" data-panel="1">
-      <div class="tagline">🟠 O motor escalável · recrutamento abre amanhã</div>
+      <div class="tagline">🟠 O motor escalável · associados + B2B</div>
       <h3>Rede de Associados</h3>
-      <p class="role">Consultores, Especialistas e médicos associados. Em 12 semanas a Rede não tem o luxo de compor devagar: kit v0 hoje, recrutamento amanhã, kit completo na S2, primeira comissão paga na S4.</p>
+      <p class="role">Consultores e Especialistas que vendem, mais empresas médias (50+ funcionários) que entram por lote de vidas. Em 12 semanas a Rede não tem o luxo de compor devagar: kit v0 hoje, recrutamento e primeiras abordagens B2B amanhã, kit completo na S2, primeira comissão paga na S4.</p>
       <div class="motor-grid">
         <div>
           <h4>Mecânica</h4>
@@ -471,13 +472,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           </ul>
         </div>
         <div>
-          <h4>Canal-médico</h4>
+          <h4>Canal B2B · empresas 50+</h4>
           <ul class="mlist">
-            <li>Cada médico que assina vira nó de distribuição para os próprios pacientes — confiança e compliance embutidos.</li>
-            <li>QR code e material de consultório com o cupom do médico, a partir da S5.</li>
+            <li>Alvo: empresas de 50 a 500 funcionários, decisor em RH ou financeiro. SMART Corporativo (R$19,90/vida) ou CARE+ Corporativo (R$24,90/vida).</li>
+            <li>Abordagem SPIN por vendedor humano; a Wendy só qualifica (nº de funcionários, benefício atual) e agenda. Proposta em minutos pelo gerador de propostas.</li>
+            <li>Associados e parceiros (contadores, consultores, associações) que abrem a porta ganham a comissão da empresa.</li>
           </ul>
-          <div class="metric-tag" style="margin-top:12px"><b>600–1.000</b><span>assinantes previstos em 12 semanas</span></div>
-          <div class="metric-note">A projeção de 6 meses era 1.000–1.500: a Rede compõe com o tempo, e tempo é o que o plano tem menos.</div>
+          <div class="metric-tag" style="margin-top:12px"><b>700–1.300</b><span>assinantes em 12 semanas · Rede 400–700 + B2B 300–600</span></div>
+          <div class="metric-note">Uma empresa de 100 vidas vale 100 assinantes de uma vez: o B2B é o único canal que pode furar a faixa provável para cima.</div>
         </div>
       </div>
     </div>
@@ -490,7 +492,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <div>
           <h4>Conteúdo</h4>
           <ul class="mlist">
-            <li>Instagram, Reels e Status de WhatsApp assinados pelos médicos (brief na S2, no ar na S4) — autoridade e compliance de uma vez.</li>
+            <li>Instagram, Reels e Status de WhatsApp com autoridade clínica, validados pela RT (brief na S2, no ar na S4) — e conteúdo para RH: absenteísmo, NR-1, custo por vida.</li>
             <li>Desenhado para ser redistribuído pela Rede: o associado compartilha, não cria.</li>
           </ul>
         </div>
@@ -520,11 +522,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <div class="chrow"><span class="chip own">Owned</span><div><div class="name">WhatsApp · Evolution + Z-API + Wendy</div><div class="role">Motor 1 e conversão de tudo</div></div><span class="cost">~R$0</span></div>
         <div class="chrow"><span class="chip own">Owned</span><div><div class="name">E-mail · base 5k</div><div class="role">Reativação e nutrição</div></div><span class="cost">~R$0</span></div>
         <div class="chrow"><span class="chip own">Owned</span><div><div class="name">Site &amp; landing page</div><div class="role">Conversão e captura, com origem rastreada</div></div><span class="cost">~R$0</span></div>
-        <div class="chrow"><span class="chip earn">Earned</span><div><div class="name">Rede de Associados + médicos</div><div class="role">Motor 2, o escalável</div></div><span class="cost">~R$0</span></div>
+        <div class="chrow"><span class="chip earn">Earned</span><div><div class="name">Rede de Associados</div><div class="role">Motor 2, o escalável</div></div><span class="cost">~R$0</span></div>
+        <div class="chrow"><span class="chip b2b">B2B</span><div><div class="name">Empresas 50+ · RH e financeiro</div><div class="role">Vidas em lote: proposta + SPIN, atribuída a quem abriu a porta</div></div><span class="cost">~R$0</span></div>
         <div class="chrow"><span class="chip earn">Earned</span><div><div class="name">Indique e ganhe</div><div class="role">Loop viral de clientes (liga na S5)</div></div><span class="cost">baixo</span></div>
         <div class="chrow"><span class="chip paid">Paid</span><div><div class="name">Meta · retargeting + lookalike</div><div class="role">Escala de público quente, da S2 em diante</div></div><span class="cost">R$800/mês</span></div>
         <div class="chrow"><span class="chip paid">Paid</span><div><div class="name">Boost de conteúdo vencedor</div><div class="role">Amplificar o que já funcionou</div></div><span class="cost">R$400/mês</span></div>
-        <div class="chrow"><span class="chip soc">Social</span><div><div class="name">Instagram orgânico</div><div class="role">Marca e prova social, assinado por médicos</div></div><span class="cost">~R$0</span></div>
+        <div class="chrow"><span class="chip soc">Social</span><div><div class="name">Instagram orgânico</div><div class="role">Marca e prova social; conteúdo para RH também</div></div><span class="cost">~R$0</span></div>
         <div class="chrow"><span class="chip prod">Product</span><div><div class="name">Oferta de entrada + onboarding</div><div class="role">Ativação e queda de churn</div></div><span class="cost">~R$0</span></div>
       </div>
       <div class="donutcard reveal">
@@ -555,7 +558,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <div class="flowcard"><div class="step">FLUXO 02<span class="wk now">hoje</span></div><h4>Nutrição · Wendy</h4><p>Qualifica, responde objeções via RAG/Pinecone e conduz à assinatura. Escala sem a gente digitar.</p></div>
       <div class="flowcard"><div class="step">FLUXO 03<span class="wk now">hoje</span></div><h4>Ondas de WhatsApp + e-mail</h4><p>Broadcast em ondas com opt-out e sequências de reativação/onboarding disparadas por evento.</p></div>
       <div class="flowcard"><div class="step">FLUXO 04<span class="wk">S2</span></div><h4>Distribuição pra Rede</h4><p>Kit v0 hoje; a partir da S2, o "conteúdo da semana" chega pronto para cada associado toda segunda.</p></div>
-      <div class="flowcard"><div class="step">FLUXO 05<span class="wk now">hoje</span></div><h4>Rastreio de indicação</h4><p>Link ou cupom por associado e por médico, com atribuição automática no CRM e comissão calculada no Sheets.</p></div>
+      <div class="flowcard"><div class="step">FLUXO 05<span class="wk now">hoje</span></div><h4>Rastreio de indicação</h4><p>Link ou cupom por associado, com atribuição automática no CRM e comissão calculada no Sheets. Empresa B2B fica atribuída a quem abriu a porta.</p></div>
       <div class="flowcard"><div class="step">FLUXO 06<span class="wk">S2</span></div><h4>Sync de conversões</h4><p>Pixel hoje; CAPI e públicos de retargeting/lookalike no Meta atualizados sozinhos a partir da S2.</p></div>
       <div class="flowcard"><div class="step">FLUXO 07<span class="wk now">v0 hoje</span></div><h4>Cockpit de dados</h4><p>Hoje: Sheets alimentado pelo N8N + relatório diário no WhatsApp do time. Na S2 vira uma tela estilo Autron Dash.</p></div>
       <div class="flowcard"><div class="step">FLUXO 08<span class="wk">S3</span></div><h4>Antichurn</h4><p>Gatilhos (cartão recusado, sem uso, fim do 1º mês) acionam a Wendy antes do cancelamento.</p></div>
@@ -640,7 +643,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <div class="kpi"><div class="k">Conversão da base própria</div><div class="why">Eficiência do dinheiro fácil, por onda.</div><span class="target">4–6%</span></div>
       <div class="kpi"><div class="k">Associados ATIVOS</div><div class="why">Vendeu nos últimos 14 dias.</div><span class="target">crescente</span></div>
       <div class="kpi"><div class="k">CAC blended</div><div class="why">Sustentabilidade do crescimento.</div><span class="target">&lt; 1 mensalidade</span></div>
-      <div class="kpi"><div class="k">Origem das vendas</div><div class="why">Onde dobrar a aposta na semana seguinte.</div><span class="target">revisar toda segunda</span></div>
+      <div class="kpi"><div class="k">Origem das vendas</div><div class="why">Base, Rede, B2B ou paid: onde dobrar a aposta na semana seguinte.</div><span class="target">revisar toda segunda</span></div>
     </div>
   </div>
 </section>
@@ -656,7 +659,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <div class="grp-lbl">Os números</div>
       <div class="needs">
         <div class="need"><div class="n">01</div><h4>Churn real mensal</h4><p>Trabalhamos com 5%. Se for maior, o volume de vendas brutas sobe muito.</p></div>
-        <div class="need"><div class="n">02</div><h4>Associados e médicos ativos hoje</h4><p>O motor escalável depende do tamanho atual da rede.</p></div>
+        <div class="need"><div class="n">02</div><h4>Associados ativos e empresas em conversa</h4><p>O motor escalável depende do tamanho atual da rede e de quantas portas B2B já estão abertas.</p></div>
         <div class="need"><div class="n">03</div><h4>Origem dos 1.000 atuais</h4><p>Se já há um canal funcionando, a gente amplifica em vez de criar do zero.</p></div>
       </div>
       <div class="grp-lbl">As confirmações de hoje</div>
@@ -672,7 +675,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 <footer>
   <div class="wrap">
     <span style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="brand-logo" style="width:118px;height:30px" role="img" aria-label="WOW+ Saúde por Assinatura"></span>Plano de Marketing &amp; Comunicação 360° · Apresentado por Fernando Jorge, CMO</span>
-    <span class="mono">v4 · 3 meses · 12 semanas · meta 3.000 · R$1,5k/mês · setup hoje, rodando amanhã</span>
+    <span class="mono">v4.1 · 3 meses · 12 semanas · meta 3.000 · R$1,5k/mês · associados + B2B · setup hoje, rodando amanhã</span>
   </div>
 </footer>
 
@@ -707,19 +710,19 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   /* ---------- funil ---------- */
   var FUNNEL=[
     {n:'01',name:'Atrair',w:'100%',metric:'contatos alcançados / semana',
-     tools:[['Base WhatsApp · 10k'],['Base e-mail · 5k'],['Instagram'],['Rede de Associados'],['Meta Ads · retargeting','later']],
-     today:['Segmentar as bases em quente / morno / frio e registrar consentimento (LGPD).','Links wa.me e LP com código de origem e de associado.']},
+     tools:[['Base WhatsApp · 10k'],['Base e-mail · 5k'],['Instagram'],['Rede de Associados'],['Empresas 50+ · RH'],['Meta Ads · retargeting','later']],
+     today:['Segmentar as bases em quente / morno / frio e registrar consentimento (LGPD).','Links wa.me e LP com código de origem e de associado.','Lista de 50 empresas-alvo (50+ funcionários) com contato de RH.']},
     {n:'02',name:'Captar',w:'92%',metric:'leads / dia · por origem',
-     tools:[['Landing page da oferta'],['wa.me com código'],['Jotform · Rede e médicos']],
+     tools:[['Landing page da oferta'],['wa.me com código'],['Jotform · associados e empresas']],
      today:['Webhook da LP e do Jotform → N8N → CRM próprio, com origem em cada lead.','Pixel + GTM + GA4 na LP e no checkout.']},
     {n:'03',name:'Conversar',w:'84%',metric:'% de leads qualificados · tempo de resposta',
      tools:[['Evolution API · atendimento'],['Z-API · broadcast'],['Wendy · OpenAI + Pinecone']],
-     today:['Prompt de conversão da Wendy e base de conhecimento (FAQ, planos, compliance da RT).','Opt-out "SAIR" e regra de handoff humano.']},
+     today:['Prompt de conversão da Wendy e base de conhecimento (FAQ, planos, compliance da RT).','Opt-out "SAIR" e regra de handoff humano.','B2B: a Wendy qualifica (funcionários, benefício atual) e passa para o vendedor com SPIN.']},
     {n:'04',name:'Converter',w:'76%',metric:'vendas / dia · CAC por canal',
-     tools:[['Checkout · app.wowmais.com.br'],['Cupom da oferta + cupom por associado'],['Gateway']],
-     today:['Cupons criados no checkout; gerador de cupom por associado no N8N.','Webhook de pagamento aprovado → CRM marca assinante e atribui a venda.']},
+     tools:[['Checkout · app.wowmais.com.br'],['Cupom da oferta + cupom por associado'],['Gateway'],['Gerador de propostas · B2B']],
+     today:['Cupons criados no checkout; gerador de cupom por associado no N8N.','Webhook de pagamento aprovado → CRM marca assinante e atribui a venda.','Proposta-modelo B2B pronta no gerador (SMART / CARE+ Corporativo por vida).']},
     {n:'05',name:'Reter',w:'68%',metric:'1º uso em 7 dias · churn',
-     tools:[['Onboarding de 1º uso'],['Antichurn · gatilhos','later'],['Relatório do time · 19h']],
+     tools:[['Onboarding de 1º uso'],['Onboarding B2B em lote + dashboard de RH'],['Antichurn · gatilhos','later'],['Relatório do time · 19h']],
      today:['Sequência de onboarding (WhatsApp + e-mail) disparada pela assinatura.','Relatório diário automático no grupo do time.']}
   ];
 
@@ -737,7 +740,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       {id:'t08',tag:'Checkout',txt:'Cupom da oferta (1º mês simbólico / família) criado; gerador de cupom por associado (N8N cria, CRM registra, gera link wa.me e LP ?ref=).'},
       {id:'t09',tag:'Gateway',txt:'Webhook de pagamento aprovado → N8N → CRM marca assinante e atribui a venda. Se recusado/cancelado já existir, ligar também.'},
       {id:'t10',tag:'E-mail',txt:'Ferramenta de e-mail escolhida e conectada ao N8N (API + webhooks); sequência de reativação (5 disparos) e onboarding carregadas.'},
-      {id:'t11',tag:'Rede',txt:'Jotform: formulário de recrutamento da Rede e de cadastro de médicos, com webhook para o N8N.'},
+      {id:'t11',tag:'Rede',txt:'Jotform: formulário de recrutamento da Rede e de contato de empresas (RH), com webhook para o N8N.'},
+      {id:'t19',tag:'B2B',txt:'B2B: lista de 50 empresas-alvo (50+ funcionários) com contato de RH; script SPIN e proposta-modelo prontos no gerador de propostas.'},
       {id:'t12',tag:'Social',txt:'Instagram: link na bio para a LP com UTM e click-to-chat com código de origem.'}]},
     {t:'Bloco 3 · fim do dia · 17h–20h',s:'Distribuição, medição e testes',items:[
       {id:'t13',tag:'Rede',txt:'Kit de armamento v0 (Canva → pasta no Drive): criativos, script de WhatsApp, respostas a objeções. Lista de associados no WhatsApp pronta.'},
@@ -764,7 +768,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     {t:'Antichurn por gatilho',why:'depende dos webhooks de recusa/cancelamento e dos eventos de uso',wk:'S3'},
     {t:'Portal do associado',why:'até lá, mensagem semanal automática com vendas e comissão',wk:'S4'},
     {t:'Indique e ganhe',why:'precisa da mecânica de recompensa no gateway',wk:'S5'},
-    {t:'QR code e material de consultório',why:'depende de impressão e dos primeiros médicos ativos',wk:'S5'}
+    {t:'Sequência B2B automática para RH',why:'e-mail + WhatsApp em 3 toques; primeiro as 50 abordagens manuais',wk:'S2'},
+    {t:'Case B2B para prova social',why:'depende da primeira empresa fechada',wk:'S4'}
   ];
 
   /* ---------- amanhã: dia 1 ---------- */
@@ -772,8 +777,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     {h:'08h',txt:'<b>Rodar os 8 testes de go-live de novo.</b> Nada sai antes de todos passarem.'},
     {h:'09h',txt:'<b>Onda 1 · lote 1:</b> 1.000 contatos do segmento quente pela Z-API, em fila, com a Wendy respondendo no Evolution.'},
     {h:'10h',txt:'<b>E-mail · disparo 1</b> da reativação para os 5k, mesma oferta e mesmo link rastreado.'},
-    {h:'11h',txt:'<b>Rede:</b> abrir o recrutamento (post + mensagem para associados e médicos atuais) e enviar o kit v0 com o link/cupom de cada um.'},
+    {h:'11h',txt:'<b>Rede:</b> abrir o recrutamento (post + mensagem para os associados atuais) e enviar o kit v0 com o link/cupom de cada um.'},
     {h:'14h',txt:'<b>Onda 1 · lote 2:</b> mais 1.000 contatos quentes. Ajustar o prompt da Wendy com as objeções da manhã.'},
+    {h:'15h',txt:'<b>B2B:</b> primeiras 10 abordagens a RH de empresas 50+ (WhatsApp ou e-mail) com a proposta-modelo; associados e parceiros indicam portas abertas.'},
     {h:'16h',txt:'<b>Instagram:</b> primeiro conteúdo com link na bio; stories com click-to-chat.'},
     {h:'19h',txt:'<b>Relatório automático</b> no grupo: leads, conversas, vendas por origem, net adds. Decidir o lote de amanhã.'}
   ];
@@ -784,12 +790,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       {n:1,title:'Onda 1 e primeiros associados',items:[
         'Onda 1 completa (segmento quente, ~3k) em lotes diários; e-mail disparos 1 e 2.',
         'Ajuste diário do prompt da Wendy com as objeções reais; handoff humano nos leads que travarem.',
-        'Primeiros associados e médicos cadastrados recebem link/cupom e kit v0.',
+        'Primeiros associados cadastrados recebem link/cupom e kit v0; 50 empresas-alvo abordadas até sexta.',
         'Cockpit v0 no Sheets revisado todo dia às 19h; campanha de retargeting pronta em rascunho.']},
       {n:2,title:'Onda 2, paid e kit completo',items:[
         'Onda 2 (morno) e e-mail disparos 3 e 4; segunda passada nos quentes que não responderam.',
         'Retargeting no ar (R$800/mês); CAPI e públicos automáticos ligados.',
-        'Kit completo e "conteúdo da semana" toda segunda; brief e gravação do conteúdo dos médicos.',
+        'Kit completo e "conteúdo da semana" toda segunda; brief e gravação do conteúdo validado pela RT.',
+        'Sequência B2B automática para RH (3 toques) e primeiras reuniões SPIN agendadas.',
         'Cockpit vira tela (Looker Studio ou Metabase) lendo a planilha e o Windsor.']},
       {n:3,title:'Onda 3 e antichurn',items:[
         'Onda 3 (frio) com oferta diferente; e-mail disparo 5.',
@@ -797,17 +804,19 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         'Escalar o recrutamento com prova social dos associados que já venderam.']},
       {n:4,title:'Primeira comissão e check-point',items:[
         'Primeiro fechamento de comissões (Sheets → Pix) e mensagem semanal automática para cada associado.',
-        'Conteúdo assinado pelos médicos no ar (Instagram + Status); lookalike dos convertidos entra no paid.',
+        'Conteúdo no ar (Instagram + Status); lookalike dos convertidos entra no paid.',
+        'Primeira empresa B2B fechada (meta: 1 empresa de 50–100 vidas) e onboarding dos colaboradores em lote.',
         'Check-point do mês 1: net adds, conversão por onda, associados ativos, CAC. Decidir onde dobrar a aposta.']}]},
     {title:'Mês 2',focus:'Rede escala + conteúdo liga',desc:'Ninguém constrói mais nada: só opera, paga a Rede rápido e otimiza a verba no que tem menor CAC.',weeks:[
-      {n:5,title:'Indique e ganhe + consultórios',items:[
+      {n:5,title:'Indique e ganhe + B2B em escala',items:[
         'Indique e ganhe no ar: cupom pessoal gerado no onboarding, recompensa aplicada no gateway.',
-        'QR code e material de consultório com o cupom de cada médico.']},
+        'Rodada 2 de abordagens B2B (mais 50 empresas) com o case da primeira empresa fechada.']},
       {n:6,title:'Boost e segunda passada',items:[
         'Boost do conteúdo vencedor (R$400/mês); segunda passada de WhatsApp com criativo novo nos segmentos que não responderam.',
         'Eventos de uso da plataforma alimentando o antichurn em tempo real.']},
       {n:7,title:'Segunda leva da Rede',items:[
-        'Segunda leva de recrutamento com ranking e prova social; reativação de associados dormentes.']},
+        'Segunda leva de recrutamento com ranking e prova social; reativação de associados dormentes.',
+        'Parceiros que abrem portas (contadores, consultores, associações) recebem o kit B2B e a comissão por empresa.']},
       {n:8,title:'Revisão de meio de ciclo',items:[
         'Cortar o que não converteu e realocar a verba para os vencedores.',
         'Check-point do mês 2 e ajuste da rampa das semanas 9–12.']}]},
@@ -817,7 +826,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         'Preparar a campanha de pico (oferta, criativos, kit da Rede, sequência de e-mail e WhatsApp).']},
       {n:10,title:'Blindagem da base',items:[
         'Antichurn em toda a base: quem assinou nas ondas 1–2 está fechando o 2º mês.',
-        'Bônus de meta para a Rede no pico.']},
+        'Bônus de meta para a Rede no pico; propostas B2B fechando antes do orçamento de benefícios de 2027.']},
       {n:11,title:'Aquecimento do pico',items:[
         'Aquecer todos os canais para a campanha de pico; Rede com bônus, paid no teto.']},
       {n:12,title:'Pico + fechamento do ciclo',items:[
@@ -910,9 +919,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     grossAvg.textContent='~'+fmt(total/12);
     var perMonth=(META-BASE0)/3, pct=parseFloat(churnEl.value).toLocaleString('pt-BR')+'%';
     var cls,tag,txt;
-    if(META<=3500){cls='ok';tag='Viável';txt='Cabe nos três motores em 12 semanas: a base própria entrega 600–900 sozinha, a Rede e o indique-e-ganhe fecham o resto. A faixa provável é 3,4k–4,3k — '+fmt(META)+' é piso, não teto, e a folga serve para absorver o churn.';}
-    else if(META<=4500){cls='ok';tag='Meta-esticada';txt='Exige a base própria no teto (~900) e a Rede escalando da S4 em diante. Com R$1,5k/mês o paid ajuda pouco (150–250): o resto é Rede.';}
-    else{cls='warn';tag='Teto ambicioso';txt='São ~'+fmt(perMonth)+' net adds por mês desde o mês 1, sem tempo de rampa. Com R$1,5k/mês de verba, a faixa provável dos três motores em 12 semanas é 3,4k–4,3k; acima disso só se a Rede ativar muito rápido.';}
+    if(META<=3500){cls='ok';tag='Viável';txt='Cabe nos três motores em 12 semanas: a base própria entrega 600–900, a Rede e o B2B 700–1.300, paid e indicação fecham o resto. A faixa provável é 2,6k–3,6k — '+fmt(META)+' está dentro dela, mas a folga é pequena: churn acima de 5% come a margem.';}
+    else if(META<=4500){cls='ok';tag='Meta-esticada';txt='Exige a base própria no teto (~900) e o B2B fechando 5+ empresas até a S8. Com R$1,5k/mês o paid ajuda pouco (150–250): o resto é Rede e B2B.';}
+    else{cls='warn';tag='Teto ambicioso';txt='São ~'+fmt(perMonth)+' net adds por mês desde o mês 1, sem tempo de rampa. Com R$1,5k/mês de verba, a faixa provável dos três motores em 12 semanas é 2,6k–3,6k; acima disso só com B2B muito acima do previsto (empresas de 200+ vidas).';}
     if(CHURN>0.08){cls='warn';tag='Risco alto';txt+=' E com churn de '+pct+' a gente vende para repor, não para crescer: segurar cancelamentos vira a prioridade nº 1.';}
     else if(CHURN>0.05){txt+=' Com churn de '+pct+', a carga bruta sobe: o antichurn (fluxo 08) precisa entrar na S3, não no fim.';}
     verdict.classList.remove('ok','warn');verdict.classList.add(cls);
