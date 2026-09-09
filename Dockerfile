@@ -14,6 +14,9 @@ COPY simulation.html /usr/share/nginx/html/simulation/index.html
 COPY notificacoes.html /usr/share/nginx/html/notificacoes/index.html
 COPY benchmark/ /usr/share/nginx/html/benchmark/
 
+# Pre-visualizacao da peca de e-mail marketing (aprovacao interna antes do disparo)
+COPY emailmkt/empresas-nr1.html /usr/share/nginx/html/emailmkt/index.html
+
 # Branch de propostas (propostas.wowmais.com.br) — árvore isolada
 COPY propostas/ /usr/share/nginx/propostas/
 

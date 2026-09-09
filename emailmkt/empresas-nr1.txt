@@ -1,0 +1,70 @@
+Olá, {{ contact.FIRSTNAME | default : "tudo bem" }}!
+
+A NR-1 já está valendo — e a fiscalização não avisa antes.
+
+Desde que a gestão de riscos psicossociais entrou na NR-1, quase toda
+empresa sabe que precisa agir e a maioria ainda não agiu. A pergunta que
+abre qualquer fiscalização é simples:
+
+  "Hoje vocês têm evidências documentadas dos riscos psicossociais dos
+   colaboradores?"
+
+Se a resposta ainda é "estamos estudando", você está na média do mercado.
+Quem sai na frente faz menos correção depois — e, de quebra, entrega um
+benefício que a equipe usa no mesmo dia.
+
+A WOW+ resolve os dois lados da mesma conta: o seu time ganha médico 24h
+sem carência e o RH ganha o painel e as evidências que a norma exige.
+
+O QUE A SUA EMPRESA COLOCA EM PÉ EM POUCOS DIAS
+
+ - Clínico Geral e Pediatria 24 horas, sem carência — inclusive fim de
+   semana e madrugada.
+ - Gestão de NR-1 e riscos psicossociais, com evidências documentadas
+   para apresentar em fiscalização.
+ - 1 consulta mensal com especialidade médica e mais de 20 especialidades
+   por coparticipação reduzida.
+ - Painel executivo para o RH, com indicadores de utilização e sem
+   exposição de dados clínicos individuais.
+ - Receita e atestado digitais e dependentes a partir de R$ 9,90 por vida.
+ - Medicina Ocupacional opcional: ASO, PCMSO e eSocial/SST centralizados
+   em um único parceiro.
+
+PLANOS (adesão via CNPJ, valor por vida/mês)
+
+ - SMART Corporativo — R$ 19,90/vida/mês
+   Clínico Geral e Pediatria 24h, 1 especialidade/mês e painel de gestão.
+
+ - CARE+ Corporativo — R$ 24,90/vida/mês
+   Tudo do SMART + gestão de NR-1 e riscos psicossociais.
+
+ Módulos NR-1 e Medicina Ocupacional sob consulta. Contrato de 12 meses
+ com valores garantidos, sem reajuste no período.
+
+QUERO O DIAGNÓSTICO GRATUITO:
+https://wowmais.com.br/para-empresas?utm_source=brevo&utm_medium=email&utm_campaign=empresas-nr1&utm_content=cta-texto
+
+O diagnóstico leva cerca de 15 minutos: mapeamos a população descoberta,
+o estágio de conformidade com a NR-1 e o custo por vida da sua operação.
+Você fica com o relatório mesmo que não feche nada.
+
+A WOW+ não substitui o plano de saúde — complementa. Sem carência,
+ativação imediata após a adesão e atendimento por telemedicina com
+profissionais registrados. A empresa envia a relação de vidas em planilha
+simples e o acesso é liberado.
+
+Prefere falar com uma pessoa? Responda este e-mail ou chame no WhatsApp:
+Equipe Comercial WOW+ — (82) 9931-8941
+
+--
+WOW+ · Saúde por assinatura
+A WOW+ é uma plataforma de acesso à saúde por assinatura e não substitui
+plano de saúde. O atendimento é realizado por profissionais registrados,
+por telemedicina, conforme as normas dos respectivos conselhos de classe.
+Não se destina a emergências: em caso de urgência, procure o SAMU (192)
+ou o pronto-socorro mais próximo.
+
+[RAZÃO SOCIAL] · CNPJ [00.000.000/0001-00]
+[Endereço completo, cidade/UF, CEP]
+
+Cancelar inscrição: {{ unsubscribe }}
