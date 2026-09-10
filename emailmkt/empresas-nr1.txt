@@ -41,20 +41,25 @@ PLANOS (adesão via CNPJ, valor por vida/mês)
  Módulos NR-1 e Medicina Ocupacional sob consulta. Contrato de 12 meses
  com valores garantidos, sem reajuste no período.
 
-QUERO O DIAGNÓSTICO GRATUITO:
-https://wowmais.com.br/para-empresas?utm_source=brevo&utm_medium=email&utm_campaign=empresas-nr1&utm_content=cta-texto
+QUERO MEU DIAGNÓSTICO NO WHATSAPP:
+https://wa.me/5511936242622
 
-O diagnóstico leva cerca de 15 minutos: mapeamos a população descoberta,
-o estágio de conformidade com a NR-1 e o custo por vida da sua operação.
-Você fica com o relatório mesmo que não feche nada.
+Quem atende do outro lado é a Wendy, nossa agente de IA — responde na
+hora, a qualquer horário. O diagnóstico leva cerca de 15 minutos:
+mapeamos a população descoberta, o estágio de conformidade com a NR-1 e
+o custo por vida da sua operação. Você fica com o relatório mesmo que
+não feche nada.
 
 A WOW+ não substitui o plano de saúde — complementa. Sem carência,
 ativação imediata após a adesão e atendimento por telemedicina com
 profissionais registrados. A empresa envia a relação de vidas em planilha
 simples e o acesso é liberado.
 
-Prefere falar com uma pessoa? Responda este e-mail ou chame no WhatsApp:
-Equipe Comercial WOW+ — (82) 9931-8941
+Prefere olhar com calma antes de falar? Conheça o WOW+ para Empresas:
+https://wowmais.com.br/para-empresas?utm_source=brevo&utm_medium=email&utm_campaign=empresas-nr1&utm_content=link-pagina
+
+Ou salve o nosso WhatsApp e chame quando quiser:
+(11) 93624-2622 — Wendy, agente de IA da WOW+
 
 --
 WOW+ · Saúde por assinatura
@@ -64,7 +69,7 @@ por telemedicina, conforme as normas dos respectivos conselhos de classe.
 Não se destina a emergências: em caso de urgência, procure o SAMU (192)
 ou o pronto-socorro mais próximo.
 
-[RAZÃO SOCIAL] · CNPJ [00.000.000/0001-00]
+WOW+ TECNOLOGIA SERVICOS E ASSOCIADOS LTDA · CNPJ 52.496.457/0001-32
 [Endereço completo, cidade/UF, CEP]
 
 Cancelar inscrição: {{ unsubscribe }}
