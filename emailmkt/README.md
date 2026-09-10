@@ -16,12 +16,12 @@ publicada junto com o playbook, para aprovação interna antes do disparo).
 
 ## 1. Antes de disparar — checklist
 
-- [ ] **WhatsApp**: o link do rodapé usa `wa.me/558299318941`, número tirado da
-      proposta institucional (`+55 82 9931-8941`). O `wa.me` exige DDI + DDD +
-      9 dígitos — confirme o número e corrija o `href` e o texto exibido.
-- [ ] **Razão social, CNPJ e endereço** no rodapé (`[RAZÃO SOCIAL]`,
-      `[00.000.000/0001-00]`, `[Endereço...]`). Endereço físico é exigência
-      anti-spam e melhora a entregabilidade.
+- [ ] **Endereço físico** no rodapé (`[Endereço completo, cidade/UF, CEP]`) —
+      exigência anti-spam e fator de entregabilidade. Razão social e CNPJ já
+      estão preenchidos.
+- [ ] **Wendy pronta para o volume**: o CTA principal joga todo mundo no
+      WhatsApp `(11) 93624-2622`. Garanta que a agente esteja ativa e com o
+      roteiro do diagnóstico antes do disparo — o e-mail chega de uma vez.
 - [ ] **Preços e módulos** conferidos contra a página `/para-empresas` no ar.
       Os valores aqui (SMART R$ 19,90 · CARE+ R$ 24,90 · dependente R$ 9,90 ·
       NR-1 e Medicina Ocupacional sob consulta) vieram do playbook comercial e
@@ -33,7 +33,19 @@ publicada junto com o playbook, para aprovação interna antes do disparo).
 - [ ] **Teste de renderização**: envie para Gmail, Outlook desktop, Outlook web
       e iPhone antes de escalar.
 
-## 2. Assuntos e preheaders (para teste A/B)
+## 2. Para onde vai cada clique
+
+| Elemento | Destino |
+| --- | --- |
+| Botão principal — *Quero meu diagnóstico no WhatsApp* | `wa.me/5511936242622`, com mensagem pré-preenchida. Atende a **Wendy, agente de IA da WOW+**. |
+| *Conheça o WOW+ para Empresas* (link secundário) | `wowmais.com.br/para-empresas` com UTM `utm_content=link-pagina`. |
+| WhatsApp no fim do corpo | mesmo número da Wendy, para quem prefere salvar o contato. |
+
+O e-mail declara que a Wendy é uma agente de IA. Manter isso explícito evita a
+sensação de ter sido enganado quando o lead percebe — e, em B2B, "responde na
+hora, a qualquer horário" é argumento a favor, não desculpa.
+
+## 3. Assuntos e preheaders (para teste A/B)
 
 O Brevo permite testar 2 assuntos por campanha. Rode **A vs. B** primeiro; o
 vencedor vira controle e enfrenta o próximo.
@@ -54,7 +66,7 @@ vencedor vira controle e enfrenta o próximo.
 com *reply-to* em uma caixa monitorada. Evite `no-reply`: resposta de e-mail é
 um dos melhores sinais de conversão em B2B.
 
-## 3. Personalização usada no template
+## 4. Personalização usada no template
 
 | Tag | Onde aparece | Observação |
 | --- | --- | --- |
@@ -63,7 +75,7 @@ um dos melhores sinais de conversão em B2B.
 | `{{ unsubscribe }}` | rodapé | obrigatório |
 | `{{ update_profile }}` | rodapé | opcional, remova se não usar |
 
-## 4. Segmentação sugerida
+## 5. Segmentação sugerida
 
 A efetividade dos argumentos muda com o porte (ver `estudo-b2b.html`). Se a base
 tiver o atributo de número de colaboradores, crie três segmentos:
@@ -77,7 +89,7 @@ tiver o atributo de número de colaboradores, crie três segmentos:
 Se ainda não houver esse dado, dispare o assunto A para toda a base e use a
 resposta para enriquecer os atributos.
 
-## 5. Sequência de follow-up (automação no Brevo)
+## 6. Sequência de follow-up (automação no Brevo)
 
 Fluxo *"Empresas · NR-1"* com entrada pela lista do disparo e saída ao clicar no
 CTA ou responder.
@@ -105,15 +117,15 @@ CTA ou responder.
 > fica de fora e reduz uso desnecessário do pronto-atendimento) e a clínica
 > continua executando o presencial — a WOW+ entra na gestão: ASO, NR-1 e o painel
 > do RH em um parceiro só. Faz sentido avaliarmos um piloto?
-> [Falar com o comercial]
+> [Falar no WhatsApp]
 
 **E-mail 5 — D+20, última chamada**
 > Assunto: Fecho o diagnóstico de {{ contact.EMPRESA | default : "vocês" }}?
 >
-> Curto, direto, com o link do WhatsApp em destaque. Quem não interagir em
+> Curto, direto, com o WhatsApp da Wendy em destaque. Quem não interagir em
 > nenhum dos cinco sai do fluxo e volta só na próxima campanha.
 
-## 6. Como subir no Brevo
+## 7. Como subir no Brevo
 
 1. **Campaigns → Email → Create an email campaign** → escolha *Rich text /
    Paste your code* (editor **Custom HTML**).
@@ -121,13 +133,15 @@ CTA ou responder.
    precisa ir junto — é ele que faz o mobile empilhar os cards de plano).
 3. Na aba de conteúdo, cole `empresas-nr1.txt` em *Plain text version*.
 4. Preencha assunto e preheader com um dos pares da seção 2.
-5. Ative o rastreamento de cliques do Brevo — os UTMs já estão nos links
-   (`utm_campaign=empresas-nr1`) e sobrevivem ao redirecionamento.
+5. Ative o rastreamento de cliques do Brevo. O link da página carrega UTMs
+   (`utm_campaign=empresas-nr1`), mas o **`wa.me` não aceita UTM** — o clique no
+   botão principal é medido só pelo rastreamento do Brevo. Para saber quantas
+   conversas viraram oportunidade, cruze com o relatório da Wendy.
 6. **Send a test email** para os clientes da checklist. Confira especialmente o
    botão laranja no Outlook desktop (ele usa VML) e o rodapé no modo escuro.
 7. Agende: terça a quinta, entre 9h e 11h, costuma render mais em B2B.
 
-## 7. Onde cada informação foi buscada
+## 8. Onde cada informação foi buscada
 
 Todo o conteúdo veio deste repositório — `playbook.html` (Canal 2 · Corporativo
 B2B, tabela de produtos e objeções), `propostas/ciro-gomes/index.html` (proposta
