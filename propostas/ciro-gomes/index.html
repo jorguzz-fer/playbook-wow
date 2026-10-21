@@ -177,7 +177,7 @@
     .page:last-of-type{ page-break-after:auto; }
     .brk{ display:none; }
   }
-  @media (max-width:820px){
+  @media screen and (max-width:820px){
     .page{ width:100%; height:auto; padding:26px 20px; }
     .cover{ padding:34px 24px; } .cover-mid{ margin-top:70px; } .cover h1{ font-size:29px; }
     .cover-foot{ position:static; margin-top:40px; left:auto; right:auto; bottom:auto; }
@@ -226,6 +226,10 @@
     <button class="btn btn-print" onclick="window.print()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
       Imprimir
+    </button>
+    <button class="btn btn-pdf" onclick="window.print()" title="Abre a janela de impressão — escolha Salvar como PDF">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Baixar PDF
     </button>
   </div>
 </div>
