@@ -89,6 +89,13 @@ def main():
     )
 
     # ---------- toolbar ----------
+    # Os dois botoes sao marcadores: sem PDF na pasta, o gerador deixa so o
+    # "Baixar PDF", que imprime — dois botoes abrindo a mesma janela confundem.
+    ed.troca_re(
+        r'<button class="btn btn-print".*?</button>',
+        "{{PRINT_BUTTON}}",
+        flags=re.DOTALL,
+    )
     ed.troca_re(
         r'<a class="btn btn-pdf".*?</a>',
         "{{PDF_BUTTON}}",

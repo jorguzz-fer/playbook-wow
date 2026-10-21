@@ -522,16 +522,28 @@
     return '\n      <div class="courtesy">\n        ' + corpo + "\n      </div>";
   }
 
+  function temPdfProprio(){
+    return String(estado.pdfFile || "").trim().length > 0;
+  }
+
+  // Imprimir só faz sentido ao lado de um PDF pronto: sem arquivo na pasta,
+  // ele abriria a mesma janela que o "Baixar PDF".
+  function botaoImprimir(){
+    if (!temPdfProprio()) return "";
+    return '<button class="btn btn-print" onclick="window.print()">\n' +
+      '      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+      '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>' +
+      "</svg>\n      Imprimir\n    </button>";
+  }
+
   function botaoPdf(){
-    var arq = String(estado.pdfFile || "").trim();
     var svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
       '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>';
-    if (arq) {
-      return '<a class="btn btn-pdf" href="' + esc(arq) + '" download>\n      ' + svg +
-        "\n      Baixar PDF\n    </a>";
+    if (temPdfProprio()) {
+      return '<a class="btn btn-pdf" href="' + esc(String(estado.pdfFile).trim()) + '" download>\n      ' +
+        svg + "\n      Baixar PDF\n    </a>";
     }
-    // Sem PDF na pasta, o botão gera o arquivo pela janela de impressão —
-    // assim toda proposta nova já sai com um "Baixar PDF" que funciona.
+    // Sem PDF na pasta, este é o único botão: gera o arquivo pela impressão.
     return '<button class="btn btn-pdf" onclick="window.print()" ' +
       'title="Abre a janela de impressão — escolha Salvar como PDF">\n      ' + svg +
       "\n      Baixar PDF\n    </button>";
@@ -551,6 +563,7 @@
       LEAD: md(estado.lead),
       META_DESC: esc(estado.metaDesc),
       PROPOSAL_URL: esc("https://propostas.wowmais.com.br/" + (slugLimpo() ? slugLimpo() + "/" : "")),
+      PRINT_BUTTON: botaoImprimir(),
       PDF_BUTTON: botaoPdf(),
 
       WHY_ITEMS: linhas(estado.whyItems).map(function(l){
