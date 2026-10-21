@@ -106,7 +106,7 @@
     <button class="btn" id="btn-exportar">Exportar JSON</button>
     <button class="btn" id="btn-copiar">Copiar HTML</button>
     <button class="btn" id="btn-abrir">Abrir prévia</button>
-    <button class="btn" id="btn-pdf">Baixar PDF</button>
+    <button class="btn" id="btn-pdf">Imprimir proposta</button>
     <button class="btn btn-primary" id="btn-baixar">Baixar index.html</button>
   </div>
 </div>
@@ -308,7 +308,7 @@
         <input type="text" data-k="slug">
 
         <label>Arquivo PDF para download
-          <span class="note">Nome de um PDF já pronto na mesma pasta. Vazio: o botão gera o PDF pela janela de impressão.</span>
+          <span class="note">Nome de um PDF já pronto na mesma pasta. Vazio: a proposta sai sem o botão “Baixar PDF”.</span>
         </label>
         <input type="text" data-k="pdfFile">
 
@@ -342,7 +342,7 @@
 <div class="toast" id="toast"></div>
 <input type="file" id="file" accept="application/json,.json" hidden>
 
-<script src="template.js"></script>
+<script src="template.js?v=2"></script>
 <script>
 (function(){
   "use strict";
@@ -526,10 +526,7 @@
     return String(estado.pdfFile || "").trim().length > 0;
   }
 
-  // Imprimir só faz sentido ao lado de um PDF pronto: sem arquivo na pasta,
-  // ele abriria a mesma janela que o "Baixar PDF".
   function botaoImprimir(){
-    if (!temPdfProprio()) return "";
     return '<button class="btn btn-print" onclick="window.print()">\n' +
       '      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
       '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>' +
@@ -539,14 +536,11 @@
   function botaoPdf(){
     var svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
       '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>';
-    if (temPdfProprio()) {
-      return '<a class="btn btn-pdf" href="' + esc(String(estado.pdfFile).trim()) + '" download>\n      ' +
-        svg + "\n      Baixar PDF\n    </a>";
-    }
-    // Sem PDF na pasta, este é o único botão: gera o arquivo pela impressão.
-    return '<button class="btn btn-pdf" onclick="window.print()" ' +
-      'title="Abre a janela de impressão — escolha Salvar como PDF">\n      ' + svg +
-      "\n      Baixar PDF\n    </button>";
+    // "Baixar PDF" só aparece quando existe um PDF de verdade na pasta.
+    // Um botão com esse nome abrindo a janela de impressão engana quem clica.
+    if (!temPdfProprio()) return "";
+    return '<a class="btn btn-pdf" href="' + esc(String(estado.pdfFile).trim()) + '" download>\n      ' +
+      svg + "\n      Baixar PDF\n    </a>";
   }
 
   function marcadores(){

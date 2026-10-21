@@ -176,8 +176,10 @@
     .page{ margin:0; box-shadow:none; border-radius:0; page-break-after:always; }
     .page:last-of-type{ page-break-after:auto; }
     /* Distribui a sobra entre as seções em vez de acumular tudo no pé da
-       página. Como só acrescenta folga, numa página cheia não muda nada. */
-    .page:not(.cover){ display:flex; flex-direction:column; justify-content:space-between; }
+       página. Como só acrescenta folga, numa página cheia não muda nada.
+       Só vale onde há duas ou mais seções: numa página de bloco único a
+       sobra iria toda para o vão sob o cabeçalho, soltando o conteúdo. */
+    .page:not(.cover):has(.sec ~ .sec){ display:flex; flex-direction:column; justify-content:space-between; }
     .brk{ display:none; }
   }
   @media screen and (max-width:820px){
@@ -226,10 +228,14 @@
     <span class="tb-sub">Proposta Ciro Gomes</span>
   </div>
   <div class="tb-actions">
-    <button class="btn btn-pdf" onclick="window.print()" title="Abre a janela de impressão — escolha Salvar como PDF">
+    <button class="btn btn-print" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+      Imprimir
+    </button>
+    <a class="btn btn-pdf" href="proposta-ciro-gomes.pdf" download>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
       Baixar PDF
-    </button>
+    </a>
   </div>
 </div>
 
