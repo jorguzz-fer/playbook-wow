@@ -106,6 +106,7 @@
     <button class="btn" id="btn-exportar">Exportar JSON</button>
     <button class="btn" id="btn-copiar">Copiar HTML</button>
     <button class="btn" id="btn-abrir">Abrir prévia</button>
+    <button class="btn" id="btn-pdf">Baixar PDF</button>
     <button class="btn btn-primary" id="btn-baixar">Baixar index.html</button>
   </div>
 </div>
@@ -307,7 +308,7 @@
         <input type="text" data-k="slug">
 
         <label>Arquivo PDF para download
-          <span class="note">Nome do PDF na mesma pasta. Vazio = sem o botão “Baixar PDF”.</span>
+          <span class="note">Nome de um PDF já pronto na mesma pasta. Vazio: o botão gera o PDF pela janela de impressão.</span>
         </label>
         <input type="text" data-k="pdfFile">
 
@@ -421,7 +422,7 @@
     contactPhone: "(68) 9.9956-7840",
     fineprint: "A WOW+ é uma plataforma de acesso à saúde por assinatura e não substitui plano de saúde. O atendimento é realizado por profissionais registrados, por telemedicina, conforme as normas dos respectivos conselhos de classe. Não se destina a emergências: em casos de urgência, procure o SAMU (192) ou o pronto-socorro mais próximo. Coberturas, especialidades e valores conforme rede contratada vigente na data desta proposta. Contrato com prazo de fidelidade e vigência de 12 meses, com garantia de manutenção dos valores no período.",
     slug: "julio/ampro",
-    pdfFile: "proposta-ampro.pdf",
+    pdfFile: "",
     metaDesc: "Proposta institucional WOW+ para a AMPRO — acesso à saúde por assinatura para membros do Ministério Público de Rondônia."
   };
 
@@ -524,11 +525,17 @@
 
   function botaoPdf(){
     var arq = String(estado.pdfFile || "").trim();
-    if (!arq) return "";
-    return '<a class="btn btn-pdf" href="' + esc(arq) + '" download>\n' +
-      '      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
-      '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>\n' +
-      "      Baixar PDF\n    </a>";
+    var svg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+      '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>';
+    if (arq) {
+      return '<a class="btn btn-pdf" href="' + esc(arq) + '" download>\n      ' + svg +
+        "\n      Baixar PDF\n    </a>";
+    }
+    // Sem PDF na pasta, o botão gera o arquivo pela janela de impressão —
+    // assim toda proposta nova já sai com um "Baixar PDF" que funciona.
+    return '<button class="btn btn-pdf" onclick="window.print()" ' +
+      'title="Abre a janela de impressão — escolha Salvar como PDF">\n      ' + svg +
+      "\n      Baixar PDF\n    </button>";
   }
 
   function marcadores(){
@@ -705,6 +712,18 @@
   document.getElementById("btn-abrir").onclick = function(){
     var blob = new Blob([gerar()], { type:"text/html;charset=utf-8" });
     window.open(URL.createObjectURL(blob), "_blank");
+  };
+  document.getElementById("btn-pdf").onclick = function(){
+    // Abre o documento numa janela própria e chama a impressão: o navegador
+    // salva como PDF com as páginas A4 do documento.
+    var w = window.open("", "_blank");
+    if (!w) { aviso("Libere o pop-up deste site para gerar o PDF."); return; }
+    w.document.write(gerar());
+    w.document.close();
+    var imprimir = function(){ try { w.focus(); w.print(); } catch (e) {} };
+    if (w.document.readyState === "complete") setTimeout(imprimir, 300);
+    else w.onload = function(){ setTimeout(imprimir, 300); };
+    aviso("Na janela de impressão, escolha Salvar como PDF.");
   };
   document.getElementById("btn-copiar").onclick = function(){
     var html = gerar();
