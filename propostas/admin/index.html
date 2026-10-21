@@ -431,7 +431,6 @@
   var CHAVE = "wow-gerador-proposta";
   var estado = {};
   var siglaAnterior = MODELO.entityShort;
-  var urlAtual = null;
 
   // ---------- helpers de texto ----------
   function esc(s){
@@ -664,13 +663,9 @@
   }
 
   function render(){
-    var html = gerar();
-    var blob = new Blob([html], { type:"text/html;charset=utf-8" });
-    var url = URL.createObjectURL(blob);
-    var iframe = document.getElementById("pv");
-    iframe.src = url;
-    if (urlAtual) URL.revokeObjectURL(urlAtual);
-    urlAtual = url;
+    // srcdoc em vez de blob: URL — o documento vai inline no iframe, sem
+    // depender de um esquema que a CSP do servidor possa barrar.
+    document.getElementById("pv").srcdoc = gerar();
   }
 
   // ---------- persistência ----------
@@ -710,8 +705,10 @@
     aviso("index.html baixado — salve em propostas/" + (slugLimpo() || "…") + "/");
   };
   document.getElementById("btn-abrir").onclick = function(){
-    var blob = new Blob([gerar()], { type:"text/html;charset=utf-8" });
-    window.open(URL.createObjectURL(blob), "_blank");
+    var w = window.open("", "_blank");
+    if (!w) { aviso("Libere o pop-up deste site para abrir a prévia."); return; }
+    w.document.write(gerar());
+    w.document.close();
   };
   document.getElementById("btn-pdf").onclick = function(){
     // Abre o documento numa janela própria e chama a impressão: o navegador
