@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Marca WOW+ | Aplicação da marca e download de logos</title>
+<meta name="description" content="Guia oficial de aplicação da marca WOW+: versões do logo para download, cores, tipografia, área de proteção e usos incorretos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine-deep:   #1E0A14;
+    --wine-bg:     #2A0D1C;
+    --wine-card:   #3A1128;
+    --wine-border: #5A1F40;
+    --orange:      #F5821F;
+    --orange-dark: #D4680A;
+    --orange-deep: #F15500;
+    --orange-light:#FFAD4E;
+    --orange-glow: rgba(245,130,31,0.18);
+    --text-white:  #FFFFFF;
+    --text-muted:  #C0A0B0;
+    --text-dim:    #7A5068;
+    --green:       #4CAF7D;
+    --red:         #FF7070;
+    --radius-sm:   8px;
+    --radius-md:   16px;
+    --radius-lg:   24px;
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body:    'Inter', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--wine-bg);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(30,10,20,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--wine-border);
+  }
+  .topbar-inner {
+    max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    height: 64px; display: flex; align-items: center; gap: 24px;
+  }
+  .topbar-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .topbar-brand img { height: 28px; width: auto; }
+  .topbar-brand span {
+    font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    color: var(--text-muted); letter-spacing: 0.02em;
+  }
+  .topbar-nav { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; }
+  .topbar-nav a {
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; padding: 6px 10px; border-radius: 20px; white-space: nowrap;
+  }
+  .topbar-nav a:hover { color: var(--text-white); background: var(--wine-card); }
+  .topbar-back {
+    font-size: 12px; font-weight: 600; color: var(--orange); text-decoration: none;
+    white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--wine-border); }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px;
+  }
+  h1 { font-family: var(--font-display); font-size: 40px; font-weight: 800; line-height: 1.1; margin-bottom: 14px; }
+  h1 em, h2 em { color: var(--orange); font-style: normal; }
+  h2 { font-family: var(--font-display); font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+  h3 { font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .lead { color: var(--text-muted); font-size: 16px; max-width: 620px; }
+  .sub { color: var(--text-muted); font-size: 14px; max-width: 680px; margin-bottom: 28px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--wine-card) 0%, #4A1535 100%);
+    border: 1px solid var(--wine-border); border-radius: var(--radius-lg);
+    padding: 48px; margin: 32px 0 0; position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -80px; width: 360px; height: 360px;
+    background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%); pointer-events: none;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .hero-logo {
+    background: var(--wine-deep); border: 1px solid var(--wine-border); border-radius: var(--radius-md);
+    padding: 40px; display: flex; align-items: center; justify-content: center; min-height: 220px;
+  }
+  .hero-logo img { width: 100%; max-width: 380px; }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    padding: 11px 18px; border-radius: 30px; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: transform .15s, background .15s, border-color .15s;
+    background: var(--orange); color: #fff;
+  }
+  .btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; border-color: var(--wine-border); color: var(--text-white); }
+  .btn.ghost:hover { border-color: var(--orange); background: var(--orange-glow); }
+  .btn.sm { padding: 7px 12px; font-size: 12px; }
+  .btn .ico { width: 15px; height: 15px; }
+  .ico {
+    width: 1em; height: 1em; display: inline-block; vertical-align: -0.14em;
+    stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
+  }
+
+  /* ── LOGO CARDS ── */
+  .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .logo-card {
+    background: var(--wine-card); border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column;
+  }
+  .logo-card.wide { grid-column: 1 / -1; }
+  .tile {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 200px; padding: 36px; position: relative;
+  }
+  .tile img { width: 100%; max-width: 360px; height: auto; }
+  .tile.sym img { max-width: 140px; }
+  .tile.light { background: #FFFFFF; }
+  .tile.dark { background: var(--wine-deep); }
+  .tile.black { background: #000000; }
+  .tile.orange { background: var(--orange); }
+  .tile.grey { background: #F3EFF1; }
+  .tile-tag {
+    position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; border-radius: 20px;
+    background: rgba(0,0,0,0.35); color: #fff;
+  }
+  .tile.light .tile-tag, .tile.grey .tile-tag { background: rgba(42,13,28,0.08); color: var(--wine-bg); }
+  .logo-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .logo-body p { font-size: 13px; color: var(--text-muted); }
+  .logo-meta { font-size: 11px; color: var(--text-dim); font-family: var(--font-display); font-weight: 600; letter-spacing: 0.04em; }
+  .logo-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+
+  /* ── CLEAR SPACE ── */
+  .two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: stretch; }
+  .card {
+    background: var(--wine-card); border: 1px solid var(--wine-border);
+    border-radius: var(--radius-md); padding: 24px;
+  }
+  .card p { font-size: 13.5px; color: var(--text-muted); }
+  .card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  .card li { font-size: 13.5px; color: var(--text-muted); display: flex; gap: 8px; align-items: flex-start; }
+  .card li .ico { color: var(--orange); margin-top: 4px; }
+  .clearspace {
+    background: #fff; border-radius: var(--radius-sm); padding: 56px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cs-box { position: relative; padding: 48px; border: 1.5px dashed var(--orange); border-radius: 4px; }
+  .cs-box img { width: 320px; display: block; }
+  .cs-unit {
+    position: absolute; font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    color: var(--orange); background: #fff; padding: 2px 6px; border-radius: 10px;
+  }
+  .cs-unit.t { top: 14px; left: 50%; transform: translateX(-50%); }
+  .cs-unit.b { bottom: 14px; left: 50%; transform: translateX(-50%); }
+  .cs-unit.l { left: 10px; top: 50%; transform: translateY(-50%); }
+  .cs-unit.r { right: 10px; top: 50%; transform: translateY(-50%); }
+  .minsize { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; margin-top: 18px; }
+  .minsize div { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .minsize .box { background: #fff; padding: 12px; border-radius: 6px; display: inline-flex; }
+  .minsize small { font-size: 11px; color: var(--text-dim); font-weight: 600; }
+
+  /* ── COLORS ── */
+  .color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .swatch {
+    border: 1px solid var(--wine-border); border-radius: var(--radius-md); overflow: hidden;
+    background: var(--wine-card); cursor: pointer; transition: transform .15s, border-color .15s;
+  }
+  .swatch:hover { transform: translateY(-2px); border-color: var(--orange); }
+  .swatch .chip { height: 110px; position: relative; }
+  .swatch .chip.bordered { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
+  .swatch .chip span {
+    position: absolute; bottom: 10px; left: 12px; font-family: var(--font-display);
+    font-weight: 800; font-size: 13px; letter-spacing: 0.04em;
+  }
+  .swatch .info { padding: 12px 14px 14px; }
+  .swatch .name { font-family: var(--font-display); font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .swatch .vals { font-size: 11px; color: var(--text-muted); line-height: 1.7; font-variant-numeric: tabular-nums; }
+  .swatch .copy { font-size: 10.5px; color: var(--orange); font-weight: 700; margin-top: 6px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .gradient-bar {
+    margin-top: 20px; border-radius: var(--radius-md); border: 1px solid var(--wine-border);
+    overflow: hidden; display: grid; grid-template-columns: 1fr 1.4fr; background: var(--wine-card);
+  }
+  .gradient-bar .g { background: linear-gradient(135deg, #F15500 0%, #F5821F 55%, #FFAD4E 100%); min-height: 120px; }
+  .gradient-bar .t { padding: 20px 22px; }
+  .gradient-bar .t p { font-size: 13px; color: var(--text-muted); }
+  .proportion { display: flex; height: 28px; border-radius: 20px; overflow: hidden; margin-top: 18px; border: 1px solid var(--wine-border); }
+  .proportion div { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; white-space: nowrap; overflow: hidden; padding: 0 4px; }
+  @media (max-width: 560px) { .proportion div { font-size: 8px; letter-spacing: 0; padding: 0 2px; } }
+
+  /* ── TYPE ── */
+  .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .type-card { background: var(--wine-card); border: 1px solid var(--wine-border); border-radius: var(--radius-md); padding: 26px; }
+  .type-card .role { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+  .type-card .fam { font-size: 22px; font-weight: 800; margin-bottom: 14px; }
+  .type-card .specimen { font-size: 38px; line-height: 1.05; margin-bottom: 14px; word-break: break-word; }
+  .type-card .weights { font-size: 13px; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px; }
+  .type-card.display { font-family: var(--font-display); }
+  .type-card.body { font-family: var(--font-body); }
+  .type-card .weights span { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--wine-border); padding: 4px 0; }
+  .type-note { margin-top: 16px; font-size: 13px; color: var(--text-muted); }
+  .type-note a { color: var(--orange); }
+
+  /* ── BACKGROUNDS ── */
+  .bg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .bg-grid .tile { min-height: 150px; padding: 26px; border-radius: var(--radius-md); border: 1px solid var(--wine-border); }
+  .bg-grid .tile img { max-width: 170px; }
+  .bg-grid .tile.photo {
+    background: linear-gradient(rgba(30,10,20,0.55), rgba(30,10,20,0.55)),
+                radial-gradient(circle at 30% 30%, #8a4a6e, #2A0D1C 70%);
+  }
+  .bg-label { font-size: 12px; color: var(--text-muted); margin-top: 8px; display: flex; gap: 6px; align-items: center; }
+  .bg-label .ico { color: var(--green); }
+
+  /* ── DON'TS ── */
+  .dont-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .dont {
+    background: var(--wine-card); border: 1px solid var(--wine-border); border-radius: var(--radius-md); overflow: hidden;
+  }
+  .dont .tile { min-height: 150px; padding: 26px; overflow: hidden; }
+  .dont .tile img { max-width: 190px; }
+  .dont .cap { padding: 12px 16px 14px; font-size: 13px; color: var(--text-muted); display: flex; gap: 8px; align-items: flex-start; }
+  .dont .cap .ico { color: var(--red); margin-top: 4px; }
+  .dont .cap b { color: var(--text-white); font-weight: 600; }
+  .x-stretch img { transform: scaleX(1.45); }
+  .x-rotate img { transform: rotate(-14deg); }
+  .x-hue img { filter: hue-rotate(150deg); }
+  .x-shadow img { filter: drop-shadow(6px 8px 6px rgba(0,0,0,0.75)); }
+  .x-outline img { filter: drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000); }
+  .tile.lowcontrast { background: #FF9F3F; }
+
+  /* ── NAMING ── */
+  .rule-block { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rule-col { background: var(--wine-card); border: 1px solid var(--wine-border); border-radius: var(--radius-md); padding: 22px; }
+  .rule-title { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .rule-title.yes { color: var(--green); }
+  .rule-title.no { color: var(--red); }
+  .rule-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .rule-col li { font-size: 13.5px; color: var(--text-muted); }
+  .rule-col li code { font-family: var(--font-display); font-weight: 700; color: var(--text-white); background: var(--wine-deep); padding: 1px 7px; border-radius: 6px; }
+
+  /* ── FILE TABLE ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--wine-border); vertical-align: middle; }
+  th { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); font-weight: 700; }
+  td code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--text-muted); }
+  td a { color: var(--orange); text-decoration: none; font-weight: 600; }
+  td a:hover { text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer { padding: 32px 0 48px; color: var(--text-dim); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--text-muted); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px);
+    background: var(--orange); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    padding: 10px 18px; border-radius: 30px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 50;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 32px 24px; }
+    h1 { font-size: 30px; }
+    .color-grid, .bg-grid { grid-template-columns: repeat(2, 1fr); }
+    .dont-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .type-grid, .rule-block { grid-template-columns: 1fr; }
+    .topbar-nav { display: none; }
+  }
+  @media (max-width: 560px) {
+    .wrap, .topbar-inner { padding: 0 16px; }
+    section { padding: 40px 0; }
+    .logo-grid, .bg-grid, .dont-grid { grid-template-columns: 1fr; }
+    .color-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .swatch .chip { height: 70px; }
+    .gradient-bar { grid-template-columns: 1fr; }
+    .gradient-bar .g { min-height: 80px; }
+    .clearspace { padding: 24px; }
+    .cs-box { padding: 28px; }
+    .cs-box img { width: 200px; }
+    .tile { padding: 24px; }
+    .hero-logo { padding: 24px; min-height: 160px; }
+    .topbar-brand span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="topbar-brand" href="#topo">
+      <img src="logos/wow-mais-logo-branco.png" alt="WOW+">
+      <span>Guia de Marca</span>
+    </a>
+    <nav class="topbar-nav">
+      <a href="#logo">Logo</a>
+      <a href="#versoes">Versões</a>
+      <a href="#protecao">Área de proteção</a>
+      <a href="#cores">Cores</a>
+      <a href="#tipografia">Tipografia</a>
+      <a href="#fundos">Fundos</a>
+      <a href="#incorreto">Usos incorretos</a>
+      <a href="#nome">Nome e tagline</a>
+      <a href="#arquivos">Arquivos</a>
+    </nav>
+    <a class="topbar-back" href="/"><svg class="ico" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>Playbook</a>
+  </div>
+</div>
+
+<div class="wrap" id="topo">
+
+  <!-- ══════════ HERO ══════════ -->
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Identidade visual · WOW+</div>
+      <h1>Aplicação da <em>marca</em></h1>
+      <p class="lead">Tudo o que você precisa para usar a marca WOW+ do jeito certo: versões do logo prontas para baixar, cores oficiais, tipografia, área de proteção e o que nunca fazer. Sem login, sem Canva.</p>
+      <div class="hero-actions">
+        <a class="btn" href="logos/wow-mais-logos.zip" download>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar todos os logos (.zip)
+        </a>
+        <a class="btn ghost" href="#versoes">Ver versões</a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img src="logos/wow-mais-logo-tagline-branco.png" alt="Logo WOW+ Saúde por assinatura, versão branca">
+    </div>
+  </div>
+
+  <!-- ══════════ LOGO PRINCIPAL ══════════ -->
+  <section id="logo">
+    <div class="eyebrow">01 · Logo principal</div>
+    <h2>Símbolo + logotipo + <em>tagline</em></h2>
+    <p class="sub">A assinatura completa é a versão preferencial da marca: o coração em laranja, o logotipo <strong>wow+</strong> e a tagline <strong>Saúde por assinatura</strong>. Use sempre que houver espaço e leitura garantida, especialmente em capas, apresentações, propostas e peças institucionais.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="tile light"><span class="tile-tag">Fundo claro</span><img src="logos/wow-mais-logo-tagline-preto.png" alt="Logo WOW+ com tagline, versão preta"></div>
+        <div class="logo-body">
+          <h3>Versão positiva</h3>
+          <p>Logotipo e tagline em preto. Para fundo branco e fundos claros neutros.</p>
+          <div class="logo-meta">PNG · fundo transparente · 671 × 236 px e 2×</div>
+          <div class="logo-actions">
+            <a class="btn sm" href="logos/wow-mais-logo-tagline-preto.png" download>PNG</a>
+            <a class="btn sm ghost" href="logos/wow-mais-logo-tagline-preto@2x.png" download>PNG 2×</a>
+          </div>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="tile dark"><span class="tile-tag">Fundo escuro</span><img src="logos/wow-mais-logo-tagline-branco.png" alt="Logo WOW+ com tagline, versão branca"></div>
+        <div class="logo-body">
+          <h3>Versão negativa</h3>
+          <p>Logotipo e tagline em branco. Para o vinho WOW, preto, fotos escurecidas e vídeos.</p>
+          <div class="logo-meta">PNG · fundo transparente · 675 × 248 px e 2×</div>
+          <div class="logo-actions">
+            <a class="btn sm" href="logos/wow-mais-logo-tagline-branco.png" download>PNG</a>
+            <a class="btn sm ghost" href="logos/wow-mais-logo-tagline-branco@2x.png" download>PNG 2×</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ VERSÕES ══════════ -->
+  <section id="versoes">
+    <div class="eyebrow">02 · Versões</div>
+    <h2>Uma versão para cada <em>situação</em></h2>
+    <p class="sub">Quando o espaço é pequeno ou a tagline não precisa aparecer, use a assinatura reduzida. O símbolo sozinho fica reservado para ícones, avatares, favicons e marcas d'água onde o nome WOW+ já está presente no contexto.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="tile light"><span class="tile-tag">Sem tagline</span><img src="logos/wow-mais-logo-preto.png" alt="Logo WOW+ sem tagline, versão preta"></div>
+        <div class="logo-body">
+          <h3>Assinatura reduzida · positiva</h3>
+          <p>Símbolo + logotipo em preto. Cabeçalhos, rodapés, documentos, redes sociais e materiais em que a tagline já aparece no texto.</p>
+          <div class="logo-meta">PNG · fundo transparente · 669 × 214 px e 2×</div>
+          <div class="logo-actions">
+            <a class="btn sm" href="logos/wow-mais-logo-preto.png" download>PNG</a>
+            <a class="btn sm ghost" href="logos/wow-mais-logo-preto@2x.png" download>PNG 2×</a>
+          </div>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="tile dark"><span class="tile-tag">Sem tagline</span><img src="logos/wow-mais-logo-branco.png" alt="Logo WOW+ sem tagline, versão branca"></div>
+        <div class="logo-body">
+          <h3>Assinatura reduzida · negativa</h3>
+          <p>Símbolo + logotipo em branco. Mesmos usos da positiva, sobre fundos escuros.</p>
+          <div class="logo-meta">PNG · fundo transparente · 670 × 214 px e 2×</div>
+          <div class="logo-actions">
+            <a class="btn sm" href="logos/wow-mais-logo-branco.png" download>PNG</a>
+            <a class="btn sm ghost" href="logos/wow-mais-logo-branco@2x.png" download>PNG 2×</a>
+          </div>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="tile orange"><span class="tile-tag">Logotipo</span><img src="logos/wow-mais-logotipo-branco.png" alt="Logotipo wow+ em branco, sem símbolo"></div>
+        <div class="logo-body">
+          <h3>Logotipo isolado · branco</h3>
+          <p>Só o nome, sem o coração. É a única forma permitida sobre fundo laranja e sobre fotos muito coloridas, onde o símbolo perderia contraste.</p>
+          <div class="logo-meta">PNG · fundo transparente · 474 × 196 px e 2×</div>
+          <div class="logo-actions">
+            <a class="btn sm" href="logos/wow-mais-logotipo-branco.png" download>PNG</a>
+            <a class="btn sm ghost" href="logos/wow-mais-logotipo-branco@2x.png" download>PNG 2×</a>
+            <a class="btn sm ghost" href="logos/wow-mais-logotipo-preto.png" download>Preto</a>
+          </div>
+        </div>
+      </div>
+      <div class="logo-card">
+        <div class="tile grey sym"><span class="tile-tag">Símbolo</span><img src="logos/wow-mais-simbolo.png" alt="Símbolo WOW+: coração laranja"></div>
+        <div class="logo-body">
+          <h3>Símbolo</h3>
+          <p>O coração laranja sozinho. Ícone de app, avatar de WhatsApp e redes, favicon, selo em vídeos e marca d'água. Nunca substitui a assinatura em peças institucionais.</p>
+          <div class="logo-meta">PNG · fundo transparente · 217 × 217 px e 2×</div>
+          <div class="logo-actions">
+            <a class="btn sm" href="logos/wow-mais-simbolo.png" download>PNG</a>
+            <a class="btn sm ghost" href="logos/wow-mais-simbolo@2x.png" download>PNG 2×</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ÁREA DE PROTEÇÃO ══════════ -->
+  <section id="protecao">
+    <div class="eyebrow">03 · Área de proteção e tamanho mínimo</div>
+    <h2>Dê <em>respiro</em> à marca</h2>
+    <p class="sub">A área de proteção garante que nenhum texto, imagem ou borda encoste no logo. A unidade de medida é a altura da letra <strong>"o"</strong> do logotipo: essa distância deve ficar livre em todos os lados.</p>
+
+    <div class="two-col">
+      <div class="clearspace">
+        <div class="cs-box">
+          <span class="cs-unit t">1 o</span>
+          <span class="cs-unit b">1 o</span>
+          <span class="cs-unit l">1 o</span>
+          <span class="cs-unit r">1 o</span>
+          <img src="logos/wow-mais-logo-preto.png" alt="Logo WOW+ com área de proteção marcada">
+        </div>
+      </div>
+      <div class="card">
+        <h3>Regras</h3>
+        <ul>
+          <li><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Margem mínima de <strong>1 "o"</strong> em todos os lados, em qualquer versão.</span></li>
+          <li><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Em peças com muita informação, dobre a margem.</span></li>
+          <li><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Logos de parceiros ficam fora da área de proteção, nunca colados ao coração.</span></li>
+        </ul>
+        <h3 style="margin-top:20px">Tamanho mínimo</h3>
+        <p>Abaixo destes tamanhos a tagline deixa de ser legível. Use a assinatura reduzida ou o símbolo.</p>
+        <div class="minsize">
+          <div>
+            <span class="box"><img src="logos/wow-mais-logo-tagline-preto.png" alt="" style="width:160px"></span>
+            <small>Com tagline · 160 px / 40 mm</small>
+          </div>
+          <div>
+            <span class="box"><img src="logos/wow-mais-logo-preto.png" alt="" style="width:100px"></span>
+            <small>Sem tagline · 100 px / 25 mm</small>
+          </div>
+          <div>
+            <span class="box"><img src="logos/wow-mais-simbolo.png" alt="" style="width:24px"></span>
+            <small>Símbolo · 24 px / 6 mm</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CORES ══════════ -->
+  <section id="cores">
+    <div class="eyebrow">04 · Cores</div>
+    <h2>Laranja que <em>acolhe</em>, vinho que dá profundidade</h2>
+    <p class="sub">O laranja WOW é a cor da marca e aparece no coração e nos destaques. O vinho é a base das interfaces e dos materiais escuros. Branco e preto cuidam da leitura. Clique em uma cor para copiar o HEX.</p>
+
+    <div class="color-grid">
+      <div class="swatch" data-hex="#F5821F">
+        <div class="chip" style="background:#F5821F"><span>Principal</span></div>
+        <div class="info"><div class="name">Laranja WOW</div><div class="vals">HEX #F5821F<br>RGB 245 · 130 · 31<br>CMYK 0 · 47 · 87 · 4</div><div class="copy">Copiar HEX</div></div>
+      </div>
+      <div class="swatch" data-hex="#F15500">
+        <div class="chip" style="background:#F15500"><span>Gradiente</span></div>
+        <div class="info"><div class="name">Laranja profundo</div><div class="vals">HEX #F15500<br>RGB 241 · 85 · 0<br>CMYK 0 · 65 · 100 · 5</div><div class="copy">Copiar HEX</div></div>
+      </div>
+      <div class="swatch" data-hex="#FFAD4E">
+        <div class="chip" style="background:#FFAD4E"><span style="color:#2A0D1C">Gradiente</span></div>
+        <div class="info"><div class="name">Laranja claro</div><div class="vals">HEX #FFAD4E<br>RGB 255 · 173 · 78<br>CMYK 0 · 32 · 69 · 0</div><div class="copy">Copiar HEX</div></div>
+      </div>
+      <div class="swatch" data-hex="#D4680A">
+        <div class="chip" style="background:#D4680A"><span>Hover / CTA</span></div>
+        <div class="info"><div class="name">Laranja escuro</div><div class="vals">HEX #D4680A<br>RGB 212 · 104 · 10<br>CMYK 0 · 51 · 95 · 17</div><div class="copy">Copiar HEX</div></div>
+      </div>
+      <div class="swatch" data-hex="#2A0D1C">
+        <div class="chip bordered" style="background:#2A0D1C"><span>Base</span></div>
+        <div class="info"><div class="name">Vinho WOW</div><div class="vals">HEX #2A0D1C<br>RGB 42 · 13 · 28<br>CMYK 0 · 69 · 33 · 84</div><div class="copy">Copiar HEX</div></div>
+      </div>
+      <div class="swatch" data-hex="#1E0A14">
+        <div class="chip bordered" style="background:#1E0A14"><span>Base</span></div>
+        <div class="info"><div class="name">Vinho profundo</div><div class="vals">HEX #1E0A14<br>RGB 30 · 10 · 20<br>CMYK 0 · 67 · 33 · 88</div><div class="copy">Copiar HEX</div></div>
+      </div>
+      <div class="swatch" data-hex="#FFFFFF">
+        <div class="chip" style="background:#FFFFFF"><span style="color:#2A0D1C">Leitura</span></div>
+        <div class="info"><div class="name">Branco</div><div class="vals">HEX #FFFFFF<br>RGB 255 · 255 · 255<br>CMYK 0 · 0 · 0 · 0</div><div class="copy">Copiar HEX</div></div>
+      </div>
+      <div class="swatch" data-hex="#000000">
+        <div class="chip bordered" style="background:#000000"><span>Leitura</span></div>
+        <div class="info"><div class="name">Preto</div><div class="vals">HEX #000000<br>RGB 0 · 0 · 0<br>CMYK 0 · 0 · 0 · 100</div><div class="copy">Copiar HEX</div></div>
+      </div>
+    </div>
+
+    <div class="gradient-bar">
+      <div class="g"></div>
+      <div class="t">
+        <h3>Gradiente do símbolo</h3>
+        <p>O coração usa um degradê de <strong>#F15500</strong> a <strong>#FFAD4E</strong>, passando pelo laranja WOW. O gradiente pertence ao símbolo: não o aplique em textos, botões ou fundos inteiros. Para superfícies grandes, use o laranja WOW chapado ou o vinho.</p>
+        <div class="proportion">
+          <div style="flex:5;background:#2A0D1C;color:#C0A0B0">VINHO 50%</div>
+          <div style="flex:3;background:#FFFFFF;color:#2A0D1C">BRANCO 30%</div>
+          <div style="flex:2;background:#F5821F;color:#fff">LARANJA 20%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TIPOGRAFIA ══════════ -->
+  <section id="tipografia">
+    <div class="eyebrow">05 · Tipografia</div>
+    <h2>Duas famílias, <em>um tom</em></h2>
+    <p class="sub">Plus Jakarta Sans dá a voz dos títulos: geométrica, arredondada, próxima do desenho do logotipo. Inter cuida dos textos longos e das interfaces. As duas são gratuitas no Google Fonts.</p>
+
+    <div class="type-grid">
+      <div class="type-card display">
+        <div class="role">Títulos e destaques</div>
+        <div class="fam">Plus Jakarta Sans</div>
+        <div class="specimen" style="font-weight:800">Saúde por assinatura.</div>
+        <div class="weights">
+          <span><b style="font-weight:800">ExtraBold 800</b><i style="font-style:normal">Títulos, números de preço</i></span>
+          <span><b style="font-weight:700">Bold 700</b><i style="font-style:normal">Subtítulos, botões, rótulos</i></span>
+          <span><b style="font-weight:600">SemiBold 600</b><i style="font-style:normal">Chamadas curtas</i></span>
+        </div>
+      </div>
+      <div class="type-card body">
+        <div class="role">Textos e interfaces</div>
+        <div class="fam" style="font-family:var(--font-display)">Inter</div>
+        <div class="specimen" style="font-weight:400;font-size:30px">Médico 24h, sem carência, para você e sua família.</div>
+        <div class="weights">
+          <span><b style="font-weight:600">SemiBold 600</b><i style="font-style:normal">Ênfase dentro do texto</i></span>
+          <span><b style="font-weight:500">Medium 500</b><i style="font-style:normal">Legendas, menus</i></span>
+          <span><b style="font-weight:400">Regular 400</b><i style="font-style:normal">Parágrafos, descrições</i></span>
+        </div>
+      </div>
+    </div>
+    <p class="type-note">O logotipo <strong>wow+</strong> é um desenho exclusivo: nunca o reescreva com uma fonte, mesmo que parecida. Use sempre os arquivos desta página. Em e-mails e documentos sem acesso às fontes, substitua por <strong>Arial</strong> (texto) e <strong>Arial Black</strong> (títulos). Instale pelo <a href="https://fonts.google.com/share?selection.family=Inter:wght@400;500;600|Plus+Jakarta+Sans:wght@400;500;600;700;800" target="_blank" rel="noopener">Google Fonts</a>.</p>
+  </section>
+
+  <!-- ══════════ FUNDOS ══════════ -->
+  <section id="fundos">
+    <div class="eyebrow">06 · Aplicação sobre fundos</div>
+    <h2>Qual versão em <em>cada fundo</em></h2>
+    <p class="sub">A regra é contraste: logotipo preto em fundos claros, branco em fundos escuros, e só o logotipo (sem o coração) quando o fundo é laranja. Sobre fotos, escureça a imagem antes de aplicar a versão branca.</p>
+
+    <div class="bg-grid">
+      <div>
+        <div class="tile light"><img src="logos/wow-mais-logo-preto.png" alt="Logo preto sobre branco"></div>
+        <div class="bg-label"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Branco e claros: versão positiva</div>
+      </div>
+      <div>
+        <div class="tile dark"><img src="logos/wow-mais-logo-branco.png" alt="Logo branco sobre vinho"></div>
+        <div class="bg-label"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Vinho e preto: versão negativa</div>
+      </div>
+      <div>
+        <div class="tile orange"><img src="logos/wow-mais-logotipo-branco.png" alt="Logotipo branco sobre laranja"></div>
+        <div class="bg-label"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Laranja: só o logotipo branco</div>
+      </div>
+      <div>
+        <div class="tile photo"><img src="logos/wow-mais-logo-branco.png" alt="Logo branco sobre foto escurecida"></div>
+        <div class="bg-label"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Foto: escurecer e usar a negativa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ USOS INCORRETOS ══════════ -->
+  <section id="incorreto">
+    <div class="eyebrow">07 · Usos incorretos</div>
+    <h2>O que <em>nunca</em> fazer</h2>
+    <p class="sub">Qualquer alteração no desenho enfraquece o reconhecimento da marca. Se precisar de uma versão que não está aqui, peça ao time de marca em vez de improvisar.</p>
+
+    <div class="dont-grid">
+      <div class="dont x-stretch"><div class="tile light"><img src="logos/wow-mais-logo-preto.png" alt=""></div><div class="cap"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span><b>Não distorça.</b> Redimensione sempre com proporção travada.</span></div></div>
+      <div class="dont x-rotate"><div class="tile light"><img src="logos/wow-mais-logo-preto.png" alt=""></div><div class="cap"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span><b>Não rotacione.</b> O logo é sempre horizontal.</span></div></div>
+      <div class="dont x-hue"><div class="tile light"><img src="logos/wow-mais-logo-preto.png" alt=""></div><div class="cap"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span><b>Não troque as cores.</b> O coração é laranja; o texto, preto ou branco.</span></div></div>
+      <div class="dont x-shadow"><div class="tile light"><img src="logos/wow-mais-logo-preto.png" alt=""></div><div class="cap"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span><b>Não aplique sombra</b>, brilho ou relevo.</span></div></div>
+      <div class="dont"><div class="tile lowcontrast"><img src="logos/wow-mais-logo-preto.png" alt=""></div><div class="cap"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span><b>Não use o símbolo sobre laranja.</b> Em fundo laranja, só o logotipo branco.</span></div></div>
+      <div class="dont x-outline"><div class="tile light"><img src="logos/wow-mais-logo-branco.png" alt=""></div><div class="cap"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span><b>Não contorne</b> nem use a versão branca em fundo claro.</span></div></div>
+    </div>
+  </section>
+
+  <!-- ══════════ NOME E TAGLINE ══════════ -->
+  <section id="nome">
+    <div class="eyebrow">08 · Nome e tagline</div>
+    <h2>Como <em>escrever</em> a marca</h2>
+    <p class="sub">No logo, o nome aparece em minúsculas por desenho. Em texto corrido, a grafia oficial é <strong>WOW+</strong>, com o sinal de mais colado e sem espaço. A tagline acompanha a marca, não a substitui.</p>
+
+    <div class="rule-block">
+      <div class="rule-col">
+        <div class="rule-title yes"><svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Certo</div>
+        <ul>
+          <li><code>WOW+</code> em títulos, textos, propostas e contratos.</li>
+          <li><code>wowmais.com.br</code> e <code>@wowmais</code> nos endereços, sem o sinal.</li>
+          <li><code>Saúde por assinatura</code> como tagline, com inicial maiúscula apenas na primeira palavra.</li>
+          <li>Produtos sempre em caixa alta: <code>SMART</code>, <code>CARE+</code>, <code>SMART Corporativo</code>, <code>CARE+ Corporativo</code>.</li>
+        </ul>
+      </div>
+      <div class="rule-col">
+        <div class="rule-title no"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Errado</div>
+        <ul>
+          <li><code>Wow Mais</code>, <code>WOW MAIS</code>, <code>Wow+</code> ou <code>WOW +</code> com espaço.</li>
+          <li>Tagline reescrita: <code>saúde por assinatura!</code>, <code>SAÚDE POR ASSINATURA</code> ou traduzida.</li>
+          <li>Chamar a WOW+ de plano de saúde, convênio ou seguro. A WOW+ é uma plataforma de acesso à saúde.</li>
+          <li>Usar o coração como emoji dentro de frases.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ARQUIVOS ══════════ -->
+  <section id="arquivos">
+    <div class="eyebrow">09 · Arquivos</div>
+    <h2>Todos os <em>arquivos</em></h2>
+    <p class="sub">PNG com fundo transparente em dois tamanhos. Os arquivos 2× servem para telas de alta densidade e impressões pequenas. Para impressão grande, outdoor ou gravação, peça o vetor ao time de marca.</p>
+
+    <div class="card" style="padding:8px 8px 4px">
+      <table>
+        <thead><tr><th>Arquivo</th><th>Versão</th><th>Uso</th><th>Baixar</th></tr></thead>
+        <tbody>
+          <tr><td><code>wow-mais-logo-tagline-preto.png</code></td><td>Principal · positiva</td><td>Fundos claros, com tagline</td><td><a href="logos/wow-mais-logo-tagline-preto.png" download>1×</a> · <a href="logos/wow-mais-logo-tagline-preto@2x.png" download>2×</a></td></tr>
+          <tr><td><code>wow-mais-logo-tagline-branco.png</code></td><td>Principal · negativa</td><td>Fundos escuros, com tagline</td><td><a href="logos/wow-mais-logo-tagline-branco.png" download>1×</a> · <a href="logos/wow-mais-logo-tagline-branco@2x.png" download>2×</a></td></tr>
+          <tr><td><code>wow-mais-logo-preto.png</code></td><td>Reduzida · positiva</td><td>Fundos claros, sem tagline</td><td><a href="logos/wow-mais-logo-preto.png" download>1×</a> · <a href="logos/wow-mais-logo-preto@2x.png" download>2×</a></td></tr>
+          <tr><td><code>wow-mais-logo-branco.png</code></td><td>Reduzida · negativa</td><td>Fundos escuros, sem tagline</td><td><a href="logos/wow-mais-logo-branco.png" download>1×</a> · <a href="logos/wow-mais-logo-branco@2x.png" download>2×</a></td></tr>
+          <tr><td><code>wow-mais-logotipo-branco.png</code></td><td>Logotipo · branco</td><td>Fundo laranja e fotos coloridas</td><td><a href="logos/wow-mais-logotipo-branco.png" download>1×</a> · <a href="logos/wow-mais-logotipo-branco@2x.png" download>2×</a></td></tr>
+          <tr><td><code>wow-mais-logotipo-preto.png</code></td><td>Logotipo · preto</td><td>Monocromia em fundo claro</td><td><a href="logos/wow-mais-logotipo-preto.png" download>1×</a> · <a href="logos/wow-mais-logotipo-preto@2x.png" download>2×</a></td></tr>
+          <tr><td><code>wow-mais-simbolo.png</code></td><td>Símbolo</td><td>Ícones, avatares, favicon</td><td><a href="logos/wow-mais-simbolo.png" download>1×</a> · <a href="logos/wow-mais-simbolo@2x.png" download>2×</a></td></tr>
+          <tr><td><code>wow-mais-logos.zip</code></td><td>Pacote completo</td><td>Todos os arquivos acima</td><td><a href="logos/wow-mais-logos.zip" download>ZIP</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div>Guia de Marca WOW+ · Biblioteca Comercial · Dúvidas sobre aplicação: fale com o time de marca.</div>
+    <div><a href="https://www.canva.com/design/DAHMqJTXisY/view" target="_blank" rel="noopener">Manual completo no Canva</a> · <a href="/">Voltar ao playbook</a></div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1400);
+  }
+  document.querySelectorAll('.swatch').forEach(el => {
+    el.addEventListener('click', async () => {
+      const hex = el.dataset.hex;
+      try {
+        await navigator.clipboard.writeText(hex);
+        showToast(hex + ' copiado');
+      } catch (e) {
+        showToast(hex);
+      }
+    });
+  });
+</script>
+</body>
+</html>
