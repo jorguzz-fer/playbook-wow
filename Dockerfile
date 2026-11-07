@@ -20,6 +20,9 @@ COPY marca/ /usr/share/nginx/html/marca/
 # Pre-visualizacao da peca de e-mail marketing (aprovacao interna antes do disparo)
 COPY emailmkt/empresas-nr1.html /usr/share/nginx/html/emailmkt/index.html
 
+# Modelos de e-mail da regua de comunicacao (copiar HTML para a ferramenta de templates)
+COPY templates-mail.html /usr/share/nginx/html/templates-mail/index.html
+
 # Branch de propostas (propostas.wowmais.com.br) — árvore isolada
 COPY propostas/ /usr/share/nginx/propostas/
 
