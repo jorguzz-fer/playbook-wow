@@ -18,14 +18,14 @@
     <div class="eyebrow">Parcerias institucionais</div>
     <h1>Parceria que gera <em>saúde e cuidado.</em></h1>
     <p class="lead">Mais valor para a sua instituição. <strong>Mais benefícios para os seus membros.</strong></p>
-    <p class="note noprint">Use <span class="kbd">←</span> <span class="kbd">→</span> ou <span class="kbd">espaço</span> para avançar e <span class="kbd">F</span> para tela cheia.</p>
   </div>
+  <p class="hint noprint">Dica: use <span class="kbd">←</span> <span class="kbd">→</span> ou <span class="kbd">espaço</span> para avançar e <span class="kbd">F</span> para tela cheia.</p>
   <div class="bench" style="border:0">
     <div class="photo"><img src="img/capa.jpg" alt="Mulher sorrindo com um tablet nas mãos" style="object-position:50% 30%"></div>
     <div class="badges">
       <div class="badge"><b>R$ 0</b><span>de custo para a instituição</span></div>
       <div class="badge"><b>24h</b><span>médico online</span></div>
-      <div class="badge"><b>até 70%</b><span>de desconto para os membros</span></div>
+      <div class="badge"><b>2 modelos</b><span>de parceria</span></div>
     </div>
   </div>
 </section>
@@ -70,20 +70,12 @@
 </section>
 
 <!-- 5 · ESTRUTURA -->
-<section class="slide" id="s5" data-name="Estrutura">
+<section class="slide" id="s5" data-name="Operação">
   <div class="copy">
-    <div class="eyebrow">Estrutura</div>
-    <h2>Estrutura real. <em>Operação de verdade.</em></h2>
-    <p class="lead" style="font-size:17px">Equipe preparada e tecnologia que sustentam o atendimento todos os dias.</p>
-    <div class="detail">
-      <b>Centro de operações</b>
-      <p>Equipe própria de atendimento e tecnologia.</p>
-      <ul>
-        <li>Central de atendimento 0800 e WhatsApp, de segunda a sábado</li>
-        <li>Mais de 15 especialidades médicas</li>
-        <li>Segurança da informação e LGPD</li>
-      </ul>
-    </div>
+    <div class="eyebrow">Nossa operação</div>
+    <h2>Operação pronta. <em>Atendimento de verdade.</em></h2>
+    <p class="lead" style="font-size:17px">O que garante que o seu membro seja bem atendido, todos os dias: médicos, equipe e tecnologia.</p>
+    <div class="callout" style="margin-top:auto"><img src="img/symbol.png" alt="" style="width:44px;height:auto"><span><b>Pessoas que já confiam na WOW+.</b><br>Os números falam pelo atendimento.</span></div>
   </div>
   <div class="bench"><div class="estr">
     <div class="kpis">
@@ -91,6 +83,7 @@
       <div class="kpi"><b>96,5%</b><span>NPS de satisfação dos pacientes</span></div>
       <div class="kpi"><b>20+ estados</b><span>com atendimento</span></div>
     </div>
+    <div class="caps" id="caps"></div>
   </div></div>
 </section>
 
@@ -114,12 +107,13 @@
     <div class="eyebrow">Para os membros</div>
     <h2>O que os seus membros <em>passam a ter</em></h2>
     <p class="lead" style="font-size:17px">Saúde digital completa no celular: da consulta à receita, do pedido de exame ao histórico de saúde.</p>
-    <div class="callout" style="margin-top:auto"><span class="ico" id="mbIco"></span><span><b>Tudo 100% online.</b><br>Seguro, prático e sem deslocamento.</span></div>
+    <div class="cphoto"><img src="img/membro.jpg" alt="Mulher sorrindo com um tablet nas mãos" style="object-position:50% 25%"></div>
+    <div class="callout"><span class="ico" id="mbIco"></span><span><b>Tudo 100% online.</b><br>Seguro, prático e sem deslocamento.</span></div>
   </div>
   <div class="bench"><div class="benef">
     <div class="bcol">
       <span class="bsec">Atendimento médico</span>
-      <div class="bbig two" id="bbig"></div>
+      <div class="bbig" id="bbig"></div>
       <div class="esp"><div class="esp-h"><b>+15</b><span style="font-size:17px;color:var(--ink2)">especialidades disponíveis</span></div><div class="esp-list" id="espList"></div></div>
       <span class="bsec" style="margin-top:8px">Cuidado contínuo no app</span>
       <div class="bbig" id="bdig"></div>
@@ -128,25 +122,27 @@
 </section>
 
 <!-- 8 · DUAS MODALIDADES -->
-<section class="slide" id="s8" data-name="Modelos de parceria">
+<section class="slide" id="s8" data-name="Oferta para os membros">
+  <div class="copy">
+    <div class="eyebrow">Oferta exclusiva para os membros</div>
+    <h2>De R$&nbsp;207 <em>a R$&nbsp;29,94 por mês.</em></h2>
+    <p class="lead" style="font-size:17px">Uma condição só para os membros da sua instituição, com <strong>até 70% de desconto</strong>. Clique em cada etapa para ver como o preço chega lá.</p>
+    <div class="detail" id="offDetail"></div>
+    <div class="chips noprint" style="margin-top:auto"><button class="chip" id="offNext">Próxima etapa →</button></div>
+  </div>
+  <div class="bench"><div class="offer" id="offer"></div></div>
+</section>
+
+<!-- 9 · DUAS MODALIDADES -->
+<section class="slide" id="s9" data-name="Modelos de parceria">
   <div class="copy">
     <div class="eyebrow">Modelos de parceria</div>
     <h2>Dois modelos. <em>A instituição escolhe.</em></h2>
     <p class="lead" style="font-size:17px">Nos dois, os membros têm <strong>até 70% de desconto</strong>. A diferença é o repasse: no Modelo 2, a instituição também recebe 10%.</p>
     <div class="detail" id="modDetail"></div>
+    <div class="cphoto" style="height:220px"><img src="img/parceria.jpg" alt="Duas pessoas conversando sobre a parceria diante de um notebook" style="object-position:50% 30%"></div>
   </div>
   <div class="bench"><div class="mods" id="mods"></div></div>
-</section>
-
-<!-- 9 · DESCONTO POR FORMA DE PAGAMENTO -->
-<section class="slide" id="s9" data-name="Desconto para os membros">
-  <div class="copy">
-    <div class="eyebrow">Desconto nos dois modelos</div>
-    <h2>Até 70% de desconto. <em>Quanto mais tempo, maior.</em></h2>
-    <p class="lead" style="font-size:17px">Só pela parceria, o membro já paga metade. No plano semestral o desconto chega a 65% e, no anual, a 70%. Clique em cada forma de pagamento.</p>
-    <p class="note">Valores sobre o plano de R$ 99,80 por mês.</p>
-  </div>
-  <div class="bench"><div class="pay" id="pay"></div></div>
 </section>
 
 <!-- 10 · SIMULADOR -->
@@ -307,11 +303,19 @@ set(DECK.printing?3:0);
 })();
 </script>
 
+<!-- 5 · operação -->
+<script>
+(function(){
+const C=[['steth','Corpo clínico próprio','Médicos que fazem parte do time WOW+.'],['clock','Médico online 24/7','Atendimento a qualquer hora, todos os dias.'],['award','+15 especialidades','Do clínico geral aos especialistas.'],['msg','Atendimento no WhatsApp','Suporte ao membro de segunda a sábado.'],['headset','Equipe própria','Atendimento e tecnologia feitos em casa.'],['shield','Segurança e LGPD','Dados de saúde protegidos e sigilo.']];
+document.getElementById('caps').innerHTML=C.map(c=>`<div class="cap"><span class="ico">${icon(c[0])}</span><span><b>${c[1]}</b><span class="t">${c[2]}</span></span></div>`).join('');
+})();
+</script>
+
 <!-- 7 · benefícios -->
 <script>
 (function(){
 const bb=L=>L.map(x=>`<div class="bb"><span class="ico">${icon(x[0])}</span><b>${x[1]}</b><span>${x[2]}</span></div>`).join('');
-document.getElementById('bbig').innerHTML=bb([['clock','Clínico geral 24/7','Atendimento por vídeo, a qualquer hora.'],['baby','Pediatria 24/7','Para os pequenos, todos os dias.']]);
+document.getElementById('bbig').innerHTML=bb([['clock','Clínico geral 24/7','Atendimento por vídeo, a qualquer hora.'],['baby','Pediatria 24/7','Para os pequenos, todos os dias.'],['heart','Nutrição, psicologia e veterinário','Cuidado do corpo, da mente e até do pet.']]);
 document.getElementById('bdig').innerHTML=bb([['doc','Receituário digital','Receitas emitidas na consulta, direto no app.'],['flask','Pedidos de exames','Solicitados pelo médico durante a consulta.'],['pulse','Histórico de saúde','Consultas, receitas e exames num só lugar.']]);
 document.getElementById('espList').innerHTML=['Pediatria','Ginecologia','Cardiologia','Clínico geral','Endocrinologia','Dermatologia','Geriatria','Nutrologia','Ortopedia','Oftalmologia','Neurologia','Neurocirurgia','Psicologia','Psiquiatria','Nutrição','Gastroenterologia','Oncologia','Urologia','Angiologia','e muito mais'].map(x=>`<span>${x}</span>`).join('');
 })();
@@ -331,19 +335,24 @@ draw();
 })();
 </script>
 
-<!-- 9 · desconto por pagamento -->
+<!-- 8 · oferta (âncora de preço) -->
 <script>
 (function(){
-const BASE=99.80;
-const P=[['Mensal',50,1],['Semestral',65,6],['Anual',70,12]];
-const el=document.getElementById('pay');let sel=2;
+const ST=[
+ {n:'Avulso',v:207,sub:'1 consulta de cada',per:'',d:['Valor avulso: R$ 207,00','Uma consulta de cada, pagando por consulta: clínico geral (R$ 69), especialidade (R$ 89) e uma escolha mensal (R$ 49).']},
+ {n:'Pacote WOW+',v:99.80,sub:'assinatura',per:'/mês',d:['Pacote da parceria: R$ 99,80 por mês','Clínico geral 24/7 quantas vezes precisar, 1 especialidade por mês e 1 escolha adicional por mês: nutrição, psicologia ou veterinário.']},
+ {n:'Parceria',v:49.90,sub:'50% off',per:'/mês',d:['Com a parceria: R$ 49,90 por mês','Só por ser membro da instituição, 50% de desconto no pacote, pagando mês a mês.']},
+ {n:'Semestral',v:34.93,sub:'65% off',per:'/mês',d:['Plano semestral: R$ 34,93 por mês','No plano de 6 meses, o desconto chega a 65%: total de R$ 209,58.']},
+ {n:'Anual',v:29.94,sub:'70% off',per:'/mês',d:['Plano anual: R$ 29,94 por mês','No plano anual, 70% de desconto: total de R$ 359,28, ou R$ 0,98 por dia.']}
+];
+const el=document.getElementById('offer'),det=document.getElementById('offDetail');let sel=DECK.printing?4:0;
 function draw(){
-  const[n,off,m]=P[sel],v=Math.round(BASE*(1-off/100)*100)/100,tot=v*m,dia=v*12/365;
-  el.innerHTML=`<div class="pay-opts">${P.map((p,i)=>`<button class="po${i===sel?' sel':''}" data-i="${i}"><span class="off">${p[1]}%</span><b>${p[0]}</b><span>${p[2]===1?'só pela parceria, mês a mês':'pagamento de '+p[2]+' meses'}</span></button>`).join('')}</div>
-  <div class="price-hero"><div class="de">De<br><s>${brl(BASE)}</s> /mês</div><div class="arrow">→</div><div class="por"><span>Por</span><b>${brl(v)}<small> /mês</small></b><span>${m===1?'cobrado todo mês':'total de '+brl(tot)+' em '+m+' meses'}</span></div></div>
-  <div class="perday"><span class="ico">${icon('heart')}</span><span>Saúde para o membro por <b>${brl(dia)}</b> por dia${dia<1?', menos de R$ 1':''}.</span></div>`;
-  el.querySelectorAll('.po').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
+  el.innerHTML=`<div class="stairs">${ST.map((t,i)=>`<button class="stp2${i===sel?' sel':''}${i<=sel?' on':''}" data-i="${i}"><span class="pv">${brl(t.v)}<small>${t.per}</small></span><span class="bar" style="height:${Math.round(t.v/207*400)}px"></span><b>${t.n}</b><span class="sb">${t.sub}</span></button>`).join('')}</div>
+  <div class="pkg"><span class="pk-h">O pacote inclui</span><span>${ic('clock')} Clínico geral 24/7, quantas vezes precisar</span><span>${ic('steth')} 1 especialidade por mês</span><span>${ic('heart')} 1 escolha adicional por mês</span></div>`;
+  el.querySelectorAll('.stp2').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
+  det.innerHTML=`<b>${ST[sel].d[0]}</b><p>${ST[sel].d[1]}</p>`;
 }
+document.getElementById('offNext').onclick=()=>{sel=(sel+1)%ST.length;draw()};
 draw();
 })();
 </script>
