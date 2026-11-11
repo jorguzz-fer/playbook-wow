@@ -25,7 +25,7 @@
     <div class="badges">
       <div class="badge"><b>R$ 0</b><span>de custo para a instituição</span></div>
       <div class="badge"><b>24h</b><span>médico online</span></div>
-      <div class="badge"><b>2 modelos</b><span>de parceria</span></div>
+      <div class="badge"><b>até 70%</b><span>de desconto para os membros</span></div>
     </div>
   </div>
 </section>
@@ -113,13 +113,16 @@
   <div class="copy">
     <div class="eyebrow">Para os membros</div>
     <h2>O que os seus membros <em>passam a ter</em></h2>
-    <p class="lead" style="font-size:17px">Cuidado contínuo, simples e acessível, para o membro e a família.</p>
+    <p class="lead" style="font-size:17px">Saúde digital completa no celular: da consulta à receita, do pedido de exame ao histórico de saúde.</p>
     <div class="callout" style="margin-top:auto"><span class="ico" id="mbIco"></span><span><b>Tudo 100% online.</b><br>Seguro, prático e sem deslocamento.</span></div>
   </div>
   <div class="bench"><div class="benef">
     <div class="bcol">
-      <div class="bbig" id="bbig"></div>
+      <span class="bsec">Atendimento médico</span>
+      <div class="bbig two" id="bbig"></div>
       <div class="esp"><div class="esp-h"><b>+15</b><span style="font-size:17px;color:var(--ink2)">especialidades disponíveis</span></div><div class="esp-list" id="espList"></div></div>
+      <span class="bsec" style="margin-top:8px">Cuidado contínuo no app</span>
+      <div class="bbig" id="bdig"></div>
     </div>
   </div></div>
 </section>
@@ -129,19 +132,19 @@
   <div class="copy">
     <div class="eyebrow">Modelos de parceria</div>
     <h2>Dois modelos. <em>A instituição escolhe.</em></h2>
-    <p class="lead" style="font-size:17px">Algumas instituições só podem oferecer benefícios; outras querem também uma receita recorrente. Para cada caso, um modelo.</p>
+    <p class="lead" style="font-size:17px">Nos dois, os membros têm <strong>até 70% de desconto</strong>. A diferença é o repasse: no Modelo 2, a instituição também recebe 10%.</p>
     <div class="detail" id="modDetail"></div>
   </div>
   <div class="bench"><div class="mods" id="mods"></div></div>
 </section>
 
 <!-- 9 · DESCONTO POR FORMA DE PAGAMENTO -->
-<section class="slide" id="s9" data-name="Desconto do cupom">
+<section class="slide" id="s9" data-name="Desconto para os membros">
   <div class="copy">
-    <div class="eyebrow">Parceria Benefício</div>
-    <h2>Quanto mais tempo, <em>maior o desconto</em></h2>
-    <p class="lead" style="font-size:17px">Com o cupom exclusivo da instituição, o membro escolhe como pagar. Clique em cada forma de pagamento.</p>
-    <p class="note">Valores sobre o plano de R$ 49,90 por mês.</p>
+    <div class="eyebrow">Desconto nos dois modelos</div>
+    <h2>Até 70% de desconto. <em>Quanto mais tempo, maior.</em></h2>
+    <p class="lead" style="font-size:17px">Só pela parceria, o membro já paga metade. No plano semestral o desconto chega a 65% e, no anual, a 70%. Clique em cada forma de pagamento.</p>
+    <p class="note">Valores sobre o plano de R$ 99,80 por mês.</p>
   </div>
   <div class="bench"><div class="pay" id="pay"></div></div>
 </section>
@@ -149,24 +152,24 @@
 <!-- 10 · SIMULADOR -->
 <section class="slide" id="s10" data-name="Simulador da Parceria Estratégica">
   <div class="copy" style="gap:12px;padding-top:48px">
-    <div class="eyebrow">Parceria Estratégica</div>
-    <h2 style="font-size:42px">A taxa de retorno <em>cresce com a adesão</em></h2>
+    <div class="eyebrow">Modelo 2 · Parceria Estratégica</div>
+    <h2 style="font-size:42px">10% de repasse, <em>que cresce com a adesão</em></h2>
     <span class="tag-ex" style="align-self:flex-start">Simulação com valores de exemplo</span>
     <div class="ctrl">
       <div class="ctrl-row"><label for="sBase">Membros na base <output id="sBaseOut"></output></label><input type="range" id="sBase" min="500" max="100000" step="500" value="10000"></div>
       <div class="ctrl-row"><label for="sAd">Membros que aderem <output id="sAdOut"></output></label><input type="range" id="sAd" min="1" max="60" step="1" value="20"></div>
-      <div class="ctrl-row"><label for="sPrice">Mensalidade paga pelo membro <output id="sPriceOut"></output></label><input type="range" id="sPrice" min="30" max="80" step="0.1" value="49.9"></div>
+      <div class="ctrl-row"><label>Plano escolhido pelos membros <output id="sPriceOut"></output></label><div class="chips" id="sPlan" role="group" aria-label="Plano"></div></div>
     </div>
-    <p class="note" style="font-size:12.5px">A taxa começa em 5% e chega a 10% quando metade da base adere. Paga do CNPJ da WOW+ para o CNPJ da instituição.</p>
+    <p class="note" style="font-size:12.5px">Repasse de 10% sobre o valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.</p>
   </div>
   <div class="bench" style="display:flex;flex-direction:column;justify-content:center;padding:40px 64px 32px 56px;gap:20px">
-    <div class="eyebrow">Taxa de retorno mensal conforme a adesão</div>
+    <div class="eyebrow">Repasse mensal conforme a adesão</div>
     <svg class="svgchart" id="sChart" viewBox="0 0 900 400" style="width:100%;height:auto"></svg>
     <div class="readout" style="grid-template-columns:repeat(4,1fr)">
       <div><span>Membros ativos</span><b id="rAct">—</b></div>
-      <div><span>Taxa de retorno</span><b id="rPct">—</b></div>
-      <div><span>Retorno / mês</span><b id="rMon">—</b></div>
-      <div><span>Retorno / ano</span><b id="rYr">—</b></div>
+      <div><span>Repasse por membro</span><b id="rPct">—</b></div>
+      <div><span>Repasse / mês</span><b id="rMon">—</b></div>
+      <div><span>Repasse / ano</span><b id="rYr">—</b></div>
     </div>
   </div>
 </section>
@@ -307,7 +310,9 @@ set(DECK.printing?3:0);
 <!-- 7 · benefícios -->
 <script>
 (function(){
-document.getElementById('bbig').innerHTML=[['clock','Clínico geral 24/7','Atendimento todos os dias'],['baby','Pediatria 24/7','Atendimento todos os dias'],['calendar','1 consulta eletiva','por mês']].map(x=>`<div class="bb"><span class="ico">${icon(x[0])}</span><b>${x[1]}</b><span>${x[2]}</span></div>`).join('');
+const bb=L=>L.map(x=>`<div class="bb"><span class="ico">${icon(x[0])}</span><b>${x[1]}</b><span>${x[2]}</span></div>`).join('');
+document.getElementById('bbig').innerHTML=bb([['clock','Clínico geral 24/7','Atendimento por vídeo, a qualquer hora.'],['baby','Pediatria 24/7','Para os pequenos, todos os dias.']]);
+document.getElementById('bdig').innerHTML=bb([['doc','Receituário digital','Receitas emitidas na consulta, direto no app.'],['flask','Pedidos de exames','Solicitados pelo médico durante a consulta.'],['pulse','Histórico de saúde','Consultas, receitas e exames num só lugar.']]);
 document.getElementById('espList').innerHTML=['Pediatria','Ginecologia','Cardiologia','Clínico geral','Endocrinologia','Dermatologia','Geriatria','Nutrologia','Ortopedia','Oftalmologia','Neurologia','Neurocirurgia','Psicologia','Psiquiatria','Nutrição','Gastroenterologia','Oncologia','Urologia','Angiologia','e muito mais'].map(x=>`<span>${x}</span>`).join('');
 })();
 </script>
@@ -316,11 +321,11 @@ document.getElementById('espList').innerHTML=['Pediatria','Ginecologia','Cardiol
 <script>
 (function(){
 const M=[
- {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',l:'Cupom de desconto exclusivo para os membros.',items:['Cupom exclusivo da instituição','25% de desconto no mensal, 35% no semestral e 50% no anual','Sem custo para a instituição','Ideal quando o código de conduta não permite receber repasse'],foot:['Benefício para os membros','A instituição oferece mais valor, sem custo.'],d:'O membro assina a WOW+ com o cupom da instituição e escolhe a forma de pagamento. Quanto mais longo o plano, maior o desconto.'},
- {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',l:'Cupom de desconto com taxa de retorno para a instituição.',items:['Plano mais completo, com mais serviços incluídos','Desconto exclusivo para os membros','Taxa de retorno de 5% a 10%, conforme a adesão','Pago do CNPJ da WOW+ para o CNPJ da instituição'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],d:'A instituição ganha um parceiro estratégico: os membros têm desconto num plano mais completo e a instituição recebe uma taxa de retorno que cresce com a base.'}
+ {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',l:'A instituição fecha contrato como parceira institucional da WOW+.',st:[['até 70%','de desconto para os membros'],['R$ 0','de custo, sem repasse']],items:['Cupom exclusivo da instituição','Sem custo para a instituição','Ideal quando o código de conduta não permite receber repasse'],foot:['Benefício para os membros','Mais valor para quem participa, sem custo.'],d:'A instituição fecha contrato como parceira institucional. Os membros assinam com até 70% de desconto, e a instituição não paga nada nem recebe repasse.'},
+ {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',l:'A instituição fecha contrato como parceira estratégica da WOW+.',st:[['até 70%','de desconto para os membros'],['10%','de repasse para a instituição']],items:['Cupom exclusivo da instituição','Repasse de 10% sobre o valor pago pelos membros','Pago do CNPJ da WOW+ para o CNPJ da instituição'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],d:'Os membros têm o mesmo desconto de até 70%, e a instituição recebe um repasse de 10%, que cresce junto com a adesão da base.'}
 ];
 const el=document.getElementById('mods'),det=document.getElementById('modDetail');let sel=0;
-function draw(){el.innerHTML=M.map((m,i)=>`<button class="mod ${m.k}${i===sel?' sel':''}" data-i="${i}"><span class="tag">${m.tag}</span><h3>${m.n}</h3><p class="lead2">${m.l}</p><ul>${m.items.map(x=>`<li>${x}</li>`).join('')}</ul><div class="foot"><b>${m.foot[0]}</b><span>${m.foot[1]}</span></div></button>`).join('');
+function draw(){el.innerHTML=M.map((m,i)=>`<button class="mod ${m.k}${i===sel?' sel':''}" data-i="${i}"><span class="tag">${m.tag}</span><h3>${m.n}</h3><p class="lead2">${m.l}</p><div class="mstats">${m.st.map(s=>`<div class="mstat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div><ul>${m.items.map(x=>`<li>${x}</li>`).join('')}</ul><div class="foot"><b>${m.foot[0]}</b><span>${m.foot[1]}</span></div></button>`).join('');
   el.querySelectorAll('.mod').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});const m=M[sel];det.innerHTML=`<b>${m.n}</b><p>${m.d}</p>`}
 draw();
 })();
@@ -329,12 +334,12 @@ draw();
 <!-- 9 · desconto por pagamento -->
 <script>
 (function(){
-const BASE=49.90;
-const P=[['Mensal',25,1],['Semestral',35,6],['Anual',50,12]];
+const BASE=99.80;
+const P=[['Mensal',50,1],['Semestral',65,6],['Anual',70,12]];
 const el=document.getElementById('pay');let sel=2;
 function draw(){
-  const[n,off,m]=P[sel],v=BASE*(1-off/100),tot=v*m,dia=v/30;
-  el.innerHTML=`<div class="pay-opts">${P.map((p,i)=>`<button class="po${i===sel?' sel':''}" data-i="${i}"><span class="off">${p[1]}%</span><b>${p[0]}</b><span>${p[2]===1?'pagamento mês a mês':'pagamento antecipado de '+p[2]+' meses'}</span></button>`).join('')}</div>
+  const[n,off,m]=P[sel],v=Math.round(BASE*(1-off/100)*100)/100,tot=v*m,dia=v*12/365;
+  el.innerHTML=`<div class="pay-opts">${P.map((p,i)=>`<button class="po${i===sel?' sel':''}" data-i="${i}"><span class="off">${p[1]}%</span><b>${p[0]}</b><span>${p[2]===1?'só pela parceria, mês a mês':'pagamento de '+p[2]+' meses'}</span></button>`).join('')}</div>
   <div class="price-hero"><div class="de">De<br><s>${brl(BASE)}</s> /mês</div><div class="arrow">→</div><div class="por"><span>Por</span><b>${brl(v)}<small> /mês</small></b><span>${m===1?'cobrado todo mês':'total de '+brl(tot)+' em '+m+' meses'}</span></div></div>
   <div class="perday"><span class="ico">${icon('heart')}</span><span>Saúde para o membro por <b>${brl(dia)}</b> por dia${dia<1?', menos de R$ 1':''}.</span></div>`;
   el.querySelectorAll('.po').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
@@ -347,25 +352,26 @@ draw();
 <script>
 (function(){
 const $=id=>document.getElementById(id),svg=$('sChart');
-const pct=a=>5+5*Math.min(a,50)/50;
+const RATE=10,PLANS=[['Mensal',49.90],['Semestral',34.93],['Anual',29.94]];let plan=0;
+const pc=$('sPlan');PLANS.forEach((p,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=p[0];b.onclick=()=>{plan=i;calc()};pc.appendChild(b)});
 function calc(){
-  const base=+$('sBase').value,ad=+$('sAd').value,price=+$('sPrice').value;
-  $('sBaseOut').textContent=fmtN(base);$('sAdOut').textContent=ad+'%';$('sPriceOut').textContent=brl(price);
-  const act=base*ad/100,p=pct(ad),mon=act*price*p/100;
-  $('rAct').textContent=fmtN(act);$('rPct').textContent=p.toFixed(1).replace('.',',')+'%';$('rMon').textContent=brl(mon);$('rYr').textContent=brl(mon*12);
-  const W=900,H=400,L=96,R=20,T=24,B=46,maxA=60,f=a=>base*a/100*price*pct(a)/100,maxV=f(maxA)||1;
+  const base=+$('sBase').value,ad=+$('sAd').value,price=PLANS[plan][1];
+  [...pc.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===plan));
+  $('sBaseOut').textContent=fmtN(base);$('sAdOut').textContent=ad+'%';$('sPriceOut').textContent=brl(price)+' /mês';
+  const act=base*ad/100,mon=act*price*RATE/100;
+  $('rAct').textContent=fmtN(act);$('rPct').textContent=brl(price*RATE/100);$('rMon').textContent=brl(mon);$('rYr').textContent=brl(mon*12);
+  const W=900,H=400,L=96,R=20,T=24,B=46,maxA=60,f=a=>base*a/100*price*RATE/100,maxV=f(maxA)||1;
   const X=a=>L+a/maxA*(W-L-R),Y=v=>H-B-v/maxV*(H-T-B);
   let s='';for(let i=0;i<=4;i++){const v=maxV*i/4;s+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L-10}" y="${Y(v)+4}" text-anchor="end">${v>=1000?(v/1000).toFixed(v>=10000?0:1).replace('.',',')+' mil':fmtN(v)}</text>`}
   for(let a=0;a<=60;a+=10)s+=`<text x="${X(a)}" y="${H-B+22}" text-anchor="middle">${a}%</text>`;
-  s+=`<line x1="${X(50)}" x2="${X(50)}" y1="${T}" y2="${H-B}" stroke="var(--line2)" stroke-dasharray="4 6"/><text x="${X(50)-8}" y="${T+14}" text-anchor="end" style="fill:var(--ink2)">10% a partir de 50% da base</text>`;
   let d='',area='';for(let a=0;a<=maxA;a+=1){d+=(a?'L':'M')+X(a).toFixed(1)+' '+Y(f(a)).toFixed(1)}
   area=d+`L${X(maxA)} ${Y(0)}L${X(0)} ${Y(0)}Z`;
   s+=`<defs><linearGradient id="gA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FF7A00" stop-opacity=".35"/><stop offset="1" stop-color="#FF7A00" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#gA)"/><path d="${d}" fill="none" stroke="var(--accent)" stroke-width="3"/>`;
-  s+=`<circle cx="${X(ad)}" cy="${Y(f(ad))}" r="8" fill="var(--accent)" stroke="var(--bg)" stroke-width="3"/><text x="${X(ad)+(ad>40?-14:14)}" y="${Y(f(ad))-14}" text-anchor="${ad>40?'end':'start'}" style="fill:var(--ink);font-size:15px">${brl(mon)} /mês</text>`;
+  s+=`<circle cx="${X(ad)}" cy="${Y(f(ad))}" r="8" fill="var(--accent)" stroke="var(--bg)" stroke-width="3"/><text x="${X(ad)+(ad<12?14:-14)}" y="${Y(f(ad))-(ad<12?34:14)}" text-anchor="${ad<12?'start':'end'}" style="fill:var(--ink);font-size:15px">${brl(mon)} /mês</text>`;
   s+=`<text class="lab" x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">adesão da base</text>`;
   svg.innerHTML=s;
 }
-['sBase','sAd','sPrice'].forEach(id=>$(id).addEventListener('input',calc));
+['sBase','sAd'].forEach(id=>$(id).addEventListener('input',calc));
 DECK.onChange(k=>{if(k==='theme')calc()});
 calc();
 })();
@@ -388,7 +394,7 @@ const S=[
  ['Acordo entre CNPJs','Contrato simples entre a WOW+ e a instituição.','Assinar o acordo de parceria.'],
  ['Cupom exclusivo','A WOW+ cria o cupom da instituição na plataforma.','Aprovar o nome do cupom.'],
  ['Divulgação','A WOW+ apoia a comunicação para os membros.','Apresentar o benefício nos canais da instituição.'],
- ['Membros atendidos','Os membros assinam com o cupom e já usam o app.','Acompanhar a adesão; na Estratégica, receber a taxa de retorno.']
+ ['Membros atendidos','Os membros assinam com o cupom e já usam o app.','Acompanhar a adesão; no Modelo 2, receber o repasse de 10%.']
 ];
 const el=document.getElementById('road');let cur=0;
 el.innerHTML=`<div class="road-track"><div class="road-fill" id="rdFill"></div>${S.map((s,i)=>`<button class="rs" data-i="${i}"><span class="dot">${i+1}</span><b>${s[0]}</b></button>`).join('')}</div><div class="road-card" id="rdCard"></div><div class="road-badges"><span>${ic('rocket')} Implantação simples e rápida</span><span>${ic('dollar')} Sem custo para a instituição</span><span>${ic('shield')} Confiança e segurança</span></div>`;
@@ -407,8 +413,8 @@ set(0);
 const Q=[
  ['Tem custo para a instituição?','Não.','A instituição não paga nada para oferecer a WOW+. Quem assina é o membro, com o desconto do cupom.'],
  ['Nosso código de conduta não permite receber repasse. E agora?','Escolha a Parceria Benefício.','Nela não há repasse: só o desconto exclusivo para os membros.'],
- ['Como funciona a taxa de retorno?','Cresce com a adesão.','Começa em 5% e chega a 10% quando metade da base adere. É paga do CNPJ da WOW+ para o CNPJ da instituição.'],
- ['Quanto o membro paga com o cupom?','Depende da forma de pagamento.','25% de desconto no mensal, 35% no semestral e 50% no anual.'],
+ ['Como funciona o repasse?','10% para a instituição.','No Modelo 2, a instituição recebe 10% do valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.'],
+ ['Quanto o membro paga?','Até 70% menos.','50% de desconto só pela parceria, 65% no semestral e 70% no anual: o plano de R$ 99,80 sai a partir de R$ 29,94 por mês.'],
  ['O membro é atendido rápido?','Sim, em minutos.','Clínico geral e pediatria 24 horas, pelo celular, de onde estiver.'],
  ['O que a instituição precisa fazer?','Apresentar o benefício.','A WOW+ cuida da plataforma, do atendimento e do suporte. A instituição divulga o cupom aos membros.']
 ];
