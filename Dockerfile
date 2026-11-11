@@ -14,6 +14,9 @@ COPY simulation.html /usr/share/nginx/html/simulation/index.html
 COPY notificacoes.html /usr/share/nginx/html/notificacoes/index.html
 COPY benchmark/ /usr/share/nginx/html/benchmark/
 
+# Apresentacao de parcerias institucionais (APN Instituicoes)
+COPY apn-instituicoes/ /usr/share/nginx/html/apn-instituicoes/
+
 # Guia de marca aberto (sem login) com download dos logos em /marca/logos/
 COPY marca/ /usr/share/nginx/html/marca/
 
