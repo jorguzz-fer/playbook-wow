@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css">
-<link rel="stylesheet" href="wow.css">
+<link rel="stylesheet" href="deck.css?v=5">
+<link rel="stylesheet" href="wow.css?v=5">
 </head><body>
 
 <div id="viewport">
@@ -74,7 +74,8 @@
   <div class="copy">
     <div class="eyebrow">Nossa operação</div>
     <h2>Operação pronta. <em>Atendimento de verdade.</em></h2>
-    <p class="lead" style="font-size:17px">O que garante que o seu membro seja bem atendido, todos os dias: médicos, equipe e tecnologia.</p>
+    <p class="lead" style="font-size:17px">O que garante que o seu membro seja bem atendido, todos os dias. Clique em cada ponto da operação.</p>
+    <div class="detail" id="hubDetail"></div>
     <div class="callout" style="margin-top:auto"><img src="img/symbol.png" alt="" style="width:44px;height:auto"><span><b>Pessoas que já confiam na WOW+.</b><br>Os números falam pelo atendimento.</span></div>
   </div>
   <div class="bench"><div class="estr">
@@ -83,6 +84,7 @@
       <div class="kpi"><b>96,5%</b><span>NPS de satisfação dos pacientes</span></div>
       <div class="kpi"><b>20+ estados</b><span>com atendimento</span></div>
     </div>
+    <svg class="hub" id="hub" viewBox="0 0 950 530" role="group" aria-label="Operação WOW+"></svg>
     <div class="caps" id="caps"></div>
   </div></div>
 </section>
@@ -175,10 +177,12 @@
   <div class="copy">
     <div class="eyebrow">Para a instituição</div>
     <h2>O que a sua instituição <em>ganha com isso</em></h2>
-    <p class="lead" style="font-size:17px">Uma parceria que fortalece a instituição e cuida das pessoas.</p>
+    <p class="lead" style="font-size:17px">Uma parceria que fortalece a instituição e cuida das pessoas. Clique em cada ganho ou deixe a roda girar.</p>
+    <div class="chips noprint"><button class="chip" id="gNext">Próximo ganho →</button><button class="chip" id="gAuto" aria-pressed="false">Girar sozinho</button></div>
+    <div class="detail" id="gDetail"></div>
     <div class="callout" style="margin-top:auto"><img src="img/symbol.png" alt="" style="width:44px;height:auto"><span><b>Sem custo para a instituição.</b><br>A WOW+ cuida da operação; a instituição leva o benefício aos membros.</span></div>
   </div>
-  <div class="bench"><div class="gains" id="gains"></div></div>
+  <div class="bench"><svg class="ring" id="ring" viewBox="0 0 1060 836" style="position:absolute;inset:0;width:100%;height:100%" role="group" aria-label="Ganhos da instituição"></svg><div class="gains" id="gains"></div></div>
 </section>
 
 <!-- 12 · IMPLANTAÇÃO -->
@@ -223,7 +227,7 @@
 </div>
 </div>
 
-<script src="deck.js"></script>
+<script src="deck.js?v=5"></script>
 
 <!-- ícones extras e helpers -->
 <script>
@@ -303,11 +307,22 @@ set(DECK.printing?3:0);
 })();
 </script>
 
-<!-- 5 · operação -->
+<!-- 5 · operação (rede animada) -->
 <script>
 (function(){
-const C=[['steth','Corpo clínico próprio','Médicos que fazem parte do time WOW+.'],['clock','Médico online 24/7','Atendimento a qualquer hora, todos os dias.'],['award','+15 especialidades','Do clínico geral aos especialistas.'],['msg','Atendimento no WhatsApp','Suporte ao membro de segunda a sábado.'],['headset','Equipe própria','Atendimento e tecnologia feitos em casa.'],['shield','Segurança e LGPD','Dados de saúde protegidos e sigilo.']];
-document.getElementById('caps').innerHTML=C.map(c=>`<div class="cap"><span class="ico">${icon(c[0])}</span><span><b>${c[1]}</b><span class="t">${c[2]}</span></span></div>`).join('');
+const C=[['steth','Corpo clínico próprio','Médicos que fazem parte do time WOW+.'],['clock','Médico online 24/7','Atendimento a qualquer hora, todos os dias.'],['award','+15 especialidades','Do clínico geral aos especialistas.'],['shield','Segurança e LGPD','Dados de saúde protegidos e sigilo.'],['headset','Equipe própria','Atendimento e tecnologia feitos em casa.'],['msg','Atendimento no WhatsApp','Suporte ao membro de segunda a sábado.']];
+const caps=document.getElementById('caps'),svg=document.getElementById('hub'),det=document.getElementById('hubDetail');
+if(DECK.printing){svg.remove();det.remove();caps.innerHTML=C.map(c=>`<div class="cap"><span class="ico">${icon(c[0])}</span><span><b>${c[1]}</b><span class="t">${c[2]}</span></span></div>`).join('');return}
+caps.remove();
+const cx=475,cy=262,P=[[475,72],[761,167],[761,357],[475,452],[189,357],[189,167]];let sel=0;
+function draw(){let s='';
+  C.forEach((c,i)=>{const[x,y]=P[i];
+    s+=`<g class="nd${i===sel?' sel':''}" data-i="${i}" tabindex="0" role="button" aria-label="${c[1]}"><path class="sp" d="M${cx} ${cy}L${x} ${y}"/><path class="fl" d="M${cx} ${cy}L${x} ${y}"/><circle cx="${x}" cy="${y}" r="34"/><g transform="translate(${x-14} ${y-14}) scale(1.17)" style="color:var(--accent-ink)">${ic(c[0])}</g><text x="${x}" y="${i===0?y-48:y+58}" text-anchor="middle">${c[1]}</text></g>`});
+  s+=`<circle cx="${cx}" cy="${cy}" r="78" fill="var(--bg)" stroke="var(--accent)" stroke-width="2"/><circle class="pulse" cx="${cx}" cy="${cy}" r="78"/><circle cx="${cx}" cy="${cy}" r="62" fill="var(--surface)"/><image href="img/symbol.png" x="${cx-36}" y="${cy-32}" width="72" height="64" preserveAspectRatio="xMidYMid meet"/>`;
+  svg.innerHTML=s;
+  svg.querySelectorAll('.nd').forEach(g=>{const f=()=>{sel=+g.dataset.i;draw()};g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
+  det.innerHTML=`<b>${C[sel][1]}</b><p>${C[sel][2]}</p>`}
+draw();
 })();
 </script>
 
@@ -386,15 +401,31 @@ calc();
 })();
 </script>
 
-<!-- 11 · ganhos -->
+<!-- 11 · ganhos (roda) -->
 <script>
 (function(){
-const G=[['star','Mais valor para os membros','Um benefício de saúde que o membro usa no dia a dia.'],['users','Mais engajamento','Membros mais próximos e ativos na instituição.'],['trend','Um diferencial real','Algo concreto para atrair e manter a base.'],['dollar','Sem custo estrutural','A WOW+ cuida da plataforma, do atendimento e do suporte.'],['handshake','Transparência','Contrato entre CNPJs, sem acordos informais.'],['heart','Mais saúde, mais qualidade de vida','Cuidado contínuo para quem faz parte da instituição.']];
-document.getElementById('gains').innerHTML=G.map((g,i)=>`<div class="ga${i===5?' wide':''}"><span class="ico">${icon(g[0])}</span><span><b>${g[1]}</b><span class="t">${g[2]}</span></span></div>`).join('');
+const G=[['star','Mais valor para os membros','Um benefício de saúde que o membro usa no dia a dia.',['Mais valor','para os membros']],['users','Mais engajamento','Membros mais próximos e ativos na instituição.',['Mais engajamento']],['trend','Um diferencial real','Algo concreto para atrair e manter a base.',['Um diferencial real']],['dollar','Sem custo estrutural','A WOW+ cuida da plataforma, do atendimento e do suporte.',['Sem custo estrutural']],['handshake','Transparência','Contrato entre CNPJs, sem acordos informais.',['Transparência']],['heart','Mais saúde, mais qualidade de vida','Cuidado contínuo para quem faz parte da instituição.',['Mais saúde, mais','qualidade de vida']]];
+const svg=document.getElementById('ring'),gr=document.getElementById('gains'),det=document.getElementById('gDetail');
+if(DECK.printing){svg.remove();det.remove();gr.innerHTML=G.map((g,i)=>`<div class="ga${i===5?' wide':''}"><span class="ico">${icon(g[0])}</span><span><b>${g[1]}</b><span class="t">${g[2]}</span></span></div>`).join('');return}
+gr.remove();
+const cx=530,cy=418,R=215;let sel=0,auto=null;
+const pt=(a,r)=>[cx+Math.cos(a)*r,cy+Math.sin(a)*r];
+function draw(){let s=`<circle class="orbit" cx="${cx}" cy="${cy}" r="${R-36}"/>`;
+  G.forEach((g,i)=>{const a0=-Math.PI/2+i*Math.PI/3+.12,a1=a0+Math.PI/3-.24,am=(a0+a1)/2,[x0,y0]=pt(a0,R),[x1,y1]=pt(a1,R),[lx,ly]=pt(am,R+52),L=g[3];
+    const anc=Math.cos(am)<-.1?'end':'start',y0t=ly-(L.length-1)*12;
+    s+=`<g class="ph${i===sel?' sel':''}" data-i="${i}" tabindex="0" role="button" aria-label="${g[1]}"><path class="arc" d="M${x0} ${y0}A${R} ${R} 0 0 1 ${x1} ${y1}"/><text class="n" x="${lx}" y="${y0t-14}" text-anchor="${anc}">0${i+1}</text>${L.map((t,j)=>`<text x="${lx}" y="${y0t+12+j*24}" text-anchor="${anc}">${t}</text>`).join('')}</g>`});
+  const g=G[sel],L=g[3];
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R-62}" fill="var(--surface)" stroke="var(--line)"/><g transform="translate(${cx-30} ${cy-100}) scale(2.5)" style="color:var(--accent-ink)">${ic(g[0])}</g>${L.map((t,j)=>`<text class="c" x="${cx}" y="${cy+4+j*30}" text-anchor="middle">${t}</text>`).join('')}<text class="k" x="${cx}" y="${cy+12+L.length*30}" text-anchor="middle">GANHO 0${sel+1} DE 06</text>`;
+  svg.innerHTML=s;
+  svg.querySelectorAll('.ph').forEach(e=>{const f=()=>{sel=+e.dataset.i;draw()};e.onclick=f;e.onkeydown=k=>{if(k.key==='Enter')f()}});
+  det.innerHTML=`<b>${g[1]}</b><p>${g[2]}</p>`}
+document.getElementById('gNext').onclick=()=>{sel=(sel+1)%G.length;draw()};
+const ab=document.getElementById('gAuto');ab.onclick=()=>{if(auto){clearInterval(auto);auto=null}else auto=setInterval(()=>{if(document.getElementById('s11').classList.contains('active')){sel=(sel+1)%G.length;draw()}},2600);ab.setAttribute('aria-pressed',!!auto)};
+draw();
 })();
 </script>
 
-<!-- 12 · implantação -->
+<!-- 12 · implantação (jornada) -->
 <script>
 (function(){
 const S=[
@@ -405,14 +436,18 @@ const S=[
  ['Divulgação','A WOW+ apoia a comunicação para os membros.','Apresentar o benefício nos canais da instituição.'],
  ['Membros atendidos','Os membros assinam com o cupom e já usam o app.','Acompanhar a adesão; no Modelo 2, receber o repasse de 10%.']
 ];
-const el=document.getElementById('road');let cur=0;
-el.innerHTML=`<div class="road-track"><div class="road-fill" id="rdFill"></div>${S.map((s,i)=>`<button class="rs" data-i="${i}"><span class="dot">${i+1}</span><b>${s[0]}</b></button>`).join('')}</div><div class="road-card" id="rdCard"></div><div class="road-badges"><span>${ic('rocket')} Implantação simples e rápida</span><span>${ic('dollar')} Sem custo para a instituição</span><span>${ic('shield')} Confiança e segurança</span></div>`;
-function set(i){cur=i;el.querySelectorAll('.rs').forEach((b,k)=>{b.classList.toggle('done',k<i);b.classList.toggle('cur',k===i)});
-  document.getElementById('rdFill').style.width=(i/(S.length-1)*84)+'%';
-  document.getElementById('rdCard').innerHTML=`<div><h4>WOW+</h4><p>${S[i][1]}</p></div><div><h4>Instituição</h4><p>${S[i][2]}</p></div>`}
-el.querySelectorAll('.rs').forEach(b=>b.onclick=()=>set(+b.dataset.i));
+const el=document.getElementById('road'),X=i=>80+i*158,Y=i=>i%2?196:112;let cur=0;
+const P=DECK.printing;
+el.innerHTML=`<svg class="jr" id="jr" viewBox="0 0 950 300" role="group" aria-label="Etapas da implantação"></svg>`+(P?`<div class="road-all"><div class="ra h"><span></span><span>Etapa</span><span>WOW+</span><span>Instituição</span></div>${S.map((s,i)=>`<div class="ra"><span class="d">${i+1}</span><b>${s[0]}</b><span>${s[1]}</span><span>${s[2]}</span></div>`).join('')}</div>`:`<div class="road-card" id="rdCard"></div><div class="road-badges"><span>${ic('rocket')} Implantação simples e rápida</span><span>${ic('dollar')} Sem custo para a instituição</span><span>${ic('shield')} Confiança e segurança</span></div>`);
+const svg=document.getElementById('jr');
+function set(i){cur=i;let s='';
+  for(let k=0;k<S.length-1;k++){const d=`M${X(k)} ${Y(k)}C${X(k)+79} ${Y(k)},${X(k+1)-79} ${Y(k+1)},${X(k+1)} ${Y(k+1)}`;s+=`<path class="base${k<i?' on':''}" d="${d}"/><path class="fl${k<i?' on':''}" d="${d}"/>`}
+  S.forEach((st,k)=>{s+=`<g class="nd${k<i?' done':''}${k===i?' cur':''}" data-i="${k}" tabindex="0" role="button" aria-label="${st[0]}"><circle cx="${X(k)}" cy="${Y(k)}" r="${k===i?34:28}"/><text class="n" x="${X(k)}" y="${Y(k)+6}" text-anchor="middle">${k+1}</text><text class="l" x="${X(k)}" y="${k%2?Y(k)+64:Y(k)-52}" text-anchor="middle">${st[0]}</text></g>`});
+  svg.innerHTML=s;
+  svg.querySelectorAll('.nd').forEach(g=>{const f=()=>set(+g.dataset.i);g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
+  if(!P)document.getElementById('rdCard').innerHTML=`<div><h4>WOW+</h4><p>${S[i][1]}</p></div><div><h4>Instituição</h4><p>${S[i][2]}</p></div>`}
 document.getElementById('rdNext').onclick=()=>set((cur+1)%S.length);
-set(0);
+set(P?S.length:0);
 })();
 </script>
 
