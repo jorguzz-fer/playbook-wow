@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css?v=6">
-<link rel="stylesheet" href="wow.css?v=6">
+<link rel="stylesheet" href="deck.css?v=7">
+<link rel="stylesheet" href="wow.css?v=7">
 </head><body>
 
 <div id="viewport">
@@ -120,12 +120,16 @@
 <section class="slide" id="s8" data-name="Oferta para os membros">
   <div class="copy">
     <div class="eyebrow">Oferta exclusiva para os membros</div>
-    <h2>De R$&nbsp;207 <em>a R$&nbsp;29,94 por mês.</em></h2>
-    <p class="lead" style="font-size:17px">Uma condição só para os membros da sua instituição, com <strong>até 70% de desconto</strong>. Clique em cada etapa para ver como o preço chega lá.</p>
+    <h2>R$&nbsp;207 em saúde. <em>O membro paga R$&nbsp;49,90.</em></h2>
+    <p class="lead" style="font-size:17px">Pagas uma a uma, as consultas do pacote custariam R$&nbsp;207 por mês. Com a parceria, o membro paga uma fração disso, e o desconto chega a 70% no plano anual.</p>
+    <div class="ask noprint">
+      <span class="bsec">E se o membro usar mais?</span>
+      <b>Uso do clínico geral no mês</b>
+      <div class="chips" id="offUse" role="group" aria-label="Consultas com o clínico geral no mês"></div>
+    </div>
     <div class="detail" id="offDetail"></div>
-    <div class="chips noprint" style="margin-top:auto"><button class="chip" id="offNext">Próxima etapa →</button></div>
   </div>
-  <div class="bench"><div class="offer" id="offer"></div></div>
+  <div class="bench"><div class="offer2" id="offer"></div></div>
 </section>
 
 <!-- 9 · DUAS MODALIDADES -->
@@ -224,7 +228,7 @@
 </div>
 </div>
 
-<script src="deck.js?v=6"></script>
+<script src="deck.js?v=7"></script>
 
 <!-- ícones extras e helpers -->
 <script>
@@ -356,25 +360,34 @@ draw();
 })();
 </script>
 
-<!-- 8 · oferta (âncora de preço) -->
+<!-- 8 · oferta (a conta do valor e os planos) -->
 <script>
 (function(){
-const ST=[
- {n:'Avulso',v:207,sub:'1 consulta de cada',per:'',d:['Valor avulso: R$ 207,00','Uma consulta de cada, pagando por consulta: clínico geral (R$ 69), especialidade (R$ 89) e uma escolha mensal (R$ 49).']},
- {n:'Pacote WOW+',v:99.80,sub:'assinatura',per:'/mês',d:['Pacote da parceria: R$ 99,80 por mês','Clínico geral 24/7 quantas vezes precisar, 1 especialidade por mês e 1 escolha adicional por mês: nutrição, psicologia ou veterinário.']},
- {n:'Parceria',v:49.90,sub:'50% off',per:'/mês',d:['Com a parceria: R$ 49,90 por mês','Só por ser membro da instituição, 50% de desconto no pacote, pagando mês a mês.']},
- {n:'Semestral',v:34.93,sub:'65% off',per:'/mês',d:['Plano semestral: R$ 34,93 por mês','No plano de 6 meses, o desconto chega a 65%: total de R$ 209,58.']},
- {n:'Anual',v:29.94,sub:'70% off',per:'/mês',d:['Plano anual: R$ 29,94 por mês','No plano anual, 70% de desconto: total de R$ 359,28, ou R$ 0,98 por dia.']}
-];
-const el=document.getElementById('offer'),det=document.getElementById('offDetail');let sel=DECK.printing?4:0;
-function draw(){
-  el.innerHTML=`<div class="stairs">${ST.map((t,i)=>`<button class="stp2${i===sel?' sel':''}${i<=sel?' on':''}" data-i="${i}"><span class="pv">${brl(t.v)}<small>${t.per}</small></span><span class="bar" style="height:${Math.round(t.v/207*400)}px"></span><b>${t.n}</b><span class="sb">${t.sub}</span></button>`).join('')}</div>
-  <div class="pkg"><span class="pk-h">O pacote inclui</span><span>${ic('clock')} Clínico geral 24/7, quantas vezes precisar</span><span>${ic('steth')} 1 especialidade por mês</span><span>${ic('heart')} 1 escolha adicional por mês</span></div>`;
-  el.querySelectorAll('.stp2').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
-  det.innerHTML=`<b>${ST[sel].d[0]}</b><p>${ST[sel].d[1]}</p>`;
-}
-document.getElementById('offNext').onclick=()=>{sel=(sel+1)%ST.length;draw()};
-draw();
+const $=id=>document.getElementById(id);
+// valores avulsos do brief: clínico R$ 69, especialidade R$ 89, nutrição/psicologia/veterinário R$ 49
+const A=[['clock','Clínico geral 24/7','Por vídeo, quantas vezes precisar.',69,'por consulta avulsa'],['steth','1 especialidade por mês','Uma consulta eletiva com especialista.',89,'consulta avulsa'],['heart','1 escolha adicional por mês','Nutrição, psicologia ou veterinário.',49,'consulta avulsa']];
+const P=[['Mensal',50,49.90,'Só pela parceria, cobrado mês a mês.'],['Semestral',65,34.93,'R$ 209,58 a cada 6 meses.'],['Anual',70,29.94,'R$ 359,28 por ano: menos de R$ 1 por dia.']];
+const el=$('offer'),det=$('offDetail'),use=$('offUse');let n=1,sel=0,shown=207,raf=0;
+const still=DECK.printing||matchMedia('(prefers-reduced-motion:reduce)').matches;
+el.innerHTML=`<span class="bsec">O pacote da parceria: o que o membro recebe todo mês</span>
+<div class="eq">${A.map((a,i)=>`${i?'<span class="op" aria-hidden="true">+</span>':''}<div class="vc"><span class="ico">${icon(a[0])}</span><b class="t">${a[1]}</b><span class="s">${a[2]}</span><span class="v">${brl(a[3])}${i?'':'<i id="offX"></i>'}</span><span class="vl">${a[4]}</span></div>`).join('')}<span class="op" aria-hidden="true">=</span><div class="vc tot"><span class="vl">Pagando avulso</span><b class="big" id="offTot">${brl(207)}</b><span class="s" id="offTotS"></span></div></div>
+<div class="plh"><span class="bsec">Quanto o membro paga na parceria</span><span class="pln">Sem a parceria, a assinatura custa R$ 99,80 por mês.</span></div>
+<div class="plans">${P.map((p,i)=>`<button class="pl" data-i="${i}"><span class="top"><b class="nm">${p[0]}</b><span class="off">${p[1]}% OFF</span></span><span class="de">de <s>R$ 99,80</s> por</span><span class="pr">${brl(p[2])}<small>/mês</small></span><span class="pcap">${p[3]}</span><span class="sv">Economia de <b></b> por mês em relação ao avulso.</span></button>`).join('')}</div>`;
+[1,2,3,4].forEach(k=>{const b=document.createElement('button');b.className='chip';b.textContent=k===1?'1 vez':k+' vezes';b.onclick=()=>{n=k;upd()};use.appendChild(b)});
+el.querySelectorAll('.pl').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;upd()});
+function tween(to){const t=$('offTot');if(still){shown=to;t.textContent=brl(to);return}
+  cancelAnimationFrame(raf);const from=shown,t0=performance.now();
+  const step=now=>{const k=Math.min(1,(now-t0)/450),e=1-Math.pow(1-k,3);shown=from+(to-from)*e;t.textContent=brl(k<1?Math.round(shown):to);if(k<1)raf=requestAnimationFrame(step);else shown=to};
+  raf=requestAnimationFrame(step)}
+function upd(){
+  const tot=A[0][3]*n+A[1][3]+A[2][3],pl=P[sel];
+  [...use.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===n-1));
+  $('offX').textContent=n>1?'× '+n:'';el.querySelector('.vc').classList.toggle('hot',n>1);
+  tween(tot);$('offTotS').textContent=n===1?'por mês, uma consulta de cada':`por mês, com ${n} consultas no clínico`;
+  el.querySelectorAll('.pl').forEach((b,k)=>{b.classList.toggle('sel',k===sel);b.setAttribute('aria-pressed',k===sel);b.querySelector('.sv b').textContent=brl(tot-P[k][2])});
+  det.innerHTML=n===1?`<b>Uma consulta de cada: ${brl(tot)}</b><p>É o valor avulso de uma consulta com o clínico, uma com especialista e uma escolha adicional. No plano ${pl[0].toLowerCase()}, o membro paga ${brl(pl[2])} por mês.</p>`
+    :`<b>${n} consultas com o clínico: ${brl(tot)}</b><p>O clínico geral 24/7 não tem limite de uso. Avulso, o mês sairia por ${brl(tot)}; no plano ${pl[0].toLowerCase()}, o membro continua pagando ${brl(pl[2])}.</p>`}
+upd();
 })();
 </script>
 
