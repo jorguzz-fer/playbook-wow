@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css?v=9">
-<link rel="stylesheet" href="wow.css?v=9">
+<link rel="stylesheet" href="deck.css?v=10">
+<link rel="stylesheet" href="wow.css?v=10">
 </head><body>
 
 <div id="viewport">
@@ -134,13 +134,9 @@
         <div class="eyebrow">Oferta exclusiva para os membros</div>
         <h2>Da consulta avulsa <em>à oferta da parceria</em></h2>
       </div>
-      <div class="f8-side">
-        <p class="lead" style="font-size:16.5px">Como o portfólio WOW+ vira uma oferta exclusiva para os membros da sua instituição. Siga da esquerda para a direita.</p>
-        <div class="chips noprint"><button class="chip" id="offNext">Próxima etapa →</button><button class="chip" id="offAll">Ver tudo</button></div>
-      </div>
+      <div class="chips noprint"><button class="chip" id="offNext">Próxima etapa →</button></div>
     </header>
     <div class="f8-cols" id="offer"></div>
-    <footer class="f8-footer"><span class="f8-chain">Avulso <b>R$ 207,00</b><i>→</i>Assinatura <b>R$ 99,80</b><i>→</i>Membro da instituição <b id="offChain">R$ 49,90</b></span><span class="f8-note">R$ 207 considera uma consulta de cada item do pacote.</span></footer>
   </div>
 </section>
 
@@ -252,7 +248,7 @@
 </div>
 </div>
 
-<script src="deck.js?v=9"></script>
+<script src="deck.js?v=10"></script>
 
 <!-- ícones extras e helpers -->
 <script>
@@ -422,40 +418,34 @@ draw();
 })();
 </script>
 
-<!-- 8 · oferta em quatro etapas: portfólio, avulso, pacote e oferta -->
+<!-- 8 · oferta em três etapas: avulso, assinatura e membro da instituição -->
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-const P=[['Mensal',50,49.90,'Cobrado mês a mês.','50% de desconto da parceria'],['Semestral',65,34.93,'R$ 209,58 a cada 6 meses.','65% de desconto no plano semestral'],['Anual',70,29.94,'R$ 359,28 por ano.','70% de desconto no plano anual']];
+const R=[['clock','Clínico geral 24/7',69,'sem limite'],['steth','Especialidade',89,'1 por mês'],['heart','Nutrição, psicologia ou veterinário',49,'1 por mês']];
+const P=[['Mensal',50,49.90],['Semestral',65,34.93],['Anual',70,29.94]];
 const el=$('offer');let sel=0,foc=0,shown=P[0][2],raf=0;
 const still=DECK.printing||matchMedia('(prefers-reduced-motion:reduce)').matches;
 const arr='<span class="f8-arr" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>';
-const head=(n,k,t,sub)=>`<span class="f8-n">${n} · ${k}</span><b class="f8-t">${t}</b><span class="f8-s">${sub}</span>`;
-el.innerHTML=`<div class="f8c" data-k="1">${head(1,'Portfólio WOW+','Saúde digital no dia a dia','Cuidado e tecnologia na palma da mão.')}
-  <div class="f8-list">${[['Clínico geral','Atendimento 24/7'],['Especialidades','Consultas eletivas'],['Nutrição','Atendimento nutricional'],['Psicologia','Saúde emocional'],['Veterinário','Cuidado pet']].map(x=>`<div class="f8-li"><i></i><span><b>${x[0]}</b><small>${x[1]}</small></span></div>`).join('')}</div>
-  <div class="f8-foot soft">A WOW+ é um ecossistema de <b>saúde digital e tecnologia</b>.</div></div>${arr}
-<div class="f8c" data-k="2">${head(2,'Valores avulsos','Sem assinatura','Preço por consulta.')}
-  <div class="f8-tab">${[['Clínico geral',69],['Especialidade',89],['Nutrição',49],['Psicologia',49],['Veterinário',49]].map(x=>`<div class="f8-pr"><span>${x[0]}</span><b>${brl(x[1])}</b></div>`).join('')}</div>
-  <div class="f8-foot hot"><span class="f8-lb">Equivalente avulso</span><span class="f8-eq">1 clínico + 1 especialidade + 1 opção mensal</span><b class="f8-big">R$ 207,00</b></div></div>${arr}
-<div class="f8c" data-k="3">${head(3,'Pacote da parceria','O que entra na assinatura','Tudo isto, todo mês.')}
-  <div class="f8-pk">${[['Clínico geral 24/7','Use quantas vezes precisar, dentro da assinatura.'],['1 especialidade por mês','Consulta eletiva mensal.'],['1 escolha adicional por mês','Nutrição, psicologia ou veterinário.']].map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>
-  <div class="f8-foot"><span class="f8-lb">Assinatura WOW+</span><span class="f8-row"><b class="f8-big ink">R$ 99,80</b><small>por mês</small></span><span class="f8-eq">Menos da metade do valor avulso.</span></div></div>${arr}
-<div class="f8c res" data-k="4">${head(4,'Oferta aos membros','Desconto exclusivo','A instituição fecha a parceria e os membros recebem a oferta.')}
-  <div class="f8-from"><span>Assinatura</span><b>R$ 99,80</b><em id="offOff"></em></div>
-  <div class="f8-hero"><span class="f8-lb">Membro da instituição</span><b class="f8-price"><span id="offPrice">${brl(P[0][2])}</span><small>/mês</small></b><span class="f8-cap" id="offCap"></span></div>
-  <div class="f8-plans" role="group" aria-label="Forma de pagamento">${P.map((p,i)=>`<button class="f8-pl" data-i="${i}"><b>${p[0]}</b><span>${p[1]}% OFF</span><span>${brl(p[2])}</span></button>`).join('')}</div>
-  <div class="f8-dep"><span class="ico">${icon('users')}</span><span><b>Dependentes</b><small>R$ 19,90 por mês cada</small></span></div></div>`;
+const rows=f=>`<div class="f8-rows">${R.map(r=>`<div class="f8-r"><span class="ico">${icon(r[0])}</span><span>${r[1]}</span><b>${f(r)}</b></div>`).join('')}</div>`;
+el.innerHTML=`<div class="f8c" data-k="1"><span class="f8-n">1 · Avulso</span><b class="f8-t">Pagando por consulta</b>${rows(r=>'R$ '+r[2])}
+  <div class="f8-tot"><b class="f8-num dim">R$ 207</b><span>uma consulta de cada</span></div></div>${arr}
+<div class="f8c" data-k="2"><span class="f8-n">2 · Assinatura WOW+</span><b class="f8-t">O mesmo pacote, todo mês</b>${rows(r=>r[3])}
+  <div class="f8-tot"><b class="f8-num">R$ 99,80</b><span>por mês</span></div></div>${arr}
+<div class="f8c res" data-k="3"><span class="f8-n">3 · Membro da instituição</span><b class="f8-t">Com a parceria</b>
+  <div class="f8-hero"><span class="f8-off" id="offOff"></span><b class="f8-price"><span id="offPrice">${brl(P[0][2])}</span><small>/mês</small></b></div>
+  <div class="f8-plans" role="group" aria-label="Forma de pagamento">${P.map((p,i)=>`<button class="f8-pl" data-i="${i}"><b>${p[0]}</b><span>${brl(p[2])}</span></button>`).join('')}</div></div>`;
 const cols=[...el.querySelectorAll('.f8c')],arrs=[...el.querySelectorAll('.f8-arr')];
 cols.forEach(c=>c.onclick=()=>{const k=+c.dataset.k;foc=foc===k?0:k;upd()});
 el.querySelectorAll('.f8-pl').forEach(b=>b.onclick=e=>{e.stopPropagation();sel=+b.dataset.i;upd()});
-$('offNext').onclick=()=>{foc=(foc+1)%5;upd()};$('offAll').onclick=()=>{foc=0;upd()};
+$('offNext').onclick=()=>{foc=(foc+1)%4;upd()};
 function tween(to){const t=$('offPrice');if(still){shown=to;t.textContent=brl(to);return}
   cancelAnimationFrame(raf);const from=shown,t0=performance.now();
   const step=now=>{const k=Math.min(1,(now-t0)/420),e=1-Math.pow(1-k,3);shown=from+(to-from)*e;t.textContent=brl(k<1?shown:to);if(k<1)raf=requestAnimationFrame(step);else shown=to};
   raf=requestAnimationFrame(step)}
 function upd(){
   el.classList.toggle('focus',foc>0);cols.forEach(c=>c.classList.toggle('on',+c.dataset.k===foc));arrs.forEach((a,j)=>a.classList.toggle('on',foc===j+2));
-  const pl=P[sel];tween(pl[2]);$('offOff').textContent=pl[4];$('offCap').textContent=pl[3];$('offChain').textContent=brl(pl[2]);
+  tween(P[sel][2]);$('offOff').textContent=P[sel][1]+'% de desconto';
   el.querySelectorAll('.f8-pl').forEach((b,k)=>b.setAttribute('aria-pressed',k===sel))}
 upd();
 })();
