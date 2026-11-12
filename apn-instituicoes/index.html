@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css?v=5">
-<link rel="stylesheet" href="wow.css?v=5">
+<link rel="stylesheet" href="deck.css?v=6">
+<link rel="stylesheet" href="wow.css?v=6">
 </head><body>
 
 <div id="viewport">
@@ -109,21 +109,14 @@
     <div class="eyebrow">Para os membros</div>
     <h2>O que os seus membros <em>passam a ter</em></h2>
     <p class="lead" style="font-size:17px">Saúde digital completa no celular: da consulta à receita, do pedido de exame ao histórico de saúde.</p>
-    <div class="cphoto"><img src="img/membro.jpg" alt="Mulher sorrindo com um tablet nas mãos" style="object-position:50% 25%"></div>
-    <div class="callout"><span class="ico" id="mbIco"></span><span><b>Tudo 100% online.</b><br>Seguro, prático e sem deslocamento.</span></div>
+    <div class="eyebrow" style="margin-top:auto">Cuidado contínuo no app</div>
+    <div class="mini4" id="mini4"></div>
   </div>
-  <div class="bench"><div class="benef">
-    <div class="bcol">
-      <span class="bsec">Atendimento médico</span>
-      <div class="bbig" id="bbig"></div>
-      <div class="esp"><div class="esp-h"><b>+15</b><span style="font-size:17px;color:var(--ink2)">especialidades disponíveis</span></div><div class="esp-list" id="espList"></div></div>
-      <span class="bsec" style="margin-top:8px">Cuidado contínuo no app</span>
-      <div class="bbig" id="bdig"></div>
-    </div>
+  <div class="bench"><div class="benef2">
+    <div class="pcards" id="pcards"></div>
+    <div class="esp"><div class="esp-h"><b>+15</b><span style="font-size:17px;color:var(--ink2)">especialidades disponíveis</span></div><div class="esp-list" id="espList"></div></div>
   </div></div>
 </section>
-
-<!-- 8 · DUAS MODALIDADES -->
 <section class="slide" id="s8" data-name="Oferta para os membros">
   <div class="copy">
     <div class="eyebrow">Oferta exclusiva para os membros</div>
@@ -140,9 +133,13 @@
   <div class="copy">
     <div class="eyebrow">Modelos de parceria</div>
     <h2>Dois modelos. <em>A instituição escolhe.</em></h2>
-    <p class="lead" style="font-size:17px">Nos dois, os membros têm <strong>até 70% de desconto</strong>. A diferença é o repasse: no Modelo 2, a instituição também recebe 10%.</p>
+    <p class="lead" style="font-size:17px">Os dois entregam o mesmo benefício aos membros. O que muda é se a instituição recebe repasse.</p>
+    <div class="ask">
+      <span class="bsec">Como escolher</span>
+      <b>A instituição pode receber repasse?</b>
+      <div class="chips noprint" id="modAsk" role="group" aria-label="A instituição pode receber repasse?"></div>
+    </div>
     <div class="detail" id="modDetail"></div>
-    <div class="cphoto" style="height:220px"><img src="img/parceria.jpg" alt="Duas pessoas conversando sobre a parceria diante de um notebook" style="object-position:50% 30%"></div>
   </div>
   <div class="bench"><div class="mods" id="mods"></div></div>
 </section>
@@ -227,7 +224,7 @@
 </div>
 </div>
 
-<script src="deck.js?v=5"></script>
+<script src="deck.js?v=6"></script>
 
 <!-- ícones extras e helpers -->
 <script>
@@ -247,7 +244,6 @@ window.brl=brl;
 window.fmtN=n=>Math.round(n).toLocaleString('pt-BR');
 document.getElementById('obIco').innerHTML=icon('alert');
 document.getElementById('duoIco').innerHTML=icon('users');
-document.getElementById('mbIco').innerHTML=icon('shield');
 </script>
 
 <!-- 2 · obstáculos -->
@@ -326,26 +322,36 @@ draw();
 })();
 </script>
 
-<!-- 7 · benefícios -->
+<!-- 7 · benefícios (cards com foto) -->
 <script>
 (function(){
-const bb=L=>L.map(x=>`<div class="bb"><span class="ico">${icon(x[0])}</span><b>${x[1]}</b><span>${x[2]}</span></div>`).join('');
-document.getElementById('bbig').innerHTML=bb([['clock','Clínico geral 24/7','Atendimento por vídeo, a qualquer hora.'],['baby','Pediatria 24/7','Para os pequenos, todos os dias.'],['heart','Nutrição, psicologia e veterinário','Cuidado do corpo, da mente e até do pet.']]);
-document.getElementById('bdig').innerHTML=bb([['doc','Receituário digital','Receitas emitidas na consulta, direto no app.'],['flask','Pedidos de exames','Solicitados pelo médico durante a consulta.'],['pulse','Histórico de saúde','Consultas, receitas e exames num só lugar.']]);
+const C=[
+ ['medica.jpg','Médica sorrindo com uma prancheta','steth','Clínico geral 24/7','Médico por vídeo a qualquer hora do dia ou da noite, quantas vezes precisar.','Passou mal de madrugada? O membro abre o app e é atendido em minutos.'],
+ ['pediatra.jpg','Pediatra examinando uma criança sorridente','baby','Pediatria 24/7','Pediatra por vídeo para os pequenos, todos os dias, a qualquer hora.','Febre ou dúvida à noite? Orientação médica sem sair de casa.'],
+ ['nutricao.jpg','Nutricionista segurando uma laranja','heart','Nutrição, psicologia e veterinário','Cuidado do corpo, da mente e até do pet, com profissionais online.','Uma escolha adicional por mês, além do clínico e da especialidade.']
+];
+document.getElementById('pcards').innerHTML=C.map((c,i)=>`<div class="pc"><div class="ph"><img src="img/${c[0]}" alt="${c[1]}"></div><div class="pb"><div class="pn"><span class="ico">${icon(c[2])}</span><span>0${i+1}</span></div><h3>${c[3]}</h3><p>${c[4]}</p><div class="pf"><span>Na prática</span><p>${c[5]}</p></div></div></div>`).join('');
+document.getElementById('mini4').innerHTML=[['Receituário digital','direto no app'],['Pedidos de exames','feitos na consulta'],['Histórico de saúde','tudo num só lugar'],['100% online','sem deslocamento']].map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
 document.getElementById('espList').innerHTML=['Pediatria','Ginecologia','Cardiologia','Clínico geral','Endocrinologia','Dermatologia','Geriatria','Nutrologia','Ortopedia','Oftalmologia','Neurologia','Neurocirurgia','Psicologia','Psiquiatria','Nutrição','Gastroenterologia','Oncologia','Urologia','Angiologia','e muito mais'].map(x=>`<span>${x}</span>`).join('');
 })();
 </script>
 
-<!-- 8 · modelos -->
+<!-- 9 · modelos -->
 <script>
 (function(){
 const M=[
- {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',l:'A instituição fecha contrato como parceira institucional da WOW+.',st:[['até 70%','de desconto para os membros'],['R$ 0','de custo, sem repasse']],items:['Cupom exclusivo da instituição','Sem custo para a instituição','Ideal quando o código de conduta não permite receber repasse'],foot:['Benefício para os membros','Mais valor para quem participa, sem custo.'],d:'A instituição fecha contrato como parceira institucional. Os membros assinam com até 70% de desconto, e a instituição não paga nada nem recebe repasse.'},
- {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',l:'A instituição fecha contrato como parceira estratégica da WOW+.',st:[['até 70%','de desconto para os membros'],['10%','de repasse para a instituição']],items:['Cupom exclusivo da instituição','Repasse de 10% sobre o valor pago pelos membros','Pago do CNPJ da WOW+ para o CNPJ da instituição'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],d:'Os membros têm o mesmo desconto de até 70%, e a instituição recebe um repasse de 10%, que cresce junto com a adesão da base.'}
+ {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',big:['Sem repasse','a instituição não paga nem recebe'],items:['Contrato de parceria institucional','Ideal quando o código de conduta não permite receber repasse'],foot:['Benefício para os membros','Mais valor para quem participa, sem custo.'],ask:'Não pode',d:['Modelo 1 · Parceria Benefício','A instituição fecha contrato como parceira institucional. Os membros assinam com até 70% de desconto, e a instituição não paga nada nem recebe repasse.']},
+ {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',big:['10% de repasse','sobre o valor pago pelos membros'],items:['Contrato de parceria estratégica','Pago do CNPJ da WOW+ para o CNPJ da instituição','Cresce junto com a adesão da base'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],ask:'Pode',d:['Modelo 2 · Parceria Estratégica','Os membros têm o mesmo desconto de até 70%, e a instituição recebe um repasse de 10%, que cresce junto com a adesão da base.']}
 ];
-const el=document.getElementById('mods'),det=document.getElementById('modDetail');let sel=0;
-function draw(){el.innerHTML=M.map((m,i)=>`<button class="mod ${m.k}${i===sel?' sel':''}" data-i="${i}"><span class="tag">${m.tag}</span><h3>${m.n}</h3><p class="lead2">${m.l}</p><div class="mstats">${m.st.map(s=>`<div class="mstat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div><ul>${m.items.map(x=>`<li>${x}</li>`).join('')}</ul><div class="foot"><b>${m.foot[0]}</b><span>${m.foot[1]}</span></div></button>`).join('');
-  el.querySelectorAll('.mod').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});const m=M[sel];det.innerHTML=`<b>${m.n}</b><p>${m.d}</p>`}
+const el=document.getElementById('mods'),det=document.getElementById('modDetail'),ask=document.getElementById('modAsk');let sel=DECK.printing?-1:0;
+M.forEach((m,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=m.ask;b.onclick=()=>{sel=i;draw()};ask.appendChild(b)});
+function draw(){
+  el.innerHTML=`<div class="mshared"><span class="bsec">Nos dois modelos</span><div class="ms3"><div><b>até 70%</b><span>de desconto para os membros</span></div><div><b>Cupom exclusivo</b><span>criado para a instituição</span></div><div><b>R$ 0</b><span>de custo para a instituição</span></div></div></div>
+  <span class="bsec">A diferença</span>
+  <div class="mgrid">${M.map((m,i)=>`<button class="mod ${m.k}${i===sel?' sel':''}" data-i="${i}"><span class="tag">${m.tag}</span><h3>${m.n}</h3><div class="mbig"><b>${m.big[0]}</b><span>${m.big[1]}</span></div><ul>${m.items.map(x=>`<li>${x}</li>`).join('')}</ul><div class="foot"><b>${m.foot[0]}</b><span>${m.foot[1]}</span></div></button>`).join('')}</div>`;
+  el.querySelectorAll('.mod').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
+  [...ask.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===sel));
+  det.innerHTML=sel<0?`<b>Não pode: Modelo 1. Pode: Modelo 2.</b><p>Se o código de conduta não permite repasse, a Parceria Benefício. Se a instituição quer também uma receita recorrente, a Parceria Estratégica.</p>`:`<b>${M[sel].d[0]}</b><p>${M[sel].d[1]}</p>`}
 draw();
 })();
 </script>
