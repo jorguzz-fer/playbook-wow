@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css?v=8">
-<link rel="stylesheet" href="wow.css?v=8">
+<link rel="stylesheet" href="deck.css?v=9">
+<link rel="stylesheet" href="wow.css?v=9">
 </head><body>
 
 <div id="viewport">
@@ -144,8 +144,20 @@
   </div>
 </section>
 
-<!-- 9 · DUAS MODALIDADES -->
-<section class="slide" id="s9" data-name="Modelos de parceria">
+<!-- 9 · DEPENDENTES -->
+<section class="slide" id="s9" data-name="Dependentes">
+  <div class="copy">
+    <div class="eyebrow">Dependentes</div>
+    <h2>Cada dependente <em>por R$&nbsp;19,90.</em></h2>
+    <p class="lead" style="font-size:17px">O membro pode adicionar dependentes à assinatura. Cada um entra por R$&nbsp;19,90 por mês. Clique num exemplo para simular a família.</p>
+    <div class="detail" id="depDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" id="depIco"></span><span><b>Quanto maior a família, menor o valor por pessoa.</b><br>Cada dependente a mais soma só R$&nbsp;19,90 por mês.</span></div>
+  </div>
+  <div class="bench"><div class="dep" id="dep"></div></div>
+</section>
+
+<!-- 10 · DUAS MODALIDADES -->
+<section class="slide" id="s10" data-name="Modelos de parceria">
   <div class="copy">
     <div class="eyebrow">Modelos de parceria</div>
     <h2>Dois modelos. <em>A instituição escolhe.</em></h2>
@@ -160,8 +172,8 @@
   <div class="bench"><div class="mods" id="mods"></div></div>
 </section>
 
-<!-- 10 · SIMULADOR -->
-<section class="slide" id="s10" data-name="Simulador da Parceria Estratégica">
+<!-- 11 · SIMULADOR -->
+<section class="slide" id="s11" data-name="Simulador da Parceria Estratégica">
   <div class="copy" style="gap:12px;padding-top:48px">
     <div class="eyebrow">Modelo 2 · Parceria Estratégica</div>
     <h2 style="font-size:42px">10% de cashback, <em>que cresce com a adesão</em></h2>
@@ -185,8 +197,8 @@
   </div>
 </section>
 
-<!-- 11 · O QUE A INSTITUIÇÃO GANHA -->
-<section class="slide" id="s11" data-name="O que a instituição ganha">
+<!-- 12 · O QUE A INSTITUIÇÃO GANHA -->
+<section class="slide" id="s12" data-name="O que a instituição ganha">
   <div class="copy">
     <div class="eyebrow">Para a instituição</div>
     <h2>O que a sua instituição <em>ganha com isso</em></h2>
@@ -198,8 +210,8 @@
   <div class="bench"><svg class="ring" id="ring" viewBox="0 0 1060 836" style="position:absolute;inset:0;width:100%;height:100%" role="group" aria-label="Ganhos da instituição"></svg><div class="gains" id="gains"></div></div>
 </section>
 
-<!-- 12 · IMPLANTAÇÃO -->
-<section class="slide" id="s12" data-name="Implantação">
+<!-- 13 · IMPLANTAÇÃO -->
+<section class="slide" id="s13" data-name="Implantação">
   <div class="copy">
     <div class="eyebrow">Implantação</div>
     <h2>Simples de começar, <em>sem custo</em></h2>
@@ -209,8 +221,8 @@
   <div class="bench"><div class="road" id="road"></div></div>
 </section>
 
-<!-- 13 · FECHAMENTO -->
-<section class="slide full" id="s13" data-name="Vamos levar para a sua instituição?">
+<!-- 14 · FECHAMENTO -->
+<section class="slide full" id="s14" data-name="Vamos levar para a sua instituição?">
   <div class="endgrid">
     <div class="copy">
       <div class="eyebrow">Próximo passo</div>
@@ -233,14 +245,14 @@
   <button class="iconbtn" id="prev" aria-label="Slide anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
   <div id="ticks"></div>
   <button class="iconbtn" id="next" aria-label="Próximo slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
-  <span id="counter">01 / 13</span>
+  <span id="counter">01 / 14</span>
   <button class="iconbtn" id="themeBtn" aria-label="Alternar tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
   <button class="iconbtn" id="fsBtn" aria-label="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </nav>
 </div>
 </div>
 
-<script src="deck.js?v=8"></script>
+<script src="deck.js?v=9"></script>
 
 <!-- ícones extras e helpers -->
 <script>
@@ -366,7 +378,31 @@ document.getElementById('espList').innerHTML=['Pediatria','Ginecologia','Cardiol
 })();
 </script>
 
-<!-- 9 · modelos -->
+<!-- 9 · dependentes -->
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const BASE=49.90,DEP=19.90,el=$('dep'),det=$('depDetail');let sel=2;
+$('depIco').innerHTML=icon('users');
+const person=c=>`<svg class="${c}" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0z"/></svg>`;
+el.innerHTML=`<span class="bsec">A regra</span>
+<div class="dp-rule">
+  <div class="dp-t"><span class="ico">${icon('heart')}</span><span><span class="vl">Membro da instituição</span><b>${brl(BASE)}<small>/mês</small></b><small>No plano mensal da parceria.</small></span></div>
+  <span class="op" aria-hidden="true">+</span>
+  <div class="dp-t hot"><span class="ico">${icon('users')}</span><span><span class="vl">Cada dependente</span><b>${brl(DEP)}<small>/mês</small></b><small>Adicionado à assinatura do membro.</small></span></div>
+</div>
+<span class="bsec">Exemplos de família</span>
+<div class="fams">${[1,2,3,4].map(n=>`<button class="fam" data-n="${n}"><span class="ppl">${person('me')}${person('dp').repeat(n)}</span><b class="nm">Membro + ${n} dependente${n>1?'s':''}</b><span class="tt">${brl(BASE+DEP*n)}</span><span class="pm">por mês</span><span class="pp">${brl((BASE+DEP*n)/(n+1))} por pessoa</span></button>`).join('')}</div>`;
+const fams=[...el.querySelectorAll('.fam')];
+fams.forEach(b=>b.onclick=()=>{sel=+b.dataset.n;upd()});
+function upd(){fams.forEach(b=>{const on=+b.dataset.n===sel;b.classList.toggle('sel',on);b.setAttribute('aria-pressed',on)});
+  const t=BASE+DEP*sel;
+  det.innerHTML=`<b>Membro + ${sel} dependente${sel>1?'s':''}</b><p>${brl(BASE)} do membro + ${sel} × ${brl(DEP)} = ${brl(t)} por mês. Dá ${brl(t/(sel+1))} por pessoa.</p>`}
+upd();
+})();
+</script>
+
+<!-- 10 · modelos -->
 <script>
 (function(){
 const M=[
@@ -425,7 +461,7 @@ upd();
 })();
 </script>
 
-<!-- 10 · simulador -->
+<!-- 11 · simulador -->
 <script>
 (function(){
 const $=id=>document.getElementById(id),svg=$('sChart');
@@ -454,7 +490,7 @@ calc();
 })();
 </script>
 
-<!-- 11 · ganhos (roda) -->
+<!-- 12 · ganhos (roda) -->
 <script>
 (function(){
 const G=[['star','Mais valor para os membros','Um benefício de saúde que o membro usa no dia a dia.',['Mais valor','para os membros']],['users','Mais engajamento','Membros mais próximos e ativos na instituição.',['Mais engajamento']],['trend','Um diferencial real','Algo concreto para atrair e manter a base.',['Um diferencial real']],['dollar','Sem custo estrutural','A WOW+ cuida da plataforma, do atendimento e do suporte.',['Sem custo estrutural']],['handshake','Transparência','Contrato entre CNPJs, sem acordos informais.',['Transparência']],['heart','Mais saúde, mais qualidade de vida','Cuidado contínuo para quem faz parte da instituição.',['Mais saúde, mais','qualidade de vida']]];
@@ -473,12 +509,12 @@ function draw(){let s=`<circle class="orbit" cx="${cx}" cy="${cy}" r="${R-36}"/>
   svg.querySelectorAll('.ph').forEach(e=>{const f=()=>{sel=+e.dataset.i;draw()};e.onclick=f;e.onkeydown=k=>{if(k.key==='Enter')f()}});
   det.innerHTML=`<b>${g[1]}</b><p>${g[2]}</p>`}
 document.getElementById('gNext').onclick=()=>{sel=(sel+1)%G.length;draw()};
-const ab=document.getElementById('gAuto');ab.onclick=()=>{if(auto){clearInterval(auto);auto=null}else auto=setInterval(()=>{if(document.getElementById('s11').classList.contains('active')){sel=(sel+1)%G.length;draw()}},2600);ab.setAttribute('aria-pressed',!!auto)};
+const ab=document.getElementById('gAuto');ab.onclick=()=>{if(auto){clearInterval(auto);auto=null}else auto=setInterval(()=>{if(document.getElementById('s12').classList.contains('active')){sel=(sel+1)%G.length;draw()}},2600);ab.setAttribute('aria-pressed',!!auto)};
 draw();
 })();
 </script>
 
-<!-- 12 · implantação (jornada) -->
+<!-- 13 · implantação (jornada) -->
 <script>
 (function(){
 const S=[
@@ -504,7 +540,7 @@ set(P?S.length:0);
 })();
 </script>
 
-<!-- 13 · perguntas -->
+<!-- 14 · perguntas -->
 <script>
 (function(){
 const Q=[
