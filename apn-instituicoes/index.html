@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css?v=7">
-<link rel="stylesheet" href="wow.css?v=7">
+<link rel="stylesheet" href="deck.css?v=8">
+<link rel="stylesheet" href="wow.css?v=8">
 </head><body>
 
 <div id="viewport">
@@ -39,19 +39,29 @@
     <div class="detail" id="obDetail"></div>
     <div class="callout" style="margin-top:auto"><span class="ico" id="obIco"></span><span><b>Quem precisa, não pode esperar.</b><br>A saúde não pode ser privilégio de quem pode pagar mais.</span></div>
   </div>
-  <div class="bench"><div class="overcards" id="obs"></div></div>
+  <div class="bench"><div class="obwrap">
+    <span class="bsec">O Brasil em números</span>
+    <div class="kpis ob">
+      <div class="kpi"><b>7 em cada 10</b><span>brasileiros não têm plano de saúde.</span><i>IBGE · PNS 2019</i></div>
+      <div class="kpi"><b>58%</b><span>dos médicos estão em 48 grandes cidades, onde vive 31% da população.</span><i>Demografia Médica 2025 · FMUSP e AMB</i></div>
+      <div class="kpi"><b>77%</b><span>de quem tomou remédio em seis meses se automedicou.</span><i>CFF e Datafolha · 2019</i></div>
+    </div>
+    <span class="bsec">Os obstáculos de todo dia</span>
+    <div class="overcards" id="obs"></div>
+  </div></div>
 </section>
 
-<!-- 3 · MEMBRO E INSTITUIÇÃO -->
-<section class="slide" id="s3" data-name="Membros e instituição">
+<!-- 3 · DORES DOS MEMBROS -->
+<section class="slide" id="s3" data-name="As dores dos membros">
   <div class="copy">
     <div class="eyebrow">Na sua instituição</div>
     <h2>Seus membros passam por isso <em>todos os dias</em></h2>
-    <p class="lead" style="font-size:17px">E o que afeta a saúde de quem participa afeta também a instituição. Troque a visão para ver os dois lados.</p>
-    <div class="chips" id="duoChips" role="group" aria-label="Visão"></div>
-    <div class="callout" style="margin-top:auto"><span class="ico" id="duoIco"></span><span><b>A sua instituição pode ir além</b><br>oferecendo mais cuidado e mais valor para os membros.</span></div>
+    <p class="lead" style="font-size:17px">Não são casos isolados: é um ciclo que se repete com quem faz parte da sua base. Clique em cada dor ou deixe o ciclo girar.</p>
+    <div class="chips noprint"><button class="chip" id="dorNext">Próxima dor →</button><button class="chip" id="dorAuto" aria-pressed="false">Girar sozinho</button></div>
+    <div class="detail" id="dorDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" id="duoIco"></span><span><b>E se a saída viesse da sua instituição?</b><br>Essa solução tem nome.</span></div>
   </div>
-  <div class="bench"><div class="duo" id="duoList"></div></div>
+  <div class="bench"><svg class="cyc" id="cyc" viewBox="0 0 1060 836" style="position:absolute;inset:0;width:100%;height:100%" role="group" aria-label="Ciclo de dores dos membros"></svg><div class="gains" id="dorList"></div></div>
 </section>
 
 <!-- 4 · A WOW+ -->
@@ -117,19 +127,21 @@
     <div class="esp"><div class="esp-h"><b>+15</b><span style="font-size:17px;color:var(--ink2)">especialidades disponíveis</span></div><div class="esp-list" id="espList"></div></div>
   </div></div>
 </section>
-<section class="slide" id="s8" data-name="Oferta para os membros">
-  <div class="copy">
-    <div class="eyebrow">Oferta exclusiva para os membros</div>
-    <h2>R$&nbsp;207 em saúde. <em>O membro paga R$&nbsp;49,90.</em></h2>
-    <p class="lead" style="font-size:17px">Pagas uma a uma, as consultas do pacote custariam R$&nbsp;207 por mês. Com a parceria, o membro paga uma fração disso, e o desconto chega a 70% no plano anual.</p>
-    <div class="ask noprint">
-      <span class="bsec">E se o membro usar mais?</span>
-      <b>Uso do clínico geral no mês</b>
-      <div class="chips" id="offUse" role="group" aria-label="Consultas com o clínico geral no mês"></div>
-    </div>
-    <div class="detail" id="offDetail"></div>
+<section class="slide full" id="s8" data-name="Oferta para os membros">
+  <div class="flow8">
+    <header class="f8-head">
+      <div>
+        <div class="eyebrow">Oferta exclusiva para os membros</div>
+        <h2>Da consulta avulsa <em>à oferta da parceria</em></h2>
+      </div>
+      <div class="f8-side">
+        <p class="lead" style="font-size:16.5px">Como o portfólio WOW+ vira uma oferta exclusiva para os membros da sua instituição. Siga da esquerda para a direita.</p>
+        <div class="chips noprint"><button class="chip" id="offNext">Próxima etapa →</button><button class="chip" id="offAll">Ver tudo</button></div>
+      </div>
+    </header>
+    <div class="f8-cols" id="offer"></div>
+    <footer class="f8-footer"><span class="f8-chain">Avulso <b>R$ 207,00</b><i>→</i>Assinatura <b>R$ 99,80</b><i>→</i>Membro da instituição <b id="offChain">R$ 49,90</b></span><span class="f8-note">R$ 207 considera uma consulta de cada item do pacote.</span></footer>
   </div>
-  <div class="bench"><div class="offer2" id="offer"></div></div>
 </section>
 
 <!-- 9 · DUAS MODALIDADES -->
@@ -137,11 +149,11 @@
   <div class="copy">
     <div class="eyebrow">Modelos de parceria</div>
     <h2>Dois modelos. <em>A instituição escolhe.</em></h2>
-    <p class="lead" style="font-size:17px">Os dois entregam o mesmo benefício aos membros. O que muda é se a instituição recebe repasse.</p>
+    <p class="lead" style="font-size:17px">Os dois entregam o mesmo benefício aos membros. O que muda é se a instituição recebe cashback.</p>
     <div class="ask">
       <span class="bsec">Como escolher</span>
-      <b>A instituição pode receber repasse?</b>
-      <div class="chips noprint" id="modAsk" role="group" aria-label="A instituição pode receber repasse?"></div>
+      <b>A instituição pode receber cashback?</b>
+      <div class="chips noprint" id="modAsk" role="group" aria-label="A instituição pode receber cashback?"></div>
     </div>
     <div class="detail" id="modDetail"></div>
   </div>
@@ -152,23 +164,23 @@
 <section class="slide" id="s10" data-name="Simulador da Parceria Estratégica">
   <div class="copy" style="gap:12px;padding-top:48px">
     <div class="eyebrow">Modelo 2 · Parceria Estratégica</div>
-    <h2 style="font-size:42px">10% de repasse, <em>que cresce com a adesão</em></h2>
+    <h2 style="font-size:42px">10% de cashback, <em>que cresce com a adesão</em></h2>
     <span class="tag-ex" style="align-self:flex-start">Simulação com valores de exemplo</span>
     <div class="ctrl">
       <div class="ctrl-row"><label for="sBase">Membros na base <output id="sBaseOut"></output></label><input type="range" id="sBase" min="500" max="100000" step="500" value="10000"></div>
       <div class="ctrl-row"><label for="sAd">Membros que aderem <output id="sAdOut"></output></label><input type="range" id="sAd" min="1" max="60" step="1" value="20"></div>
       <div class="ctrl-row"><label>Plano escolhido pelos membros <output id="sPriceOut"></output></label><div class="chips" id="sPlan" role="group" aria-label="Plano"></div></div>
     </div>
-    <p class="note" style="font-size:12.5px">Repasse de 10% sobre o valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.</p>
+    <p class="note" style="font-size:12.5px">Cashback de 10% sobre o valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.</p>
   </div>
   <div class="bench" style="display:flex;flex-direction:column;justify-content:center;padding:40px 64px 32px 56px;gap:20px">
-    <div class="eyebrow">Repasse mensal conforme a adesão</div>
+    <div class="eyebrow">Cashback mensal conforme a adesão</div>
     <svg class="svgchart" id="sChart" viewBox="0 0 900 400" style="width:100%;height:auto"></svg>
     <div class="readout" style="grid-template-columns:repeat(4,1fr)">
       <div><span>Membros ativos</span><b id="rAct">—</b></div>
-      <div><span>Repasse por membro</span><b id="rPct">—</b></div>
-      <div><span>Repasse / mês</span><b id="rMon">—</b></div>
-      <div><span>Repasse / ano</span><b id="rYr">—</b></div>
+      <div><span>Cashback por membro</span><b id="rPct">—</b></div>
+      <div><span>Cashback / mês</span><b id="rMon">—</b></div>
+      <div><span>Cashback / ano</span><b id="rYr">—</b></div>
     </div>
   </div>
 </section>
@@ -228,7 +240,7 @@
 </div>
 </div>
 
-<script src="deck.js?v=7"></script>
+<script src="deck.js?v=8"></script>
 
 <!-- ícones extras e helpers -->
 <script>
@@ -268,17 +280,31 @@ draw();
 })();
 </script>
 
-<!-- 3 · membro / instituição -->
+<!-- 3 · dores dos membros (ciclo) -->
 <script>
 (function(){
-const V=[
- {n:'O membro',l:[['clock','Demora','para consultas, exames e especialistas.'],['pin','Falta de acesso','e de estrutura na própria região.'],['dollar','Custo alto','que pesa no bolso e não cabe no orçamento.'],['alert','Quando precisa, fica sem saída','e isso afeta a saúde, o bem-estar e a vida de quem mais importa.']]},
- {n:'A instituição',l:[['star','Valor percebido','o potencial de valor da instituição pode ser ampliado.'],['users','Engajamento','dos membros com a instituição.'],['handshake','Proximidade','com a base, no dia a dia.'],['trend','Oportunidade','de gerar ainda mais valor para quem participa.']]}
+const $=id=>document.getElementById(id);
+const PH=[
+ {n:'Demora',ic:'clock',t:'Semanas de espera para conseguir consulta, exame ou especialista.',l:['Agenda sempre cheia','Retorno e exames que atrasam','Especialista sem vaga']},
+ {n:'Falta de acesso',ic:'pin',t:'Faltam médicos, especialistas e estrutura na própria região.',l:['Especialista só em outra cidade','Deslocamento e dia de trabalho perdido','Sem saber em quem confiar']},
+ {n:'Custo alto',ic:'dollar',t:'Convênio e consulta particular pesam no bolso e não cabem no orçamento.',l:['Mensalidade de plano fora do alcance','Consulta particular a cada necessidade','Exames e remédios por conta própria']},
+ {n:'Sem saída',ic:'alert',t:'Quando mais precisa, o membro não tem a quem recorrer.',l:['Adia o cuidado','Só procura ajuda na emergência','A saúde, o trabalho e a família sentem']}
 ];
-const ch=document.getElementById('duoChips'),li=document.getElementById('duoList');let sel=0;
-V.forEach((v,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=v.n;b.onclick=()=>{sel=i;draw()};ch.appendChild(b)});
-function draw(){[...ch.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===sel));
-  li.innerHTML=V[sel].l.map(x=>`<div class="li"><span class="ico">${icon(x[0])}</span><span><b>${x[1]}</b><span class="t">${x[2]}</span></span></div>`).join('')}
+const svg=$('cyc'),list=$('dorList'),det=$('dorDetail');
+if(DECK.printing){svg.remove();det.remove();list.innerHTML=PH.map(p=>`<div class="ga"><span class="ico">${icon(p.ic)}</span><span><b>${p.n}</b><span class="t">${p.t} ${p.l.join('. ')}.</span></span></div>`).join('');return}
+list.remove();
+const cx=530,cy=418,R=240;let sel=0,auto=null;
+const pt=(a,r)=>[cx+Math.cos(a)*r,cy+Math.sin(a)*r];
+function draw(){let s=`<circle class="orbit" cx="${cx}" cy="${cy}" r="${R-40}"/>`;
+  PH.forEach((ph,i)=>{const a0=-Math.PI/2+i*Math.PI/2+.05,a1=a0+Math.PI/2-.26,am=(a0+a1)/2,[x0,y0]=pt(a0,R),[x1,y1]=pt(a1,R),[lx,ly]=pt(am,R+86),c=Math.cos(a1),sn=Math.sin(a1),anc=Math.cos(am)<0?'end':'start';
+    s+=`<g class="ph${i===sel?' sel':''}" data-i="${i}" tabindex="0" role="button" aria-label="${ph.n}"><path class="arc" d="M${x0} ${y0}A${R} ${R} 0 0 1 ${x1} ${y1}"/><path class="tip" d="M${x1-c*30} ${y1-sn*30}L${x1+c*30} ${y1+sn*30}L${x1-sn*34} ${y1+c*34}Z"/><text class="n" x="${lx}" y="${ly-14}" text-anchor="${anc}">0${i+1}</text><text x="${lx}" y="${ly+12}" text-anchor="${anc}">${ph.n}</text></g>`});
+  const ph=PH[sel];
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R-64}" fill="var(--surface)" stroke="var(--line)"/><g transform="translate(${cx-30} ${cy-96}) scale(2.5)" style="color:var(--accent-ink)">${ic(ph.ic)}</g><text class="c" x="${cx}" y="${cy+14}" text-anchor="middle">${ph.n}</text><text class="k" x="${cx}" y="${cy+46}" text-anchor="middle">TODOS OS DIAS</text>`;
+  svg.innerHTML=s;
+  svg.querySelectorAll('.ph').forEach(g=>{const f=()=>{sel=+g.dataset.i;draw()};g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
+  det.innerHTML=`<b>${ph.n}</b><p>${ph.t}</p><ul>${ph.l.map(x=>`<li>${x}</li>`).join('')}</ul>`}
+$('dorNext').onclick=()=>{sel=(sel+1)%PH.length;draw()};
+const ab=$('dorAuto');ab.onclick=()=>{if(auto){clearInterval(auto);auto=null}else auto=setInterval(()=>{if($('s3').classList.contains('active')){sel=(sel+1)%PH.length;draw()}},2600);ab.setAttribute('aria-pressed',!!auto)};
 draw();
 })();
 </script>
@@ -344,8 +370,8 @@ document.getElementById('espList').innerHTML=['Pediatria','Ginecologia','Cardiol
 <script>
 (function(){
 const M=[
- {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',big:['Sem repasse','a instituição não paga nem recebe'],items:['Contrato de parceria institucional','Ideal quando o código de conduta não permite receber repasse'],foot:['Benefício para os membros','Mais valor para quem participa, sem custo.'],ask:'Não pode',d:['Modelo 1 · Parceria Benefício','A instituição fecha contrato como parceira institucional. Os membros assinam com até 70% de desconto, e a instituição não paga nada nem recebe repasse.']},
- {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',big:['10% de repasse','sobre o valor pago pelos membros'],items:['Contrato de parceria estratégica','Pago do CNPJ da WOW+ para o CNPJ da instituição','Cresce junto com a adesão da base'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],ask:'Pode',d:['Modelo 2 · Parceria Estratégica','Os membros têm o mesmo desconto de até 70%, e a instituição recebe um repasse de 10%, que cresce junto com a adesão da base.']}
+ {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',big:['Sem cashback','a instituição não paga nem recebe'],items:['Contrato de parceria institucional','Ideal para quem quer só o benefício, sem movimentação financeira'],foot:['Benefício para os membros','Mais valor para quem participa, sem custo.'],ask:'Não pode',d:['Modelo 1 · Parceria Benefício','A instituição fecha contrato como parceira institucional. Os membros assinam com até 70% de desconto, e a instituição não paga nada nem recebe cashback.']},
+ {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',big:['10% de cashback','sobre o valor pago pelos membros'],items:['Contrato de parceria estratégica','Pago do CNPJ da WOW+ para o CNPJ da instituição','Cresce junto com a adesão da base'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],ask:'Pode',d:['Modelo 2 · Parceria Estratégica','Os membros têm o mesmo desconto de até 70%, e a instituição recebe um cashback de 10%, que cresce junto com a adesão da base.']}
 ];
 const el=document.getElementById('mods'),det=document.getElementById('modDetail'),ask=document.getElementById('modAsk');let sel=DECK.printing?-1:0;
 M.forEach((m,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=m.ask;b.onclick=()=>{sel=i;draw()};ask.appendChild(b)});
@@ -355,38 +381,46 @@ function draw(){
   <div class="mgrid">${M.map((m,i)=>`<button class="mod ${m.k}${i===sel?' sel':''}" data-i="${i}"><span class="tag">${m.tag}</span><h3>${m.n}</h3><div class="mbig"><b>${m.big[0]}</b><span>${m.big[1]}</span></div><ul>${m.items.map(x=>`<li>${x}</li>`).join('')}</ul><div class="foot"><b>${m.foot[0]}</b><span>${m.foot[1]}</span></div></button>`).join('')}</div>`;
   el.querySelectorAll('.mod').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
   [...ask.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===sel));
-  det.innerHTML=sel<0?`<b>Não pode: Modelo 1. Pode: Modelo 2.</b><p>Se o código de conduta não permite repasse, a Parceria Benefício. Se a instituição quer também uma receita recorrente, a Parceria Estratégica.</p>`:`<b>${M[sel].d[0]}</b><p>${M[sel].d[1]}</p>`}
+  det.innerHTML=sel<0?`<b>Não pode: Modelo 1. Pode: Modelo 2.</b><p>Se a instituição prefere só o benefício, sem movimentação financeira, a Parceria Benefício. Se quer também uma receita recorrente, a Parceria Estratégica.</p>`:`<b>${M[sel].d[0]}</b><p>${M[sel].d[1]}</p>`}
 draw();
 })();
 </script>
 
-<!-- 8 · oferta (a conta do valor e os planos) -->
+<!-- 8 · oferta em quatro etapas: portfólio, avulso, pacote e oferta -->
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-// valores avulsos do brief: clínico R$ 69, especialidade R$ 89, nutrição/psicologia/veterinário R$ 49
-const A=[['clock','Clínico geral 24/7','Por vídeo, quantas vezes precisar.',69,'por consulta avulsa'],['steth','1 especialidade por mês','Uma consulta eletiva com especialista.',89,'consulta avulsa'],['heart','1 escolha adicional por mês','Nutrição, psicologia ou veterinário.',49,'consulta avulsa']];
-const P=[['Mensal',50,49.90,'Só pela parceria, cobrado mês a mês.'],['Semestral',65,34.93,'R$ 209,58 a cada 6 meses.'],['Anual',70,29.94,'R$ 359,28 por ano: menos de R$ 1 por dia.']];
-const el=$('offer'),det=$('offDetail'),use=$('offUse');let n=1,sel=0,shown=207,raf=0;
+const P=[['Mensal',50,49.90,'Cobrado mês a mês.','50% de desconto da parceria'],['Semestral',65,34.93,'R$ 209,58 a cada 6 meses.','65% de desconto no plano semestral'],['Anual',70,29.94,'R$ 359,28 por ano.','70% de desconto no plano anual']];
+const el=$('offer');let sel=0,foc=0,shown=P[0][2],raf=0;
 const still=DECK.printing||matchMedia('(prefers-reduced-motion:reduce)').matches;
-el.innerHTML=`<span class="bsec">O pacote da parceria: o que o membro recebe todo mês</span>
-<div class="eq">${A.map((a,i)=>`${i?'<span class="op" aria-hidden="true">+</span>':''}<div class="vc"><span class="ico">${icon(a[0])}</span><b class="t">${a[1]}</b><span class="s">${a[2]}</span><span class="v">${brl(a[3])}${i?'':'<i id="offX"></i>'}</span><span class="vl">${a[4]}</span></div>`).join('')}<span class="op" aria-hidden="true">=</span><div class="vc tot"><span class="vl">Pagando avulso</span><b class="big" id="offTot">${brl(207)}</b><span class="s" id="offTotS"></span></div></div>
-<div class="plh"><span class="bsec">Quanto o membro paga na parceria</span><span class="pln">Sem a parceria, a assinatura custa R$ 99,80 por mês.</span></div>
-<div class="plans">${P.map((p,i)=>`<button class="pl" data-i="${i}"><span class="top"><b class="nm">${p[0]}</b><span class="off">${p[1]}% OFF</span></span><span class="de">de <s>R$ 99,80</s> por</span><span class="pr">${brl(p[2])}<small>/mês</small></span><span class="pcap">${p[3]}</span><span class="sv">Economia de <b></b> por mês em relação ao avulso.</span></button>`).join('')}</div>`;
-[1,2,3,4].forEach(k=>{const b=document.createElement('button');b.className='chip';b.textContent=k===1?'1 vez':k+' vezes';b.onclick=()=>{n=k;upd()};use.appendChild(b)});
-el.querySelectorAll('.pl').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;upd()});
-function tween(to){const t=$('offTot');if(still){shown=to;t.textContent=brl(to);return}
+const arr='<span class="f8-arr" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>';
+const head=(n,k,t,sub)=>`<span class="f8-n">${n} · ${k}</span><b class="f8-t">${t}</b><span class="f8-s">${sub}</span>`;
+el.innerHTML=`<div class="f8c" data-k="1">${head(1,'Portfólio WOW+','Saúde digital no dia a dia','Cuidado e tecnologia na palma da mão.')}
+  <div class="f8-list">${[['Clínico geral','Atendimento 24/7'],['Especialidades','Consultas eletivas'],['Nutrição','Atendimento nutricional'],['Psicologia','Saúde emocional'],['Veterinário','Cuidado pet']].map(x=>`<div class="f8-li"><i></i><span><b>${x[0]}</b><small>${x[1]}</small></span></div>`).join('')}</div>
+  <div class="f8-foot soft">A WOW+ é um ecossistema de <b>saúde digital e tecnologia</b>.</div></div>${arr}
+<div class="f8c" data-k="2">${head(2,'Valores avulsos','Sem assinatura','Preço por consulta.')}
+  <div class="f8-tab">${[['Clínico geral',69],['Especialidade',89],['Nutrição',49],['Psicologia',49],['Veterinário',49]].map(x=>`<div class="f8-pr"><span>${x[0]}</span><b>${brl(x[1])}</b></div>`).join('')}</div>
+  <div class="f8-foot hot"><span class="f8-lb">Equivalente avulso</span><span class="f8-eq">1 clínico + 1 especialidade + 1 opção mensal</span><b class="f8-big">R$ 207,00</b></div></div>${arr}
+<div class="f8c" data-k="3">${head(3,'Pacote da parceria','O que entra na assinatura','Tudo isto, todo mês.')}
+  <div class="f8-pk">${[['Clínico geral 24/7','Use quantas vezes precisar, dentro da assinatura.'],['1 especialidade por mês','Consulta eletiva mensal.'],['1 escolha adicional por mês','Nutrição, psicologia ou veterinário.']].map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>
+  <div class="f8-foot"><span class="f8-lb">Assinatura WOW+</span><span class="f8-row"><b class="f8-big ink">R$ 99,80</b><small>por mês</small></span><span class="f8-eq">Menos da metade do valor avulso.</span></div></div>${arr}
+<div class="f8c res" data-k="4">${head(4,'Oferta aos membros','Desconto exclusivo','A instituição fecha a parceria e os membros recebem a oferta.')}
+  <div class="f8-from"><span>Assinatura</span><b>R$ 99,80</b><em id="offOff"></em></div>
+  <div class="f8-hero"><span class="f8-lb">Membro da instituição</span><b class="f8-price"><span id="offPrice">${brl(P[0][2])}</span><small>/mês</small></b><span class="f8-cap" id="offCap"></span></div>
+  <div class="f8-plans" role="group" aria-label="Forma de pagamento">${P.map((p,i)=>`<button class="f8-pl" data-i="${i}"><b>${p[0]}</b><span>${p[1]}% OFF</span><span>${brl(p[2])}</span></button>`).join('')}</div>
+  <div class="f8-dep"><span class="ico">${icon('users')}</span><span><b>Dependentes</b><small>R$ 19,90 por mês cada</small></span></div></div>`;
+const cols=[...el.querySelectorAll('.f8c')],arrs=[...el.querySelectorAll('.f8-arr')];
+cols.forEach(c=>c.onclick=()=>{const k=+c.dataset.k;foc=foc===k?0:k;upd()});
+el.querySelectorAll('.f8-pl').forEach(b=>b.onclick=e=>{e.stopPropagation();sel=+b.dataset.i;upd()});
+$('offNext').onclick=()=>{foc=(foc+1)%5;upd()};$('offAll').onclick=()=>{foc=0;upd()};
+function tween(to){const t=$('offPrice');if(still){shown=to;t.textContent=brl(to);return}
   cancelAnimationFrame(raf);const from=shown,t0=performance.now();
-  const step=now=>{const k=Math.min(1,(now-t0)/450),e=1-Math.pow(1-k,3);shown=from+(to-from)*e;t.textContent=brl(k<1?Math.round(shown):to);if(k<1)raf=requestAnimationFrame(step);else shown=to};
+  const step=now=>{const k=Math.min(1,(now-t0)/420),e=1-Math.pow(1-k,3);shown=from+(to-from)*e;t.textContent=brl(k<1?shown:to);if(k<1)raf=requestAnimationFrame(step);else shown=to};
   raf=requestAnimationFrame(step)}
 function upd(){
-  const tot=A[0][3]*n+A[1][3]+A[2][3],pl=P[sel];
-  [...use.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===n-1));
-  $('offX').textContent=n>1?'× '+n:'';el.querySelector('.vc').classList.toggle('hot',n>1);
-  tween(tot);$('offTotS').textContent=n===1?'por mês, uma consulta de cada':`por mês, com ${n} consultas no clínico`;
-  el.querySelectorAll('.pl').forEach((b,k)=>{b.classList.toggle('sel',k===sel);b.setAttribute('aria-pressed',k===sel);b.querySelector('.sv b').textContent=brl(tot-P[k][2])});
-  det.innerHTML=n===1?`<b>Uma consulta de cada: ${brl(tot)}</b><p>É o valor avulso de uma consulta com o clínico, uma com especialista e uma escolha adicional. No plano ${pl[0].toLowerCase()}, o membro paga ${brl(pl[2])} por mês.</p>`
-    :`<b>${n} consultas com o clínico: ${brl(tot)}</b><p>O clínico geral 24/7 não tem limite de uso. Avulso, o mês sairia por ${brl(tot)}; no plano ${pl[0].toLowerCase()}, o membro continua pagando ${brl(pl[2])}.</p>`}
+  el.classList.toggle('focus',foc>0);cols.forEach(c=>c.classList.toggle('on',+c.dataset.k===foc));arrs.forEach((a,j)=>a.classList.toggle('on',foc===j+2));
+  const pl=P[sel];tween(pl[2]);$('offOff').textContent=pl[4];$('offCap').textContent=pl[3];$('offChain').textContent=brl(pl[2]);
+  el.querySelectorAll('.f8-pl').forEach((b,k)=>b.setAttribute('aria-pressed',k===sel))}
 upd();
 })();
 </script>
@@ -453,7 +487,7 @@ const S=[
  ['Acordo entre CNPJs','Contrato simples entre a WOW+ e a instituição.','Assinar o acordo de parceria.'],
  ['Cupom exclusivo','A WOW+ cria o cupom da instituição na plataforma.','Aprovar o nome do cupom.'],
  ['Divulgação','A WOW+ apoia a comunicação para os membros.','Apresentar o benefício nos canais da instituição.'],
- ['Membros atendidos','Os membros assinam com o cupom e já usam o app.','Acompanhar a adesão; no Modelo 2, receber o repasse de 10%.']
+ ['Membros atendidos','Os membros assinam com o cupom e já usam o app.','Acompanhar a adesão; no Modelo 2, receber o cashback de 10%.']
 ];
 const el=document.getElementById('road'),X=i=>80+i*158,Y=i=>i%2?196:112;let cur=0;
 const P=DECK.printing;
@@ -475,8 +509,8 @@ set(P?S.length:0);
 (function(){
 const Q=[
  ['Tem custo para a instituição?','Não.','A instituição não paga nada para oferecer a WOW+. Quem assina é o membro, com o desconto do cupom.'],
- ['Nosso código de conduta não permite receber repasse. E agora?','Escolha a Parceria Benefício.','Nela não há repasse: só o desconto exclusivo para os membros.'],
- ['Como funciona o repasse?','10% para a instituição.','No Modelo 2, a instituição recebe 10% do valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.'],
+ ['Nossa instituição não pode receber valores. E agora?','Escolha a Parceria Benefício.','Nela não há cashback: só o desconto exclusivo para os membros.'],
+ ['Como funciona o cashback?','10% para a instituição.','No Modelo 2, a instituição recebe um cashback de 10% do valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.'],
  ['Quanto o membro paga?','Até 70% menos.','50% de desconto só pela parceria, 65% no semestral e 70% no anual: o plano de R$ 99,80 sai a partir de R$ 29,94 por mês.'],
  ['O membro é atendido rápido?','Sim, em minutos.','Clínico geral e pediatria 24 horas, pelo celular, de onde estiver.'],
  ['O que a instituição precisa fazer?','Apresentar o benefício.','A WOW+ cuida da plataforma, do atendimento e do suporte. A instituição divulga o cupom aos membros.']
