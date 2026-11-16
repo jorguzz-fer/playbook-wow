@@ -17,6 +17,9 @@ COPY benchmark/ /usr/share/nginx/html/benchmark/
 # Apresentacao de parcerias institucionais (APN Instituicoes)
 COPY apn-instituicoes/ /usr/share/nginx/html/apn-instituicoes/
 
+# Apresentacao comercial para empresas (APN Empresas)
+COPY apn-empresas/ /usr/share/nginx/html/apn-empresas/
+
 # Guia de marca aberto (sem login) com download dos logos em /marca/logos/
 COPY marca/ /usr/share/nginx/html/marca/
 
