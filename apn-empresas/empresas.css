@@ -80,3 +80,18 @@
 #s3 .ask .chips{gap:8px}
 #s3 .detail p{font-size:14.5px;line-height:1.6}
 #s7 .pc .ph{height:200px}
+
+/* slide 4: valor da multa (NR-28 e Portaria MTE 1.131/2025) */
+#s4 .obwrap .hph{height:170px}
+#s4 .obwrap .oc{min-height:100px}
+.fine{margin-top:10px;border:1px solid var(--accent);background:var(--accent-soft);border-radius:var(--r-card);padding:16px 22px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+.fine-h{display:flex;flex-direction:column;gap:4px}
+.fine-v{line-height:1.1;white-space:nowrap}
+.fine-v b{font-size:30px;font-weight:800;color:var(--accent-ink);letter-spacing:-.01em}
+.fine-v small{font-size:15px;color:var(--ink2)}
+.fine-u{font-size:14px;font-weight:600;color:var(--ink)}
+.fine-t{display:flex;flex-direction:column;gap:6px;border-left:1px solid var(--line2);padding-left:22px}
+.fine p{margin:0;font-size:14px;line-height:1.45;color:var(--ink2)}
+.fine p.src{font-size:12px;color:var(--muted)}
+:root.printing #s4 .obwrap .hph{height:110px}
+:root.printing #s4 .obwrap{padding-bottom:64px}
