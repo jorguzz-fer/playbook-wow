@@ -3,9 +3,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css?v=2">
-<link rel="stylesheet" href="wow.css?v=2">
-<link rel="stylesheet" href="empresas.css?v=2">
+<link rel="stylesheet" href="deck.css?v=3">
+<link rel="stylesheet" href="wow.css?v=3">
+<link rel="stylesheet" href="empresas.css?v=3">
 </head><body>
 
 <!-- "NR-1" leva um word joiner depois do hífen, para não quebrar a linha: NR-&#8288;1 no HTML e NR-⁠1 nos scripts. -->
@@ -20,15 +20,15 @@
     <div class="eyebrow">WOW+ Empresas · Saúde digital</div>
     <h1>Mais saúde. <em>Mais empresa.</em></h1>
     <p class="lead">Cuidar da saúde da sua equipe <strong>não deveria ser complicado.</strong> Mas hoje, ainda é.</p>
+    <div class="badges cvb">
+      <div class="badge"><b>a partir de R$ 14,90</b><span>por vida, por mês</span></div>
+      <div class="badge"><b>Saúde corporativa</b><span>para toda a equipe</span></div>
+      <div class="badge"><b>3 pacotes</b><span>com ou sem NR-&#8288;1</span></div>
+    </div>
   </div>
   <p class="hint noprint">Dica: use <span class="kbd">←</span> <span class="kbd">→</span> ou <span class="kbd">espaço</span> para avançar e <span class="kbd">F</span> para tela cheia.</p>
   <div class="bench" style="border:0">
     <div class="photo"><img src="img/capa.jpg" alt="Gestora sorrindo com um tablet nas mãos, no escritório" style="object-position:50% 25%"></div>
-    <div class="badges">
-      <div class="badge"><b>a partir de R$ 14,90</b><span>por vida, por mês</span></div>
-      <div class="badge"><b>24/7</b><span>clínico geral online</span></div>
-      <div class="badge"><b>3 pacotes</b><span>com ou sem NR-&#8288;1</span></div>
-    </div>
   </div>
 </section>
 
@@ -51,18 +51,20 @@
     <div class="eyebrow">O custo da ausência</div>
     <h2 style="font-size:42px">Quanto custa um <em>colaborador fora?</em></h2>
     <span class="tag-ex" style="align-self:flex-start">Simulação com valores de exemplo</span>
+    <div class="ask noprint"><span class="bsec">Cenários de exemplo</span><div class="chips" id="cScen" role="group" aria-label="Cenários de exemplo"></div></div>
     <div class="ctrl">
-      <div class="ctrl-row"><label for="cOut">Saídas para atendimento por mês <output id="cOutO"></output></label><input type="range" id="cOut" min="1" max="60" step="1" value="20"></div>
+      <div class="ctrl-row"><label for="cOut">Saídas para atendimento por mês, na empresa toda <output id="cOutO"></output></label><input type="range" id="cOut" min="1" max="100" step="1" value="50"></div>
       <div class="ctrl-row"><label for="cHr">Horas fora por saída <output id="cHrO"></output></label><input type="range" id="cHr" min="1" max="8" step="0.5" value="3"></div>
       <div class="ctrl-row"><label for="cSal">Salário médio <output id="cSalO"></output></label><input type="range" id="cSal" min="1500" max="10000" step="100" value="2000"></div>
     </div>
-    <p class="note" style="font-size:12.5px">Referência: R$ 16.358 por ano com 20 saídas por mês, salário de R$ 2.000 e 3 horas de ausência por atendimento.</p>
+    <div class="detail" id="cHow" style="min-height:0"></div>
+    <p class="note" style="font-size:12.5px">Conta conservadora: considera só o salário. Encargos, horas extras de quem cobre a ausência e atrasos na entrega ficam de fora.</p>
   </div>
   <div class="bench" style="display:flex;flex-direction:column;justify-content:center;padding:36px 64px 28px 56px;gap:18px">
     <div class="eyebrow">Custo por ano conforme as saídas do mês</div>
     <svg class="svgchart" id="cChart" viewBox="0 0 900 380" style="width:100%;height:auto"></svg>
     <div class="readout" style="grid-template-columns:repeat(4,1fr)">
-      <div><span>Custo por saída</span><b id="cOne">—</b></div>
+      <div><span>Valor da hora</span><b id="cH">—</b></div>
       <div><span>Horas paradas / ano</span><b id="cHrs">—</b></div>
       <div><span>Custo / mês</span><b id="cMon">—</b></div>
       <div><span>Custo / ano</span><b id="cYr">—</b></div>
@@ -81,6 +83,7 @@
     <div class="callout" style="margin-top:auto"><span class="ico" id="nrIco"></span><span><b>Quem previne, reduz custo.</b><br>Quem ignora, paga depois.</span></div>
   </div>
   <div class="bench"><div class="obwrap">
+    <figure class="hph"><img src="img/colegas.jpg" alt="Duas colegas conversando no trabalho, em frente a um notebook" style="object-position:50% 35%"><figcaption>Saúde mental é um risco real para a empresa, e para quem faz parte dela.</figcaption></figure>
     <span class="bsec">O que a norma olha</span>
     <div class="overcards c3" id="nrA"></div>
     <span class="bsec">O que custa ignorar</span>
@@ -122,12 +125,13 @@
   <div class="copy">
     <div class="eyebrow">Para os colaboradores</div>
     <h2>O que o seu time <em>passa a ter</em></h2>
-    <p class="lead" style="font-size:17px">Saúde digital no celular. O que entra depende do pacote que a empresa escolhe.</p>
+    <p class="lead" style="font-size:17px">Saúde digital no celular, para cuidar do colaborador quando ele precisa. Clínico geral, pediatria, opções de cuidado e especialidades.</p>
     <div class="callout" style="margin-top:auto"><span class="ico" id="svIco"></span><span><b>Tudo 100% online.</b><br>Sem sair do trabalho e sem complicação.</span></div>
   </div>
   <div class="bench"><div class="benef2">
     <div class="pcards" id="pcards"></div>
     <div class="extras" id="extras"></div>
+    <div class="esp"><div class="esp-h"><b>+15</b><span style="font-size:17px;color:var(--ink2)">especialidades na plataforma</span></div><div class="esp-list" id="espList"></div></div>
   </div></div>
 </section>
 
@@ -141,7 +145,7 @@
       </div>
       <div class="pk-side">
         <div class="seg noprint" id="pkSeg" role="group" aria-label="Versão dos pacotes"></div>
-        <p class="pk-note">Incluir a NR-&#8288;1 soma <b>R$ 5,00</b> por vida, por mês, em qualquer pacote.</p>
+        <p class="pk-note">Valores por vida, por mês. Cada pacote tem a versão <b>com NR-&#8288;1 inclusa</b>. Condições conforme o número de vidas.</p>
       </div>
     </header>
     <div class="pk-cols" id="pkCols"></div>
@@ -155,9 +159,9 @@
     <h2 style="font-size:42px">Quanto fica <em>para a sua equipe?</em></h2>
     <span class="tag-ex" style="align-self:flex-start">Simulação: valor por vida × número de vidas</span>
     <div class="ask"><span class="bsec">Versão</span><div class="chips" id="smNr" role="group" aria-label="Versão do pacote"></div></div>
-    <div class="ctrl"><div class="ctrl-row"><label for="smN">Vidas <output id="smNO"></output></label><input type="range" id="smN" min="5" max="500" step="5" value="50"></div></div>
+    <div class="ctrl"><div class="ctrl-row"><label for="smN">Vidas <output id="smNO"></output></label><input type="range" id="smN" min="10" max="500" step="5" value="50"></div></div>
     <div class="detail" id="smDetail"></div>
-    <div class="callout" style="margin-top:auto"><span class="ico" id="smIco"></span><span><b>Incluir a NR-&#8288;1 soma R$ 5,00.</b><br>Por vida, por mês, em qualquer pacote.</span></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" id="smIco"></span><span><b>A partir de 10 vidas.</b><br>Condições conforme o número de vidas.</span></div>
   </div>
   <div class="bench"><div class="sim" id="sim"></div></div>
 </section>
@@ -200,6 +204,7 @@
       <div class="eyebrow">Próximo passo</div>
       <h2>A decisão <em>é sua.</em></h2>
       <p class="lead" style="font-size:16px">Sua empresa pode transformar a saúde dos colaboradores. Clique nas perguntas para ver as respostas.</p>
+      <figure class="hph s12ph"><img src="img/gestora.jpg" alt="Gestora sorrindo com uma prancheta no escritório" style="object-position:50% 30%"></figure>
       <div class="callout"><img src="img/symbol.png" alt="" style="width:40px;height:auto"><span><b>Vamos construir essa mudança juntos?</b><br>Escolha o pacote, com ou sem NR-&#8288;1, e começamos.</span></div>
       <dl class="contact" style="margin-top:auto">
         <dt>Site</dt><dd>wowmais.com.br</dd>
@@ -248,10 +253,10 @@ window.fmtN=n=>Math.round(n).toLocaleString('pt-BR');
 <!-- ícones dos destaques e dados dos pacotes (briefing: preços por vida, por mês) -->
 <script>
 ['dorIco:alert','nrIco:shield','stIco:shield','svIco:shield','smIco:shield'].forEach(x=>{const[i,k]=x.split(':');document.getElementById(i).innerHTML=icon(k)});
-window.PACOTES={nr:5,list:[
- {n:'Pacote 1',t:'Clínico geral e pediatria',s:'Clínico geral e pediatria',inc:[1,1,0,0],add:-1,v:14.90},
- {n:'Pacote 2',t:'Pacote 1 + opção de cuidado',s:'Pacote 1 + opção de cuidado',inc:[1,1,1,0],add:2,v:16.90},
- {n:'Pacote 3',t:'Pacote 2 + consulta eletiva',s:'Pacote 2 + consulta eletiva',inc:[1,1,1,1],add:3,v:19.90}
+window.PACOTES={list:[
+ {n:'Pacote 1',t:'Clínico geral e pediatria',s:'Clínico geral e pediatria',inc:[1,1,0,0],add:-1,v:14.90,vn:19.90},
+ {n:'Pacote 2',t:'Pacote 1 + opção de cuidado',s:'Pacote 1 + opção de cuidado',inc:[1,1,1,0],add:2,v:16.90,vn:21.90},
+ {n:'Pacote 3',t:'Pacote 2 + consulta eletiva',s:'Pacote 2 + consulta eletiva',inc:[1,1,1,1],add:3,v:19.90,vn:24.90}
 ]};
 </script>
 
@@ -288,20 +293,23 @@ draw();
 <script>
 (function(){
 const $=id=>document.getElementById(id),svg=$('cChart');
-// Base da apresentação anterior: R$ 16.358 por ano com 20 saídas por mês, salário de R$ 2.000 e 3 horas por saída.
-const K=16358/(20*12*3*2000);
+// Valor da hora = salário ÷ 220 h (jornada CLT de 44 h por semana). Só o salário, sem encargos.
+const HM=220,SC=[[20,'20 saídas'],[50,'50 saídas'],[100,'100 saídas']],sc=$('cScen');
+SC.forEach(([v,t])=>{const b=document.createElement('button');b.className='chip';b.textContent=t+'/mês';b.onclick=()=>{$('cOut').value=v;calc()};sc.appendChild(b)});
 function calc(){
   const out=+$('cOut').value,hr=+$('cHr').value,sal=+$('cSal').value;
   $('cOutO').textContent=out;$('cHrO').textContent=String(hr).replace('.',',')+' h';$('cSalO').textContent='R$ '+fmtN(sal);
-  const one=hr*sal*K,mon=out*one,yr=mon*12;
-  $('cOne').textContent=brl(one);$('cHrs').textContent=fmtN(out*hr*12)+' h';$('cMon').textContent='R$ '+fmtN(mon);$('cYr').textContent='R$ '+fmtN(yr);
-  const W=900,H=380,L=96,R=20,T=24,B=46,maxX=60,f=x=>x*one*12,maxV=f(maxX)||1;
+  [...sc.children].forEach((b,k)=>b.setAttribute('aria-pressed',SC[k][0]===out));
+  const h=sal/HM,one=hr*h,mon=out*one,yr=mon*12;
+  $('cH').textContent=brl(h);$('cHrs').textContent=fmtN(out*hr*12)+' h';$('cMon').textContent='R$ '+fmtN(mon);$('cYr').textContent='R$ '+fmtN(yr);
+  $('cHow').innerHTML=`<b>Como a conta é feita</b><p>Hora: R$ ${fmtN(sal)} ÷ 220 h = ${brl(h)}.<br>Por mês: ${out} saídas × ${String(hr).replace('.',',')} h × ${brl(h)} = R$ ${fmtN(mon)}.<br>Por ano: R$ ${fmtN(mon)} × 12 = <strong>R$ ${fmtN(yr)}</strong>.</p>`;
+  const W=900,H=380,L=96,R=20,T=24,B=46,maxX=100,f=x=>x*one*12,maxV=f(maxX)||1;
   const X=x=>L+x/maxX*(W-L-R),Y=v=>H-B-v/maxV*(H-T-B);
   let s='';for(let i=0;i<=4;i++){const v=maxV*i/4;s+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L-10}" y="${Y(v)+4}" text-anchor="end">${v>=1000?(v/1000).toFixed(v>=10000?0:1).replace('.',',')+' mil':fmtN(v)}</text>`}
-  for(let x=0;x<=60;x+=10)s+=`<text x="${X(x)}" y="${H-B+22}" text-anchor="middle">${x}</text>`;
+  for(let x=0;x<=100;x+=20)s+=`<text x="${X(x)}" y="${H-B+22}" text-anchor="middle">${x}</text>`;
   const d=`M${X(0)} ${Y(0)}L${X(maxX)} ${Y(f(maxX))}`;
   s+=`<defs><linearGradient id="gC" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FF7A00" stop-opacity=".35"/><stop offset="1" stop-color="#FF7A00" stop-opacity="0"/></linearGradient></defs><path d="${d}L${X(maxX)} ${Y(0)}Z" fill="url(#gC)"/><path d="${d}" fill="none" stroke="var(--accent)" stroke-width="3"/>`;
-  s+=`<circle cx="${X(out)}" cy="${Y(f(out))}" r="8" fill="var(--accent)" stroke="var(--bg)" stroke-width="3"/><text x="${X(out)+(out<14?14:-14)}" y="${Y(f(out))-(out<14?34:14)}" text-anchor="${out<14?'start':'end'}" style="fill:var(--ink);font-size:15px">R$ ${fmtN(yr)} /ano</text>`;
+  s+=`<circle cx="${X(out)}" cy="${Y(f(out))}" r="8" fill="var(--accent)" stroke="var(--bg)" stroke-width="3"/><text x="${X(out)+(out<24?14:-14)}" y="${Y(f(out))-(out<24?34:14)}" text-anchor="${out<24?'start':'end'}" style="fill:var(--ink);font-size:15px">R$ ${fmtN(yr)} /ano</text>`;
   s+=`<text class="lab" x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">saídas para atendimento por mês</text>`;
   svg.innerHTML=s}
 ['cOut','cHr','cSal'].forEach(id=>$(id).addEventListener('input',calc));
@@ -352,12 +360,13 @@ set(DECK.printing?2:0);
 <script>
 (function(){
 const C=[
- ['medica.jpg','Médica sorrindo com uma prancheta','clock','Clínico geral 24/7','Médico online, a qualquer hora do dia ou da noite.','Em todos os pacotes'],
- ['pediatra.jpg','Pediatra examinando uma criança sorridente','baby','Pediatria','Atendimento pediátrico online.','Em todos os pacotes'],
- ['nutricao.jpg','Nutricionista segurando uma laranja','heart','Opção de cuidado','1 opção entre nutrição, psicologia ou veterinário.','Nos pacotes 2 e 3']
+ ['medica.jpg','Médica sorrindo com uma prancheta','clock','Clínico geral 24/7','Médico online, a qualquer hora do dia ou da noite.'],
+ ['pediatra.jpg','Pediatra examinando uma criança sorridente','baby','Pediatria 24/7','Atendimento pediátrico online, a qualquer hora.'],
+ ['nutricao.jpg','Nutricionista segurando uma laranja','heart','Opção de cuidado','Nutrição, psicologia ou veterinário, online.']
 ];
-document.getElementById('pcards').innerHTML=C.map((c,i)=>`<div class="pc"><div class="ph"><img src="img/${c[0]}" alt="${c[1]}"></div><div class="pb"><div class="pn"><span class="ico">${icon(c[2])}</span><span>0${i+1}</span></div><h3>${c[3]}</h3><p>${c[4]}</p><div class="pf"><span>Onde entra</span><p>${c[5]}</p></div></div></div>`).join('');
-document.getElementById('extras').innerHTML=[['calendar','1 consulta eletiva','Com hora marcada.','No pacote 3'],['shield','NR-\u20601','Opcional em qualquer pacote.','+ R$ 5,00 por vida/mês']].map(x=>`<div class="ex"><span class="ico">${icon(x[0])}</span><span class="tx"><b>${x[1]}</b><small>${x[2]}</small></span><em>${x[3]}</em></div>`).join('');
+document.getElementById('pcards').innerHTML=C.map((c,i)=>`<div class="pc"><div class="ph"><img src="img/${c[0]}" alt="${c[1]}"></div><div class="pb"><div class="pn"><span class="ico">${icon(c[2])}</span><span>0${i+1}</span></div><h3>${c[3]}</h3><p>${c[4]}</p></div></div>`).join('');
+document.getElementById('extras').innerHTML=[['calendar','Consulta eletiva','Com hora marcada.','Ver condições'],['shield','NR-\u20601','Apoio à empresa na saúde mental.','Ver condições']].map(x=>`<div class="ex"><span class="ico">${icon(x[0])}</span><span class="tx"><b>${x[1]}</b><small>${x[2]}</small></span><em>${x[3]}</em></div>`).join('');
+document.getElementById('espList').innerHTML=['Pediatria','Ginecologia','Cardiologia','Clínico geral','Endocrinologia','Dermatologia','Geriatria','Nutrologia','Ortopedia','Oftalmologia','Neurologia','Psicologia','Psiquiatria','Nutrição','Gastroenterologia','Urologia','e muito mais'].map(x=>`<span>${x}</span>`).join('');
 })();
 </script>
 
@@ -366,11 +375,11 @@ document.getElementById('extras').innerHTML=[['calendar','1 consulta eletiva','C
 (function(){
 const $=id=>document.getElementById(id),PK=window.PACOTES;
 const OK='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>',NO='<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg>';
-const ROWS=[['clock','Clínico geral 24/7',''],['baby','Pediatria',''],['heart','1 opção de cuidado','nutrição, psicologia ou veterinário'],['calendar','1 consulta eletiva','com hora marcada']];
+const ROWS=[['clock','Clínico geral 24/7',''],['baby','Pediatria 24/7',''],['heart','1 opção de cuidado por mês','nutrição, psicologia ou veterinário'],['calendar','1 consulta eletiva por mês','com hora marcada']];
 const el=$('pkCols'),seg=$('pkSeg');let nr=0;
 el.innerHTML=PK.list.map(p=>`<div class="pkc"><span class="pk-n">${p.n}</span><b class="pk-t">${p.t}</b>
-<div class="pk-rows">${ROWS.map((r,k)=>`<div class="pk-r${p.inc[k]?'':' off'}${p.add===k?' add':''}"><span class="ico">${icon(r[0])}</span><span class="tx">${r[1]}${r[2]?`<small>${r[2]}</small>`:''}</span><i>${p.inc[k]?OK:NO}</i></div>`).join('')}<div class="pk-r nr"><span class="ico">${icon('shield')}</span><span class="tx">NR-\u20601<small>opcional</small></span><em>+ ${brl(PK.nr)}</em></div></div>
-<div class="pk-prices"><button class="pk-p" data-v="0"><span class="lb">Sem NR-\u20601</span><b>${brl(p.v)}</b></button><button class="pk-p" data-v="1"><span class="lb">Com NR-\u20601</span><b>${brl(p.v+PK.nr)}</b></button></div>
+<div class="pk-rows">${ROWS.map((r,k)=>`<div class="pk-r${p.inc[k]?'':' off'}${p.add===k?' add':''}"><span class="ico">${icon(r[0])}</span><span class="tx">${r[1]}${r[2]?`<small>${r[2]}</small>`:''}</span><i>${p.inc[k]?OK:NO}</i></div>`).join('')}<div class="pk-r nr"><span class="ico">${icon('shield')}</span><span class="tx">NR-\u20601<small>opcional</small></span></div></div>
+<div class="pk-prices"><button class="pk-p" data-v="0"><span class="lb">Sem NR-\u20601</span><b>${brl(p.v)}</b></button><button class="pk-p" data-v="1"><span class="lb">Com NR-\u20601</span><b>${brl(p.vn)}</b></button></div>
 <span class="pk-u">por vida, por mês</span></div>`).join('');
 ['Sem NR-\u20601','Com NR-\u20601'].forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{nr=i;upd()};seg.appendChild(b)});
 el.querySelectorAll('.pk-p').forEach(b=>b.onclick=()=>{nr=+b.dataset.v;upd()});
@@ -393,12 +402,12 @@ el.innerHTML=`<span class="bsec">Total por mês em cada pacote</span>
 ['Sem NR-\u20601','Com NR-\u20601'].forEach((t,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=t;b.onclick=()=>{nr=i;upd()};nrC.appendChild(b)});
 const cards=[...el.querySelectorAll('.fam')];
 cards.forEach(c=>c.onclick=()=>{sel=+c.dataset.i;upd()});
-function upd(){const n=+$('smN').value,add=nr?PK.nr:0;$('smNO').textContent=fmtN(n);
+function upd(){const n=+$('smN').value,val=p=>nr?p.vn:p.v;$('smNO').textContent=fmtN(n);
   [...nrC.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===nr));
-  cards.forEach((c,k)=>{const v=PK.list[k].v+add,on=k===sel;c.classList.toggle('sel',on);c.setAttribute('aria-pressed',on);c.querySelector('.tt').textContent=brl(v*n);c.querySelector('.pm').textContent=`por mês para ${fmtN(n)} vidas`;c.querySelector('.pp').textContent=`${brl(v)} por vida`});
-  const p=PK.list[sel],v=p.v+add;
+  cards.forEach((c,k)=>{const v=val(PK.list[k]),on=k===sel;c.classList.toggle('sel',on);c.setAttribute('aria-pressed',on);c.querySelector('.tt').textContent=brl(v*n);c.querySelector('.pm').textContent=`por mês para ${fmtN(n)} vidas`;c.querySelector('.pp').textContent=`${brl(v)} por vida`});
+  const p=PK.list[sel],v=val(p);
   $('smV').textContent=brl(v);$('smT').textContent=brl(v*n);$('smD').textContent=brl(v/30);
-  $('smDetail').innerHTML=`<b>${fmtN(n)} vidas no ${p.n}, ${nr?'com':'sem'} NR-\u20601</b><p>${fmtN(n)} × ${brl(v)} = ${brl(v*n)} por mês. ${nr?`Sem a NR-\u20601, seriam ${brl(p.v*n)}.`:`Com a NR-\u20601, seriam ${brl((p.v+PK.nr)*n)}.`}</p>`}
+  $('smDetail').innerHTML=`<b>${fmtN(n)} vidas no ${p.n}, ${nr?'com':'sem'} NR-\u20601</b><p>${fmtN(n)} × ${brl(v)} = ${brl(v*n)} por mês. ${nr?`Sem a NR-\u20601, seriam ${brl(p.v*n)}.`:`Com a NR-\u20601, seriam ${brl(p.vn*n)}.`}</p>`}
 $('smN').addEventListener('input',upd);
 upd();
 })();
@@ -454,11 +463,11 @@ set(P?S.length:0);
 (function(){
 const Q=[
  ['Quanto custa?','A partir de R$ 14,90.','Por vida, por mês, no Pacote 1 sem NR-\u20601. O Pacote 3 com NR-\u20601 sai por R$ 24,90.'],
- ['Qual a diferença entre os pacotes?','A cobertura.','Todos têm clínico geral 24/7 e pediatria. O Pacote 2 soma 1 opção de cuidado, e o Pacote 3 soma também 1 consulta eletiva.'],
- ['Quanto custa incluir a NR-\u20601?','R$ 5,00 a mais.','Por vida, por mês, em qualquer pacote.'],
- ['O que é a opção de cuidado?','Uma entre três.','Nutrição, psicologia ou veterinário, nos Pacotes 2 e 3.'],
+ ['Qual a diferença entre os pacotes?','A cobertura.','Todos têm clínico geral e pediatria 24/7. O Pacote 2 soma 1 opção de cuidado por mês, e o Pacote 3 soma também 1 consulta eletiva por mês.'],
+ ['A NR-\u20601 entra em qualquer pacote?','Sim.','Cada pacote tem a versão com NR-\u20601 inclusa: de R$ 19,90 a R$ 24,90 por vida, por mês. As condições variam conforme o número de vidas.'],
+ ['O que é a opção de cuidado?','Uma consulta por mês, entre três áreas.','Nutrição, psicologia ou veterinário, nos Pacotes 2 e 3.'],
  ['O colaborador precisa sair do trabalho?','Não.','O atendimento é online, pelo celular ou pelo computador.'],
- ['Como a empresa começa?','Com uma conversa.','Escolhemos juntos o pacote e a empresa faz o registro em app.wowmais.com.br.']
+ ['Como a empresa começa?','Com uma conversa.','A partir de 10 vidas. Escolhemos juntos o pacote e a empresa faz o registro em app.wowmais.com.br.']
 ];
 document.getElementById('faq').innerHTML=Q.map(([t,s,r],i)=>`<button class="q${DECK.printing?' open':''}"><span class="qn">PERGUNTA ${i+1}</span><span class="qt">${t}</span><span class="qa"><strong>${s}</strong> ${r}</span><span class="qh">clique para revelar a resposta</span></button>`).join('');
 document.querySelectorAll('#faq .q').forEach(b=>b.onclick=()=>b.classList.toggle('open'));
