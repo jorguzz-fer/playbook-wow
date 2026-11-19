@@ -211,7 +211,7 @@ h1{font-weight:800}
 .road-badges span{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--ink);border:1px solid var(--line2);border-radius:999px;padding:8px 16px}
 
 /* capa: dica de teclado como rodapé */
-.hint{position:absolute;left:96px;bottom:84px;margin:0;font-size:12.5px;color:var(--muted);z-index:3}
+.hint{position:absolute;left:96px;bottom:40px;margin:0;font-size:12.5px;color:var(--muted);z-index:3}
 .hint .kbd{font-size:11px}
 
 /* foto na coluna de texto */
