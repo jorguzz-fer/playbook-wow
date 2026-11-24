@@ -1,0 +1,9 @@
+/* WOW+ Parceria Estratégica: o que difere da apresentação de Instituições.
+   Carregado depois de deck.css e wow.css, que são os mesmos arquivos de Instituições. */
+
+/* slide 10: um modelo só, em largura total */
+.mgrid.one{grid-template-columns:1fr}
+.mgrid.one .mod{cursor:default;display:grid;grid-template-columns:1fr 1fr;column-gap:36px;row-gap:12px}
+.mgrid.one .mod .tag,.mgrid.one .mod h3,.mgrid.one .mod .mbig{grid-column:1}
+.mgrid.one .mod ul{grid-column:2;grid-row:1 / span 3;border-top:0;padding-top:4px}
+.mgrid.one .mod .foot{grid-column:1 / -1}

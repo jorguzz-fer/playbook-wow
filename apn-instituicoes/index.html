@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="deck.css?v=11">
-<link rel="stylesheet" href="wow.css?v=11">
+<link rel="stylesheet" href="deck.css?v=12">
+<link rel="stylesheet" href="wow.css?v=12">
 </head><body>
 
 <div id="viewport">
@@ -157,11 +157,11 @@
   <div class="copy">
     <div class="eyebrow">Modelos de parceria</div>
     <h2>Dois modelos. <em>A instituição escolhe.</em></h2>
-    <p class="lead" style="font-size:17px">Os dois entregam o mesmo benefício aos membros. O que muda é se a instituição recebe cashback.</p>
+    <p class="lead" style="font-size:17px">Os dois entregam o mesmo benefício aos membros. O que muda é se a instituição recebe a recorrência.</p>
     <div class="ask">
       <span class="bsec">Como escolher</span>
-      <b>A instituição pode receber cashback?</b>
-      <div class="chips noprint" id="modAsk" role="group" aria-label="A instituição pode receber cashback?"></div>
+      <b>A instituição pode receber valores?</b>
+      <div class="chips noprint" id="modAsk" role="group" aria-label="A instituição pode receber valores?"></div>
     </div>
     <div class="detail" id="modDetail"></div>
   </div>
@@ -172,23 +172,23 @@
 <section class="slide" id="s11" data-name="Simulador da Parceria Estratégica">
   <div class="copy" style="gap:12px;padding-top:48px">
     <div class="eyebrow">Modelo 2 · Parceria Estratégica</div>
-    <h2 style="font-size:42px">10% de cashback, <em>que cresce com a adesão</em></h2>
+    <h2 style="font-size:42px">10% de recorrência, <em>que cresce com a adesão</em></h2>
     <span class="tag-ex" style="align-self:flex-start">Simulação com valores de exemplo</span>
     <div class="ctrl">
       <div class="ctrl-row"><label for="sBase">Membros na base <output id="sBaseOut"></output></label><input type="range" id="sBase" min="500" max="100000" step="500" value="10000"></div>
       <div class="ctrl-row"><label for="sAd">Membros que aderem <output id="sAdOut"></output></label><input type="range" id="sAd" min="1" max="60" step="1" value="20"></div>
       <div class="ctrl-row"><label>Plano escolhido pelos membros <output id="sPriceOut"></output></label><div class="chips" id="sPlan" role="group" aria-label="Plano"></div></div>
     </div>
-    <p class="note" style="font-size:12.5px">Cashback de 10% sobre o valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.</p>
+    <p class="note" style="font-size:12.5px">Recorrência de 10% sobre o valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.</p>
   </div>
   <div class="bench" style="display:flex;flex-direction:column;justify-content:center;padding:40px 64px 32px 56px;gap:20px">
-    <div class="eyebrow">Cashback mensal conforme a adesão</div>
+    <div class="eyebrow">Recorrência mensal conforme a adesão</div>
     <svg class="svgchart" id="sChart" viewBox="0 0 900 400" style="width:100%;height:auto"></svg>
     <div class="readout" style="grid-template-columns:repeat(4,1fr)">
       <div><span>Membros ativos</span><b id="rAct">—</b></div>
-      <div><span>Cashback por membro</span><b id="rPct">—</b></div>
-      <div><span>Cashback / mês</span><b id="rMon">—</b></div>
-      <div><span>Cashback / ano</span><b id="rYr">—</b></div>
+      <div><span>Recorrência por membro</span><b id="rPct">—</b></div>
+      <div><span>Recorrência / mês</span><b id="rMon">—</b></div>
+      <div><span>Recorrência / ano</span><b id="rYr">—</b></div>
     </div>
   </div>
 </section>
@@ -248,7 +248,7 @@
 </div>
 </div>
 
-<script src="deck.js?v=11"></script>
+<script src="deck.js?v=12"></script>
 
 <!-- ícones extras e helpers -->
 <script>
@@ -402,8 +402,8 @@ upd();
 <script>
 (function(){
 const M=[
- {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',big:['Sem cashback','a instituição não paga nem recebe'],items:['Contrato de parceria institucional','Ideal para quem quer só o benefício, sem movimentação financeira'],foot:['Benefício para os membros','Mais valor para quem participa, sem custo.'],ask:'Não pode',d:['Modelo 1 · Parceria Benefício','A instituição fecha contrato como parceira institucional. Os membros assinam com até 70% de desconto, e a instituição não paga nada nem recebe cashback.']},
- {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',big:['10% de cashback','sobre o valor pago pelos membros'],items:['Contrato de parceria estratégica','Pago do CNPJ da WOW+ para o CNPJ da instituição','Cresce junto com a adesão da base'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],ask:'Pode',d:['Modelo 2 · Parceria Estratégica','Os membros têm o mesmo desconto de até 70%, e a instituição recebe um cashback de 10%, que cresce junto com a adesão da base.']}
+ {k:'ben',tag:'Modelo 1',n:'Parceria Benefício',big:['Sem recorrência','a instituição não paga nem recebe'],items:['Contrato de parceria institucional','Ideal para quem quer só o benefício, sem movimentação financeira'],foot:['Benefício para os membros','Mais valor para quem participa, sem custo.'],ask:'Não pode',d:['Modelo 1 · Parceria Benefício','A instituição fecha contrato como parceira institucional. Os membros assinam com até 70% de desconto, e a instituição não paga nada nem recebe recorrência.']},
+ {k:'est',tag:'Modelo 2',n:'Parceria Estratégica',big:['10% de recorrência','sobre o valor pago pelos membros'],items:['Contrato de parceria estratégica','Pago do CNPJ da WOW+ para o CNPJ da instituição','Cresce junto com a adesão da base'],foot:['Benefício + receita recorrente','Transparente, com contrato entre as instituições.'],ask:'Pode',d:['Modelo 2 · Parceria Estratégica','Os membros têm o mesmo desconto de até 70%, e a instituição recebe 10% de recorrência, que cresce junto com a adesão da base.']}
 ];
 const el=document.getElementById('mods'),det=document.getElementById('modDetail'),ask=document.getElementById('modAsk');let sel=DECK.printing?-1:0;
 M.forEach((m,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=m.ask;b.onclick=()=>{sel=i;draw()};ask.appendChild(b)});
@@ -513,7 +513,7 @@ const S=[
  ['Acordo entre CNPJs','Contrato simples entre a WOW+ e a instituição.','Assinar o acordo de parceria.'],
  ['Cupom exclusivo','A WOW+ cria o cupom da instituição na plataforma.','Aprovar o nome do cupom.'],
  ['Divulgação','A WOW+ apoia a comunicação para os membros.','Apresentar o benefício nos canais da instituição.'],
- ['Membros atendidos','Os membros assinam com o cupom e já usam o app.','Acompanhar a adesão; no Modelo 2, receber o cashback de 10%.']
+ ['Membros atendidos','Os membros assinam com o cupom e já usam o app.','Acompanhar a adesão; no Modelo 2, receber a recorrência de 10%.']
 ];
 const el=document.getElementById('road'),X=i=>80+i*158,Y=i=>i%2?196:112;let cur=0;
 const P=DECK.printing;
@@ -535,8 +535,8 @@ set(P?S.length:0);
 (function(){
 const Q=[
  ['Tem custo para a instituição?','Não.','A instituição não paga nada para oferecer a WOW+. Quem assina é o membro, com o desconto do cupom.'],
- ['Nossa instituição não pode receber valores. E agora?','Escolha a Parceria Benefício.','Nela não há cashback: só o desconto exclusivo para os membros.'],
- ['Como funciona o cashback?','10% para a instituição.','No Modelo 2, a instituição recebe um cashback de 10% do valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.'],
+ ['Nossa instituição não pode receber valores. E agora?','Escolha a Parceria Benefício.','Nela não há recorrência: só o desconto exclusivo para os membros.'],
+ ['Como funciona a recorrência?','10% para a instituição.','No Modelo 2, a instituição recebe 10% de recorrência do valor pago pelos membros, do CNPJ da WOW+ para o CNPJ da instituição.'],
  ['Quanto o membro paga?','Até 70% menos.','50% de desconto só pela parceria, 65% no semestral e 70% no anual: o plano de R$ 99,80 sai a partir de R$ 29,94 por mês.'],
  ['O membro é atendido rápido?','Sim, em minutos.','Clínico geral e pediatria 24 horas, pelo celular, de onde estiver.'],
  ['O que a instituição precisa fazer?','Apresentar o benefício.','A WOW+ cuida da plataforma, do atendimento e do suporte. A instituição divulga o cupom aos membros.']
