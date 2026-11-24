@@ -20,6 +20,9 @@ COPY apn-instituicoes/ /usr/share/nginx/html/apn-instituicoes/
 # Apresentacao comercial para empresas (APN Empresas)
 COPY apn-empresas/ /usr/share/nginx/html/apn-empresas/
 
+# Apresentacao para parceiros estrategicos (APN Parceria Estrategica)
+COPY apn-parceria-estrategica/ /usr/share/nginx/html/apn-parceria-estrategica/
+
 # Guia de marca aberto (sem login) com download dos logos em /marca/logos/
 COPY marca/ /usr/share/nginx/html/marca/
 
