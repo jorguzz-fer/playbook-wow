@@ -23,6 +23,12 @@ COPY apn-empresas/ /usr/share/nginx/html/apn-empresas/
 # Apresentacao para parceiros estrategicos (APN Parceria Estrategica)
 COPY apn-parceria-estrategica/ /usr/share/nginx/html/apn-parceria-estrategica/
 
+# APNs de rede (Institucional, Parceria Completa, Vendas e Influencers)
+COPY apn-institucional/ /usr/share/nginx/html/apn-institucional/
+COPY apn-parceria-completa/ /usr/share/nginx/html/apn-parceria-completa/
+COPY apn-vendas/ /usr/share/nginx/html/apn-vendas/
+COPY apn-influencers/ /usr/share/nginx/html/apn-influencers/
+
 # Guia de marca aberto (sem login) com download dos logos em /marca/logos/
 COPY marca/ /usr/share/nginx/html/marca/
 
