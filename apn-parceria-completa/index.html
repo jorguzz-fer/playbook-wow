@@ -1,0 +1,587 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><base href="/apn-parceria-completa/"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>WOW+ Parceria Completa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="deck.css?v=1">
+<link rel="stylesheet" href="wow.css?v=1">
+<link rel="stylesheet" href="rede.css?v=1">
+</head><body>
+
+<!-- Gerado a partir da biblioteca de slides das APNs de rede (Institucional, Parceria Completa e Vendas).
+     "NR-1" leva um word joiner depois do hífen, para não quebrar a linha. -->
+<div id="viewport">
+<div id="deck" role="application" aria-label="WOW+ Parceria Completa: apresentação de negócio">
+
+<section class="slide cover" id="s1" data-name="Capa">
+  <div class="copy">
+    <img class="brandlogo logo-d" src="img/logo-tag-dark.png" alt="WOW+ saúde por assinatura">
+    <img class="brandlogo logo-l" src="img/logo-tag-light.png" alt="WOW+ saúde por assinatura">
+    <div class="eyebrow">Seja bem-vindo à WOW+</div>
+    <h1>Sua máquina de <em>renda recorrente.</em></h1>
+    <p class="lead">Ganhe todo mês ajudando pessoas a terem acesso à saúde. <strong>Renda recorrente + propósito.</strong></p>
+    <div class="badges cvb"><div class="badge"><b>Todo mês</b><span>receita recorrente</span></div><div class="badge"><b>Impacto real</b><span>na vida das pessoas</span></div><div class="badge"><b>Escalável</b><span>simples e global</span></div></div>
+  </div>
+  <p class="hint noprint">Dica: use <span class="kbd">←</span> <span class="kbd">→</span> ou <span class="kbd">espaço</span> para avançar e <span class="kbd">F</span> para tela cheia.</p>
+  <div class="bench" style="border:0">
+    <div class="photo"><img src="img/capa-completa.jpg" alt="Homem sorrindo ao olhar o celular" style="object-position:50% 20%"></div>
+  </div>
+</section>
+
+<section class="slide" id="s2" data-name="O ciclo">
+  <div class="copy">
+    <div class="eyebrow">O problema de quem vende</div>
+    <h2>Você trabalha, vende… <em>e no mês seguinte começa do zero</em></h2>
+    <p class="lead" style="font-size:17px">Sem venda, sem dinheiro. Isso não é renda: é um ciclo. Clique em cada etapa ou deixe o ciclo girar.</p>
+    <div class="chips noprint"><button class="chip" id="cicNext">Próxima etapa →</button><button class="chip" id="cicAuto" aria-pressed="false">Girar sozinho</button></div>
+    <div class="detail" id="cicDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="heart"></span><span><b>E se você pudesse ganhar todo mês…</b><br>ajudando pessoas a terem acesso à saúde?</span></div>
+  </div>
+  <div class="bench"><svg class="cyc" id="cic" viewBox="0 0 1060 836" style="position:absolute;inset:0;width:100%;height:100%" role="group" aria-label="Ciclo da venda sem recorrência"></svg><div class="gains" id="cicList"></div></div>
+</section>
+
+<section class="slide" id="s3" data-name="O problema da saúde">
+  <div class="copy">
+    <div class="eyebrow">O desafio</div>
+    <h2>Pagar caro… <em>ou não ter atendimento</em></h2>
+    <p class="lead" style="font-size:17px">Hoje, milhões de brasileiros têm só duas opções, e nenhuma resolve. Clique em cada uma.</p>
+    <div class="detail" id="sdDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="alert"></span><span><b>O problema não é você.</b><br>Nem o quanto você paga: o modelo não funciona.</span></div>
+  </div>
+  <div class="bench"><div class="obwrap">
+    <span class="bsec">As duas opções de hoje</span>
+    <div class="opt2" id="sdOpts"></div>
+    <span class="bsec">O Brasil em números</span>
+    <div class="kpis ob">
+      <div class="kpi"><b>7 em cada 10</b><span>brasileiros não têm plano de saúde.</span><i>IBGE · PNS 2019</i></div>
+      <div class="kpi"><b>58%</b><span>dos médicos estão em 48 grandes cidades, onde vive 31% da população.</span><i>Demografia Médica 2025 · FMUSP e AMB</i></div>
+      <div class="kpi"><b>77%</b><span>de quem tomou remédio em seis meses se automedicou.</span><i>CFF e Datafolha · 2019</i></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="slide" id="s4" data-name="A oportunidade">
+  <div class="copy">
+    <div class="eyebrow">A oportunidade</div>
+    <h2>Você está diante de um <em>oceano azul</em></h2>
+    <p class="lead" style="font-size:17px">Enquanto a maioria ainda está presa ao modelo antigo, a demanda é gigante e o acesso digital já é realidade. Clique em cada ponto.</p>
+    <div class="detail" id="ocDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="trend"></span><span><b>Quem entender isso primeiro…</b><br>domina o mercado.</span></div>
+  </div>
+  <div class="bench"><div class="ocean" id="ocean"></div></div>
+</section>
+
+<section class="slide" id="s5" data-name="A WOW+">
+  <div class="copy">
+    <div class="eyebrow">A solução</div>
+    <h2>É aqui que nasce a <em>WOW+</em></h2>
+    <p class="lead">Uma nova forma de acessar saúde no Brasil: saúde por assinatura, com <strong>acesso imediato a médicos e serviços</strong>, pelo celular.</p>
+    <div class="pills3"><span><span class="ico" data-ic="check"></span>Simples</span><span><span class="ico" data-ic="phone"></span>Digital</span><span><span class="ico" data-ic="users"></span>Acessível</span></div>
+    <div class="callout" style="margin-top:auto"><img src="img/symbol.png" alt="" style="width:44px;height:auto"><span><b>Sem fila. Sem burocracia.</b><br>Sem custo absurdo.</span></div>
+  </div>
+  <div class="bench"><div class="appwrap">
+    <div class="phone"><div class="scr" id="app1"></div></div>
+    <div class="side" id="appSide"></div>
+  </div></div>
+</section>
+
+<section class="slide full" id="s6" data-name="Quem está por trás">
+  <div class="fnd">
+    <header><div class="eyebrow">Quem está por trás da WOW+</div><h2>Liderança com experiência. <em>Propósito que transforma.</em></h2></header>
+    <div class="fnd-cols">
+      <div class="fc"><img src="img/f-samuel.jpg" alt="Samuel Messias"><b>Samuel Messias</b><span class="rl">CEO e fundador</span><div class="xp"><span class="ico" data-ic="chart"></span><span><b>+25 anos</b> em vendas diretas e marketing multinível</span></div><q>Nosso sonho continua vivo: transformar a vida das pessoas por meio do acesso à saúde.</q></div>
+      <div class="fc"><img src="img/f-fernando.jpg" alt="Fernando Jorge"><b>Fernando Jorge</b><span class="rl">CMO e fundador</span><div class="xp"><span class="ico" data-ic="target"></span><span><b>+20 anos</b> em marketing e negócios digitais</span></div><q>Se vendas são o coração, o marketing é o que mantém o negócio vivo e crescendo.</q></div>
+      <div class="fc"><img src="img/f-pedro.jpg" alt="Pedro Paulino"><b>Pedro Paulino</b><span class="rl">CTO e fundador</span><div class="xp"><span class="ico" data-ic="cpu"></span><span><b>+10 anos</b> em tecnologia, marketing e inovação</span></div><q>A tecnologia transforma o negócio, mas são as pessoas que constroem o sucesso.</q></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s7" data-name="Operação">
+  <div class="copy">
+    <div class="eyebrow">Estrutura real</div>
+    <h2>Operação pronta. <em>Atendimento de verdade.</em></h2>
+    <p class="lead" style="font-size:17px">Equipe, tecnologia e corpo clínico que sustentam tudo isso, todos os dias. Clique em cada ponto da operação.</p>
+    <div class="detail" id="hubDetail"></div>
+    <div class="callout" style="margin-top:auto"><img src="img/symbol.png" alt="" style="width:44px;height:auto"><span><b>Pessoas que já confiam na WOW+.</b><br>Os números falam pelo atendimento.</span></div>
+  </div>
+  <div class="bench"><div class="estr">
+    <div class="kpis">
+      <div class="kpi"><b>50 mil+</b><span>atendimentos realizados</span></div>
+      <div class="kpi"><b>96,5%</b><span>NPS de satisfação dos pacientes</span></div>
+      <div class="kpi"><b>20+ estados</b><span>com atendimento</span></div>
+    </div>
+    <svg class="hub" id="hub" viewBox="0 0 950 530" role="group" aria-label="Operação WOW+"></svg>
+    <div class="caps" id="caps"></div>
+  </div></div>
+</section>
+
+<section class="slide" id="s8" data-name="Ecossistema">
+  <div class="copy">
+    <div class="eyebrow">Um ecossistema sendo construído</div>
+    <h2>Um único acesso. <em>Múltiplas soluções.</em></h2>
+    <p class="lead" style="font-size:17px">O que já existe hoje e o que vem na expansão. Clique em cada solução.</p>
+    <div class="detail" id="ecoDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="layers"></span><span><b>Quanto mais produtos,</b><br>mais recorrência.</span></div>
+  </div>
+  <div class="bench"><svg class="eco" id="eco" viewBox="0 0 980 640" role="group" aria-label="Ecossistema WOW+"></svg></div>
+</section>
+
+<section class="slide full" id="s9" data-name="Planos">
+  <div class="pl11">
+    <header class="pl-head">
+      <div><div class="eyebrow">Soluções para diferentes perfis</div><h2>Planos para pessoas, famílias <em>e empresas</em></h2></div>
+      <div class="seg noprint" id="plSeg" role="group" aria-label="Perfil"></div>
+    </header>
+    <div class="pl-body" id="plBody"></div>
+  </div>
+</section>
+
+<section class="slide" id="s10" data-name="Especialidades">
+  <div class="copy">
+    <div class="eyebrow">Cuidado completo</div>
+    <h2>+20 especialidades <em>disponíveis</em></h2>
+    <p class="lead" style="font-size:17px">Consultas com especialistas de forma simples e acessível, 100% online, para qualquer membro da família: titular ou dependentes.</p>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="steth"></span><span><b>Consultas avulsas com especialista</b><br>a partir de R$ 39,90.</span></div>
+  </div>
+  <div class="bench"><div class="esp2">
+    <div class="esp"><div class="esp-h"><b>+20</b><span style="font-size:17px;color:var(--ink2)">especialidades disponíveis</span></div><div class="esp-list" id="espList"></div></div>
+    <div class="mini4" id="espMini"></div>
+  </div></div>
+</section>
+
+<section class="slide" id="s11" data-name="Plano de negócios">
+  <div class="copy">
+    <div class="eyebrow">Agora vamos falar de dinheiro</div>
+    <h2>Nosso plano de negócios: <em>múltiplas fontes de receita</em></h2>
+    <p class="lead" style="font-size:17px">Um modelo estruturado para crescimento e geração de renda recorrente. Clique em cada fonte.</p>
+    <div class="detail" id="pnDetail"></div>
+  </div>
+  <div class="bench"><div class="pn" id="pn"></div></div>
+</section>
+
+<section class="slide" id="s12" data-name="Como você quer começar">
+  <div class="copy">
+    <div class="eyebrow">Como você quer começar?</div>
+    <h2>Escolha o seu nível <em>dentro da WOW+</em></h2>
+    <p class="lead" style="font-size:17px">Dois níveis de entrada, com investimento anual. Clique em cada um para comparar.</p>
+    <div class="detail" id="lvDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="target"></span><span><b>Você pode começar pequeno…</b><br>ou já começar pensando grande.</span></div>
+  </div>
+  <div class="bench"><div class="lv" id="lv"></div></div>
+</section>
+
+<section class="slide" id="s13" data-name="Simulador de ganhos">
+  <div class="copy" style="gap:12px;padding-top:44px">
+    <div class="eyebrow">Simulação de ganhos</div>
+    <h2 style="font-size:40px">Você vende uma vez <em>e continua ganhando</em></h2>
+    <span class="tag-ex" style="align-self:flex-start">Exemplo · não é promessa de ganho</span>
+    <div class="ask"><span class="bsec">Nível</span><div class="chips" id="svLv" role="group" aria-label="Nível"></div></div>
+    <div class="ctrl">
+      <div class="ctrl-row"><label for="svV">Vendas por dia <output id="svVO"></output></label><input type="range" id="svV" min="1" max="10" step="1" value="3"></div>
+      <div class="ctrl-row"><label for="svD">Dias de venda no mês <output id="svDO"></output></label><input type="range" id="svD" min="5" max="30" step="1" value="22"></div>
+      <div class="ctrl-row"><label for="svT">Ticket médio por cliente <output id="svTO"></output></label><input type="range" id="svT" min="30" max="150" step="5" value="100"></div>
+    </div>
+    <p class="note" style="font-size:12.5px">Ganho do mês = % da venda × vendas do mês + % de recorrência × mensalidade dos clientes ativos. Sem cancelamentos e antes de impostos.</p>
+  </div>
+  <div class="bench" style="display:flex;flex-direction:column;justify-content:center;padding:36px 64px 28px 56px;gap:18px">
+    <div class="eyebrow">Ganho por mês, em 12 meses</div>
+    <svg class="svgchart" id="svChart" viewBox="0 0 900 380" style="width:100%;height:auto"></svg>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Vendas do mês</span><span><i style="background:#FFB258"></i>Recorrência da carteira</span></div>
+    <div class="readout" style="grid-template-columns:repeat(4,1fr)">
+      <div><span>Mês 1</span><b id="sv1">—</b></div>
+      <div><span>Mês 12</span><b id="sv12">—</b></div>
+      <div><span>Clientes no mês 12</span><b id="svC">—</b></div>
+      <div><span>Total em 12 meses</span><b id="svY">—</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="s14" data-name="Bônus para clientes">
+  <div class="copy">
+    <div class="eyebrow">Bônus exclusivo para clientes</div>
+    <h2>Indique. Economize. <em>A mensalidade pode chegar a zero.</em></h2>
+    <p class="lead" style="font-size:17px">A cada indicação ativa, o cliente reduz a própria fatura em 10%. Sem venda, sem obrigação: apenas indicação.</p>
+    <span class="tag-ex" style="align-self:flex-start">Exemplo com o plano WOW Care</span>
+    <div class="ctrl"><div class="ctrl-row"><label for="inN">Indicações ativas <output id="inNO"></output></label><input type="range" id="inN" min="0" max="10" step="1" value="3"></div></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="gift"></span><span><b>O plano pode se pagar sozinho.</b><br>Menos custo no bolso, mais saúde e mais liberdade.</span></div>
+  </div>
+  <div class="bench"><div class="ind">
+    <div class="ind-steps" id="inSteps"></div>
+    <div class="ind-res"><span>Mensalidade do cliente</span><b id="inV">—</b><small id="inS"></small><div class="bar"><i id="inBar"></i></div></div>
+  </div></div>
+</section>
+
+<section class="slide" id="s15" data-name="Bônus de expansão">
+  <div class="copy">
+    <div class="eyebrow">Bônus de expansão</div>
+    <h2>Expansão do negócio <em>com geração imediata de receita</em></h2>
+    <p class="lead" style="font-size:17px">A ativação de novos parceiros gera ganho direto por licença. Clique em cada licença.</p>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="calendar"></span><span><b>Bônus liberado em 7 dias.</b><br>Expansão estruturada, com receita direta.</span></div>
+  </div>
+  <div class="bench"><div class="exp">
+    <div class="exp-flow" id="exFlow"></div>
+    <div class="exp-main"><div class="big30"><b>30%</b><span>de comissão sobre o valor da licença</span></div><div class="exp-l" id="exL"></div></div>
+  </div></div>
+</section>
+
+<section class="slide" id="s16" data-name="Bônus de equipe">
+  <div class="copy">
+    <div class="eyebrow">Bônus de equipe</div>
+    <h2>Quando a sua equipe cresce, <em>a sua renda acompanha</em></h2>
+    <p class="lead" style="font-size:17px">Você ganha 3% por nível, em até 7 níveis de profundidade. Troque entre licenças e recorrência.</p>
+    <div class="seg noprint" id="eqSeg" role="group" aria-label="Tipo de bônus"></div>
+    <div class="detail" id="eqDetail"></div>
+  </div>
+  <div class="bench"><div class="eq" id="eq"></div></div>
+</section>
+
+<section class="slide full" id="s17" data-name="Bônus de crescimento">
+  <div class="car">
+    <header><div class="eyebrow">Bônus de crescimento</div><h2>Existe um plano claro <em>de evolução dentro do negócio</em></h2><p class="lead" style="font-size:17px">Quanto mais a sua estrutura cresce, maior a sua participação. Clique em cada nível.</p></header>
+    <div class="car-track" id="carT"></div>
+    <div class="car-foot"><div class="detail" id="carD"></div><div class="car-note"><b>Você passa a ganhar sobre toda a estrutura</b><span>e não apenas sobre as suas vendas.</span></div></div>
+  </div>
+</section>
+
+<section class="slide" id="s18" data-name="Liderança e pool">
+  <div class="copy">
+    <div class="eyebrow">Bônus de liderança e pool</div>
+    <h2>Você cresce <em>quando a sua equipe cresce</em></h2>
+    <p class="lead" style="font-size:17px">Ganhe ao formar líderes e participe do resultado de toda a operação. Clique em cada bônus.</p>
+    <div class="detail" id="ldDetail"></div>
+    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="handshake"></span><span><b>Juntos somos mais fortes.</b><br>Cada R$ 3 equivale a 1 ponto.</span></div>
+  </div>
+  <div class="bench"><div class="ld" id="ld"></div></div>
+</section>
+
+<section class="slide" id="s19" data-name="Diferenciais">
+  <div class="copy">
+    <div class="eyebrow">Os 7 diferenciais da WOW+</div>
+    <h2>Não é só venda. <em>É construção de futuro.</em></h2>
+    <p class="lead" style="font-size:17px">O que faz deste negócio algo que cresce com você. Clique em cada diferencial.</p>
+    <div class="detail" id="dfDetail"></div>
+    <div class="cphoto" style="margin-top:auto;height:230px"><img src="img/diferenciais.jpg" alt="Mulher sorrindo com o celular na mão" style="object-position:50% 18%"></div>
+  </div>
+  <div class="bench"><div class="df" id="df"></div></div>
+</section>
+
+<section class="slide full" id="s20" data-name="Comparação">
+  <div class="cmp">
+    <header><div class="eyebrow">Escolhas de hoje, liberdade para sempre</div><h2>Por que a WOW+ é diferente <em>de qualquer outro negócio?</em></h2></header>
+    <div class="cmp-t" id="cmpT"></div>
+    <div class="cmp-ft"><span>Você pode investir alto e esperar anos…</span><b>ou começar hoje e ganhar todos os meses.</b></div>
+  </div>
+</section>
+
+<section class="slide full" id="s21" data-name="Próximo passo">
+  <div class="endgrid">
+    <div class="copy">
+      <div class="eyebrow">O próximo passo é seu</div>
+      <h2>Você já entendeu o potencial. <em>Agora é sobre decisão.</em></h2>
+      <p class="lead" style="font-size:16px">Fale com o responsável pela apresentação e inicie a sua jornada com a WOW+. Clique nas perguntas para ver as respostas.</p>
+      <div class="endph"><img src="img/proximo.jpg" alt="Mulher sorrindo com o celular na mão" style="object-position:50% 15%"><div class="ends"><b>Você não entrou em um negócio.</b><span>Você entrou em um movimento.</span></div></div>
+      <dl class="contact" style="margin-top:auto">
+        <dt>Site</dt><dd>wowmais.com.br</dd>
+        <dt>Instagram</dt><dd>@wowmais.oficial</dd>
+        <dt>YouTube</dt><dd>WOW+ | Canal Oficial</dd>
+      </dl>
+      <p class="credit">Ganhos e simulações são exemplos e não são promessa de resultado. Telas ilustrativas.</p>
+    </div>
+    <div class="bench"><div class="quiz obj-cards" id="faq"></div></div>
+  </div>
+</section>
+
+<nav id="nav" aria-label="Navegação dos slides">
+  <img class="mark logo-d" src="img/logo-dark.png" alt="WOW+">
+  <img class="mark logo-l" src="img/logo-light.png" alt="WOW+">
+  <span class="title">WOW+ Parceria completa</span>
+  <button class="iconbtn" id="prev" aria-label="Slide anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div id="ticks"></div>
+  <button class="iconbtn" id="next" aria-label="Próximo slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  <span id="counter">01 / 21</span>
+  <button class="iconbtn" id="themeBtn" aria-label="Alternar tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
+  <button class="iconbtn" id="fsBtn" aria-label="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+</nav>
+</div>
+</div>
+
+<script src="deck.js?v=1"></script>
+
+<!-- ícones extras e helpers -->
+<script>
+Object.assign(ICON,{
+ dollar:'<circle cx="12" cy="12" r="10"/><path d="M15 8.5c-.6-1-1.8-1.5-3-1.5-1.7 0-3 1-3 2.3 0 3.2 6 1.8 6 4.9 0 1.3-1.3 2.3-3 2.3-1.3 0-2.5-.6-3-1.6M12 5v2M12 17v2"/>',
+ alert:'<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/>',
+ star:'<path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.3l1.1-6.2L3 9.7l6.2-.9z"/>',
+ percent:'<path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+ msg:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',
+ gift:'<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8c-2-3-6-3-6 0h6zM12 8c2-3 6-3 6 0h-6z"/>',
+ home:'<path d="M3 11l9-8 9 8v10H3z"/><path d="M9 21v-6h6v6"/>',
+ bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
+ cart:'<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L22 8H6.2"/>',
+ crown:'<path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/>',
+ pie:'<path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/>',
+ link:'<path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',
+ check:'<path d="M5 12l5 5L20 7"/>',
+ x:'<path d="M6 6l12 12M18 6L6 18"/>',
+ store:'<path d="M4 10v10h16V10"/><path d="M2 10l2-6h16l2 6c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3s-3-1.3-3-3c0 1.7-1.3 3-3 3s-3-1.3-3-3z"/><path d="M10 20v-5h4v5"/>',
+ grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+ tv:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 3l4 4 4-4M10 11v6l5-3z"/>',
+ pill:'<rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="M8.5 8.5l7 7"/>',
+ leaf:'<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15"/><path d="M5 19l7-7"/>',
+ layers:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
+ wallet:'<rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/>',
+ box:'<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>',
+ insta:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',
+ play:'<rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/>'
+});
+window.ic=(k)=>icon(k).replace('<svg','<svg width="24" height="24"');
+const brl=n=>'R$ '+n.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+window.brl=brl;
+window.fmtN=n=>Math.round(n).toLocaleString('pt-BR');
+window.brl0=n=>'R$ '+fmtN(n);
+document.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=icon(e.dataset.ic));
+</script>
+
+<script>
+window.NIVEIS=[
+ {k:'con',n:'Consultor WOW+',tag:'Entrada no negócio',inv:120,venda:50,rec:15,items:['Baixo investimento para começar','Ganhos com vendas e recorrência','Construa a sua carteira','Materiais e treinamentos','Suporte da plataforma']},
+ {k:'esp',n:'Especialista WOW+',tag:'Escala de ganhos',inv:497,venda:100,rec:25,hot:true,items:['Tudo do plano Consultor','Ganhos ampliados com vendas e recorrência','Participação na expansão da equipe','Bônus de liderança e pool de pontos','Crescimento sem teto definido']}
+];
+</script>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const PH=[
+ {n:'Trabalha',ic:'clock',t:'Horas de prospecção, contato e negociação.',l:['Agenda cheia','Esforço que recomeça todo mês']},
+ {n:'Vende',ic:'cart',t:'A venda acontece, e o ganho é de uma vez só.',l:['Comissão única','Nada que se repita']},
+ {n:'Recebe uma vez',ic:'dollar',t:'O dinheiro entra, mas não volta no mês seguinte.',l:['Sem renda recorrente','Sem carteira que cresce']},
+ {n:'Começa do zero',ic:'alert',t:'No mês seguinte, a meta volta a zero.',l:['Sem venda = sem dinheiro','Isso não é renda: é um ciclo']}
+];
+const svg=$('cic'),list=$('cicList'),det=$('cicDetail');
+if(DECK.printing){svg.remove();det.remove();list.innerHTML=PH.map(p=>`<div class="ga"><span class="ico">${icon(p.ic)}</span><span><b>${p.n}</b><span class="t">${p.t} ${p.l.join('. ')}.</span></span></div>`).join('');return}
+list.remove();
+const cx=530,cy=418,R=240;let sel=0,auto=null;
+const pt=(a,r)=>[cx+Math.cos(a)*r,cy+Math.sin(a)*r];
+function draw(){let s=`<circle class="orbit" cx="${cx}" cy="${cy}" r="${R-40}"/>`;
+  PH.forEach((ph,i)=>{const a0=-Math.PI/2+i*Math.PI/2+.05,a1=a0+Math.PI/2-.26,am=(a0+a1)/2,[x0,y0]=pt(a0,R),[x1,y1]=pt(a1,R),[lx,ly]=pt(am,R+86),c=Math.cos(a1),sn=Math.sin(a1),anc=Math.cos(am)<0?'end':'start';
+    s+=`<g class="ph${i===sel?' sel':''}" data-i="${i}" tabindex="0" role="button" aria-label="${ph.n}"><path class="arc" d="M${x0} ${y0}A${R} ${R} 0 0 1 ${x1} ${y1}"/><path class="tip" d="M${x1-c*30} ${y1-sn*30}L${x1+c*30} ${y1+sn*30}L${x1-sn*34} ${y1+c*34}Z"/><text class="n" x="${lx}" y="${ly-14}" text-anchor="${anc}">0${i+1}</text><text x="${lx}" y="${ly+12}" text-anchor="${anc}">${ph.n}</text></g>`});
+  const ph=PH[sel];
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R-64}" fill="var(--surface)" stroke="var(--line)"/><g transform="translate(${cx-30} ${cy-96}) scale(2.5)" style="color:var(--accent-ink)">${ic(ph.ic)}</g><text class="c" x="${cx}" y="${cy+14}" text-anchor="middle">${ph.n}</text><text class="k" x="${cx}" y="${cy+46}" text-anchor="middle">TODO MÊS</text>`;
+  svg.innerHTML=s;
+  svg.querySelectorAll('.ph').forEach(g=>{const f=()=>{sel=+g.dataset.i;draw()};g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
+  det.innerHTML=`<b>${ph.n}</b><p>${ph.t}</p><ul>${ph.l.map(x=>`<li>${x}</li>`).join('')}</ul>`}
+$('cicNext').onclick=()=>{sel=(sel+1)%PH.length;draw()};
+const ab=$('cicAuto'),me=svg.closest('.slide');ab.onclick=()=>{if(auto){clearInterval(auto);auto=null}else auto=setInterval(()=>{if(me.classList.contains('active')){sel=(sel+1)%PH.length;draw()}},2600);ab.setAttribute('aria-pressed',!!auto)};
+draw();
+})();
+</script>
+<script>
+(function(){
+const O=[
+ {ic:'building',n:'Depender do sistema público',t:'Urgência virou espera.',l:['Meses de espera por atendimento','Hospitais sempre lotados','Falta de especialistas']},
+ {ic:'dollar',n:'Pagar caro',t:'Você paga… e ainda espera.',l:['Mensalidades cada vez mais altas','Demora para consultas e exames','Cobranças extras o tempo todo']}
+];
+const el=document.getElementById('sdOpts'),det=document.getElementById('sdDetail');let sel=DECK.printing?-1:0;
+function draw(){el.innerHTML=O.map((o,i)=>`<button class="o2${i===sel?' sel':''}" data-i="${i}"><span class="tag">Opção ${i+1}</span><span class="hd"><span class="ico">${icon(o.ic)}</span><b>${o.n}</b></span><ul>${o.l.map(x=>`<li>${x}</li>`).join('')}</ul><span class="ft">${o.t}</span></button>`).join('');
+  el.querySelectorAll('.o2').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
+  det.innerHTML=sel<0?`<b>Nenhuma das duas resolve.</b><p>Quem depende do sistema público espera; quem paga caro, paga e ainda espera.</p>`:`<b>${O[sel].n}</b><p>${O[sel].t} ${O[sel].l.join('. ')}.</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const O=[
+ {ic:'users',k:'Demanda gigante',big:'7 em cada 10',sub:'brasileiros não têm plano de saúde',src:'IBGE · PNS 2019',t:'A maior parte da população depende do sistema público, que está sobrecarregado. A necessidade é real e imediata.'},
+ {ic:'phone',k:'Mudança digital',big:'Lei 14.510',sub:'autorizou a telessaúde no Brasil em 2022',src:'Lei nº 14.510/2022',t:'O atendimento pelo celular deixou de ser exceção. Tecnologia, comportamento e necessidade andam juntos.'},
+ {ic:'dollar',k:'Gap de preço',big:'R$ 29,90',sub:'por mês: assinatura WOW+ para pessoas',src:'Consulta avulsa de clínico na WOW+: R$ 69',t:'Uma assinatura que custa menos que uma única consulta avulsa, com médico 24h no celular.'}
+];
+const el=document.getElementById('ocean'),det=document.getElementById('ocDetail');let sel=0;
+function draw(){el.innerHTML=O.map((o,i)=>`<button class="oc3${i===sel?' sel':''}" data-i="${i}"><span class="hd"><span class="ico">${icon(o.ic)}</span><b>${o.k}</b></span><span class="big">${o.big}</span><span class="sub">${o.sub}</span><i>${o.src}</i></button>`).join('');
+  el.querySelectorAll('.oc3').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});det.innerHTML=`<b>${O[sel].k}</b><p>${O[sel].t}</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const card=(i,t,s,hl)=>`<div class="ap-card${hl?' hl':''}"><i>${ic(i)}</i><span><b>${t}</b><small>${s}</small></span></div>`;
+const top=`<div class="ap-top"><img src="img/logo-dark.png" alt="WOW+"><span style="color:#A8A49D">${ic('bell')}</span></div>`;
+const nav=`<div class="ap-nav">${['Início','Consultas','Mensagens','Perfil'].map((n,i)=>`<span class="${i===0?'on':''}">${n}</span>`).join('')}</div>`;
+document.getElementById('app1').innerHTML=top+`<div class="ap-hi">Olá! Como podemos <em>cuidar da sua saúde</em> hoje?</div><div class="ap-body">${card('clock','Médico 24h','Atendimento online imediato',true)}${card('brain','Psicologia online','Cuidado com a saúde mental')}${card('apple','Nutrição online','Alimentação saudável')}${card('steth','+20 especialidades','Consultas com especialistas')}${card('users','Família','Dependentes no mesmo plano')}</div>`+nav;
+document.getElementById('appSide').innerHTML=[['clock','Atendimento 24h','Médico online a qualquer hora.'],['steth','Médicos e especialistas','Online, sem deslocamento.'],['phone','Tudo pelo app','Na palma da mão.'],['shield','Saúde acessível','E de qualidade.']].map(x=>`<div class="li"><span class="ico">${icon(x[0])}</span><span><b>${x[1]}</b><span class="t">${x[2]}</span></span></div>`).join('');
+})();
+</script>
+<script>
+(function(){
+const C=[['steth','Corpo clínico próprio','Médicos que fazem parte do time WOW+.'],['clock','Médico online 24/7','Atendimento a qualquer hora, todos os dias.'],['award','+20 especialidades','Do clínico geral aos especialistas.'],['shield','Segurança e LGPD','Dados de saúde protegidos e sigilo.'],['headset','Equipe própria','Atendimento e tecnologia feitos em casa.'],['msg','Atendimento no WhatsApp','Suporte ao cliente de segunda a sábado.']];
+const caps=document.getElementById('caps'),svg=document.getElementById('hub'),det=document.getElementById('hubDetail');
+if(DECK.printing){svg.remove();det.remove();caps.innerHTML=C.map(c=>`<div class="cap"><span class="ico">${icon(c[0])}</span><span><b>${c[1]}</b><span class="t">${c[2]}</span></span></div>`).join('');return}
+caps.remove();
+const cx=475,cy=262,P=[[475,72],[761,167],[761,357],[475,452],[189,357],[189,167]];let sel=0;
+function draw(){let s='';
+  C.forEach((c,i)=>{const[x,y]=P[i];
+    s+=`<g class="nd${i===sel?' sel':''}" data-i="${i}" tabindex="0" role="button" aria-label="${c[1]}"><path class="sp" d="M${cx} ${cy}L${x} ${y}"/><path class="fl" d="M${cx} ${cy}L${x} ${y}"/><circle cx="${x}" cy="${y}" r="34"/><g transform="translate(${x-14} ${y-14}) scale(1.17)" style="color:var(--accent-ink)">${ic(c[0])}</g><text x="${x}" y="${i===0?y-48:y+58}" text-anchor="middle">${c[1]}</text></g>`});
+  s+=`<circle cx="${cx}" cy="${cy}" r="78" fill="var(--bg)" stroke="var(--accent)" stroke-width="2"/><circle class="pulse" cx="${cx}" cy="${cy}" r="78"/><circle cx="${cx}" cy="${cy}" r="62" fill="var(--surface)"/><image href="img/symbol.png" x="${cx-36}" y="${cy-32}" width="72" height="64" preserveAspectRatio="xMidYMid meet"/>`;
+  svg.innerHTML=s;
+  svg.querySelectorAll('.nd').forEach(g=>{const f=()=>{sel=+g.dataset.i;draw()};g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
+  det.innerHTML=`<b>${C[sel][1]}</b><p>${C[sel][2]}</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const H=[['Saúde','Médico 24h, especialidades, psicologia e nutrição.'],['Exames','Acesso facilitado a exames.'],['Assistencial','Assistências para o dia a dia.'],['Pharma','Descontos em medicamentos.'],['Empresas','Pacotes para empresas, com ou sem NR-⁠1.']];
+const E=[['Pet','Cuidado para o seu animal de estimação.'],['Casa','Assistências para a sua casa.'],['Carro','Assistências para o seu carro.'],['Serviços','Novos serviços no mesmo acesso.']];
+const svg=document.getElementById('eco'),det=document.getElementById('ecoDetail');let sel=0;
+const cx=490,cy=320,all=[...H.map(h=>({n:h[0],t:h[1],now:1})),...E.map(e=>({n:e[0],t:e[1],now:0}))];
+function draw(){let s=`<text class="hd" x="150" y="64" text-anchor="middle">HOJE</text><text class="hd ex" x="830" y="64" text-anchor="middle">EXPANSÃO</text>`;
+  all.forEach((a,i)=>{const L=a.now,k=L?i:i-H.length,n=L?H.length:E.length,y=cy+(k-(n-1)/2)*(L?100:110),x=L?150:830,ex=L?x+110:x-110;
+    s+=`<g class="en${a.now?'':' fut'}${i===sel?' sel':''}" data-i="${i}" tabindex="0" role="button" aria-label="WOW+ ${a.n}"><path class="ln" d="M${ex} ${y}C${(ex+cx)/2} ${y} ${(ex+cx)/2} ${cy} ${L?cx-96:cx+96} ${cy}"/><rect x="${x-110}" y="${y-28}" width="220" height="56" rx="28"/><text x="${x}" y="${y+7}" text-anchor="middle"><tspan class="w">WOW+</tspan> ${a.n}</text></g>`});
+  s+=`<circle cx="${cx}" cy="${cy}" r="96" fill="var(--bg)" stroke="var(--accent)" stroke-width="2"/><circle class="pulse" cx="${cx}" cy="${cy}" r="96"/><circle cx="${cx}" cy="${cy}" r="80" fill="var(--surface)"/><image href="img/symbol.png" x="${cx-44}" y="${cy-40}" width="88" height="80" preserveAspectRatio="xMidYMid meet"/>`;
+  svg.innerHTML=s;
+  svg.querySelectorAll('.en').forEach(g=>{const f=()=>{sel=+g.dataset.i;draw()};g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
+  const a=all[sel];det.innerHTML=`<b>WOW+ ${a.n} · ${a.now?'Hoje':'Expansão'}</b><p>${a.t}</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const seg=document.getElementById('plSeg'),el=document.getElementById('plBody');let v=0;
+const tick=t=>`<li><span class="ico">${icon('check')}</span>${t}</li>`;
+const pes=`<div class="pl-cols p2">
+ <div class="plc"><span class="pk-n">WOW Smart</span><div class="pv"><b>R$ 29,90</b><small>/mês</small></div><ul>${['Médico 24h','Psicologia','Nutrição','Uso individual'].map(tick).join('')}</ul><span class="pf">Consultas avulsas com até 50% de desconto</span></div>
+ <div class="plc hot"><span class="flag">Mais escolhido</span><span class="pk-n">WOW Care</span><div class="pv"><b>R$ 49,90</b><small>/mês</small></div><ul>${['Tudo do WOW Smart','Especialidades incluídas','Dependentes por R$ 19,90 cada'].map(tick).join('')}</ul><span class="pf">Consultas avulsas com até 50% de desconto</span></div>
+ <div class="pl-side"><span class="bsec">Para pessoas e famílias</span>${[['clock','Acesso imediato à saúde'],['users','Sem fila'],['doc','Sem burocracia'],['dollar','Mais barato que uma única consulta']].map(x=>`<div class="li"><span class="ico">${icon(x[0])}</span><span><b>${x[1]}</b></span></div>`).join('')}</div>
+</div>`;
+const P=[['Pacote 1','Clínico geral e pediatria',14.90,19.90,['Clínico geral 24/7','Pediatria 24/7']],['Pacote 2','Pacote 1 + opção de cuidado',16.90,21.90,['Clínico geral e pediatria 24/7','1 opção de cuidado por mês']],['Pacote 3','Pacote 2 + consulta eletiva',19.90,24.90,['Tudo do Pacote 2','1 consulta eletiva por mês']]];
+const emp=`<div class="pl-cols p3">${P.map(p=>`<div class="plc"><span class="pk-n">${p[0]}</span><b class="pt">${p[1]}</b><ul>${p[4].map(tick).join('')}</ul><div class="pv2"><span><small>Sem NR-⁠1</small><b>${brl(p[2])}</b></span><span class="on"><small>Com NR-⁠1</small><b>${brl(p[3])}</b></span></div><span class="pf">por vida, por mês</span></div>`).join('')}</div>
+<p class="pl-note">Opção de cuidado: nutrição, psicologia ou veterinário. A partir de 10 vidas; condições conforme o número de vidas.</p>`;
+const V=[['Pessoas e famílias',pes],['Empresas',emp]];
+V.forEach((x,i)=>{const b=document.createElement('button');b.textContent=x[0];b.onclick=()=>{v=i;draw()};seg.appendChild(b)});
+function draw(){el.innerHTML=DECK.printing?pes+emp:V[v][1];[...seg.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===v))}
+if(DECK.printing)el.classList.add('both');
+draw();
+})();
+</script>
+<script>
+document.getElementById('espList').innerHTML=['Clínico geral','Pediatria','Ginecologia','Cardiologia','Cirurgia geral','Endocrinologia','Dermatologia','Geriatria','Nutrologia','Ortopedia','Oftalmologia','Urologia','Neurologia','Neurocirurgia','Psicologia','Psiquiatria','Nutrição','Gastroenterologia','Oncologia','Anestesiologia','e muito mais'].map(x=>`<span>${x}</span>`).join('');
+document.getElementById('espMini').innerHTML=[['Atendimento rápido','sem fila'],['Seguro e confiável','dados protegidos'],['100% online','de onde estiver'],['Para a família','titular e dependentes']].map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
+</script>
+<script>
+(function(){
+const F=[['cart','Vendas diretas','Receita imediata por cliente.','Você ganha uma parte de cada venda, na hora.'],['cycle','Recorrência','Renda mensal da sua carteira.','Todo mês, uma parte da mensalidade dos seus clientes ativos.'],['users','Bônus de expansão','Ganho na ativação de novos parceiros.','30% sobre a licença de cada novo parceiro que você ativa.'],['handshake','Bônus de equipe','Participação sobre a produção da rede.','3% por nível, em até 7 níveis, sobre licenças e recorrência da equipe.'],['crown','Bônus de liderança','Reconhecimento por construção de equipe.','1% sobre cada linha de liderança, em até 5 níveis.'],['pie','Bônus pool','Participação nos resultados do sistema.','3% do resultado distribuídos entre os parceiros qualificados.'],['globe','Bônus global','Distribuição baseada no desempenho da rede.','Participação ligada ao desempenho de toda a rede.']];
+const el=document.getElementById('pn'),det=document.getElementById('pnDetail');let sel=0;
+function draw(){el.innerHTML=F.map((f,i)=>`<button class="pnc${i===sel?' sel':''}${i<2?' main':''}" data-i="${i}"><span class="ico">${icon(f[0])}</span><span><b>${f[1]}</b><span class="t">${f[2]}</span></span></button>`).join('');
+  el.querySelectorAll('.pnc').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});det.innerHTML=`<b>${F[sel][1]}</b><p>${F[sel][3]}</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const N=window.NIVEIS,el=document.getElementById('lv'),det=document.getElementById('lvDetail');let sel=1;
+function draw(){el.innerHTML=N.map((n,i)=>`<button class="lvc${n.hot?' hot':''}${i===sel?' sel':''}" data-i="${i}">${n.hot?'<span class="flag">Mais escolhido</span>':''}<span class="pk-n">${n.tag}</span><b class="nm">${n.n}</b><div class="pv"><b>${brl0(n.inv)}</b><small>/ano</small></div><div class="gx"><span><b>${n.venda}%</b><small>em cada venda</small></span><i>+</i><span><b>${n.rec}%</b><small>todo mês sobre a mensalidade</small></span></div><ul>${n.items.map(x=>`<li><span class="ico">${icon('check')}</span>${x}</li>`).join('')}</ul></button>`).join('');
+  el.querySelectorAll('.lvc').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
+  const n=N[sel];det.innerHTML=`<b>${n.n}: ${brl0(n.inv)} por ano</b><p>Ganho imediato de ${n.venda}% em cada venda e ${n.rec}% todo mês sobre a mensalidade dos clientes ativos.</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const $=id=>document.getElementById(id),N=window.NIVEIS,svg=$('svChart'),lvC=$('svLv');let lv=0;
+N.forEach((n,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=n.n.replace(' WOW+','');b.onclick=()=>{lv=i;calc()};lvC.appendChild(b)});
+function calc(){const v=+$('svV').value,d=+$('svD').value,t=+$('svT').value,n=N[lv],m=v*d;
+  $('svVO').textContent=v;$('svDO').textContent=d;$('svTO').textContent=brl0(t);
+  [...lvC.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===lv));
+  const sale=m*t*n.venda/100,rec=k=>m*k*t*n.rec/100,mo=[...Array(12)].map((_,k)=>[sale,rec(k)]),tot=mo.reduce((a,x)=>a+x[0]+x[1],0);
+  $('sv1').textContent=brl0(sale);$('sv12').textContent=brl0(sale+rec(11));$('svC').textContent=fmtN(m*12);$('svY').textContent=brl0(tot);
+  const W=900,H=380,L=86,R=16,T=20,B=44,mx=Math.max(...mo.map(x=>x[0]+x[1]))||1,bw=(W-L-R)/12;
+  const Y=val=>H-B-val/mx*(H-T-B);
+  let s='';for(let i=0;i<=4;i++){const val=mx*i/4;s+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${Y(val)}" y2="${Y(val)}"/><text x="${L-10}" y="${Y(val)+4}" text-anchor="end">${val>=1000?(val/1000).toFixed(val>=10000?0:1).replace('.',',')+' mil':fmtN(val)}</text>`}
+  mo.forEach((x,i)=>{const x0=L+i*bw+bw*.18,w=bw*.64,ys=Y(x[0]),yr=Y(x[0]+x[1]);
+    s+=`<rect x="${x0}" y="${ys}" width="${w}" height="${H-B-ys}" rx="4" fill="var(--accent)"/>`+(x[1]>0?`<rect x="${x0}" y="${yr}" width="${w}" height="${ys-yr}" rx="4" fill="#FFB258"/>`:'')+`<text x="${x0+w/2}" y="${H-B+20}" text-anchor="middle">${i+1}</text>`});
+  s+=`<text class="lab" x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">mês</text>`;
+  svg.innerHTML=s}
+['svV','svD','svT'].forEach(id=>$(id).addEventListener('input',calc));
+DECK.onChange(k=>{if(k==='theme')calc()});
+calc();
+})();
+</script>
+<script>
+(function(){
+const $=id=>document.getElementById(id),BASE=49.90;
+$('inSteps').innerHTML=[['users','Você é cliente'],['link','Indica pessoas'],['percent','Ganha 10% por indicação'],['trend','A mensalidade diminui'],['star','Pode chegar a zero']].map((s,i)=>`<div class="is"><span class="ico">${icon(s[0])}</span><b>${s[1]}</b><i>0${i+1}</i></div>`).join('');
+function upd(){const n=+$('inN').value,off=Math.min(100,n*10),v=BASE*(100-off)/100;
+  $('inNO').textContent=n;$('inV').textContent=brl(v);$('inS').textContent=off>=100?'Plano pago pelas indicações':`${off}% de desconto sobre ${brl(BASE)}`;$('inBar').style.width=(100-off)+'%'}
+$('inN').addEventListener('input',upd);upd();
+})();
+</script>
+<script>
+(function(){
+const N=window.NIVEIS;let sel=1;
+document.getElementById('exFlow').innerHTML=[['target','Indicação estratégica'],['users','Entrada de parceiro'],['doc','Aquisição da licença'],['dollar','Geração de receita']].map((s,i)=>`<div class="ef"><span class="ico">${icon(s[0])}</span><b>${s[1]}</b></div>`).join('<span class="ea">→</span>');
+const el=document.getElementById('exL');
+function draw(){el.innerHTML=N.map((n,i)=>`<button class="exr${i===sel?' sel':''}" data-i="${i}"><b>${n.n.replace(' WOW+','')}</b><span>Licença ${brl0(n.inv)}</span><i>→</i><strong>${brl(n.inv*.3)}</strong><small>seu ganho</small></button>`).join('');
+  el.querySelectorAll('.exr').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()})}
+draw();
+})();
+</script>
+<script>
+(function(){
+const T=[{n:'Licenças',t:'Você ganha 3% sobre cada licença que entra no seu time, até o 7º nível. Bônus liberado em 7 dias.',k:'sobre licenças da equipe'},{n:'Recorrência',t:'A mensalidade dos clientes da sua equipe vira renda para você: 3% sobre os pontos gerados, até o 7º nível. Cada R$ 3 de mensalidade vale 1 ponto.',k:'sobre os pontos da equipe'}];
+const el=document.getElementById('eq'),seg=document.getElementById('eqSeg'),det=document.getElementById('eqDetail');let v=0;
+T.forEach((x,i)=>{const b=document.createElement('button');b.textContent=x.n;b.onclick=()=>{v=i;draw()};seg.appendChild(b)});
+function draw(){const t=T[v];
+  el.innerHTML=`<div class="eq-you"><span class="ico">${icon('users')}</span><b>Você</b></div>${[...Array(7)].map((_,i)=>`<div class="eq-r" style="--w:${30+i*10}%"><span class="lvn">Nível ${i+1}</span><span class="bar"><i>${[...Array(Math.min(i+2,8))].map(()=>'<em></em>').join('')}</i></span><b>3%</b></div>`).join('')}<div class="eq-ft"><span>Até 7 níveis de profundidade</span><span>${t.k}</span></div>`;
+  [...seg.children].forEach((b,k)=>b.setAttribute('aria-pressed',k===v));det.innerHTML=DECK.printing?T.map(x=>`<b>${x.n}</b><p>${x.t}</p>`).join(''):`<b>Bônus de equipe · ${t.n}</b><p>${t.t}</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const C=[['Executivo 3K',10],['Executivo 5K',18],['Executivo 10K',24],['Executivo Elite',28],['Supervisor Elite',31],['Gerente Elite',34],['Diretor',39]];
+const el=document.getElementById('carT'),det=document.getElementById('carD');let sel=6;
+function draw(){el.innerHTML=C.map((c,i)=>`<button class="cs${i<=sel?' on':''}${i===sel?' sel':''}" data-i="${i}"><span class="nm">${c[0]}</span><span class="dot">${icon(i===C.length-1?'crown':'users')}</span><b>${c[1]}%</b></button>`).join('');
+  el.querySelectorAll('.cs').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});
+  det.innerHTML=`<b>${C[sel][0]}: ${C[sel][1]}%</b><p>O seu percentual aumenta conforme o volume da sua equipe cresce.</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const B=[{n:'Bônus de liderança',big:'1%',sub:'sobre cada linha de liderança',t:'Você ganha 1% sobre cada linha de liderança (supervisor), em até 5 níveis: uma renda recorrente que vem da sua liderança.',rows:['Nível 1','Nível 2','Nível 3','Nível 4','Nível 5'].map(x=>[x,'1%'])},{n:'Bônus pool',big:'3%',sub:'do resultado distribuídos aos parceiros',t:'3% do resultado da operação são distribuídos entre os parceiros: 1% sobre vendas, 1% sobre expansão e 1% sobre liderança.',rows:[['Vendas','1%'],['Expansão','1%'],['Liderança','1%']]}];
+const el=document.getElementById('ld'),det=document.getElementById('ldDetail');let sel=0;
+function draw(){el.innerHTML=B.map((b,i)=>`<button class="ldc${i===sel?' sel':''}" data-i="${i}"><span class="pk-n">${b.n}</span><span class="big">${b.big}</span><span class="sub">${b.sub}</span><div class="rows">${b.rows.map(r=>`<span><em>${r[0]}</em><b>${r[1]}</b></span>`).join('')}</div></button>`).join('');
+  el.querySelectorAll('.ldc').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});det.innerHTML=`<b>${B[sel].n}</b><p>${B[sel].t}</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const D=[['dollar','Renda recorrente','Você ganha todos os meses.'],['users','Cliente para sempre','Cada venda vira receita contínua.'],['phone','Plataforma 100% digital','Venda de qualquer lugar.'],['chart','Gestão de carteira','Uma base de clientes que cresce.'],['building','Venda para PF e PJ','Mais mercado, mais escala.'],['wallet','Pagamento rápido','Receba de forma ágil e segura.'],['rocket','Crescimento escalável','Quanto mais o sistema cresce, mais você ganha.']];
+const el=document.getElementById('df'),det=document.getElementById('dfDetail');let sel=0;
+function draw(){el.innerHTML=D.map((d,i)=>`<button class="oc${i===sel?' sel':''}${i===6?' wide':''}" data-i="${i}"><span class="ico">${icon(d[0])}</span><b>${d[1]}</b><span class="t">${d[2]}</span></button>`).join('');
+  el.querySelectorAll('.oc').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;draw()});det.innerHTML=`<b>${D[sel][1]}</b><p>${D[sel][2]}</p>`}
+draw();
+})();
+</script>
+<script>
+(function(){
+const R=[['dollar','Investimento inicial','R$ 10 mil a R$ 500 mil','R$ 120 a R$ 497 por ano'],['clock','Retorno','2 a 5 anos','Imediato, desde a 1ª venda'],['wallet','Renda','Ganha só uma vez','Ganha todo mês (recorrência)'],['percent','Comissão','5% a 10%','Até 100% na venda + 25% recorrente'],['building','Estrutura','Precisa de estrutura','100% digital'],['calendar','Horário','Horário fixo','O seu horário'],['box','Estoque','Dinheiro parado','Sem estoque'],['alert','Risco','Alto','Baixo investimento']];
+document.getElementById('cmpT').innerHTML=`<div class="cr h"><span>Critério</span><span>Outros negócios</span><span class="w"><img class="logo-d" src="img/logo-dark.png" alt="WOW+"><img class="logo-l" src="img/logo-light.png" alt="WOW+"></span></div>`+R.map(r=>`<div class="cr"><span><span class="ico">${icon(r[0])}</span>${r[1]}</span><span class="o"><span class="ico">${icon('x')}</span>${r[2]}</span><span class="w"><span class="ico">${icon('check')}</span>${r[3]}</span></div>`).join('');
+})();
+</script>
+<script>
+(function(){
+const Q=[
+ ['Quanto custa para começar?','A partir de R$ 120 por ano.','A licença Consultor custa R$ 120 por ano; a Especialista, R$ 497 por ano, com ganhos maiores.'],
+ ['Preciso de estoque ou ponto físico?','Não.','É 100% digital: você vende pelo seu link, de qualquer lugar e no seu horário.'],
+ ['Como eu ganho?','Na venda e todo mês.','Uma parte na hora da venda e uma recorrência mensal enquanto o cliente continua assinando.'],
+ ['Quando eu recebo?','Toda semana.','Os ganhos podem ser sacados semanalmente pela plataforma; o bônus de expansão é liberado em 7 dias.'],
+ ['Posso vender para empresas?','Sim.','Planos para pessoas e famílias e pacotes para empresas, com ou sem NR-\u20601.'],
+ ['Preciso montar uma equipe?','Não é obrigatório.','Você pode só vender. Se quiser escalar, os bônus de equipe, crescimento e liderança entram no jogo.']
+];
+document.getElementById('faq').innerHTML=Q.map(([t,s,r],i)=>`<button class="q${DECK.printing?' open':''}"><span class="qn">PERGUNTA ${i+1}</span><span class="qt">${t}</span><span class="qa"><strong>${s}</strong> ${r}</span><span class="qh">clique para revelar a resposta</span></button>`).join('');
+document.querySelectorAll('#faq .q').forEach(b=>b.onclick=()=>b.classList.toggle('open'));
+})();
+</script>
+</body></html>
