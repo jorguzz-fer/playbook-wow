@@ -135,18 +135,7 @@
   </div></div>
 </section>
 
-<section class="slide" id="s10" data-name="Ecossistema">
-  <div class="copy">
-    <div class="eyebrow">Um ecossistema sendo construído</div>
-    <h2>Um único acesso. <em>Múltiplas soluções.</em></h2>
-    <p class="lead" style="font-size:17px">O que já existe hoje e o que vem na expansão. Clique em cada solução.</p>
-    <div class="detail" id="ecoDetail"></div>
-    <div class="callout" style="margin-top:auto"><span class="ico" data-ic="layers"></span><span><b>Quanto mais produtos,</b><br>mais recorrência.</span></div>
-  </div>
-  <div class="bench"><svg class="eco" id="eco" viewBox="0 0 980 640" role="group" aria-label="Ecossistema WOW+"></svg></div>
-</section>
-
-<section class="slide full" id="s11" data-name="Planos">
+<section class="slide full" id="s10" data-name="Planos">
   <div class="pl11">
     <header class="pl-head">
       <div><div class="eyebrow">Soluções para diferentes perfis</div><h2>Planos para pessoas, famílias <em>e empresas</em></h2></div>
@@ -156,7 +145,7 @@
   </div>
 </section>
 
-<section class="slide" id="s12" data-name="Especialidades">
+<section class="slide" id="s11" data-name="Especialidades">
   <div class="copy">
     <div class="eyebrow">Cuidado completo</div>
     <h2>+20 especialidades <em>disponíveis</em></h2>
@@ -169,7 +158,7 @@
   </div></div>
 </section>
 
-<section class="slide" id="s13" data-name="Plano de negócios">
+<section class="slide" id="s12" data-name="Plano de negócios">
   <div class="copy">
     <div class="eyebrow">Agora vamos falar de dinheiro</div>
     <h2>Nosso plano de negócios: <em>múltiplas fontes de receita</em></h2>
@@ -179,7 +168,7 @@
   <div class="bench"><div class="pn" id="pn"></div></div>
 </section>
 
-<section class="slide" id="s14" data-name="Diferenciais">
+<section class="slide" id="s13" data-name="Diferenciais">
   <div class="copy">
     <div class="eyebrow">Os 7 diferenciais da WOW+</div>
     <h2>Não é só venda. <em>É construção de futuro.</em></h2>
@@ -190,7 +179,7 @@
   <div class="bench"><div class="df" id="df"></div></div>
 </section>
 
-<section class="slide full" id="s15" data-name="Comparação">
+<section class="slide full" id="s14" data-name="Comparação">
   <div class="cmp">
     <header><div class="eyebrow">Escolhas de hoje, liberdade para sempre</div><h2>Por que a WOW+ é diferente <em>de qualquer outro negócio?</em></h2></header>
     <div class="cmp-t" id="cmpT"></div>
@@ -198,7 +187,7 @@
   </div>
 </section>
 
-<section class="slide full" id="s16" data-name="Próximo passo">
+<section class="slide full" id="s15" data-name="Próximo passo">
   <div class="endgrid">
     <div class="copy">
       <div class="eyebrow">Faça parte da mudança</div>
@@ -223,7 +212,7 @@
   <button class="iconbtn" id="prev" aria-label="Slide anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
   <div id="ticks"></div>
   <button class="iconbtn" id="next" aria-label="Próximo slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
-  <span id="counter">01 / 16</span>
+  <span id="counter">01 / 15</span>
   <button class="iconbtn" id="themeBtn" aria-label="Alternar tema claro/escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
   <button class="iconbtn" id="fsBtn" aria-label="Tela cheia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </nav>
@@ -367,22 +356,6 @@ function draw(){let s='';
   svg.innerHTML=s;
   svg.querySelectorAll('.nd').forEach(g=>{const f=()=>{sel=+g.dataset.i;draw()};g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
   det.innerHTML=`<b>${C[sel][1]}</b><p>${C[sel][2]}</p>`}
-draw();
-})();
-</script>
-<script>
-(function(){
-const H=[['Saúde','Médico 24h, especialidades, psicologia e nutrição.'],['Exames','Acesso facilitado a exames.'],['Assistencial','Assistências para o dia a dia.'],['Pharma','Descontos em medicamentos.'],['Empresas','Pacotes para empresas, com ou sem NR-⁠1.']];
-const E=[['Pet','Cuidado para o seu animal de estimação.'],['Casa','Assistências para a sua casa.'],['Carro','Assistências para o seu carro.'],['Serviços','Novos serviços no mesmo acesso.']];
-const svg=document.getElementById('eco'),det=document.getElementById('ecoDetail');let sel=0;
-const cx=490,cy=320,all=[...H.map(h=>({n:h[0],t:h[1],now:1})),...E.map(e=>({n:e[0],t:e[1],now:0}))];
-function draw(){let s=`<text class="hd" x="150" y="64" text-anchor="middle">HOJE</text><text class="hd ex" x="830" y="64" text-anchor="middle">EXPANSÃO</text>`;
-  all.forEach((a,i)=>{const L=a.now,k=L?i:i-H.length,n=L?H.length:E.length,y=cy+(k-(n-1)/2)*(L?100:110),x=L?150:830,ex=L?x+110:x-110;
-    s+=`<g class="en${a.now?'':' fut'}${i===sel?' sel':''}" data-i="${i}" tabindex="0" role="button" aria-label="WOW+ ${a.n}"><path class="ln" d="M${ex} ${y}C${(ex+cx)/2} ${y} ${(ex+cx)/2} ${cy} ${L?cx-96:cx+96} ${cy}"/><rect x="${x-110}" y="${y-28}" width="220" height="56" rx="28"/><text x="${x}" y="${y+7}" text-anchor="middle"><tspan class="w">WOW+</tspan> ${a.n}</text></g>`});
-  s+=`<circle cx="${cx}" cy="${cy}" r="96" fill="var(--bg)" stroke="var(--accent)" stroke-width="2"/><circle class="pulse" cx="${cx}" cy="${cy}" r="96"/><circle cx="${cx}" cy="${cy}" r="80" fill="var(--surface)"/><image href="img/symbol.png" x="${cx-44}" y="${cy-40}" width="88" height="80" preserveAspectRatio="xMidYMid meet"/>`;
-  svg.innerHTML=s;
-  svg.querySelectorAll('.en').forEach(g=>{const f=()=>{sel=+g.dataset.i;draw()};g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter')f()}});
-  const a=all[sel];det.innerHTML=`<b>WOW+ ${a.n} · ${a.now?'Hoje':'Expansão'}</b><p>${a.t}</p>`}
 draw();
 })();
 </script>
